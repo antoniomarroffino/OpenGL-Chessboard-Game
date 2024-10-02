@@ -1,4 +1,5 @@
-
+client/x*
+engine/x*
 .vs/
 *.suo
 *.user
@@ -6,7 +7,6 @@
 *.userprefs
 *.rsuser
 *.vcxproj.user
-*.vcxproj.filters
 ipch/
 *.pdb
 
@@ -72,8 +72,6 @@ TestResults/
 *.workspace.layout
 x64/
 x86/
-client/x*
-engine/x*
 
 $RECYCLE.Bin/
 

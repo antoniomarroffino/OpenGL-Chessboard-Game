@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
    eng.free();
 
    // Done:
-   eng.~Base();
    std::cout << "\n[application terminated]" << std::endl;
    return 0;
 }
