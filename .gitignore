@@ -72,8 +72,8 @@ TestResults/
 *.workspace.layout
 x64/
 x86/
-client/x64/
-engine/x64/
+client/x*
+engine/x*
 
 $RECYCLE.Bin/
 
