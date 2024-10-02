@@ -7,6 +7,8 @@ engine/x*
 *.userprefs
 *.rsuser
 *.vcxproj.user
+*.depend
+*.layout
 ipch/
 *.pdb
 
@@ -69,7 +71,6 @@ TestResults/
 *.bak
 *.swp
 *.sln.docstates
-*.workspace.layout
 x64/
 x86/
 
