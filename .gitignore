@@ -69,6 +69,9 @@ TestResults/
 *.bak
 *.swp
 *.sln.docstates
+*.workspace.layout
+x64/
+x86/
 
 $RECYCLE.Bin/
 
