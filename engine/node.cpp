@@ -41,10 +41,15 @@ const Node* Node::findById(const unsigned int& id) const {
 	return nullptr;
 }
 
+//TODO:Dare un'occhiata
+void Node::pass() {
+	this->render(this->getFinalMatrix());
+}
+
 //TODO: rivedere l'implementazione
 void Node::render(const glm::mat4& matrix) {
 	for (const auto& element : this->m_children)
-		element.get()->render(matrix);
+		element.get()->pass();
 }
 
 const Node* Node::getMainCamera() const {

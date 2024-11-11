@@ -16,7 +16,7 @@ public:
 	const Node* findNodeByName(const std::string&) const;
 	const std::vector<Node*> findNodesByName(const std::string&) const;
 	const Node* findById(const unsigned int&) const;
-	void virtual render(const glm::mat4& = glm::mat4(1.0f)) override;
+	void pass();
 
 	const Node* getMainCamera() const;
 
@@ -27,6 +27,7 @@ public:
 	const unsigned int getNumberOfChildren() const;
 	const std::vector<Node*> getchildren() const;
 protected:
+	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const virtual Node* getCamera() const;
 
 	glm::mat4 m_matrix;

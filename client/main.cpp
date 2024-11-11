@@ -13,6 +13,8 @@
 
    // Library header:
    #include "engine.h"
+   #include "node.h"
+   #include "glm/glm.hpp"
 
    // C/C++:
    #include <iostream>
@@ -38,6 +40,8 @@ int main(int argc, char *argv[])
    // Init engine:
    Eng::Base &eng = Eng::Base::getInstance();
    eng.init();
+
+   const Node* scene = eng.load();
 
    // Release engine:
    eng.free();

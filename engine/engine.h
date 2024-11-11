@@ -2,7 +2,9 @@
  * @file		engine.h
  * @brief	Graphics engine main include file
  *
- * @author	Achille Peternier (C) SUPSI [achille.peternier@supsi.ch] << change this to your group members
+ * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
 #pragma once
 
@@ -14,7 +16,7 @@
 
    // C/C++:         
    #include <memory> 
-
+#include "node.h"
 
 
 /////////////
@@ -87,7 +89,16 @@ public: //
 
    // Init/free:
    bool init();
-   bool free();   
+   bool free();
+   void clear();
+
+   //add parameters
+   //class Node;
+   const Node* load();
+   void begin3D(Node* camera);
+   void end3D();
+
+   void swap();
 
 
 ///////////

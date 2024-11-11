@@ -2,7 +2,9 @@
  * @file		engine.cpp
  * @brief	Graphics engine main file
  *
- * @author	Achille Peternier (C) SUPSI [achille.peternier@supsi.ch] << change this to your group members
+ * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
 
 
@@ -13,6 +15,7 @@
 
    // Main include:
    #include "engine.h"
+   #include "GL/freeglut.h"
    
    // C/C++:
    #include <iostream>   
@@ -29,6 +32,7 @@
  */
 struct Eng::Base::Reserved
 {
+    int windowId;
    // Flags:
    bool initFlag;
    
@@ -36,7 +40,7 @@ struct Eng::Base::Reserved
    /**
     * Constructor.
     */
-   Reserved() : initFlag{ false } 
+   Reserved() : initFlag{ false }, windowId{ -1 }
    {}
 };
 
@@ -97,11 +101,40 @@ bool ENG_API Eng::Base::init()
    }
 
    // Here you can initialize most of the graphics engine's dependencies and default settings...
-   
+   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+   glutInitWindowPosition(100, 100);
+   glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+   reserved->windowId = glutCreateWindow("Chess");
+
+   //Set callback functions
+
+   glEnable(GL_DEPTH_TEST);
    // Done:
    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
    reserved->initFlag = true;
    return true;
+}
+
+
+const ENG_API Node*  Eng::Base::load() {
+    std::cout << "return pointer to root node" << std::endl;
+    return nullptr;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Swap buffers.
+ */
+void ENG_API Eng::Base::swap() {
+    glutSwapBuffers();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Clear the screen.
+ */
+void ENG_API Eng::Base::clear() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 
