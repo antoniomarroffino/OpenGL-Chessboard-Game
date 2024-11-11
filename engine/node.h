@@ -8,6 +8,7 @@
 class Node : public Object {
 public:
 	Node(std::string);
+	Node(const Node&);
 
 	void setMatrix(glm::mat4);
 	glm::mat4 getMatrix() const;
@@ -15,6 +16,7 @@ public:
 	Node* findNodeByName(std::string) const;
 	std::vector<Node*> findNodesByName(std::string) const;
 	Node* findById(unsigned int) const;
+	void virtual render(glm::mat4) override;
 
 	void setParent(Node*);
 	Node* getParent() const;
@@ -22,7 +24,7 @@ public:
 	void removeChild(Node*);
 	int getNumberOfChild() const;
 	std::vector<Node*> getchildren() const;
-private:
+protected:
 	glm::mat4 m_matrix;
 	std::shared_ptr<Node> m_parent;
 	std::vector<std::shared_ptr<Node>> m_children;
