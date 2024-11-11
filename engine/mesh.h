@@ -4,8 +4,8 @@
 
 class Mesh : public Node {
 public:
-	Mesh(std::string, std::vector<glm::vec3>);
-	void render(glm::mat4) override;
+	Mesh(const std::string&, const std::vector<glm::vec3>&);
+	void render(const glm::mat4&) override;
 private:
 	std::vector<glm::vec3> m_vertices;
 };

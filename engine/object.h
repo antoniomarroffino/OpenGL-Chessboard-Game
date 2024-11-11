@@ -8,11 +8,11 @@
 class Object {
 public:
 	unsigned int getId() const;
-	std::string getName() const;
-	void setName(std::string);
-	void virtual render(glm::mat4) = 0;
+	const std::string& getName() const;
+	void setName(const std::string&);
+	void virtual render(const glm::mat4& = glm::mat4(1.0f)) = 0;
 protected:
-	Object(std::string);
+	Object(const std::string&);
 	unsigned int createNewId();
 
 	unsigned int m_id;
