@@ -9,4 +9,5 @@ void Mesh::render(glm::mat4 matrix) {
 	//GLLOAD MATRIX
 
 	//DRAW BY VERTICES
+	Node::render(matrix);
 }
