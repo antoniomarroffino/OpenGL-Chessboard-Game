@@ -5,9 +5,9 @@
 
 #include "object.h"
 
-class Node : public Object {
+class ENG_API Node : public Object {
 public:
-	Node(const std::string&);
+	Node(const std::string&, const std::shared_ptr<Node>& = nullptr);
 	Node(const Node&);
 
 	void setMatrix(const glm::mat4&);
@@ -20,12 +20,12 @@ public:
 
 	const Node* getMainCamera() const;
 
-	void setParent(Node*);
+	void setParent(const std::shared_ptr<Node>&);
 	const Node* getParent() const;
-	void addChild(Node*);
-	void removeChild(Node*);
+	void addChild(const std::shared_ptr<Node>&);
+	void removeChild(const std::shared_ptr<Node>&);
 	const unsigned int getNumberOfChildren() const;
-	const std::vector<Node*> getchildren() const;
+	const std::vector<Node*> getChildren() const;
 protected:
 	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const virtual Node* getCamera() const;
