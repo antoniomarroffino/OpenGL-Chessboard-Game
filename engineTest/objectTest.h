@@ -5,6 +5,7 @@
 class ObjectTest : protected Test {
 public:
 	ObjectTest();
+	~ObjectTest();
 	void test() override;
 
 private:
@@ -12,6 +13,6 @@ private:
 	void testGetName();
 	void testSetName();
 
-	std::shared_ptr<Object> object1;
-	std::shared_ptr<Object> object2;
+	Object* object1;
+	Object* object2;
 };

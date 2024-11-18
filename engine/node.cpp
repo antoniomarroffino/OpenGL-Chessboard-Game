@@ -1,6 +1,7 @@
 #include "node.h"
+#include <iostream>
 
-ENG_API Node::Node(const std::string& name, const std::shared_ptr<Node>& parent) : Object(name), m_parent{ parent }, m_matrix{glm::mat4(1.0f)}, m_children{std::vector<std::shared_ptr<Node>>()} {}
+ENG_API Node::Node(const std::string& name) : Object(name), m_parent{ nullptr }, m_matrix{glm::mat4(1.0f)}, m_children{std::vector<Node*>()} {}
 
 ENG_API Node::Node(const Node& other) : Object(other), m_parent(other.m_parent), m_matrix(other.m_matrix), m_children(other.m_children) {}
 
@@ -13,18 +14,18 @@ const glm::mat4& Node::getMatrix() const {
 }
 
 const glm::mat4 Node::getFinalMatrix() const {
-	if (this->m_parent.get() == nullptr)
+	if (this->m_parent == nullptr)
 		return this->m_matrix;
-	return this->m_parent.get()->getFinalMatrix() * this->m_matrix;
+	return this->m_parent->getFinalMatrix() * this->m_matrix;
 }
 
 const Node* Node::findNodeByName(const std::string& name) const {
 	for (const auto& node : this->m_children)
-		if (node.get()->m_name == name)
-			return node.get();
+		if (node->m_name == name)
+			return node;
 
 	for (const auto& node : this->m_children) {
-		const Node* nodeByName = node.get()->findNodeByName(name);
+		const Node* nodeByName = node->findNodeByName(name);
 		if (nodeByName != nullptr)
 			return nodeByName;
 	}
@@ -32,18 +33,17 @@ const Node* Node::findNodeByName(const std::string& name) const {
 	return nullptr;
 }
 
-const std::vector<Node*> Node::findNodesByName(const std::string& name) const {
-	std::vector<Node*> nodeWithSameName;
+const Node* Node::findNodeById(const unsigned int& id) const {
 	for (const auto& node : this->m_children)
-		if (node.get()->m_name == name)
-			nodeWithSameName.push_back(node.get());
-	return nodeWithSameName;
-}
+		if (node->getId() == id)
+			return node;
 
-const Node* Node::findById(const unsigned int& id) const {
-	for (const auto& node : this->m_children)
-		if (node.get()->getId() == id)
-			return node.get();
+	for (const auto& node : this->m_children) {
+		const Node* nodeById = node->findNodeById(id);
+		if (nodeById != nullptr)
+			return nodeById;
+	}
+		
 	return nullptr;
 }
 
@@ -55,7 +55,7 @@ void Node::pass() {
 //TODO: rivedere l'implementazione
 void Node::render(const glm::mat4& matrix) {
 	for (const auto& element : this->m_children)
-		element.get()->pass();
+		element->pass();
 }
 
 const Node* Node::getMainCamera() const {
@@ -72,24 +72,40 @@ const Node* Node::getCamera() const {
 	return nullptr;
 }
 
-void Node::setParent(const std::shared_ptr<Node>& parent) {
+void Node::setParent(Node* parent) {
 	this->m_parent = parent;
 }
 
 const Node* Node::getParent() const {
-	return this->m_parent.get();
+	return this->m_parent;
 }
 
-void Node::addChild(const std::shared_ptr<Node>& child) {
-	if(child != nullptr)
+bool Node::addChild(Node* child) {
+	if (child != nullptr && std::find(this->m_children.begin(), this->m_children.end(), child) == this->m_children.end()) {
 		this->m_children.push_back(child);
+		child->setParent(this);
+		return true;
+	}
+	return false;
 }
 
-//Da testare
-//TODO: eliminare a cascata (recuperare il node, toglierlo dal vector e fare delete, gestendo la distruzione in cascata)
-void Node::removeChild(const std::shared_ptr<Node>& child) {
-	if(child != nullptr)
-		this->m_children.erase(this->m_children.begin() + child.get()->m_id);
+bool Node::removeChild(Node* child) {
+	if (this->m_children.size() == 0 || child == nullptr) return false;
+	
+	auto it = std::find(this->m_children.begin(), this->m_children.end(), child);
+	if (it != this->m_children.end()) {
+		this->m_children.erase(it);
+		child->setParent(nullptr);
+		return true;
+	}
+	return false;
+}
+
+Node* Node::removeChildByPosition(const unsigned int& position) {
+	if (position >= this->m_children.size()) return nullptr;
+
+	Node* removedNode = this->m_children[position];
+	return this->removeChild(removedNode) ? removedNode : nullptr;
 }
 
 const unsigned int Node::getNumberOfChildren() const {
@@ -99,6 +115,6 @@ const unsigned int Node::getNumberOfChildren() const {
 const std::vector<Node*> Node::getChildren() const {
 	std::vector<Node*> children;
 	for (const auto& node : this->m_children)
-		children.push_back(node.get());
+		children.push_back(node);
 	return children;
 }

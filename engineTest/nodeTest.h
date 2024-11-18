@@ -6,21 +6,25 @@
 class NodeTest : protected Test {
 public:
 	NodeTest();
+	~NodeTest();
 	void test() override;
 private:
 	void testCostructor();
 
-	void testSetAndGetParent();
-	void testGetNumberOfChildren();
 	void testAddChild();
 	void testGetChildren();
 	void testRemoveChild();
+	void testRemoveChildByPosition();
+	void testGetParent();
+	void testGetNumberOfChildren();
+
 
 	void testSetAndGetMatrix();
 	void testGetFinalMatrix();
 	void testFindNodeByName();
+	void testFindNodeById();
 
-	std::shared_ptr<Node> node_root;
-	std::shared_ptr<Node> node_middle;
-	std::shared_ptr<Node> node_leaf;
+	Node* node_root;
+	Node* node_middle;
+	Node* node_leaf;
 };
