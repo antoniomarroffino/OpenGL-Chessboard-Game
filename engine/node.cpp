@@ -2,9 +2,9 @@
 #include <iostream>
 #include <algorithm>
 
-ENG_API Node::Node(const std::string& name) : Object(name), m_parent{ nullptr }, m_matrix{glm::mat4(1.0f)}, m_children{std::vector<Node*>()} {}
+ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{std::vector<Node*>()} {}
 
-ENG_API Node::Node(const Node& other) : Object(other), m_parent(other.m_parent), m_matrix(other.m_matrix), m_children(other.m_children) {}
+ENG_API Node::Node(const Node& other) : Object(other), m_matrix(other.m_matrix), m_parent(other.m_parent), m_children(other.m_children) {}
 
 void ENG_API Node::setMatrix(const glm::mat4& matrix) {
 	this->m_matrix = matrix;

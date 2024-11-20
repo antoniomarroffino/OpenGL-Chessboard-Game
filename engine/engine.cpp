@@ -40,7 +40,7 @@ struct Eng::Base::Reserved
    /**
     * Constructor.
     */
-   Reserved() : initFlag{ false }, windowId{ -1 }
+   Reserved() : windowId{ -1 }, initFlag{ false }
    {}
 };
 
@@ -99,7 +99,7 @@ bool ENG_API Eng::Base::init()
       std::cout << "ERROR: engine already initialized" << std::endl;
       return false;
    }
-
+   /*
    // Here you can initialize most of the graphics engine's dependencies and default settings...
    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
    glutInitWindowPosition(100, 100);
@@ -108,7 +108,7 @@ bool ENG_API Eng::Base::init()
 
    //Set callback functions
 
-   glEnable(GL_DEPTH_TEST);
+   glEnable(GL_DEPTH_TEST);*/
    // Done:
    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
    reserved->initFlag = true;

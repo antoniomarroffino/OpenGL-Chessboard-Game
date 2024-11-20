@@ -1,7 +1,7 @@
 #include "camera.h"
 
 Camera::Camera(const std::string& name, const float& width, const float& height, const float& near, const float& far)
-	: Node(name), m_width{ width }, m_height{ height }, m_near{ near }, m_far{ far }, m_projectionMatrix{ glm::mat4(1.0f) }, m_isCurrentCamera{ false } {}
+	: Node(name), m_projectionMatrix{ glm::mat4(1.0f) }, m_isCurrentCamera{ false }, m_width{ width }, m_height{ height }, m_near{ near }, m_far{ far } {}
 
 void Camera::reshapeWidthAndHeight(const float& width, const float& height) {
 	this->m_width = width;

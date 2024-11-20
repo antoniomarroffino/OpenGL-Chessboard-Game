@@ -16,6 +16,7 @@ public:
 	const bool& isMainCamera();
 protected:
 	Camera(const std::string&, const float&, const float&, const float&, const float&);
+
 	glm::mat4 m_projectionMatrix;
 	bool m_isCurrentCamera;
 	float m_width;

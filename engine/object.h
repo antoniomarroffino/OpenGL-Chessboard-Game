@@ -27,6 +27,8 @@ public:
 protected:
 	Object(const std::string&);
 	Object(const Object&);
+	virtual ~Object() = default;
+
 	unsigned int createNewId();
 
 	unsigned int m_id;
