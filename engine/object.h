@@ -20,6 +20,7 @@
 
 class ENG_API Object {
 public:
+	virtual ~Object() = default;
 	const unsigned int& getId() const;
 	const std::string& getName() const;
 	void setName(const std::string&);
@@ -27,7 +28,6 @@ public:
 protected:
 	Object(const std::string&);
 	Object(const Object&);
-	virtual ~Object() = default;
 
 	unsigned int createNewId();
 
