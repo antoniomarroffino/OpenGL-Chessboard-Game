@@ -10,17 +10,17 @@ void ENG_API Node::setMatrix(const glm::mat4& matrix) {
 	this->m_matrix = matrix;
 }
 
-const glm::mat4& ENG_API Node::getMatrix() const {
+const ENG_API glm::mat4& Node::getMatrix() const {
 	return this->m_matrix;
 }
 
-const glm::mat4 ENG_API Node::getFinalMatrix() const {
+const ENG_API glm::mat4 Node::getFinalMatrix() const {
 	if (this->m_parent == nullptr)
 		return this->m_matrix;
 	return this->m_parent->getFinalMatrix() * this->m_matrix;
 }
 
-const Node* ENG_API Node::findNodeByName(const std::string& name) const {
+const ENG_API Node* Node::findNodeByName(const std::string& name) const {
 	for (const auto& node : this->m_children)
 		if (node->m_name == name)
 			return node;
@@ -34,7 +34,7 @@ const Node* ENG_API Node::findNodeByName(const std::string& name) const {
 	return nullptr;
 }
 
-const Node* ENG_API Node::findNodeById(const unsigned int& id) const {
+const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
 	for (const auto& node : this->m_children)
 		if (node->getId() == id)
 			return node;
@@ -59,7 +59,7 @@ void ENG_API Node::render(const glm::mat4& matrix) {
 		element->pass();
 }
 
-const Node* ENG_API Node::getMainCamera() const {
+const ENG_API Node* Node::getMainCamera() const {
 	for (const auto& element : this->m_children) {
 		//Node::Camera* cam = dynamic_cast<Node::Camera*>(element.get());
 		const Node* camera = element->getCamera();
@@ -69,7 +69,7 @@ const Node* ENG_API Node::getMainCamera() const {
 	return nullptr;
 }
 
-const Node* ENG_API Node::getCamera() const {
+const ENG_API Node* Node::getCamera() const {
 	return nullptr;
 }
 
@@ -77,11 +77,11 @@ void ENG_API Node::setParent(Node* parent) {
 	this->m_parent = parent;
 }
 
-const Node* ENG_API Node::getParent() const {
+const ENG_API Node* Node::getParent() const {
 	return this->m_parent;
 }
 
-bool ENG_API Node::addChild(Node* child) {
+ENG_API bool Node::addChild(Node* child) {
 	if (child != nullptr && std::find(this->m_children.begin(), this->m_children.end(), child) == this->m_children.end()) {
 		this->m_children.push_back(child);
 		child->setParent(this);
@@ -90,7 +90,7 @@ bool ENG_API Node::addChild(Node* child) {
 	return false;
 }
 
-bool ENG_API Node::removeChild(Node* child) {
+ENG_API bool Node::removeChild(Node* child) {
 	if (this->m_children.size() == 0 || child == nullptr) return false;
 
 	auto it = std::find(this->m_children.begin(), this->m_children.end(), child);
@@ -102,18 +102,18 @@ bool ENG_API Node::removeChild(Node* child) {
 	return false;
 }
 
-Node* ENG_API Node::removeChildByPosition(const unsigned int& position) {
+ENG_API Node* Node::removeChildByPosition(const unsigned int& position) {
 	if (position >= this->m_children.size()) return nullptr;
 
 	Node* removedNode = this->m_children[position];
 	return this->removeChild(removedNode) ? removedNode : nullptr;
 }
 
-const unsigned int Node::getNumberOfChildren() const {
+const ENG_API unsigned int Node::getNumberOfChildren() const {
 	return (unsigned int) this->m_children.size();
 }
 
-const std::vector<Node*> ENG_API Node::getChildren() const {
+const ENG_API std::vector<Node*> Node::getChildren() const {
 	std::vector<Node*> children;
 	for (const auto& node : this->m_children)
 		children.push_back(node);
