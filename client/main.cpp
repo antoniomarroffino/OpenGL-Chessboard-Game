@@ -41,8 +41,6 @@ int main(int argc, char *argv[])
    Eng::Base &eng = Eng::Base::getInstance();
    eng.init();
 
-   const Node* scene = eng.load();
-
    // Release engine:
    eng.free();
 
