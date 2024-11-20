@@ -5,5 +5,8 @@
 		<Project filename="client/client.cbp">
 			<Depends filename="engine/engine.cbp" />
 		</Project>
+		<Project filename="engineTest/engineTest.cbp">
+			<Depends filename="engine/engine.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

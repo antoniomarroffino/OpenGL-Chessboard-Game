@@ -1,25 +1,26 @@
 #include "node.h"
 #include <iostream>
+#include <algorithm>
 
 ENG_API Node::Node(const std::string& name) : Object(name), m_parent{ nullptr }, m_matrix{glm::mat4(1.0f)}, m_children{std::vector<Node*>()} {}
 
 ENG_API Node::Node(const Node& other) : Object(other), m_parent(other.m_parent), m_matrix(other.m_matrix), m_children(other.m_children) {}
 
-void Node::setMatrix(const glm::mat4& matrix) {
+void ENG_API Node::setMatrix(const glm::mat4& matrix) {
 	this->m_matrix = matrix;
 }
 
-const glm::mat4& Node::getMatrix() const {
+const glm::mat4& ENG_API Node::getMatrix() const {
 	return this->m_matrix;
 }
 
-const glm::mat4 Node::getFinalMatrix() const {
+const glm::mat4 ENG_API Node::getFinalMatrix() const {
 	if (this->m_parent == nullptr)
 		return this->m_matrix;
 	return this->m_parent->getFinalMatrix() * this->m_matrix;
 }
 
-const Node* Node::findNodeByName(const std::string& name) const {
+const Node* ENG_API Node::findNodeByName(const std::string& name) const {
 	for (const auto& node : this->m_children)
 		if (node->m_name == name)
 			return node;
@@ -33,7 +34,7 @@ const Node* Node::findNodeByName(const std::string& name) const {
 	return nullptr;
 }
 
-const Node* Node::findNodeById(const unsigned int& id) const {
+const Node* ENG_API Node::findNodeById(const unsigned int& id) const {
 	for (const auto& node : this->m_children)
 		if (node->getId() == id)
 			return node;
@@ -43,22 +44,22 @@ const Node* Node::findNodeById(const unsigned int& id) const {
 		if (nodeById != nullptr)
 			return nodeById;
 	}
-		
+
 	return nullptr;
 }
 
 //TODO:Dare un'occhiata
-void Node::pass() {
+void ENG_API Node::pass() {
 	this->render(this->getFinalMatrix());
 }
 
 //TODO: rivedere l'implementazione
-void Node::render(const glm::mat4& matrix) {
+void ENG_API Node::render(const glm::mat4& matrix) {
 	for (const auto& element : this->m_children)
 		element->pass();
 }
 
-const Node* Node::getMainCamera() const {
+const Node* ENG_API Node::getMainCamera() const {
 	for (const auto& element : this->m_children) {
 		//Node::Camera* cam = dynamic_cast<Node::Camera*>(element.get());
 		const Node* camera = element->getCamera();
@@ -68,19 +69,19 @@ const Node* Node::getMainCamera() const {
 	return nullptr;
 }
 
-const Node* Node::getCamera() const {
+const Node* ENG_API Node::getCamera() const {
 	return nullptr;
 }
 
-void Node::setParent(Node* parent) {
+void ENG_API Node::setParent(Node* parent) {
 	this->m_parent = parent;
 }
 
-const Node* Node::getParent() const {
+const Node* ENG_API Node::getParent() const {
 	return this->m_parent;
 }
 
-bool Node::addChild(Node* child) {
+bool ENG_API Node::addChild(Node* child) {
 	if (child != nullptr && std::find(this->m_children.begin(), this->m_children.end(), child) == this->m_children.end()) {
 		this->m_children.push_back(child);
 		child->setParent(this);
@@ -89,9 +90,9 @@ bool Node::addChild(Node* child) {
 	return false;
 }
 
-bool Node::removeChild(Node* child) {
+bool ENG_API Node::removeChild(Node* child) {
 	if (this->m_children.size() == 0 || child == nullptr) return false;
-	
+
 	auto it = std::find(this->m_children.begin(), this->m_children.end(), child);
 	if (it != this->m_children.end()) {
 		this->m_children.erase(it);
@@ -101,7 +102,7 @@ bool Node::removeChild(Node* child) {
 	return false;
 }
 
-Node* Node::removeChildByPosition(const unsigned int& position) {
+Node* ENG_API Node::removeChildByPosition(const unsigned int& position) {
 	if (position >= this->m_children.size()) return nullptr;
 
 	Node* removedNode = this->m_children[position];
@@ -112,7 +113,7 @@ const unsigned int Node::getNumberOfChildren() const {
 	return (unsigned int) this->m_children.size();
 }
 
-const std::vector<Node*> Node::getChildren() const {
+const std::vector<Node*> ENG_API Node::getChildren() const {
 	std::vector<Node*> children;
 	for (const auto& node : this->m_children)
 		children.push_back(node);

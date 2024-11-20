@@ -1,15 +1,16 @@
+
 CXX = g++
 AR = ar
 LD = g++
 WINDRES = windres
 
-INC = 
+INC = -I../dependencies/glm/include -I../dependencies/freeglut/include
 CFLAGS = -Wall -std=c++20 -fPIC -m64 -fexceptions
 RCFLAGS = 
 RESINC = 
-LIBDIR = 
-LIB = 
-LDFLAGS = -m64
+LIBDIR =
+LIB =
+LDFLAGS = -m64 -lGL -lGLU -lglut
 
 INC_DEBUG = $(INC)
 CFLAGS_DEBUG = $(CFLAGS) -g -D_DEBUG
@@ -33,9 +34,12 @@ OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
 OUT_RELEASE = bin/Release/libengine.so
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/engine.o
+SRC_DIR = $(wildcard *.cpp)
+OBJ_DEBUG = $(SRC_DIR:%.cpp=$(OBJDIR_DEBUG)/%.o)
+OBJ_RELEASE = $(SRC_DIR:%.cpp=$(OBJDIR_RELEASE)/%.o)
+#OBJ_DEBUG = $(OBJDIR_DEBUG)/engine.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/engine.o
+#OBJ_RELEASE = $(OBJDIR_RELEASE)/engine.o
 
 all: debug release
 
@@ -52,8 +56,8 @@ debug: before_debug out_debug after_debug
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) -shared $(LIBDIR_DEBUG) $(OBJ_DEBUG)  -o $(OUT_DEBUG) $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)/engine.o: engine.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c engine.cpp -o $(OBJDIR_DEBUG)/engine.o
+$(OBJDIR_DEBUG)/%.o: %.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c $< -o $@
 
 clean_debug: 
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
@@ -71,8 +75,8 @@ release: before_release out_release after_release
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) -shared $(LIBDIR_RELEASE) $(OBJ_RELEASE)  -o $(OUT_RELEASE) $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)/engine.o: engine.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c engine.cpp -o $(OBJDIR_RELEASE)/engine.o
+$(OBJDIR_RELEASE)/%.o: %.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c $< -o $@
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)

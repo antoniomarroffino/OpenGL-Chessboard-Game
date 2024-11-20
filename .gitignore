@@ -40,6 +40,11 @@ engine/[Oo]bj/
 *.frag
 *.spv
 
+!dependencies/freeglut/lib/x64/Debug/freeglut_staticd.lib
+!dependencies/freeglut/lib/x64/Release/freeglut_static.lib
+!dependencies/freeglut/lib/x64/Debug/freeglut_staticd.a
+!dependencies/freeglut/lib/x64/Release/freeglut_static.a
+
 shaders_cache/
 
 [Bb]uild/

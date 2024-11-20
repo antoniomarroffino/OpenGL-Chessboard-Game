@@ -9,6 +9,8 @@ class ENG_API Node : public Object {
 public:
 	Node(const std::string&);
 	Node(const Node&);
+	virtual ~Node() = default;
+
 
 	void setMatrix(const glm::mat4&);
 	const glm::mat4& getMatrix() const;
@@ -28,7 +30,7 @@ public:
 protected:
 	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const virtual Node* getCamera() const;
-	
+
 	glm::mat4 m_matrix;
 	Node* m_parent;
 	std::vector<Node*> m_children;
