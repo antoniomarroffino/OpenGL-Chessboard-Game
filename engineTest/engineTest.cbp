@@ -43,6 +43,7 @@
 			<Add library="gmock" />
 			<Add library="gtest" />
 		</Linker>
+		<Unit filename="mockList.h" />
 		<Unit filename="nodeTest.cpp" />
 		<Unit filename="nodeTest.h" />
 		<Unit filename="objectTest.cpp" />

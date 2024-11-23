@@ -46,10 +46,12 @@
 			<Add library="glut" />
 			<Add library="GL" />
 		</Linker>
+		<Unit filename="Doxyfile" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
 		<Unit filename="engine.cpp" />
 		<Unit filename="engine.h" />
+		<Unit filename="iList.h" />
 		<Unit filename="light.cpp" />
 		<Unit filename="light.h" />
 		<Unit filename="list.cpp" />
