@@ -23,6 +23,7 @@ void NodeTest::test() {
 	this->testRemoveChildByPosition();
 	this->testGetParent();
 	this->testGetNumberOfChildren();
+	this->testSetAndGetMaterial(),
 
 	this->testSetAndGetMatrix();
 	this->testGetFinalMatrix();
@@ -35,6 +36,7 @@ void NodeTest::testCostructor() {
 	std::cout << "Test Node::Node()" << std::endl;
 	assert(this->node_root->getMatrix() == glm::mat4(1.0f));
 	assert(this->node_root->getParent() == nullptr);
+	assert(this->node_root->getMaterial() == nullptr);
 	assert(this->node_root->getChildren().size() == 0);
 }
 
@@ -115,6 +117,17 @@ void NodeTest::testGetNumberOfChildren() {
 	std::cout << "Test Node::getNumberOfChildren()" << std::endl;
 	assert(this->node_root->getNumberOfChildren() == 1);
 	assert(this->node_leaf->getNumberOfChildren() == 0);
+}
+
+void NodeTest::testSetAndGetMaterial() {
+	std::cout << "Test Node::setMaterial() && Test Node::getMaterial()" << std::endl;
+
+	Material* material = new Material("material");
+	this->node_root->setMaterial(material);
+	assert(this->node_root->getMaterial() == material);
+	this->node_root->setMaterial(nullptr);
+	assert(this->node_root->getMaterial() == nullptr);
+	delete material;
 }
 
 void NodeTest::testSetAndGetMatrix() {

@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "object.h"
+#include "list.h"
 
 class ENG_API Node : public Object {
 public:
@@ -17,9 +18,9 @@ public:
 	const glm::mat4 getFinalMatrix() const;
 	const Node* findNodeByName(const std::string&) const;
 	const Node* findNodeById(const unsigned int&) const;
-	void pass();
+	void pass();	//TODO: da testare
 
-	const Node* getMainCamera() const;
+	const Node* getMainCamera() const;		//TODO: da testare
 
 	const Node* getParent() const;
 	bool addChild(Node*);
@@ -27,14 +28,19 @@ public:
 	Node* removeChildByPosition(const unsigned int&);
 	const unsigned int getNumberOfChildren() const;
 	const std::vector<Node*> getChildren() const;
-protected:
+	void setMaterial(Object*);
+	const Object* getMaterial() const;
 	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override;
+protected:
 	const virtual Node* getCamera() const;
 
 	glm::mat4 m_matrix;
 	Node* m_parent;
 	std::vector<Node*> m_children;
-
+	Object* m_material;
+	List& m_list;
 private:
 	void setParent(Node*);
+
+	void fillList();
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "node.h"
+#include "material.h"
 #include "test.h"
 
 class NodeTest : protected Test {
@@ -17,6 +18,7 @@ private:
 	void testRemoveChildByPosition();
 	void testGetParent();
 	void testGetNumberOfChildren();
+	void testSetAndGetMaterial();
 
 
 	void testSetAndGetMatrix();

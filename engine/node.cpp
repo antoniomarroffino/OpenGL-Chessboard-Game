@@ -2,9 +2,9 @@
 #include <iostream>
 #include <algorithm>
 
-ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{std::vector<Node*>()} {}
+ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{ std::vector<Node*>() }, m_material{ nullptr }, m_list{List::getInstance()} {}
 
-ENG_API Node::Node(const Node& other) : Object(other), m_matrix(other.m_matrix), m_parent(other.m_parent), m_children(other.m_children) {}
+ENG_API Node::Node(const Node& other) : Object(other), m_matrix(other.m_matrix), m_parent(other.m_parent), m_children(other.m_children), m_material{ other.m_material }, m_list{ other.m_list } {}
 
 void ENG_API Node::setMatrix(const glm::mat4& matrix) {
 	this->m_matrix = matrix;
@@ -21,11 +21,11 @@ const ENG_API glm::mat4 Node::getFinalMatrix() const {
 }
 
 const ENG_API Node* Node::findNodeByName(const std::string& name) const {
-	for (const auto& node : this->m_children)
+	for (const auto* node : this->m_children)
 		if (node->m_name == name)
 			return node;
 
-	for (const auto& node : this->m_children) {
+	for (const auto* node : this->m_children) {
 		const Node* nodeByName = node->findNodeByName(name);
 		if (nodeByName != nullptr)
 			return nodeByName;
@@ -35,11 +35,11 @@ const ENG_API Node* Node::findNodeByName(const std::string& name) const {
 }
 
 const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
-	for (const auto& node : this->m_children)
+	for (const auto* node : this->m_children)
 		if (node->getId() == id)
 			return node;
 
-	for (const auto& node : this->m_children) {
+	for (const auto* node : this->m_children) {
 		const Node* nodeById = node->findNodeById(id);
 		if (nodeById != nullptr)
 			return nodeById;
@@ -48,19 +48,25 @@ const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
 	return nullptr;
 }
 
-//TODO:Dare un'occhiata
 void ENG_API Node::pass() {
-	this->render(this->getFinalMatrix());
+	this->m_list.clearList();
+
+	this->fillList();
+		
+	//this->m_list.renderElements(this->getMainCamera()->getFinalMatrix());	//non può essere fatta da Node perchè non può includere Camera e chiamare metodo getInverse...
 }
 
-//TODO: rivedere l'implementazione
-void ENG_API Node::render(const glm::mat4& matrix) {
-	for (const auto& element : this->m_children)
-		element->pass();
+void Node::render(const glm::mat4&){}
+
+void ENG_API Node::fillList() {
+	for (auto* node : this->m_children) {
+		this->m_list.addRowToListOfNodeToRender(node, node->getFinalMatrix());
+		node->fillList();
+	}
 }
 
 const ENG_API Node* Node::getMainCamera() const {
-	for (const auto& element : this->m_children) {
+	for (const auto* element : this->m_children) {
 		//Node::Camera* cam = dynamic_cast<Node::Camera*>(element.get());
 		const Node* camera = element->getCamera();
 		if (camera != nullptr)
@@ -115,7 +121,15 @@ const ENG_API unsigned int Node::getNumberOfChildren() const {
 
 const ENG_API std::vector<Node*> Node::getChildren() const {
 	std::vector<Node*> children;
-	for (const auto& node : this->m_children)
+	for (auto* node : this->m_children)
 		children.push_back(node);
 	return children;
+}
+
+void ENG_API Node::setMaterial(Object* material) {
+	this->m_material = material;
+}
+
+const ENG_API Object* Node::getMaterial() const{
+	return this->m_material;
 }
