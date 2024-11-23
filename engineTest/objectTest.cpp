@@ -1,35 +1,30 @@
 
 #include "objectTest.h"
 
-ObjectTest::ObjectTest() 
-	: object1{ new Node("Object1") }, object2{ new Node("Object2") } {}
+Object* ObjectTest::object1 = nullptr;
+Object* ObjectTest::object2 = nullptr;
 
-ObjectTest::~ObjectTest() {
+void ObjectTest::SetUpTestSuite() {
+	object1 = new Node("Object1");
+	object2 = new Node("Object2");
+}
+
+void ObjectTest::TearDownTestSuite() {
 	delete object1;
 	delete object2;
 }
+/*
+TEST_F(ObjectTest, GetId) {
+	ASSERT_EQ(0, object1->getId());
+	ASSERT_EQ(1, object2->getId());
+}*/
 
-void ObjectTest::test() {
-	this->testGetId();
-	this->testGetName();
-	this->testSetName();
-	std::cout << "All test of class Object pass" << std::endl;
+TEST_F(ObjectTest, GetName) {
+	EXPECT_EQ("Object1", object1->getName());
+	EXPECT_EQ("Object2", object2->getName());
 }
 
-void ObjectTest::testGetId() {
-	std::cout << "Test Object::getId()" << std::endl;
-	assert(object1->getId() == 0);
-	assert(object2->getId() == 1);
-}
-
-void ObjectTest::testGetName() {
-	std::cout << "Test Object::getName()" << std::endl;
-	assert(object1->getName() == "Object1");
-	assert(object2->getName() == "Object2");
-}
-
-void ObjectTest::testSetName() {
-	std::cout << "Test Object::setName()" << std::endl;
+TEST_F(ObjectTest, SetName) {
 	object2->setName("UpdatedObject2");
-	assert(object2->getName() == "UpdatedObject2");
+	EXPECT_EQ("UpdatedObject2", object2->getName());
 }

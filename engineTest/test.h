@@ -1,9 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <cassert>
-#include <memory>
-
+#include <gtest/gtest.h>
 
 #include "object.h"
 #include "node.h"
@@ -11,7 +9,4 @@
 #include "glm/geometric.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-class Test {
-protected:
-	void virtual test() = 0;
-};
+class Test {};

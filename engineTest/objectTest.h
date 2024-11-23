@@ -2,17 +2,12 @@
 
 #include "test.h"
 
-class ObjectTest : protected Test {
-public:
-	ObjectTest();
-	~ObjectTest();
-	void test() override;
+class ObjectTest : public ::testing::Test {
+protected:
+	static Object* object1;
+	static Object* object2;
 
-private:
-	void testGetId();
-	void testGetName();
-	void testSetName();
+	static void SetUpTestSuite();
 
-	Object* object1;
-	Object* object2;
+	static void TearDownTestSuite();
 };
