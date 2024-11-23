@@ -140,6 +140,47 @@ TEST_F(NodeTest, FindNodeByName) {
 	EXPECT_EQ(node_root->findNodeByName("leaf"), node_leaf);
 }
 
+TEST_F(NodeTest, Pass) {
+	MockList mockList;
+
+	EXPECT_CALL(mockList, clearList())
+		.Times(1);
+
+	EXPECT_CALL(mockList, addRowToListOfNodeToRender(::testing::_, ::testing::_))
+		.Times(2)
+		.WillRepeatedly(::testing::Return(true));
+
+	node_root->pass(mockList);
+
+
+	node_middle->removeChild(node_leaf);
+
+	EXPECT_CALL(mockList, clearList())
+		.Times(1);
+
+	EXPECT_CALL(mockList, addRowToListOfNodeToRender(::testing::_, ::testing::_))
+		.Times(1)
+		.WillOnce(::testing::Return(true));
+
+	node_root->pass(mockList);
+
+
+	node_middle->addChild(node_leaf);
+
+	node_root->removeChild(node_middle);
+
+
+	EXPECT_CALL(mockList, clearList())
+		.Times(1);
+
+	EXPECT_CALL(mockList, addRowToListOfNodeToRender(::testing::_, ::testing::_))
+		.Times(0);
+
+	node_root->pass(mockList);
+
+	node_root->addChild(node_middle);
+}
+
 // Test di findNodeById
 /*
 TEST_F(NodeTest, FindNodeById) {

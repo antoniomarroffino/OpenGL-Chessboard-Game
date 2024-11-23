@@ -2,9 +2,9 @@
 #include <iostream>
 #include <algorithm>
 
-ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{ std::vector<Node*>() }, m_material{ nullptr }, m_list{List::getInstance()} {}
+ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{ std::vector<Node*>() }, m_material{ nullptr } {}
 
-ENG_API Node::Node(const Node& other) : Object(other), m_matrix(other.m_matrix), m_parent(other.m_parent), m_children(other.m_children), m_material{ other.m_material }, m_list{ other.m_list } {}
+ENG_API Node::Node(const Node& other) : Object(other), m_matrix(other.m_matrix), m_parent(other.m_parent), m_children(other.m_children), m_material{ other.m_material } {}
 
 void ENG_API Node::setMatrix(const glm::mat4& matrix) {
 	this->m_matrix = matrix;
@@ -48,20 +48,22 @@ const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
 	return nullptr;
 }
 
-void ENG_API Node::pass() {
-	this->m_list.clearList();
+ENG_API IList& Node::pass(IList& list) {
+	list.clearList();
 
-	this->fillList();
+	this->fillList(list);
+
+	return list;
 		
 	//this->m_list.renderElements(this->getMainCamera()->getFinalMatrix());	//non può essere fatta da Node perchè non può includere Camera e chiamare metodo getInverse...
 }
 
 void Node::render(const glm::mat4&){}
 
-void ENG_API Node::fillList() {
+void ENG_API Node::fillList(IList& list) {
 	for (auto* node : this->m_children) {
-		this->m_list.addRowToListOfNodeToRender(node, node->getFinalMatrix());
-		node->fillList();
+		list.addRowToListOfNodeToRender(node, node->getFinalMatrix());
+		node->fillList(list);
 	}
 }
 

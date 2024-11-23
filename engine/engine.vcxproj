@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="engine.h" />
+    <ClInclude Include="iList.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="material.h" />

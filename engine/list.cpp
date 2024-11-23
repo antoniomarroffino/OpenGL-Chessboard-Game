@@ -10,13 +10,7 @@ struct List::Reserved {
 	{}
 };
 
-
 List::List() : reserved{std::unique_ptr<List::Reserved>()}, listOfReservedToRender{std::list<List::Reserved*>()} {}
-
-List& List::getInstance() {
-	static List instance;
-	return instance;
-}
 
 bool List::addRowToListOfNodeToRender(Object* node, const glm::mat4& finalMatrix) {
 	if (node == nullptr || dynamic_cast<Camera*>(node) != nullptr) return false;
@@ -37,7 +31,6 @@ void List::clearList() {
 }
 
 void List::renderElements(const glm::mat4& cameraFinalMatrix) const {
-	const glm::mat4 inverseCameraFinalMatrix = glm::inverse(cameraFinalMatrix);
 	for (const auto* reservedRow : this->listOfReservedToRender)
-		reservedRow->r_node->render(inverseCameraFinalMatrix * reservedRow->r_nodeFinalMatrix);
+		reservedRow->r_node->render(cameraFinalMatrix * reservedRow->r_nodeFinalMatrix);
 }

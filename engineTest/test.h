@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include "object.h"
 #include "node.h"
