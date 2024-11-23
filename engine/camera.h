@@ -4,7 +4,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 
-class Camera : public Node {
+class ENG_API Camera : public Node {
 public:
 	void virtual loadProjectionMatrix() const = 0;
 	void virtual render(const glm::mat4& = glm::mat4(1.0f)) override = 0;

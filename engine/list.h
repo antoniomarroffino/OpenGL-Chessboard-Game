@@ -5,7 +5,7 @@
 #include "list"
 #include "object.h"
 
-class List : public IList {
+class ENG_API List : public IList {
 public:
 	List();
 	~List() override = default;

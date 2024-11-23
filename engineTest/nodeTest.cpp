@@ -181,10 +181,34 @@ TEST_F(NodeTest, Pass) {
 	node_root->addChild(node_middle);
 }
 
-// Test di findNodeById
-/*
-TEST_F(NodeTest, FindNodeById) {
-	EXPECT_EQ(node_root->findNodeById(1000), nullptr);
-	EXPECT_EQ(node_root->findNodeById(3), node_middle);
-	EXPECT_EQ(node_root->findNodeById(4), node_leaf);
-}*/
+TEST_F(NodeTest, GetCamera) {
+	MockCamera mockCamera1;
+	MockCamera mockCamera2;
+
+	EXPECT_CALL(mockCamera1, getCamera())
+		.Times(0);
+	EXPECT_CALL(mockCamera2, getCamera())
+		.Times(0);
+	EXPECT_EQ(node_root->getMainCamera(), nullptr);
+
+
+	node_leaf->addChild(&mockCamera1);
+	EXPECT_CALL(mockCamera1, getCamera())
+		.Times(1)
+		.WillOnce(::testing::Return(&mockCamera1));
+	EXPECT_CALL(mockCamera2, getCamera())
+		.Times(0);
+	EXPECT_EQ(node_root->getMainCamera(), &mockCamera1);
+
+
+	node_middle->addChild(&mockCamera2);
+	EXPECT_CALL(mockCamera2, getCamera())
+		.Times(0);
+	EXPECT_CALL(mockCamera1, getCamera())
+		.Times(1)
+		.WillOnce(::testing::Return(&mockCamera1));
+	EXPECT_EQ(node_root->getMainCamera(), &mockCamera1);
+
+	node_middle->removeChild(&mockCamera2);
+	node_leaf->removeChild(&mockCamera1);
+}

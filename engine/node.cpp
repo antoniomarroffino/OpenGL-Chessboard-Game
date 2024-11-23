@@ -69,13 +69,19 @@ void ENG_API Node::fillList(IList& list) {
 
 const ENG_API Node* Node::getMainCamera() const {
 	for (const auto* element : this->m_children) {
-		//Node::Camera* cam = dynamic_cast<Node::Camera*>(element.get());
 		const Node* camera = element->getCamera();
-		if (camera != nullptr)
+		if (camera != nullptr) {
 			return camera;
+		}
+
+		camera = element->getMainCamera();
+		if (camera != nullptr) {
+			return camera;
+		}
 	}
 	return nullptr;
 }
+
 
 const ENG_API Node* Node::getCamera() const {
 	return nullptr;

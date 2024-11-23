@@ -20,7 +20,7 @@ public:
 	const Node* findNodeById(const unsigned int&) const;
 	IList& pass(IList&);
 
-	const Node* getMainCamera() const;		//TODO: da testare
+	const Node* getMainCamera() const;
 
 	const Node* getParent() const;
 	bool addChild(Node*);

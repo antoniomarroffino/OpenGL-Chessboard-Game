@@ -3,6 +3,7 @@
 #include "test.h"
 #include "node.h"
 #include "mockList.h"
+#include "mockCamera.h"
 #include "material.h"
 
 

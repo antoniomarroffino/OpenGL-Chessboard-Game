@@ -2,7 +2,7 @@
 
 #include "object.h"
 
-class IList {
+class ENG_API IList {
 public:
     virtual ~IList() = default;
     virtual bool addRowToListOfNodeToRender(Object*, const glm::mat4&) = 0;

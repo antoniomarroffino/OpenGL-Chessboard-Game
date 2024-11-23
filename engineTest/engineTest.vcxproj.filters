@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\mockedElements">
+      <UniqueIdentifier>{0de5a71b-df6b-4b8e-ab76-06aa6740cd63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="objectTest.cpp">
@@ -42,7 +45,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mockList.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\mockedElements</Filter>
+    </ClInclude>
+    <ClInclude Include="mockCamera.h">
+      <Filter>Header Files\mockedElements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
