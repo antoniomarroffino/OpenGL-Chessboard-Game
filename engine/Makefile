@@ -4,7 +4,7 @@ AR = ar
 LD = g++
 WINDRES = windres
 
-INC = -I../dependencies/glm/include -I../dependencies/freeglut/include
+INC = -I../dependencies/glm/include
 CFLAGS = -Wall -std=c++20 -fPIC -m64 -fexceptions
 RCFLAGS = 
 RESINC = 

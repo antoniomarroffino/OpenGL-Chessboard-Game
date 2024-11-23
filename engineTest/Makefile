@@ -8,7 +8,7 @@ CFLAGS = -Wall -std=c++20 -fexceptions
 RCFLAGS =
 RESINC =
 LIBDIR =
-LIB = -lengine
+LIB = -lengine -lgtest -lgmock
 LDFLAGS =
 
 INC_DEBUG = $(INC)

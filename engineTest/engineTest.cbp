@@ -37,13 +37,11 @@
 			<Add option="-fexceptions" />
 			<Add directory="../engine" />
 			<Add directory="../dependencies/glm/include" />
-			<Add directory="../packages/gmock.1.11.0/lib/native/include/gtest" />
-			<Add directory="../packages/gmock.1.11.0/lib/native/include/gmock" />
 		</Compiler>
 		<Linker>
 			<Add library="engine" />
-			<Add library="gtest" />
 			<Add library="gmock" />
+			<Add library="gtest" />
 		</Linker>
 		<Unit filename="nodeTest.cpp" />
 		<Unit filename="nodeTest.h" />

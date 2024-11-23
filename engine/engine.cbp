@@ -50,6 +50,12 @@
 		<Unit filename="camera.h" />
 		<Unit filename="engine.cpp" />
 		<Unit filename="engine.h" />
+		<Unit filename="light.cpp" />
+		<Unit filename="light.h" />
+		<Unit filename="list.cpp" />
+		<Unit filename="list.h" />
+		<Unit filename="material.cpp" />
+		<Unit filename="material.h" />
 		<Unit filename="mesh.cpp" />
 		<Unit filename="mesh.h" />
 		<Unit filename="node.cpp" />
@@ -60,6 +66,8 @@
 		<Unit filename="orthoCamera.h" />
 		<Unit filename="perspCam.cpp" />
 		<Unit filename="perspCam.h" />
+		<Unit filename="texture.cpp" />
+		<Unit filename="texture.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
