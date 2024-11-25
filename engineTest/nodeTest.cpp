@@ -16,7 +16,6 @@ void NodeTest::TearDownTestSuite() {
 	delete node_leaf;
 }
 
-
 TEST_F(NodeTest, Constructor) {
 	EXPECT_EQ(node_root->getMatrix(), glm::mat4(1.0f));
 	EXPECT_EQ(node_root->getParent(), nullptr);
@@ -184,31 +183,43 @@ TEST_F(NodeTest, Pass) {
 TEST_F(NodeTest, GetCamera) {
 	MockCamera mockCamera1;
 	MockCamera mockCamera2;
+	const bool expectedValueFalse = false;
+	const bool expectedValueTrue = true;
 
-	EXPECT_CALL(mockCamera1, getCamera())
-		.Times(0);
-	EXPECT_CALL(mockCamera2, getCamera())
-		.Times(0);
+	
+
+	EXPECT_EQ(node_root->getMainCamera(), nullptr);
+	
+	
+	node_leaf->addChild(&mockCamera1);
+	EXPECT_CALL(mockCamera1, isMainCamera())
+		.Times(1)
+		.WillOnce(testing::ReturnRef(expectedValueFalse));
 	EXPECT_EQ(node_root->getMainCamera(), nullptr);
 
 
-	node_leaf->addChild(&mockCamera1);
-	EXPECT_CALL(mockCamera1, getCamera())
+	const bool expectedValue = true;
+	EXPECT_CALL(mockCamera1, isMainCamera())
 		.Times(1)
-		.WillOnce(::testing::Return(&mockCamera1));
-	EXPECT_CALL(mockCamera2, getCamera())
+		.WillOnce(testing::ReturnRef(expectedValueTrue));
+	EXPECT_EQ(node_root->getMainCamera(), &mockCamera1);
+
+
+	node_middle->addChild(&mockCamera2);
+	EXPECT_CALL(mockCamera1, isMainCamera())
+		.Times(1)
+		.WillOnce(testing::ReturnRef(expectedValueTrue));
+	EXPECT_CALL(mockCamera2, isMainCamera())
 		.Times(0);
 	EXPECT_EQ(node_root->getMainCamera(), &mockCamera1);
 
 
 	node_middle->addChild(&mockCamera2);
-	EXPECT_CALL(mockCamera2, getCamera())
-		.Times(0);
-	EXPECT_CALL(mockCamera1, getCamera())
+	EXPECT_CALL(mockCamera1, isMainCamera())
 		.Times(1)
-		.WillOnce(::testing::Return(&mockCamera1));
-	EXPECT_EQ(node_root->getMainCamera(), &mockCamera1);
-
-	node_middle->removeChild(&mockCamera2);
-	node_leaf->removeChild(&mockCamera1);
+		.WillOnce(testing::ReturnRef(expectedValueFalse));
+	EXPECT_CALL(mockCamera2, isMainCamera())
+		.Times(1)
+		.WillOnce(testing::ReturnRef(expectedValueTrue));
+	EXPECT_EQ(node_root->getMainCamera(), &mockCamera2);
 }

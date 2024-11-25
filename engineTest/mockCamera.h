@@ -12,7 +12,7 @@ public:
         const float& far = 100.0f)
         : Camera(name, width, height, near, far) {}
 
-    MOCK_METHOD(const Node*, getCamera, (), (const, override));
+    MOCK_METHOD(const bool&, isMainCamera, (), (const, override));
     MOCK_METHOD(void, loadProjectionMatrix, (), (const, override));
     MOCK_METHOD(void, render, (const glm::mat4&), (override));
 };

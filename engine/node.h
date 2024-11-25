@@ -18,9 +18,9 @@ public:
 	const glm::mat4 getFinalMatrix() const;
 	const Node* findNodeByName(const std::string&) const;
 	const Node* findNodeById(const unsigned int&) const;
-	IList& pass(IList&);
+	IList& pass(IList&); //Todo: da sistemare
 
-	const Node* getMainCamera() const;
+	Node* getMainCamera() const;
 
 	const Node* getParent() const;
 	bool addChild(Node*);
@@ -32,8 +32,6 @@ public:
 	const Object* getMaterial() const;
 	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override;
 protected:
-	const virtual Node* getCamera() const;
-
 	glm::mat4 m_matrix;
 	Node* m_parent;
 	std::vector<Node*> m_children;

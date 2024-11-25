@@ -16,12 +16,6 @@ ENG_API void Camera::setMainCamera(const bool& val){
 	this->m_isCurrentCamera = val;
 }
 
-const ENG_API bool& Camera::isMainCamera() {
+const ENG_API bool& Camera::isMainCamera() const {
 	return this->m_isCurrentCamera;
-}
-
-const ENG_API Node* Camera::getCamera() const {
-	if (this->m_isCurrentCamera)
-		return this;
-	return nullptr;
 }

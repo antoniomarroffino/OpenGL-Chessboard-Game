@@ -1,4 +1,5 @@
 #include "node.h"
+#include "camera.h"
 #include <iostream>
 #include <algorithm>
 
@@ -67,23 +68,24 @@ void ENG_API Node::fillList(IList& list) {
 	}
 }
 
-const ENG_API Node* Node::getMainCamera() const {
-	for (const auto* element : this->m_children) {
-		const Node* camera = element->getCamera();
+ENG_API Node* Node::getMainCamera() const {
+	for (auto* element : this->m_children) {
+		Camera* camera = dynamic_cast<Camera*>(element);
+		
 		if (camera != nullptr) {
-			return camera;
+			if (camera->isMainCamera()) {
+				return camera;
+			}
 		}
-
-		camera = element->getMainCamera();
-		if (camera != nullptr) {
-			return camera;
+		else {
+			if (element != nullptr) {
+				Node* childCamera = element->getMainCamera();
+				if (childCamera != nullptr)
+					return childCamera;
+			}
 		}
 	}
-	return nullptr;
-}
 
-
-const ENG_API Node* Node::getCamera() const {
 	return nullptr;
 }
 
