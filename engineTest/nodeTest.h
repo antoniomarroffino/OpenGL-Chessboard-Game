@@ -2,10 +2,8 @@
 
 #include "test.h"
 #include "node.h"
-#include "mockList.h"
-#include "mockCamera.h"
 #include "material.h"
-
+#include "mockCamera.h"
 
 class NodeTest : public ::testing::Test {
 protected:

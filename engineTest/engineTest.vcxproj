@@ -141,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mockCamera.h" />
-    <ClInclude Include="mockList.h" />
     <ClInclude Include="nodeTest.h" />
     <ClInclude Include="objectTest.h" />
     <ClInclude Include="test.h" />

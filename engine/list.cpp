@@ -12,6 +12,18 @@ struct ENG_API List::Reserved {
 
 ENG_API List::List() : reserved{std::unique_ptr<List::Reserved>()}, listOfReservedToRender{std::list<List::Reserved*>()} {}
 
+ENG_API List::~List() {
+	this->resetListAndFreeMemory();
+}
+
+void ENG_API List::pass(const Node* rootNode) {
+	if (rootNode == nullptr || rootNode->getNumberOfChildren() == 0) return;
+	for (auto* node : rootNode->getChildren()) {
+		this->addRowToListOfNodeToRender(node, node->getFinalMatrix());
+		this->pass(node);
+	}
+}
+
 ENG_API bool List::addRowToListOfNodeToRender(Object* node, const glm::mat4& finalMatrix) {
 	if (node == nullptr || dynamic_cast<Camera*>(node) != nullptr) return false;
 
@@ -24,13 +36,17 @@ ENG_API bool List::addRowToListOfNodeToRender(Object* node, const glm::mat4& fin
 	return true;
 }
 
-ENG_API void List::clearList() {
-	for (auto* el : this->listOfReservedToRender)
-		delete el;
-	this->listOfReservedToRender.clear();
+void ENG_API List::clearList() {
+	this->resetListAndFreeMemory();
 }
 
-ENG_API void List::renderElements(const glm::mat4& cameraFinalMatrix) const {
+void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) const {
 	for (const auto* reservedRow : this->listOfReservedToRender)
-		reservedRow->r_node->render(cameraFinalMatrix * reservedRow->r_nodeFinalMatrix);
+		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
+}
+
+void ENG_API List::resetListAndFreeMemory() {
+	for (auto* element : this->listOfReservedToRender)
+		delete element;
+	this->listOfReservedToRender.clear();
 }

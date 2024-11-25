@@ -49,24 +49,12 @@ const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
 	return nullptr;
 }
 
-ENG_API IList& Node::pass(IList& list) {
-	list.clearList();
+/*void ENG_API Node::pass() {
 
-	this->fillList(list);
-
-	return list;
-		
-	//this->m_list.renderElements(this->getMainCamera()->getFinalMatrix());	//non può essere fatta da Node perchè non può includere Camera e chiamare metodo getInverse...
-}
+}*/
 
 void Node::render(const glm::mat4&){}
 
-void ENG_API Node::fillList(IList& list) {
-	for (auto* node : this->m_children) {
-		list.addRowToListOfNodeToRender(node, node->getFinalMatrix());
-		node->fillList(list);
-	}
-}
 
 ENG_API Node* Node::getMainCamera() const {
 	for (auto* element : this->m_children) {

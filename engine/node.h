@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "object.h"
-#include "iList.h"
+
 
 class ENG_API Node : public Object {
 public:
@@ -18,7 +18,7 @@ public:
 	const glm::mat4 getFinalMatrix() const;
 	const Node* findNodeByName(const std::string&) const;
 	const Node* findNodeById(const unsigned int&) const;
-	IList& pass(IList&); //Todo: da sistemare
+	//void pass(); //Todo: da sistemare
 
 	Node* getMainCamera() const;
 
@@ -38,6 +38,4 @@ protected:
 	Object* m_material;
 private:
 	void setParent(Node*);
-
-	void fillList(IList&);
 };

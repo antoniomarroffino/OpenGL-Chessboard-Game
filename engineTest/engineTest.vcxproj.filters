@@ -44,9 +44,6 @@
     <ClInclude Include="nodeTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mockList.h">
-      <Filter>Header Files\mockedElements</Filter>
-    </ClInclude>
     <ClInclude Include="mockCamera.h">
       <Filter>Header Files\mockedElements</Filter>
     </ClInclude>
