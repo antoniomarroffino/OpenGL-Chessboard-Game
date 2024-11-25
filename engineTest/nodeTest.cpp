@@ -145,10 +145,10 @@ TEST_F(NodeTest, GetMainCamera) {
 	const bool expectedValueFalse = false;
 	const bool expectedValueTrue = true;
 
-	
+
 	EXPECT_EQ(node_root->getMainCamera(), nullptr);
-	
-	
+
+
 	node_leaf->addChild(&mockCamera1);
 	EXPECT_CALL(mockCamera1, isMainCamera())
 		.Times(1)
@@ -156,7 +156,6 @@ TEST_F(NodeTest, GetMainCamera) {
 	EXPECT_EQ(node_root->getMainCamera(), nullptr);
 
 
-	const bool expectedValue = true;
 	EXPECT_CALL(mockCamera1, isMainCamera())
 		.Times(1)
 		.WillOnce(testing::ReturnRef(expectedValueTrue));
