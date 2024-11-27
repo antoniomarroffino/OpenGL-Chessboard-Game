@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="directLight.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="list.cpp" />
@@ -88,22 +89,26 @@
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="node.cpp" />
     <ClCompile Include="object.cpp" />
+    <ClCompile Include="omniLight.cpp" />
     <ClCompile Include="orthoCamera.cpp" />
-    <ClCompile Include="perspCam.cpp" />
+    <ClCompile Include="perspCamera.cpp" />
+    <ClCompile Include="spotLight.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="directLight.h" />
     <ClInclude Include="engine.h" />
-    <ClInclude Include="iList.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="material.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="omniLight.h" />
     <ClInclude Include="orthoCamera.h" />
-    <ClInclude Include="perspCam.h" />
+    <ClInclude Include="perspCamera.h" />
+    <ClInclude Include="spotLight.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

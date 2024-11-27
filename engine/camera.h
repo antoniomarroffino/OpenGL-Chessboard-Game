@@ -1,9 +1,29 @@
+/**
+ * @file		camera.h
+ * @brief	Camera include file
+ *
+ * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ */
 #pragma once
 
+ //////////////
+ // #INCLUDE //
+ //////////////
+
+	// C/C++:
 #include "node.h"
 #include "glm/gtc/matrix_transform.hpp"
 
 
+ ///////////////////////
+ // MAIN CAMERA CLASS //
+ ///////////////////////
+
+ /**
+  * @brief Abstract base Camera class
+  */
 class ENG_API Camera : public Node {
 public:
 	void virtual loadProjectionMatrix() const = 0;

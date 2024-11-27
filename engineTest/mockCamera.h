@@ -15,4 +15,6 @@ public:
     MOCK_METHOD(const bool&, isMainCamera, (), (const, override));
     MOCK_METHOD(void, loadProjectionMatrix, (), (const, override));
     MOCK_METHOD(void, render, (const glm::mat4&), (override));
+    MOCK_METHOD(const glm::mat4, getFinalMatrix, (), (const, override));
+    MOCK_METHOD(const std::vector<Node*>, getChildren, (), (const, override));
 };

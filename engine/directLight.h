@@ -1,6 +1,6 @@
 /**
- * @file		light.h
- * @brief	Light include file
+ * @file		directLight.h
+ * @brief	DirectLight include file
  *
  * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
  * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
@@ -13,21 +13,19 @@
  //////////////
 
 	// C/C++:
-#include "node.h"
+#include "light.h"
 
 
  ///////////////////////
- // MAIN LIGHT CLASS //
+ // MAIN DIRECTLIGHT CLASS //
  ///////////////////////
 
  /**
-  * @brief Abstract base Light class
+  * @brief Concrete DirectLight class
   */
-class ENG_API Light : public Node {
+class ENG_API DirectLight : public Light {
 public:
-	virtual void render(const glm::mat4 & = glm::mat4(1.0f)) override = 0;
-
-protected:
-	Light(const std::string&);
-	virtual ~Light() = default;
+	DirectLight(const std::string&);
+	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
+private:
 };

@@ -1,8 +1,27 @@
+/**
+ * @file		object.h
+ * @brief	Object include file
+ *
+ * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ * @author	Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ */
 #pragma once
 
+ //////////////
+ // #INCLUDE //
+ //////////////
+
+	// C/C++:  
 #include <string>
 #include "glm/glm.hpp"
 
+
+/////////////
+// VERSION //
+/////////////
+
+   // Generic info:
 // Export API:
 #ifdef _WINDOWS
    // Specifies i/o linkage (VC++ spec):
@@ -18,6 +37,14 @@
 #define ENG_API
 #endif
 
+
+ ///////////////////////
+ // MAIN OBJECT CLASS //
+ ///////////////////////
+
+ /**
+  * @brief Abstract Object base class
+  */
 class ENG_API Object {
 public:
 	virtual ~Object() = default;

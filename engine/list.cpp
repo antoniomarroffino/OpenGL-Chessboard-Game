@@ -10,30 +10,29 @@ struct ENG_API List::Reserved {
 	{}
 };
 
-ENG_API List::List() : reserved{std::unique_ptr<List::Reserved>()}, listOfReservedToRender{std::list<List::Reserved*>()} {}
+ENG_API List::List() : m_reserved{std::unique_ptr<List::Reserved>()}, m_listOfReservedToRender{std::list<List::Reserved*>()} {}
 
 ENG_API List::~List() {
 	this->resetListAndFreeMemory();
 }
 
 void ENG_API List::pass(const Node* rootNode) {
-	if (rootNode == nullptr || rootNode->getNumberOfChildren() == 0) return;
+	if (rootNode == nullptr) return;
 	for (auto* node : rootNode->getChildren()) {
-		this->addRowToListOfNodeToRender(node, node->getFinalMatrix());
+		this->addRowToListOfNodeToRender(node);
 		this->pass(node);
 	}
 }
 
-ENG_API bool List::addRowToListOfNodeToRender(Object* node, const glm::mat4& finalMatrix) {
-	if (node == nullptr || dynamic_cast<Camera*>(node) != nullptr) return false;
+void ENG_API List::addRowToListOfNodeToRender(Node* node) {
+	if (node == nullptr || dynamic_cast<Camera*>(node) != nullptr) return;
 
-	List::Reserved* reservedRow = new List::Reserved(node, finalMatrix);
+	List::Reserved* reservedRow = new List::Reserved(node, node->getFinalMatrix());
 	Light* optionalLight = dynamic_cast<Light*>(node);
 	if (optionalLight != nullptr)
-		this->listOfReservedToRender.push_front(reservedRow);
+		this->m_listOfReservedToRender.push_front(reservedRow);
 	else
-		this->listOfReservedToRender.push_back(reservedRow);
-	return true;
+		this->m_listOfReservedToRender.push_back(reservedRow);
 }
 
 void ENG_API List::clearList() {
@@ -41,12 +40,17 @@ void ENG_API List::clearList() {
 }
 
 void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) const {
-	for (const auto* reservedRow : this->listOfReservedToRender)
+	for (const auto* reservedRow : this->m_listOfReservedToRender) {
 		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
+	}	
+}
+
+const ENG_API unsigned int List::getNumberOfElementsInList() const {
+	return (unsigned int) this->m_listOfReservedToRender.size();
 }
 
 void ENG_API List::resetListAndFreeMemory() {
-	for (auto* element : this->listOfReservedToRender)
+	for (auto* element : this->m_listOfReservedToRender)
 		delete element;
-	this->listOfReservedToRender.clear();
+	this->m_listOfReservedToRender.clear();
 }

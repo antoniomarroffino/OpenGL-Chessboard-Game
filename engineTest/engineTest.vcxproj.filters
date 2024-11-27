@@ -33,6 +33,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="orthoCameraTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="listTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objectTest.h">
@@ -45,6 +51,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mockCamera.h">
+      <Filter>Header Files\mockedElements</Filter>
+    </ClInclude>
+    <ClInclude Include="orthoCameraTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="listTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mockNode.h">
+      <Filter>Header Files\mockedElements</Filter>
+    </ClInclude>
+    <ClInclude Include="mockLight.h">
       <Filter>Header Files\mockedElements</Filter>
     </ClInclude>
   </ItemGroup>

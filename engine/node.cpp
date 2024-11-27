@@ -35,6 +35,7 @@ const ENG_API Node* Node::findNodeByName(const std::string& name) const {
 	return nullptr;
 }
 
+/*
 const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
 	for (const auto* node : this->m_children)
 		if (node->getId() == id)
@@ -47,7 +48,7 @@ const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
 	}
 
 	return nullptr;
-}
+}*/
 
 /*void ENG_API Node::pass() {
 

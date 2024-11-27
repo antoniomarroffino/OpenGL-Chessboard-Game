@@ -13,18 +13,18 @@ void ObjectTest::TearDownTestSuite() {
 	delete object1;
 	delete object2;
 }
-/*
-TEST_F(ObjectTest, GetId) {
-	ASSERT_EQ(0, object1->getId());
-	ASSERT_EQ(1, object2->getId());
-}*/
+
+TEST_F(ObjectTest, Constructor) {
+	unsigned int idFirstObject = object1->getId();
+	EXPECT_NE(object2->getId(), idFirstObject);
+}
 
 TEST_F(ObjectTest, GetName) {
-	EXPECT_EQ("Object1", object1->getName());
-	EXPECT_EQ("Object2", object2->getName());
+	EXPECT_EQ(object1->getName(), "Object1");
+	EXPECT_EQ(object2->getName(), "Object2");
 }
 
 TEST_F(ObjectTest, SetName) {
 	object2->setName("UpdatedObject2");
-	EXPECT_EQ("UpdatedObject2", object2->getName());
+	EXPECT_EQ(object2->getName(), "UpdatedObject2");
 }
