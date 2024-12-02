@@ -22,7 +22,7 @@ structure:
     - '[ -d client ] || exit 1'
 
   rules:
-    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "create-advance-structure"
 
 
 engine:
@@ -50,8 +50,9 @@ engineTest:
   stage: engineTest
 
   before_script:
-    - 'apt install libgtest-dev'
-    - 'apt install libgmock-dev'
+    - 'apt update'
+    - 'apt install -y libgtest-dev'
+    - 'apt install -y libgmock-dev'
     - 'cd engineTest'
 
   script:
