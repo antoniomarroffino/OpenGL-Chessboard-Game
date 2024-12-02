@@ -49,9 +49,10 @@
 		<Unit filename="Doxyfile" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
+		<Unit filename="directLight.cpp" />
+		<Unit filename="directLight.h" />
 		<Unit filename="engine.cpp" />
 		<Unit filename="engine.h" />
-		<Unit filename="iList.h" />
 		<Unit filename="light.cpp" />
 		<Unit filename="light.h" />
 		<Unit filename="list.cpp" />
@@ -64,10 +65,14 @@
 		<Unit filename="node.h" />
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
+		<Unit filename="omniLight.cpp" />
+		<Unit filename="omniLight.h" />
 		<Unit filename="orthoCamera.cpp" />
 		<Unit filename="orthoCamera.h" />
-		<Unit filename="perspCam.cpp" />
-		<Unit filename="perspCam.h" />
+		<Unit filename="perspCamera.cpp" />
+		<Unit filename="perspCamera.h" />
+		<Unit filename="spotLight.cpp" />
+		<Unit filename="spotLight.h" />
 		<Unit filename="texture.cpp" />
 		<Unit filename="texture.h" />
 		<Extensions />
