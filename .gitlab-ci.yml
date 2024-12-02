@@ -22,7 +22,7 @@ structure:
     - '[ -d client ] || exit 1'
 
   rules:
-    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "create-advance-structure"
+    - if: $CI_COMMIT_BRANCH == "dev"
 
 
 engine:
@@ -44,7 +44,7 @@ engine:
       - engine/bin/Debug/libengine.so
 
   rules:
-    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "create-advance-structure"
+    - if: $CI_COMMIT_BRANCH == "dev"
 
 engineTest:
   stage: engineTest
@@ -67,7 +67,7 @@ engineTest:
       - engineTest/bin/Release/*
       - engineTest/bin/Debug/*
   rules:
-    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "create-advance-structure"
+    - if: $CI_COMMIT_BRANCH == "dev"
 
 client:
   stage: client
@@ -89,5 +89,5 @@ client:
 
 
   rules:
-    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "create-advance-structure"
+    - if: $CI_COMMIT_BRANCH == "dev"
 
