@@ -44,12 +44,14 @@ engine:
       - engine/bin/Debug/libengine.so
 
   rules:
-    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "create-advance-structure"
 
 engineTest:
   stage: engineTest
 
   before_script:
+    - 'apt install libgtest-dev'
+    - 'apt install libgmock-dev'
     - 'cd engineTest'
 
   script:
@@ -64,7 +66,7 @@ engineTest:
       - engineTest/bin/Release/*
       - engineTest/bin/Debug/*
   rules:
-    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "create-advance-structure"
 
 client:
   stage: client
@@ -86,5 +88,5 @@ client:
 
 
   rules:
-    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "create-advance-structure"
 
