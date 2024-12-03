@@ -16,6 +16,7 @@
    // Main include:
    #include "engine.h"
    #include "GL/freeglut.h"
+   #include "fileOVOReader.h"
    
    // C/C++:
    #include <iostream>   
@@ -35,12 +36,14 @@ struct Eng::Base::Reserved
     int windowId;
    // Flags:
    bool initFlag;
+
+   FileOVOReader fileOVOReader;
    
 
    /**
     * Constructor.
     */
-   Reserved() : windowId{ -1 }, initFlag{ false }
+   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{FileOVOReader()}
    {}
 };
 
@@ -116,9 +119,10 @@ bool ENG_API Eng::Base::init()
 }
 
 
-const ENG_API Node*  Eng::Base::load() {
+ENG_API Node* Eng::Base::load(const std::string& fileName) {
     std::cout << "return pointer to root node" << std::endl;
-    return nullptr;
+    Node* rootNode = this->reserved->fileOVOReader.parseFile(fileName);
+    return new Node("");
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

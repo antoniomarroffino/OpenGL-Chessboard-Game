@@ -83,6 +83,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="directLight.cpp" />
     <ClCompile Include="engine.cpp" />
+    <ClCompile Include="fileOVOReader.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="list.cpp" />
     <ClCompile Include="material.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="object.cpp" />
     <ClCompile Include="omniLight.cpp" />
     <ClCompile Include="orthoCamera.cpp" />
+    <ClCompile Include="ovoObjectFactory.cpp" />
     <ClCompile Include="perspCamera.cpp" />
     <ClCompile Include="spotLight.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -99,6 +101,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="directLight.h" />
     <ClInclude Include="engine.h" />
+    <ClInclude Include="fileOVOReader.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="material.h" />
@@ -107,6 +110,7 @@
     <ClInclude Include="object.h" />
     <ClInclude Include="omniLight.h" />
     <ClInclude Include="orthoCamera.h" />
+    <ClInclude Include="ovoObjectFactory.h" />
     <ClInclude Include="perspCamera.h" />
     <ClInclude Include="spotLight.h" />
     <ClInclude Include="texture.h" />

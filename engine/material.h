@@ -26,9 +26,9 @@
   */
 class ENG_API Material : public Object {
 public:
-	Material(const std::string&);
+	Material(const std::string& = "defaultMaterial");
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
-
+	const unsigned int parse(const char*, unsigned int&) override;
 private:
 	Texture* m_texture;
 };

@@ -41,6 +41,10 @@ int main(int argc, char *argv[])
    Eng::Base &eng = Eng::Base::getInstance();
    eng.init();
 
+   Node* node = eng.load("C:/Users/lucaf/OneDrive - SUPSI/Desktop/Supsi/I3B/LabSoftware/GraficaProg/chessboard/chessboard.ovo");
+   //if (node == nullptr) std::cout << "fails" << std::endl;
+
+
    // Release engine:
    eng.free();
 

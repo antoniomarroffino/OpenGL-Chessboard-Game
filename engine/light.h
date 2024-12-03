@@ -26,6 +26,7 @@
 class ENG_API Light : public Node {
 public:
 	virtual void render(const glm::mat4 & = glm::mat4(1.0f)) override = 0;
+	const virtual unsigned int parse(const char*, unsigned int&) override = 0;
 
 protected:
 	Light(const std::string&);

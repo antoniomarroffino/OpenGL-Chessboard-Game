@@ -25,7 +25,8 @@
   */
 class ENG_API OmniLight : public Light {
 public:
-	OmniLight(const std::string&);
+	OmniLight(const std::string& = "defaultOmniLight");
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
+	const unsigned int parse(const char*, unsigned int&) override;
 private:
 };

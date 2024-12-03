@@ -56,6 +56,36 @@ const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
 
 void Node::render(const glm::mat4&){}
 
+const ENG_API unsigned int Node::parse(const char* data, unsigned int& position) {
+	// Node name:
+	char nodeName[FILENAME_MAX];
+	strcpy_s(nodeName, data + position);
+	this->setName(nodeName);
+
+	position += (unsigned int)strlen(nodeName) + 1;
+
+	// Node matrix:
+	glm::mat4 matrix;
+	memcpy(&matrix, data + position, sizeof(glm::mat4));
+	this->setMatrix(matrix);
+	position += sizeof(glm::mat4);
+
+	// Nr. of children nodes:
+	unsigned int children;
+	memcpy(&children, data + position, sizeof(unsigned int));
+	this->m_children.reserve(children);
+	position += sizeof(unsigned int);
+
+	//NON DOVREBBE SERVIRE
+	char targetName[FILENAME_MAX];
+	strcpy_s(targetName, data + position);
+	position += (unsigned int)strlen(targetName) + 1;
+
+	std::cout << "Parse: " << this->getName() << std::endl;
+
+	return children;
+}
+
 
 ENG_API Node* Node::getMainCamera() const {
 	for (auto* element : this->m_children) {

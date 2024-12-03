@@ -26,8 +26,9 @@
   */
 class ENG_API Mesh : public Node {
 public:
-	Mesh(const std::string&, const std::vector<glm::vec3>&);
+	Mesh(const std::string& = "defaultMesh");
 	void render(const glm::mat4&) override;
+	const unsigned int parse(const char*, unsigned int&) override;
 private:
 	std::vector<glm::vec3> m_vertices;
 };

@@ -57,6 +57,12 @@
     <ClCompile Include="directLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fileOVOReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ovoObjectFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine.h">
@@ -99,6 +105,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="spotLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fileOVOReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ovoObjectFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

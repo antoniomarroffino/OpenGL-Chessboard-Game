@@ -25,7 +25,7 @@
   */
 class ENG_API Node : public Object {
 public:
-	Node(const std::string&);
+	Node(const std::string& = "defaultNode");
 	Node(const Node&);
 	virtual ~Node() = default;
 
@@ -47,6 +47,8 @@ public:
 	void setMaterial(Object*);
 	const Object* getMaterial() const;
 	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override;
+	const virtual unsigned int parse(const char*, unsigned int&) override;
+
 protected:
 	glm::mat4 m_matrix;
 	Node* m_parent;

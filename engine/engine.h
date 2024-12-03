@@ -94,7 +94,7 @@ public: //
 
    //add parameters
    //class Node;
-   const Node* load();
+   Node* load(const std::string& fileName);
    void begin3D(Node* camera);
    void end3D();
 

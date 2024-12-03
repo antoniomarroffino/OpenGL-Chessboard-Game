@@ -14,6 +14,10 @@
 
 	// C/C++:  
 #include <string>
+#include <iostream>
+#include <iomanip>   
+#include <limits.h>
+#include <cstring>
 #include "glm/glm.hpp"
 
 
@@ -52,8 +56,9 @@ public:
 	const std::string& getName() const;
 	void setName(const std::string&);
 	void virtual render(const glm::mat4& = glm::mat4(1.0f)) = 0;
+	const virtual unsigned int parse(const char*, unsigned int&) = 0;
 protected:
-	Object(const std::string&);
+	Object(const std::string& = "defaultObject");
 	Object(const Object&);
 
 	unsigned int createNewId();

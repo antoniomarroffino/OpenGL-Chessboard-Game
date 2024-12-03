@@ -28,6 +28,8 @@ class ENG_API Camera : public Node {
 public:
 	void virtual loadProjectionMatrix() const = 0;
 	void virtual render(const glm::mat4& = glm::mat4(1.0f)) override = 0;
+	const virtual unsigned int parse(const char*, unsigned int&) override { return 0; };
+
 
 	void reshapeWidthAndHeight(const float&, const float&);
 	const glm::mat4 getInverseCameraFinalMatrix() const;
