@@ -15,6 +15,8 @@
 
 	// C/C++:
 #include "node.h"
+#include <glm/gtc/packing.hpp>
+#include <memory>
 
 
  ///////////////////////
@@ -29,6 +31,11 @@ public:
 	Mesh(const std::string& = "defaultMesh");
 	void render(const glm::mat4&) override;
 	const unsigned int parse(const char*, unsigned int&) override;
+
+	~Mesh();
+
 private:
-	std::vector<glm::vec3> m_vertices;
+
+	struct Reserved;
+	std::unique_ptr<Reserved> m_reserved;
 };

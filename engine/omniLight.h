@@ -25,8 +25,11 @@
   */
 class ENG_API OmniLight : public Light {
 public:
-	OmniLight(const std::string& = "defaultOmniLight");
+	OmniLight(const std::string& = "defaultOmniLight", const glm::vec3& = glm::vec3(0.0f));
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const unsigned int parse(const char*, unsigned int&) override;
+
+	const float& getCutoff() const;
 private:
+	float m_cutoff;
 };

@@ -20,7 +20,6 @@
 #include <cstring>
 #include "glm/glm.hpp"
 
-
 /////////////
 // VERSION //
 /////////////

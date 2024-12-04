@@ -25,8 +25,10 @@
   */
 class ENG_API DirectLight : public Light {
 public:
-	DirectLight(const std::string& = "defaultDirectLight");
+	DirectLight(const std::string& = "defaultDirectLight", const glm::vec3& = glm::vec3(0.0f));
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const unsigned int parse(const char*, unsigned int&) override;
+
+	void setPosition(const glm::vec3&) override;
 private:
 };

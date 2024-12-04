@@ -4,6 +4,9 @@
 
 class ENG_API OVOObjectFactory {
 public:
+	OVOObjectFactory() = delete;
+	OVOObjectFactory(const OVOObjectFactory&) = delete;
+	OVOObjectFactory& operator=(const OVOObjectFactory&) = delete;
 	static Object* createObjectByChunkID(const unsigned int&, const char*);
 
 private:

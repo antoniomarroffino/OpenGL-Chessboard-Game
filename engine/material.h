@@ -29,6 +29,25 @@ public:
 	Material(const std::string& = "defaultMaterial");
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const unsigned int parse(const char*, unsigned int&) override;
+
+	void setAlpha(const float&);
+	const float& getAlpha() const;
+	void setEmission(const glm::vec3&);
+	const glm::vec4& getEmission() const;
+	void setAmbient(const glm::vec3&);
+	const glm::vec4& getAmbient() const;
+	void setSpecular(const glm::vec3&);
+	const glm::vec4& getSpecular() const;
+	void setDiffuse(const glm::vec3&);
+	const glm::vec4& getDiffuse() const;
+	void setShininess(const float&);
+	const float& getShininess() const;
 private:
+	float m_alpha;
+	glm::vec4 m_emissive;
+	glm::vec4 m_ambient;
+	glm::vec4 m_specular;
+	glm::vec4 m_diffuse;
+	float m_shininess;
 	Texture* m_texture;
 };

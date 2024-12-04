@@ -3,6 +3,7 @@
 #include "ovoObjectFactory.h"
 #include "node.h"
 #include "material.h"
+#include <map>
 
 class ENG_API FileOVOReader {
 public:
@@ -14,4 +15,5 @@ private:
 
 	static std::string ovoExtension;
 	FILE *m_dat;
+	std::map<std::string, Material*> m_materialsMap;
 };

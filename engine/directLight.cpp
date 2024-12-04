@@ -1,12 +1,16 @@
 #include "directLight.h"
 
-ENG_API DirectLight::DirectLight(const std::string& name) : Light(name) {}
+ENG_API DirectLight::DirectLight(const std::string& name, const glm::vec3& position) : Light(name, glm::vec4(position, 0.0f)) {}
+
+void ENG_API DirectLight::setPosition(const glm::vec3& position) {
+	this->m_position = glm::vec4(position, 0.0f);
+}
 
 void ENG_API DirectLight::render(const glm::mat4& matrix) {
 
 }
 
 const unsigned int DirectLight::parse(const char* data, unsigned int& position) {
-	const unsigned int& children = Node::parse(data, position);
+	const unsigned int& children = Light::parse(data, position);
 	return children;
 }

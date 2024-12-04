@@ -5,7 +5,7 @@
 
 ENG_API std::string FileOVOReader::ovoExtension{ "ovo" };
 
-ENG_API FileOVOReader::FileOVOReader() : m_dat{ nullptr } {}
+ENG_API FileOVOReader::FileOVOReader() : m_dat{ nullptr }, m_materialsMap{std::map<std::string, Material*>()} {}
 
 ENG_API bool FileOVOReader::hasOVOExtension(const std::string& fileName) {
     return fileName.size() >= ovoExtension.size() &&
@@ -13,7 +13,7 @@ ENG_API bool FileOVOReader::hasOVOExtension(const std::string& fileName) {
 }
 
 const ENG_API bool FileOVOReader::openFile(const std::string& fileName) {
-    return fopen_s(&this->m_dat, fileName.c_str(), "rb")? false : true;
+    return !fopen_s(&this->m_dat, fileName.c_str(), "rb");
 }
 
 ENG_API Node* FileOVOReader::parseFile(const std::string& fileName) {
@@ -44,8 +44,18 @@ ENG_API Node* FileOVOReader::parseFile(const std::string& fileName) {
 
         unsigned int position = 0;
         Object* objectToParse = OVOObjectFactory::createObjectByChunkID(chunkId, data);
-        if (objectToParse)
-            unsigned int children = objectToParse->parse(data, position);
+        if (objectToParse == nullptr) continue;
+
+        Material* material = dynamic_cast<Material*>(objectToParse);
+        //Recuperare il nome del material dalla classe OVOObjectFactory....
+        //creare nuova pair nella mappa come:
+        if (material != nullptr) this->m_materialsMap["nameOfMaterial"] = material;
+
+        //Così posso passare al parse un'istanza di questa classe che mette a disposizione il metodo getMaterialByName e lui può assegnarlo
+        //altrimenti deve assegnare il material solo se l'object passato è una mesh ma deve recuperare il nome del Material legato a quella Mesh
+        unsigned int children = objectToParse->parse(data, position);
+
+        std::cout << "\n\n" << std::endl;
     }
 
     return nullptr;

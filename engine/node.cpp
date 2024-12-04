@@ -155,10 +155,10 @@ const ENG_API std::vector<Node*> Node::getChildren() const {
 	return children;
 }
 
-void ENG_API Node::setMaterial(Object* material) {
+void ENG_API Node::setMaterial(Material* material) {
 	this->m_material = material;
 }
 
-const ENG_API Object* Node::getMaterial() const{
+const ENG_API Material* Node::getMaterial() const{
 	return this->m_material;
 }

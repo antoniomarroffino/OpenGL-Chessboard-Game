@@ -122,7 +122,7 @@ bool ENG_API Eng::Base::init()
 ENG_API Node* Eng::Base::load(const std::string& fileName) {
     std::cout << "return pointer to root node" << std::endl;
     Node* rootNode = this->reserved->fileOVOReader.parseFile(fileName);
-    return new Node("");
+    return rootNode;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
