@@ -1,4 +1,5 @@
 #include "fileOVOReader.h"
+#include "mesh.h"
 #include <iostream>
 #include <filesystem>
 #include <cstdio>
@@ -16,48 +17,88 @@ const ENG_API bool FileOVOReader::openFile(const std::string& fileName) {
     return !fopen_s(&this->m_dat, fileName.c_str(), "rb");
 }
 
+ENG_API char* FileOVOReader::getDataOfChunkFromFile(unsigned int& chunkId, unsigned int& chunkSize) {
+    fread(&chunkId, sizeof(unsigned int), 1, this->m_dat);
+    if (feof(this->m_dat))
+        return nullptr;
+    fread(&chunkSize, sizeof(unsigned int), 1, this->m_dat);
+
+    char* data = new char[chunkSize];
+    if (fread(data, sizeof(char), chunkSize, this->m_dat) != chunkSize)
+    {
+        fclose(this->m_dat);
+        delete[] data;
+        return nullptr;
+    }
+    return data;
+}
+
+ENG_API void FileOVOReader::undoReadDataFromFile(const unsigned int& chunkSize) {
+    long offset = -static_cast<long>(sizeof(unsigned int) * 2 + chunkSize);
+    fseek(this->m_dat, offset, SEEK_CUR);
+}
+
 ENG_API Node* FileOVOReader::parseFile(const std::string& fileName) {
     std::filesystem::path filePath(fileName);
 
     if (!std::filesystem::exists(filePath)) return nullptr;
-   
+
     std::string normalizedPath = filePath.string();
     if (!this->hasOVOExtension(normalizedPath)) return nullptr;
-    
+
     if (!this->openFile(normalizedPath)) return nullptr;
 
-    unsigned int chunkId, chunkSize;
-    while (true)
-    {
-        fread(&chunkId, sizeof(unsigned int), 1, this->m_dat);
-        if (feof(this->m_dat))
-            break;
-        fread(&chunkSize, sizeof(unsigned int), 1, this->m_dat);
+    this->retrieveMaterials();
 
-        char* data = new char[chunkSize];
-        if (fread(data, sizeof(char), chunkSize, this->m_dat) != chunkSize)
-        {
-            fclose(this->m_dat);
-            delete[] data;
-            return nullptr;
-        }
+    Node* rootNode = this->recursiveLoad();
 
-        unsigned int position = 0;
+    return rootNode;
+}
+
+ENG_API void FileOVOReader::retrieveMaterials() {
+    unsigned int chunkId, chunkSize, position;
+    while (true) {
+        char* data = this->getDataOfChunkFromFile(chunkId, chunkSize);
+
+        if (data == nullptr) break;
+
+        position = 0;
         Object* objectToParse = OVOObjectFactory::createObjectByChunkID(chunkId, data);
         if (objectToParse == nullptr) continue;
 
         Material* material = dynamic_cast<Material*>(objectToParse);
-        //Recuperare il nome del material dalla classe OVOObjectFactory....
-        //creare nuova pair nella mappa come:
+        
         if (material != nullptr) this->m_materialsMap["nameOfMaterial"] = material;
+        else {
+            this->undoReadDataFromFile(chunkSize);
+            break;
+        }
 
-        //Così posso passare al parse un'istanza di questa classe che mette a disposizione il metodo getMaterialByName e lui può assegnarlo
-        //altrimenti deve assegnare il material solo se l'object passato è una mesh ma deve recuperare il nome del Material legato a quella Mesh
-        unsigned int children = objectToParse->parse(data, position);
-
-        std::cout << "\n\n" << std::endl;
+        objectToParse->parse(data, position);
     }
+}
 
-    return nullptr;
+ENG_API Node* FileOVOReader::recursiveLoad() {
+    unsigned int chunkId, chunkSize, position = 0;
+
+    char* data = this->getDataOfChunkFromFile(chunkId, chunkSize);
+    Node* nodeToParse = dynamic_cast<Node*>(OVOObjectFactory::createObjectByChunkID(chunkId, data));
+
+    if (nodeToParse == nullptr) return nullptr;
+
+    unsigned int numberOfChildren = nodeToParse->parse(data, position);
+
+    Mesh* possibleMesh = dynamic_cast<Mesh*>(nodeToParse);
+
+    //da chiedere. Tanti if quanti oggetti hanno il material
+    if (possibleMesh != nullptr && possibleMesh->getMaterial() != nullptr) possibleMesh->setMaterial(this->m_materialsMap[possibleMesh->getMaterial()->getName()]);
+
+    if(numberOfChildren)
+        for (unsigned int i = 0; i < numberOfChildren; i++) {
+            Node* childNode = this->recursiveLoad();
+            nodeToParse->addChild(childNode);
+        }
+
+    return nodeToParse;
 }
 

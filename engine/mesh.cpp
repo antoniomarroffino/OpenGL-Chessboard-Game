@@ -4,13 +4,10 @@
 
 struct Mesh::Reserved {
     struct Vertex;
-    std::map<int, Reserved::Vertex> m_vertices;
     std::vector<std::vector<Reserved::Vertex>> m_faces;
 
-    Reserved() : m_vertices{ std::map<int, Mesh::Reserved::Vertex>() }, m_faces{ std::vector<std::vector<Mesh::Reserved::Vertex>>() } {}
+    Reserved() : m_faces{ std::vector<std::vector<Mesh::Reserved::Vertex>>() } {}
 };
-
-
 
 struct Mesh::Reserved::Vertex {
     glm::vec3 v_coords;
@@ -22,7 +19,6 @@ struct Mesh::Reserved::Vertex {
     Vertex(const glm::vec3& coords, const glm::vec3& normal, const glm::vec2& textureUV) 
         :   v_coords{coords}, v_normal{normal}, v_textureUV{textureUV} {}
 };
-
 
 ENG_API Mesh::Mesh(const std::string& name)
     : Node(name), m_reserved{ std::make_unique<Mesh::Reserved>() } {}
@@ -45,7 +41,8 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
 	char materialName[FILENAME_MAX];
 	strcpy_s(materialName, data + position);
 	position += (unsigned int)strlen(materialName) + 1;
-	std::cout << "Material name of Mesh: " << materialName << std::endl;
+    
+    Material* materialOfMesh = strcmp(materialName, "[none]") ? nullptr : new Material(materialName);
 
 	//Radius
 	position += sizeof(float);
@@ -72,6 +69,8 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
     position += sizeof(unsigned int);
 
 
+    std::map<int, Reserved::Vertex> m_vertices;
+
     for (unsigned int c = 0; c < vertices; c++)
     {
         // Vertex coords:    
@@ -97,7 +96,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         glm::vec4 tangent = glm::unpackSnorm3x10_1x2(tangentData);*/
         position += sizeof(unsigned int);
 
-        this->m_reserved->m_vertices[c] = Reserved::Vertex(vertex, normal, uv);
+        m_vertices[c] = Reserved::Vertex(vertex, normal, uv);
      }
 
     // Faces:
@@ -111,7 +110,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         this->m_reserved->m_faces.push_back(std::vector<Reserved::Vertex>());
       
         for (int i = 0; i < (sizeof(face) / sizeof(unsigned int)); i++)
-            this->m_reserved->m_faces[c].push_back(this->m_reserved->m_vertices[face[i]]);
+            this->m_reserved->m_faces[c].push_back(m_vertices[face[i]]);
     }
 
 	return children;

@@ -5,7 +5,7 @@
 
 class MockLight : public Light {
 public:
-	MockLight(const std::string& name = "defaultLight") : Light(name) {}
+	MockLight(const std::string& name = "defaultLight", const glm::vec4& position = glm::vec4(1.0f)) : Light(name, position) {}
 
 	MOCK_METHOD(void, render, (const glm::mat4&), (override));
 	MOCK_METHOD(const glm::mat4, getFinalMatrix, (), (const, override));
