@@ -1,11 +1,11 @@
 #include "material.h"
 
-ENG_API Material::Material(const std::string& name) 
-	: Object(name), m_alpha{1.0f}, m_texture{nullptr}, m_emissive{glm::vec4(0.0f)}, m_ambient{glm::vec4(0.0f)}, m_specular{glm::vec4(0.0f)},
-	m_diffuse{ glm::vec4(0.0f) }, m_shininess{ 1.0f } {}
+ENG_API Material::Material(const std::string& name)
+	: Object(name), m_alpha{1.0f}, m_emissive{glm::vec4(0.0f)}, m_ambient{glm::vec4(0.0f)}, m_specular{glm::vec4(0.0f)},
+	m_diffuse{ glm::vec4(0.0f) }, m_shininess{ 1.0f }, m_texture{nullptr} {}
 
 ENG_API void Material::setAlpha(const float& alpha) {
-	if(alpha >= 0.0f && alpha <= 1.0f) 
+	if(alpha >= 0.0f && alpha <= 1.0f)
 		this->m_alpha = alpha;
 }
 
@@ -61,7 +61,7 @@ ENG_API void Material::render(const glm::mat4& matrix) {
 
 const ENG_API unsigned int Material::parse(const char* data, unsigned int& position) {
 	char materialName[FILENAME_MAX];
-	strcpy_s(materialName, data + position);
+	strncpy(materialName, data + position, sizeof(materialName) - 1);
 	this->setName(materialName);
 	position += (unsigned int)strlen(materialName) + 1;
 
@@ -96,7 +96,7 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 
 	// Albedo texture filename, or [none] if not used:
 	char textureName[FILENAME_MAX];
-	strcpy_s(textureName, data + position);
+	strncpy(textureName, data + position, sizeof(textureName) - 1);
 	position += (unsigned int)strlen(textureName) + 1;
 
 	this->setAlpha(alpha);

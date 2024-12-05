@@ -12,10 +12,10 @@
  // #INCLUDE //
  //////////////
 
-	// C/C++:  
+	// C/C++:
 #include <string>
 #include <iostream>
-#include <iomanip>   
+#include <iomanip>
 #include <limits.h>
 #include <cstring>
 #include "glm/glm.hpp"
@@ -32,10 +32,10 @@
 #define ENG_API __declspec(dllexport)
 #else
 #define ENG_API __declspec(dllimport)
-#endif      
+#endif
 
 // Get rid of annoying warnings:
-#pragma warning(disable : 4251) 
+#pragma warning(disable : 4251)
 #else // Under linux
 #define ENG_API
 #endif

@@ -19,9 +19,8 @@ const ENG_API unsigned int Light::parse(const char* data, unsigned int& position
 	// Light color:
 	glm::vec3 color;
 	memcpy(&color, data + position, sizeof(glm::vec3));
-	std::cout << "light color: " << color.r << " " << color.g << " " << color.b << std::endl;
 	position += sizeof(glm::vec3);
-	
+
 	//Radius
 	position += sizeof(float);
 

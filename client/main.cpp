@@ -41,9 +41,11 @@ int main(int argc, char *argv[])
    Eng::Base &eng = Eng::Base::getInstance();
    eng.init();
 
-   Node* node = eng.load("C:/Users/lucaf/OneDrive - SUPSI/Desktop/Supsi/I3B/LabSoftware/GraficaProg/cg_ovosdk/examples/simple3dScene.ovo");
+   //FUNZIONA SOLO CON PERCORSO ASSOLUTO (LINUX)
+   Node* node = eng.load("/home/lucaf/LabSoftware/Grafica/Progetto/a.ovo");
    //if (node == nullptr) std::cout << "fails" << std::endl;
 
+   std::cout << "Node root: " << node->getName() << std::endl;
 
    // Release engine:
    eng.free();

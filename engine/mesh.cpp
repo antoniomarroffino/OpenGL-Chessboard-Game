@@ -16,13 +16,13 @@ struct Mesh::Reserved::Vertex {
 
     Vertex() = default;
 
-    Vertex(const glm::vec3& coords, const glm::vec3& normal, const glm::vec2& textureUV) 
+    Vertex(const glm::vec3& coords, const glm::vec3& normal, const glm::vec2& textureUV)
         :   v_coords{coords}, v_normal{normal}, v_textureUV{textureUV} {}
 };
 
 struct PhysProps
 {
-    // Pay attention to 16 byte alignement (use padding):      
+    // Pay attention to 16 byte alignement (use padding):
     unsigned char type;
     unsigned char contCollisionDetection;
     unsigned char collideWithRBodies;
@@ -65,10 +65,11 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
 	position += sizeof(unsigned char);
 
 	char materialName[FILENAME_MAX];
-	strcpy_s(materialName, data + position);
+	strncpy(materialName, data + position, sizeof(materialName) - 1);
 	position += (unsigned int)strlen(materialName) + 1;
-    
+
     Material* materialOfMesh = strcmp(materialName, "[none]") ? nullptr : new Material(materialName);
+    materialOfMesh->getName();
 
 	//Radius
 	position += sizeof(float);
@@ -80,13 +81,12 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
 	position += sizeof(glm::vec3);
 
 	// Optional physics properties:
-    unsigned char hasPhysics;
+    unsigned char hasPhysics = '0';
     memcpy(&hasPhysics, data + position, sizeof(unsigned char));
     position += sizeof(unsigned char);
 
-    if (hasPhysics)
-        position += sizeof(PhysProps);
-    
+    if (hasPhysics) position += sizeof(PhysProps);
+
 
 	// Nr. of LODs:
 	position += sizeof(unsigned int);
@@ -105,7 +105,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
 
     for (unsigned int c = 0; c < vertices; c++)
     {
-        // Vertex coords:    
+        // Vertex coords:
         glm::vec3 vertex;
         memcpy(&vertex, data + position, sizeof(glm::vec3));
         position += sizeof(glm::vec3);
@@ -115,7 +115,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         memcpy(&normalData, data + position, sizeof(unsigned int));
         glm::vec3 normal = glm::unpackSnorm3x10_1x2(normalData);
         position += sizeof(unsigned int);
-                        
+
         // Texture coordinates:
         unsigned int textureData;
         memcpy(&textureData, data + position, sizeof(unsigned int));
@@ -140,8 +140,8 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         position += sizeof(unsigned int) * 3;
 
         this->m_reserved->m_faces.push_back(std::vector<Reserved::Vertex>());
-      
-        for (int i = 0; i < (sizeof(face) / sizeof(unsigned int)); i++)
+
+        for (unsigned int i = 0; i < (sizeof(face) / sizeof(unsigned int)); i++)
             this->m_reserved->m_faces[c].push_back(m_vertices[face[i]]);
     }
 

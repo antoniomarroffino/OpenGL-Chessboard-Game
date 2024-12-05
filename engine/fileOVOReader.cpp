@@ -14,14 +14,22 @@ ENG_API bool FileOVOReader::hasOVOExtension(const std::string& fileName) {
 }
 
 const ENG_API bool FileOVOReader::openFile(const std::string& fileName) {
-    return !fopen_s(&this->m_dat, fileName.c_str(), "rb");
+    this->m_dat = fopen(fileName.c_str(), "rb");
+    if(this->m_dat == NULL) return false;
+    return true;
 }
 
 ENG_API char* FileOVOReader::getDataOfChunkFromFile(unsigned int& chunkId, unsigned int& chunkSize) {
-    fread(&chunkId, sizeof(unsigned int), 1, this->m_dat);
-    if (feof(this->m_dat))
-        return nullptr;
-    fread(&chunkSize, sizeof(unsigned int), 1, this->m_dat);
+    size_t bytesRead = fread(&chunkId, sizeof(unsigned int), 1, this->m_dat);
+
+    if(bytesRead < 1) return nullptr;
+    else{
+        if (feof(this->m_dat)) return nullptr;
+    }
+
+
+    bytesRead = fread(&chunkSize, sizeof(unsigned int), 1, this->m_dat);
+    if(bytesRead < 1) return nullptr;
 
     char* data = new char[chunkSize];
     if (fread(data, sizeof(char), chunkSize, this->m_dat) != chunkSize)
@@ -67,7 +75,7 @@ ENG_API void FileOVOReader::retrieveMaterials() {
         if (objectToParse == nullptr) continue;
 
         Material* material = dynamic_cast<Material*>(objectToParse);
-        
+
         if (material != nullptr) this->m_materialsMap["nameOfMaterial"] = material;
         else {
             this->undoReadDataFromFile(chunkSize);

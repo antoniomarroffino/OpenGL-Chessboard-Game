@@ -17,9 +17,9 @@
    #include "engine.h"
    #include "GL/freeglut.h"
    #include "fileOVOReader.h"
-   
+
    // C/C++:
-   #include <iostream>   
+   #include <iostream>
    #include <source_location>
 
 
@@ -38,7 +38,7 @@ struct Eng::Base::Reserved
    bool initFlag;
 
    FileOVOReader fileOVOReader;
-   
+
 
    /**
     * Constructor.
@@ -58,8 +58,8 @@ struct Eng::Base::Reserved
  * Constructor.
  */
 ENG_API Eng::Base::Base() : reserved(std::make_unique<Eng::Base::Reserved>())
-{  
-#ifdef _DEBUG   
+{
+#ifdef _DEBUG
    std::cout << "[+] " << std::source_location::current().function_name() << " invoked" << std::endl;
 #endif
 }
@@ -91,7 +91,7 @@ Eng::Base ENG_API &Eng::Base::getInstance()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Init internal components. 
+ * Init internal components.
  * @return TF
  */
 bool ENG_API Eng::Base::init()

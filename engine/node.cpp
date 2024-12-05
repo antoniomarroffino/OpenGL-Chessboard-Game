@@ -59,7 +59,7 @@ void Node::render(const glm::mat4&){}
 const ENG_API unsigned int Node::parse(const char* data, unsigned int& position) {
 	// Node name:
 	char nodeName[FILENAME_MAX];
-	strcpy_s(nodeName, data + position);
+	strncpy(nodeName, data + position, sizeof(nodeName) - 1);
 	this->setName(nodeName);
 
 	position += (unsigned int)strlen(nodeName) + 1;
@@ -78,7 +78,7 @@ const ENG_API unsigned int Node::parse(const char* data, unsigned int& position)
 
 	//NON DOVREBBE SERVIRE
 	char targetName[FILENAME_MAX];
-	strcpy_s(targetName, data + position);
+	strncpy(targetName, data + position, sizeof(targetName) - 1);
 	position += (unsigned int)strlen(targetName) + 1;
 
 	std::cout << "Parse: " << this->getName() << std::endl;
@@ -89,7 +89,7 @@ const ENG_API unsigned int Node::parse(const char* data, unsigned int& position)
 ENG_API Node* Node::getMainCamera() const {
 	for (auto* element : this->m_children) {
 		Camera* camera = dynamic_cast<Camera*>(element);
-		
+
 		if (camera != nullptr) {
 			if (camera->isMainCamera()) {
 				return camera;

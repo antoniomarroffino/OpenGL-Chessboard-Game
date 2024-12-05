@@ -53,6 +53,8 @@
 		<Unit filename="directLight.h" />
 		<Unit filename="engine.cpp" />
 		<Unit filename="engine.h" />
+		<Unit filename="fileOVOReader.cpp" />
+		<Unit filename="fileOVOReader.h" />
 		<Unit filename="light.cpp" />
 		<Unit filename="light.h" />
 		<Unit filename="list.cpp" />
@@ -69,6 +71,8 @@
 		<Unit filename="omniLight.h" />
 		<Unit filename="orthoCamera.cpp" />
 		<Unit filename="orthoCamera.h" />
+		<Unit filename="ovoObjectFactory.cpp" />
+		<Unit filename="ovoObjectFactory.h" />
 		<Unit filename="perspCamera.cpp" />
 		<Unit filename="perspCamera.h" />
 		<Unit filename="spotLight.cpp" />
