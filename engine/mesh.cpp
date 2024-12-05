@@ -20,6 +20,32 @@ struct Mesh::Reserved::Vertex {
         :   v_coords{coords}, v_normal{normal}, v_textureUV{textureUV} {}
 };
 
+struct PhysProps
+{
+    // Pay attention to 16 byte alignement (use padding):      
+    unsigned char type;
+    unsigned char contCollisionDetection;
+    unsigned char collideWithRBodies;
+    unsigned char hullType;
+
+    // Vector data:
+    glm::vec3 massCenter;
+
+    // Mesh properties:
+    float mass;
+    float staticFriction;
+    float dynamicFriction;
+    float bounciness;
+    float linearDamping;
+    float angularDamping;
+    unsigned int nrOfHulls;
+    unsigned int _pad;
+
+    // Pointers:
+    void* physObj;
+    void* hull;
+};
+
 ENG_API Mesh::Mesh(const std::string& name)
     : Node(name), m_reserved{ std::make_unique<Mesh::Reserved>() } {}
 
@@ -54,7 +80,13 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
 	position += sizeof(glm::vec3);
 
 	// Optional physics properties:
-	position += sizeof(unsigned char);
+    unsigned char hasPhysics;
+    memcpy(&hasPhysics, data + position, sizeof(unsigned char));
+    position += sizeof(unsigned char);
+
+    if (hasPhysics)
+        position += sizeof(PhysProps);
+    
 
 	// Nr. of LODs:
 	position += sizeof(unsigned int);

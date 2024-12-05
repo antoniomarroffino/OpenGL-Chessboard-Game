@@ -86,7 +86,6 @@ const ENG_API unsigned int Node::parse(const char* data, unsigned int& position)
 	return children;
 }
 
-
 ENG_API Node* Node::getMainCamera() const {
 	for (auto* element : this->m_children) {
 		Camera* camera = dynamic_cast<Camera*>(element);
@@ -104,7 +103,6 @@ ENG_API Node* Node::getMainCamera() const {
 			}
 		}
 	}
-
 	return nullptr;
 }
 
