@@ -42,10 +42,13 @@ int main(int argc, char *argv[])
    eng.init();
 
    //FUNZIONA SOLO CON PERCORSO ASSOLUTO (LINUX)
-   Node* node = eng.load("/home/lucaf/LabSoftware/Grafica/Progetto/a.ovo");
+   //Node* node = eng.load("/home/lucaf/LabSoftware/Grafica/Progetto/a.ovo");
+
+   //WINDOWS
+   //Node* node = eng.load("C:/Users/lucaf/OneDrive - SUPSI/Desktop/Supsi/I3B/LabSoftware/GraficaProg/cg_ovosdk/examples/a.ovo");
    //if (node == nullptr) std::cout << "fails" << std::endl;
 
-   std::cout << "Node root: " << node->getName() << std::endl;
+   //std::cout << "Node root: " << node->getName() << std::endl;
 
    // Release engine:
    eng.free();
