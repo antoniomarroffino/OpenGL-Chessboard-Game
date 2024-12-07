@@ -45,7 +45,14 @@ int main(int argc, char *argv[])
    //Node* node = eng.load("/home/lucaf/LabSoftware/Grafica/Progetto/a.ovo");
 
    //WINDOWS
-   //Node* node = eng.load("C:/Users/lucaf/OneDrive - SUPSI/Desktop/Supsi/I3B/LabSoftware/GraficaProg/cg_ovosdk/examples/a.ovo");
+   Node* rootNode = eng.load("C:/Users/lucaf/OneDrive - SUPSI/Desktop/Supsi/I3B/LabSoftware/GraficaProg/cg_ovosdk/examples/b.ovo");
+   if (rootNode == nullptr) {
+	   std::cerr << "ERROR: Error during parse of the scene" << std::endl;
+	   return 1;
+   }
+
+   eng.passScene(rootNode);
+
    //if (node == nullptr) std::cout << "fails" << std::endl;
 
    //std::cout << "Node root: " << node->getName() << std::endl;

@@ -69,7 +69,8 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
 	position += (unsigned int)strlen(materialName) + 1;
 
     Material* materialOfMesh = strcmp(materialName, "[none]") ? nullptr : new Material(materialName);
-    materialOfMesh->getName();
+
+    this->setMaterial(materialOfMesh);
 
 	//Radius
 	position += sizeof(float);
@@ -140,6 +141,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         position += sizeof(unsigned int) * 3;
 
         this->m_reserved->m_faces.push_back(std::vector<Reserved::Vertex>());
+        this->m_reserved->m_faces[c].reserve(3);
 
         for (unsigned int i = 0; i < (sizeof(face) / sizeof(unsigned int)); i++)
             this->m_reserved->m_faces[c].push_back(m_vertices[face[i]]);

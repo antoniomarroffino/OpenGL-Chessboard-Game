@@ -17,6 +17,7 @@
    #include "engine.h"
    #include "GL/freeglut.h"
    #include "fileOVOReader.h"
+    #include "list.h"
 
    // C/C++:
    #include <iostream>
@@ -39,11 +40,13 @@ struct Eng::Base::Reserved
 
    FileOVOReader fileOVOReader;
 
+   List listOfScene;
+
 
    /**
     * Constructor.
     */
-   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{FileOVOReader()}
+   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader() }, listOfScene{ List() }
    {}
 };
 
@@ -122,9 +125,27 @@ bool ENG_API Eng::Base::init()
 ENG_API Node* Eng::Base::load(const std::string& fileName) {
     if (!this->reserved->fileOVOReader.hasOVOExtension(fileName)) {
         std::cerr << "ERROR: Files given is not supported" << std::endl;
+        return nullptr;
     }
     Node* rootNode = this->reserved->fileOVOReader.parseFile(fileName);
     return rootNode;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * passing all node of the scene and save them into a list
+ */
+void ENG_API Eng::Base::passScene(Node* rootNode) {
+    this->reserved->listOfScene.pass(rootNode);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * passing all node of the scene and save them into a list
+ */
+void ENG_API Eng::Base::begin3D(Camera* mainCamera) {
+    if (mainCamera == nullptr) return;
+    this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

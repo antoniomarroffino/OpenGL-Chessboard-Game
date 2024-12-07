@@ -4,7 +4,7 @@
 #include <filesystem>
 #include <cstdio>
 
-ENG_API std::string FileOVOReader::ovoExtension{ "ovo" };
+ENG_API std::string FileOVOReader::ovoExtension{ ".ovo" };
 
 ENG_API FileOVOReader::FileOVOReader() : m_dat{ nullptr }, m_materialsMap{std::map<std::string, Material*>()} {}
 
@@ -76,7 +76,7 @@ ENG_API void FileOVOReader::retrieveMaterials() {
 
         Material* material = dynamic_cast<Material*>(objectToParse);
 
-        if (material != nullptr) this->m_materialsMap["nameOfMaterial"] = material;
+        if (material != nullptr) this->m_materialsMap[material->getName()] = material;
         else {
             this->undoReadDataFromFile(chunkSize);
             break;

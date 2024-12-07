@@ -17,6 +17,7 @@
    // C/C++:         
    #include <memory> 
 #include "node.h"
+#include "camera.h"
 
 
 /////////////
@@ -95,7 +96,8 @@ public: //
    //add parameters
    //class Node;
    Node* load(const std::string& fileName);
-   void begin3D(Node* camera);
+   void passScene(Node* rootNode);
+   void begin3D(Camera* camera);
    void end3D();
 
    void swap();
