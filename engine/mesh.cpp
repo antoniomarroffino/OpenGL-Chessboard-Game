@@ -1,6 +1,8 @@
 #include "mesh.h"
 #include <map>
 
+#include "GL/freeglut.h"
+
 
 struct Mesh::Reserved {
     struct Vertex;
@@ -53,9 +55,20 @@ ENG_API Mesh::~Mesh() = default;
 
 void ENG_API Mesh::render(const glm::mat4& matrix) {
 	//GLLOAD MATRIX
+    glMatrixMode(GL_MODELVIEW);
+    glLoadMatrixf(glm::value_ptr(matrix));
 
-	//DRAW BY VERTICES
-	Node::render(matrix);
+    if (this->m_material != nullptr) this->m_material->render();
+
+    glBegin(GL_TRIANGLES);
+    for (const auto& face : m_reserved->m_faces) 
+        for (const auto& vertex : face) {
+            glNormal3fv(glm::value_ptr(vertex.v_normal));
+
+            glVertex3fv(glm::value_ptr(vertex.v_coords));
+        }
+    
+    glEnd();
 }
 
 const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position) {
@@ -68,7 +81,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
 	strncpy(materialName, data + position, sizeof(materialName) - 1);
 	position += (unsigned int)strlen(materialName) + 1;
 
-    Material* materialOfMesh = strcmp(materialName, "[none]") ? nullptr : new Material(materialName);
+    Material* materialOfMesh = strcmp(materialName, "[none]") ? new Material(materialName) : nullptr;
 
     this->setMaterial(materialOfMesh);
 

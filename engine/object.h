@@ -19,6 +19,7 @@
 #include <limits.h>
 #include <cstring>
 #include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 /////////////
 // VERSION //

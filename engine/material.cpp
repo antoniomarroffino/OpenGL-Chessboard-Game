@@ -1,7 +1,8 @@
 #include "material.h"
+#include <GL/freeglut.h>
 
 ENG_API Material::Material(const std::string& name)
-	: Object(name), m_alpha{1.0f}, m_emissive{glm::vec4(0.0f)}, m_ambient{glm::vec4(0.0f)}, m_specular{glm::vec4(0.0f)},
+	: Object(name), m_alpha{1.0f}, m_emission{glm::vec4(0.0f)}, m_ambient{glm::vec4(0.0f)}, m_specular{glm::vec4(0.0f)},
 	m_diffuse{ glm::vec4(0.0f) }, m_shininess{ 1.0f }, m_texture{nullptr} {}
 
 ENG_API void Material::setAlpha(const float& alpha) {
@@ -14,11 +15,11 @@ const ENG_API float& Material::getAlpha() const {
 }
 
 ENG_API void Material::setEmission(const glm::vec3& emission) {
-	this->m_emissive = glm::vec4(emission, this->getAlpha());
+	this->m_emission = glm::vec4(emission, this->getAlpha());
 }
 
 const ENG_API glm::vec4& Material::getEmission() const {
-	return this->m_emissive;
+	return this->m_emission;
 }
 
 ENG_API void Material::setAmbient(const glm::vec3& ambient) {
@@ -56,7 +57,11 @@ const ENG_API float& Material::getShininess() const {
 
 
 ENG_API void Material::render(const glm::mat4& matrix) {
-
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(this->m_emission));
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, powf(2.0f, this->m_shininess));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glm::value_ptr(this->m_ambient));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glm::value_ptr(this->m_diffuse));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(this->m_specular));
 }
 
 const ENG_API unsigned int Material::parse(const char* data, unsigned int& position) {

@@ -89,7 +89,7 @@ public: //
    static Base &getInstance();
 
    // Init/free:
-   bool init();
+   bool init(void (*displayCallback)());
    bool free();
    void clear();
 

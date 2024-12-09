@@ -40,9 +40,9 @@ void ENG_API List::clearList() {
 }
 
 void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) const {
-	for (const auto* reservedRow : this->m_listOfReservedToRender) {
+	for (const auto* reservedRow : this->m_listOfReservedToRender)
 		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
-	}	
+	Light::resetLightCounter();
 }
 
 const ENG_API unsigned int List::getNumberOfElementsInList() const {

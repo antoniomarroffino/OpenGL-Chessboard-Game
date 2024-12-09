@@ -14,10 +14,37 @@
    // Library header:
    #include "engine.h"
    #include "node.h"
+   #include "perspCamera.h"
    #include "glm/glm.hpp"
+
+#include "glm/gtc/matrix_transform.hpp"
 
    // C/C++:
    #include <iostream>
+
+Eng::Base& eng = Eng::Base::getInstance();
+Node* rootNode;
+
+
+void displayCallback() {
+	eng.clear();
+
+	Camera* mainCamera = new PerspCamera("mainCamera", 1000.0f, 1000.0f, 1.0f, 200.0f, glm::radians(45.0f));
+	mainCamera->setMainCamera(true);
+
+	rootNode->addChild(mainCamera);
+
+	mainCamera = static_cast<Camera*>(rootNode->getMainCamera());
+
+	rootNode->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 20.0f, 100.0f)));
+	//rootNode->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f)));
+
+
+	eng.begin3D(mainCamera);
+
+
+	eng.swap();
+}
 
 
 
@@ -37,15 +64,11 @@ int main(int argc, char *argv[])
    std::cout << "Client application example, A. Peternier (C) SUPSI" << std::endl;
    std::cout << std::endl;
 
-   // Init engine:
-   Eng::Base &eng = Eng::Base::getInstance();
-   eng.init();
-
    //FUNZIONA SOLO CON PERCORSO ASSOLUTO (LINUX)
-   //Node* node = eng.load("/home/lucaf/LabSoftware/Grafica/Progetto/a.ovo");
+	//Node* node = eng.load("/home/lucaf/LabSoftware/Grafica/Progetto/a.ovo");
 
-   //WINDOWS
-   Node* rootNode = eng.load("C:/Users/lucaf/OneDrive - SUPSI/Desktop/Supsi/I3B/LabSoftware/GraficaProg/cg_ovosdk/examples/b.ovo");
+	//WINDOWS
+   rootNode = eng.load("cornellBox2.ovo");
    if (rootNode == nullptr) {
 	   std::cerr << "ERROR: Error during parse of the scene" << std::endl;
 	   return 1;
@@ -53,9 +76,9 @@ int main(int argc, char *argv[])
 
    eng.passScene(rootNode);
 
-   //if (node == nullptr) std::cout << "fails" << std::endl;
+   // Init engine:
+   eng.init(displayCallback);
 
-   //std::cout << "Node root: " << node->getName() << std::endl;
 
    // Release engine:
    eng.free();

@@ -25,14 +25,18 @@
   */
 class ENG_API Light : public Node {
 public:
-	virtual void render(const glm::mat4 & = glm::mat4(1.0f)) override = 0;
+	static unsigned int lightActiveCounter;
+	virtual void render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const virtual unsigned int parse(const char*, unsigned int&) override;
 
 	virtual void setPosition(const glm::vec3&);
 	const glm::vec4& getPosition() const;
+	static void resetLightCounter();
 protected:
 	Light(const std::string&, const glm::vec4&);
 	virtual ~Light() = default;
 
 	glm::vec4 m_position;
+	Material* m_lightMaterial;
+	static unsigned int maxNumberOfActiveLights;
 };

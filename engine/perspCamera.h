@@ -26,9 +26,8 @@
   */
 class ENG_API PerspCamera : public Camera {
 public:
-	PerspCamera(const std::string& name, const float& width, const float& height, const float& near, const float& far, const float& fovY);
-	void loadProjectionMatrix() const override;
-	void render(const glm::mat4& = glm::mat4(1.0f)) override;
+	PerspCamera(const std::string& name, const float& width, const float& height, const float& near_val, const float& far_val, const float& fovY);
+	void loadProjectionMatrix() override;
 private:
 	float m_fovY;
 };

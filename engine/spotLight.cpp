@@ -1,5 +1,8 @@
 #include "spotLight.h"
 
+#include <GL/freeglut.h>
+
+
 ENG_API SpotLight::SpotLight(const std::string& name, const glm::vec3& position, const glm::vec3& direction, const float& cutoff) 
     : Light(name, glm::vec4(position, 1.0f)), m_direction{ direction }, m_cutoff{ cutoff } 
 {
@@ -25,10 +28,13 @@ const ENG_API float& SpotLight::getCutoff() const {
 }
 
 void ENG_API SpotLight::render(const glm::mat4& matrix) {
+    Light::render(matrix);
+    glLightfv(Light::lightActiveCounter, GL_SPOT_CUTOFF, &this->m_cutoff);
 
+    Light::lightActiveCounter++;
 }
 
-const unsigned int SpotLight::parse(const char* data, unsigned int& position) {
+const ENG_API unsigned int SpotLight::parse(const char* data, unsigned int& position) {
 	const unsigned int& children = Light::parse(data, position);
 
     // Direction:

@@ -44,7 +44,7 @@ public:
 	const float& getShininess() const;
 private:
 	float m_alpha;
-	glm::vec4 m_emissive;
+	glm::vec4 m_emission;
 	glm::vec4 m_ambient;
 	glm::vec4 m_specular;
 	glm::vec4 m_diffuse;

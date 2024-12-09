@@ -14,14 +14,16 @@
 //////////////
 
    // Main include:
-   #include "engine.h"
-   #include "GL/freeglut.h"
-   #include "fileOVOReader.h"
+    #include "engine.h"
+    #include "glm/glm.hpp"
+    #include "glm/gtc/type_ptr.hpp"
+    #include "GL/freeglut.h"
+    #include "fileOVOReader.h"
     #include "list.h"
 
    // C/C++:
-   #include <iostream>
-   #include <source_location>
+    #include <iostream>
+    #include <source_location>
 
 
 
@@ -97,7 +99,7 @@ Eng::Base ENG_API &Eng::Base::getInstance()
  * Init internal components.
  * @return TF
  */
-bool ENG_API Eng::Base::init()
+bool ENG_API Eng::Base::init(void (*displayCallback)())
 {
    // Already initialized?
    if (reserved->initFlag)
@@ -105,16 +107,33 @@ bool ENG_API Eng::Base::init()
       std::cout << "ERROR: engine already initialized" << std::endl;
       return false;
    }
-   /*
-   // Here you can initialize most of the graphics engine's dependencies and default settings...
+   
    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
    glutInitWindowPosition(100, 100);
+
+   //PER ORA
+   int argc = 0;
+   char* argv[1];
+
+   glutInit(&argc, argv);
+
    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
    reserved->windowId = glutCreateWindow("Chess");
 
    //Set callback functions
+   glutDisplayFunc(displayCallback);
 
-   glEnable(GL_DEPTH_TEST);*/
+   glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
+
+   glEnable(GL_DEPTH_TEST);
+   glEnable(GL_CULL_FACE);
+   glEnable(GL_NORMALIZE);
+   glEnable(GL_LIGHTING);
+   glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1.0f);
+   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
+
+   glutMainLoop();
+
    // Done:
    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
    reserved->initFlag = true;
@@ -145,6 +164,7 @@ void ENG_API Eng::Base::passScene(Node* rootNode) {
  */
 void ENG_API Eng::Base::begin3D(Camera* mainCamera) {
     if (mainCamera == nullptr) return;
+    mainCamera->render();
     this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
 }
 

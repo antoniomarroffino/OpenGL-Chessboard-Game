@@ -49,12 +49,21 @@ ENG_API void FileOVOReader::undoReadDataFromFile(const unsigned int& chunkSize) 
 ENG_API Node* FileOVOReader::parseFile(const std::string& fileName) {
     std::filesystem::path filePath(fileName);
 
-    if (!std::filesystem::exists(filePath)) return nullptr;
+    if (!std::filesystem::exists(filePath)) {
+        std::cerr << "ERROR: file does not exist" << std::endl;
+        return nullptr;
+    }
 
     std::string normalizedPath = filePath.string();
-    if (!this->hasOVOExtension(normalizedPath)) return nullptr;
+    if (!this->hasOVOExtension(normalizedPath)) {
+        std::cerr << "ERROR: file hasn't OVO extension" << std::endl;
+        return nullptr;
+    }
 
-    if (!this->openFile(normalizedPath)) return nullptr;
+    if (!this->openFile(normalizedPath)) {
+        std::cerr << "ERROR: cannot open file" << std::endl;
+        return nullptr;
+    }
 
     this->retrieveMaterials();
 
@@ -76,13 +85,13 @@ ENG_API void FileOVOReader::retrieveMaterials() {
 
         Material* material = dynamic_cast<Material*>(objectToParse);
 
-        if (material != nullptr) this->m_materialsMap[material->getName()] = material;
-        else {
+        if (material != nullptr) {
+            objectToParse->parse(data, position);
+            this->m_materialsMap[material->getName()] = material;
+        } else {
             this->undoReadDataFromFile(chunkSize);
             break;
         }
-
-        objectToParse->parse(data, position);
     }
 }
 
@@ -99,7 +108,8 @@ ENG_API Node* FileOVOReader::recursiveLoad() {
     Mesh* possibleMesh = dynamic_cast<Mesh*>(nodeToParse);
 
     //da chiedere. Tanti if quanti oggetti hanno il material
-    if (possibleMesh != nullptr && possibleMesh->getMaterial() != nullptr) possibleMesh->setMaterial(this->m_materialsMap[possibleMesh->getMaterial()->getName()]);
+    if (possibleMesh != nullptr && possibleMesh->getMaterial() != nullptr)  possibleMesh->setMaterial(this->m_materialsMap[possibleMesh->getMaterial()->getName()]);
+    
 
     if(numberOfChildren)
         for (unsigned int i = 0; i < numberOfChildren; i++) {

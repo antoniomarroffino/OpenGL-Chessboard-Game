@@ -7,7 +7,9 @@ void ENG_API DirectLight::setPosition(const glm::vec3& position) {
 }
 
 void ENG_API DirectLight::render(const glm::mat4& matrix) {
+	Light::render(matrix);
 
+	Light::lightActiveCounter++;
 }
 
 const unsigned int DirectLight::parse(const char* data, unsigned int& position) {

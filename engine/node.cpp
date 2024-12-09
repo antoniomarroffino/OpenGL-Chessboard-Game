@@ -54,8 +54,6 @@ const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
 
 }*/
 
-void Node::render(const glm::mat4&){}
-
 const ENG_API unsigned int Node::parse(const char* data, unsigned int& position) {
 	// Node name:
 	char nodeName[FILENAME_MAX];

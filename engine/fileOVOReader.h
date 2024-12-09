@@ -16,6 +16,7 @@ private:
 	void undoReadDataFromFile(const unsigned int&);
 	void retrieveMaterials();
 	Node* recursiveLoad();
+	Node* createCamera(const Node*);
 
 	static std::string ovoExtension;
 	FILE *m_dat;
