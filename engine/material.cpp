@@ -1,6 +1,8 @@
 #include "material.h"
 #include <GL/freeglut.h>
 
+std::map<const std::string&, Texture*> Material::m_texturesMap{ std::map<const std::string&, Texture*>() };
+
 ENG_API Material::Material(const std::string& name)
 	: Object(name), m_alpha{1.0f}, m_emission{glm::vec4(0.0f)}, m_ambient{glm::vec4(0.0f)}, m_specular{glm::vec4(0.0f)},
 	m_diffuse{ glm::vec4(0.0f) }, m_shininess{ 1.0f }, m_texture{nullptr} {}
@@ -55,6 +57,13 @@ const ENG_API float& Material::getShininess() const {
 	return this->m_shininess;
 }
 
+ENG_API void Material::setTexture(Texture* texture) {
+	this->m_texture = texture;
+}
+
+const ENG_API Texture* Material::getTexture() const {
+	return this->m_texture;
+}
 
 ENG_API void Material::render(const glm::mat4& matrix) {
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(this->m_emission));
@@ -104,6 +113,17 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 	strncpy(textureName, data + position, sizeof(textureName) - 1);
 	position += (unsigned int)strlen(textureName) + 1;
 
+	Texture* textureInMap = this->getTexture(textureName);
+	if (textureInMap == nullptr) {
+		 Texture* newTexture = new Texture(textureName);
+		 newTexture->parse(data, position);
+		 Material::m_texturesMap[textureName] = newTexture;
+	}
+	else
+	{
+		this->setTexture(textureInMap);
+	}
+
 	this->setAlpha(alpha);
 	this->setEmission(emission);
 	this->setAmbient(albedo * 0.2f);
@@ -111,5 +131,13 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 	this->setDiffuse(albedo * 0.6f);
 
 	return 0;
+}
+
+ENG_API Texture* Material::getTexture(const std::string& textureName) const {
+	auto it = Material::m_texturesMap.find(textureName);
+	if (it != Material::m_texturesMap.end()) {
+		return it->second;
+	}
+	return nullptr;
 }
 

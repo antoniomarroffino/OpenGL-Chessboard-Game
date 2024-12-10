@@ -15,6 +15,7 @@
 	// C/C++:
 #include "object.h"
 #include "texture.h"
+#include <map>
 
 
  ///////////////////////
@@ -42,7 +43,12 @@ public:
 	const glm::vec4& getDiffuse() const;
 	void setShininess(const float&);
 	const float& getShininess() const;
+	void setTexture(Texture*);
+	const Texture* getTexture() const;
 private:
+	Texture* getTexture(const std::string&) const;
+	static std::map<const std::string&, Texture*> m_texturesMap;
+
 	float m_alpha;
 	glm::vec4 m_emission;
 	glm::vec4 m_ambient;
