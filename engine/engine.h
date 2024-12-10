@@ -89,7 +89,7 @@ public: //
    static Base &getInstance();
 
    // Init/free:
-   bool init();
+   bool init(void(*reshapeCallback)(int, int) = nullptr);
    bool free();
    void clear();
    const float& getFPS();
@@ -104,12 +104,14 @@ public: //
 
    void swap();
 
-
 ///////////
 private: //
 ///////////	
+    
+    void handleReshape(int, int);
 
    // Reserved:
+   static Eng::Base instance;
    struct Reserved;
    std::unique_ptr<Reserved> reserved;
 

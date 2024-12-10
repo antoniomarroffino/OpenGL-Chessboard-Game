@@ -47,8 +47,6 @@ void GameManager::gameLoop() {
 		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
 
 		this->m_reserved->engine.swap();
-
-		//Sleep(3000);
 	}
 }
 
@@ -60,7 +58,7 @@ void GameManager::createCameras() {
 	);
 
 	this->m_reserved->cameraManager.addNewCamera(startCamera, this->m_reserved->rootNode);
-	this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
+	//this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
 
 
 	Camera* chessboardCamera = new PerspCamera("chessboardCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
@@ -76,5 +74,5 @@ void GameManager::createCameras() {
 
 
 	this->m_reserved->cameraManager.addNewCamera(chessboardCamera, this->m_reserved->rootNode);
-	//this->m_reserved->cameraManager.setNewMainCamera("chessboardCamera", this->m_reserved->rootNode);
+	this->m_reserved->cameraManager.setNewMainCamera("chessboardCamera", this->m_reserved->rootNode);
 }

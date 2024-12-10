@@ -15,6 +15,7 @@
 	// C/C++:
 #include "node.h"
 #include "glm/gtc/matrix_transform.hpp"
+#include "notificationService.h"
 
 
  ///////////////////////
@@ -24,15 +25,14 @@
  /**
   * @brief Abstract base Camera class
   */
-class ENG_API Camera : public Node {
+class ENG_API Camera : public Node, public ReshapeListener {
 public:
-	virtual ~Camera() = default;
+	virtual ~Camera();
 	void virtual loadProjectionMatrix() = 0;
 	void virtual render(const glm::mat4& = glm::mat4(1.0f)) override;
 	const virtual unsigned int parse(const char*, unsigned int&) override { return 0; };
+	void onWindowReshape(int, int) override;
 
-
-	void reshapeWidthAndHeight(const float&, const float&);
 	const glm::mat4 getInverseCameraFinalMatrix() const;
 	void setMainCamera(const bool&);
 	virtual const bool& isMainCamera() const;
@@ -45,4 +45,5 @@ protected:
 	float m_height;
 	float m_near;
 	float m_far;
+	NotificationService& m_notificationService;
 };

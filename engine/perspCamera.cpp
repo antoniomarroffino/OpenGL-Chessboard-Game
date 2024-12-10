@@ -4,6 +4,7 @@ PerspCamera::PerspCamera(const std::string& name, const float& width, const floa
 	: Camera(name, width, height, near_val, far_val), m_fovY{ fovY }
 {
 	this->loadProjectionMatrix();
+	m_notificationService.subscribeListener(this);
 }
 
 void PerspCamera::loadProjectionMatrix() {

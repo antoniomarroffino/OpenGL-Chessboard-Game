@@ -15,6 +15,7 @@
 
    // Main include:
     #include "engine.h"
+    #include "notificationService.h"
     #include "glm/glm.hpp"
     #include "glm/gtc/type_ptr.hpp"
     #include "GL/freeglut.h"
@@ -45,11 +46,13 @@ struct Eng::Base::Reserved
 
    List listOfScene;
 
+   NotificationService& notificationService;
+
 
    /**
     * Constructor.
     */
-   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader() }, listOfScene{ List() }
+   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader() }, listOfScene{ List() }, notificationService{NotificationService::getInstance()}
    {}
 };
 
@@ -57,7 +60,11 @@ int frameCount = 0;
 float fps = 0.0f;
 int previousTime = 0;
 
+Eng::Base Eng::Base::instance;
 
+void Eng::Base::handleReshape(int width, int height) {
+    this->reserved->notificationService.notifyOnReshapeWindow(width, height);
+}
 
 ////////////////////////
 // BODY OF CLASS Base //
@@ -94,8 +101,7 @@ ENG_API Eng::Base::~Base()
  */
 Eng::Base ENG_API &Eng::Base::getInstance()
 {
-   static Base instance;
-   return instance;
+   return Eng::Base::instance;
 }
 
 
@@ -104,7 +110,7 @@ Eng::Base ENG_API &Eng::Base::getInstance()
  * Init internal components.
  * @return TF
  */
-bool ENG_API Eng::Base::init()
+bool ENG_API Eng::Base::init(void(*reshapeCallback)(int, int))
 {
    // Already initialized?
    if (reserved->initFlag)
@@ -126,8 +132,10 @@ bool ENG_API Eng::Base::init()
    reserved->windowId = glutCreateWindow("Chess");
 
    glutDisplayFunc([](){});
+   glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height);});
 
    glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
+
 
    glEnable(GL_DEPTH_TEST);
    glEnable(GL_CULL_FACE);
@@ -191,6 +199,7 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera) {
     if (mainCamera == nullptr) return;
     mainCamera->render();
     this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

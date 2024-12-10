@@ -89,6 +89,7 @@
     <ClCompile Include="material.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="node.cpp" />
+    <ClCompile Include="notificationService.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="omniLight.cpp" />
     <ClCompile Include="orthoCamera.cpp" />
@@ -107,11 +108,13 @@
     <ClInclude Include="material.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="node.h" />
+    <ClInclude Include="notificationService.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="omniLight.h" />
     <ClInclude Include="orthoCamera.h" />
     <ClInclude Include="ovoObjectFactory.h" />
     <ClInclude Include="perspCamera.h" />
+    <ClInclude Include="reshapeListener.h" />
     <ClInclude Include="spotLight.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>

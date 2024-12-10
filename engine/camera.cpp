@@ -3,11 +3,10 @@
 
 
 ENG_API Camera::Camera(const std::string& name, const float& width, const float& height, const float& near_val, const float& far_val)
-	: Node(name), m_projectionMatrix{ glm::mat4(1.0f) }, m_isCurrentCamera{ false }, m_width{ width }, m_height{ height }, m_near{ near_val }, m_far{ far_val } {}
+	: Node(name), m_projectionMatrix{ glm::mat4(1.0f) }, m_isCurrentCamera{ false }, m_width{ width }, m_height{ height }, m_near{ near_val }, m_far{ far_val }, m_notificationService{ NotificationService::getInstance()} {}
 
-void ENG_API Camera::reshapeWidthAndHeight(const float& width, const float& height) {
-	this->m_width = width;
-	this->m_height = height;
+ENG_API Camera::~Camera() {
+	this->m_notificationService.unsubscribeListener(this);
 }
 
 const ENG_API glm::mat4 Camera::getInverseCameraFinalMatrix() const {
@@ -26,4 +25,11 @@ void ENG_API Camera::render(const glm::mat4& matrix) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(glm::value_ptr(this->m_projectionMatrix));
 	glMatrixMode(GL_MODELVIEW);
+}
+
+void ENG_API Camera::onWindowReshape(int width, int height) {
+	glViewport(0, 0, width, height);
+	this->m_width = (float) width;
+	this->m_height = (float) height;
+	this->loadProjectionMatrix();
 }
