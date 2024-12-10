@@ -1,5 +1,6 @@
 #include "gameManager.h"
-#include <windows.h>
+#include <thread>
+#include <chrono>
 
 struct GameManager::Reserved
 {
@@ -47,6 +48,8 @@ void GameManager::gameLoop() {
 		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
 
 		this->m_reserved->engine.swap();
+		
+		//std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 	}
 }
 

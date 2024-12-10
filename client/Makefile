@@ -33,9 +33,11 @@ OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
 OUT_RELEASE = bin/Release/client
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/main.o
+SRC_DEBUG = $(wildcard *.cpp)
+OBJ_DEBUG = $(SRC_DEBUG:%.cpp=$(OBJDIR_DEBUG)/%.o)
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/main.o
+SRC_RELEASE = $(wildcard *.cpp)
+OBJ_RELEASE = $(SRC_RELEASE:%.cpp=$(OBJDIR_RELEASE)/%.o)
 
 all: debug release
 
@@ -52,8 +54,8 @@ debug: before_debug out_debug after_debug
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)/main.o: main.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c main.cpp -o $(OBJDIR_DEBUG)/main.o
+$(OBJDIR_DEBUG)/%.o: %.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c $< -o $@
 
 clean_debug: 
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
@@ -71,8 +73,8 @@ release: before_release out_release after_release
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)/main.o: main.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c main.cpp -o $(OBJDIR_RELEASE)/main.o
+$(OBJDIR_RELEASE)/%.o: %.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c $< -o $@
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)

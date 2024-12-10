@@ -2,6 +2,7 @@
 
 #include "reshapeListener.h"
 #include <vector>
+#include <algorithm>
 
 class ENG_API NotificationService {
 public:
