@@ -11,8 +11,3 @@ void ENG_API DirectLight::render(const glm::mat4& matrix) {
 
 	Light::lightActiveCounter++;
 }
-
-const unsigned int DirectLight::parse(const char* data, unsigned int& position) {
-	const unsigned int& children = Light::parse(data, position);
-	return children;
-}

@@ -16,6 +16,7 @@ const ENG_API glm::vec4& Light::getPosition() const {
 }
 
 ENG_API void Light::resetLightCounter() {
+	for (unsigned int lightCounter = GL_LIGHT0; lightCounter < Light::lightActiveCounter; lightCounter++) glDisable(lightCounter);
 	Light::lightActiveCounter = GL_LIGHT0;
 }
 
@@ -28,9 +29,8 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 	glLightfv(Light::lightActiveCounter, GL_AMBIENT, glm::value_ptr(this->m_lightMaterial->getAmbient()));
 	glLightfv(Light::lightActiveCounter, GL_DIFFUSE, glm::value_ptr(this->m_lightMaterial->getDiffuse()));
 	glLightfv(Light::lightActiveCounter, GL_SPECULAR, glm::value_ptr(this->m_lightMaterial->getSpecular()));
-	glm::vec4 transformedPosition = matrix * glm::vec4(this->m_position);
+	glm::vec4 transformedPosition = matrix * glm::vec4(this->getPosition());
 	glLightfv(Light::lightActiveCounter, GL_POSITION, glm::value_ptr(transformedPosition));
-
 }
 
 const ENG_API unsigned int Light::parse(const char* data, unsigned int& position) {

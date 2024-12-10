@@ -26,6 +26,7 @@
   */
 class ENG_API Camera : public Node {
 public:
+	virtual ~Camera() = default;
 	void virtual loadProjectionMatrix() = 0;
 	void virtual render(const glm::mat4& = glm::mat4(1.0f)) override;
 	const virtual unsigned int parse(const char*, unsigned int&) override { return 0; };
@@ -37,7 +38,6 @@ public:
 	virtual const bool& isMainCamera() const;
 protected:
 	Camera(const std::string&, const float&, const float&, const float&, const float&);
-	virtual ~Camera() = default;
 
 	glm::mat4 m_projectionMatrix;
 	bool m_isCurrentCamera;

@@ -24,6 +24,7 @@
    // C/C++:
     #include <iostream>
     #include <source_location>
+    #include <chrono>
 
 
 
@@ -51,6 +52,10 @@ struct Eng::Base::Reserved
    Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader() }, listOfScene{ List() }
    {}
 };
+
+int frameCount = 0;
+float fps = 0.0f;
+int previousTime = 0;
 
 
 
@@ -99,7 +104,7 @@ Eng::Base ENG_API &Eng::Base::getInstance()
  * Init internal components.
  * @return TF
  */
-bool ENG_API Eng::Base::init(void (*displayCallback)())
+bool ENG_API Eng::Base::init()
 {
    // Already initialized?
    if (reserved->initFlag)
@@ -120,8 +125,7 @@ bool ENG_API Eng::Base::init(void (*displayCallback)())
    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
    reserved->windowId = glutCreateWindow("Chess");
 
-   //Set callback functions
-   glutDisplayFunc(displayCallback);
+   glutDisplayFunc([](){});
 
    glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
 
@@ -132,12 +136,25 @@ bool ENG_API Eng::Base::init(void (*displayCallback)())
    glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1.0f);
    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
 
-   glutMainLoop();
-
    // Done:
    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
    reserved->initFlag = true;
    return true;
+}
+
+const ENG_API float& Eng::Base::getFPS() {
+    frameCount++;
+
+    // Ottieni il tempo attuale
+    int currentTime = glutGet(GLUT_ELAPSED_TIME);
+    int elapsedTime = currentTime - previousTime;
+
+    if (elapsedTime > 1000) { // Un secondo è passato
+        fps = frameCount / (elapsedTime / 1000.0f); // Calcola FPS
+        previousTime = currentTime; // Resetta il tempo
+        frameCount = 0; // Resetta il contatore
+    }
+    return fps;
 }
 
 
@@ -160,6 +177,14 @@ void ENG_API Eng::Base::passScene(Node* rootNode) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
+ *  clear all list of the scene
+ */
+void ENG_API Eng::Base::clearScene() {
+    this->reserved->listOfScene.clearList();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
  * passing all node of the scene and save them into a list
  */
 void ENG_API Eng::Base::begin3D(Camera* mainCamera) {
@@ -173,7 +198,8 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera) {
  * Swap buffers.
  */
 void ENG_API Eng::Base::swap() {
-    glutSwapBuffers();
+    if(glutGetWindow())
+        glutSwapBuffers();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,6 +207,7 @@ void ENG_API Eng::Base::swap() {
  * Clear the screen.
  */
 void ENG_API Eng::Base::clear() {
+    glutMainLoopEvent();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 

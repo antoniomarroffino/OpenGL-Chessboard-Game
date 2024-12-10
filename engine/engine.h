@@ -89,14 +89,16 @@ public: //
    static Base &getInstance();
 
    // Init/free:
-   bool init(void (*displayCallback)());
+   bool init();
    bool free();
    void clear();
+   const float& getFPS();
 
    //add parameters
    //class Node;
    Node* load(const std::string& fileName);
    void passScene(Node* rootNode);
+   void clearScene();
    void begin3D(Camera* camera);
    void end3D();
 

@@ -1,6 +1,7 @@
 #include "camera.h"
 #include "GL/freeglut.h"
 
+
 ENG_API Camera::Camera(const std::string& name, const float& width, const float& height, const float& near_val, const float& far_val)
 	: Node(name), m_projectionMatrix{ glm::mat4(1.0f) }, m_isCurrentCamera{ false }, m_width{ width }, m_height{ height }, m_near{ near_val }, m_far{ far_val } {}
 

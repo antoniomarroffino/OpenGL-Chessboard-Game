@@ -1,6 +1,7 @@
 #include "list.h"
 #include "light.h"
 #include "camera.h"
+#include <GL/freeglut.h>
 
 struct ENG_API List::Reserved {
 	Object* r_node;
@@ -43,6 +44,7 @@ void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) con
 	for (const auto* reservedRow : this->m_listOfReservedToRender)
 		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
 	Light::resetLightCounter();
+	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
 }
 
 const ENG_API unsigned int List::getNumberOfElementsInList() const {
