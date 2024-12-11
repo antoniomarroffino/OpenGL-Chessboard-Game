@@ -35,6 +35,7 @@ engine/[Oo]bj/
 *.a
 *.la
 *.ovo
+*/textures/*
 
 *.glsl
 *.vert

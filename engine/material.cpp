@@ -1,7 +1,7 @@
 #include "material.h"
 #include <GL/freeglut.h>
 
-std::map<const std::string&, Texture*> Material::m_texturesMap{ std::map<const std::string&, Texture*>() };
+std::map<std::string, Texture*> Material::m_texturesMap{ std::map<std::string, Texture*>() };
 
 ENG_API Material::Material(const std::string& name)
 	: Object(name), m_alpha{1.0f}, m_emission{glm::vec4(0.0f)}, m_ambient{glm::vec4(0.0f)}, m_specular{glm::vec4(0.0f)},
@@ -66,12 +66,22 @@ const ENG_API Texture* Material::getTexture() const {
 }
 
 ENG_API void Material::render(const glm::mat4& matrix) {
+	if (this->m_texture) {
+		glEnable(GL_TEXTURE_2D);
+		this->m_texture->render(matrix);
+	}
+
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(this->m_emission));
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, powf(2.0f, this->m_shininess));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glm::value_ptr(this->m_ambient));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glm::value_ptr(this->m_diffuse));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(this->m_specular));
+
+	if (!this->m_texture) {
+		glDisable(GL_TEXTURE_2D);
+	}
 }
+
 
 const ENG_API unsigned int Material::parse(const char* data, unsigned int& position) {
 	char materialName[FILENAME_MAX];
@@ -112,17 +122,21 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 	char textureName[FILENAME_MAX];
 	strncpy(textureName, data + position, sizeof(textureName) - 1);
 	position += (unsigned int)strlen(textureName) + 1;
+	std::cout << textureName << std::endl;
+	
 
-	Texture* textureInMap = this->getTexture(textureName);
-	if (textureInMap == nullptr) {
-		 Texture* newTexture = new Texture(textureName);
-		 newTexture->parse(data, position);
-		 Material::m_texturesMap[textureName] = newTexture;
-	}
-	else
-	{
+	if (strcmp(textureName, "[none]") != 0) {
+		Texture* textureInMap = this->getTexture(textureName);
+		if (textureInMap == nullptr) {
+			textureInMap = new Texture(textureName);
+			textureInMap->parse(data, position);
+			Material::m_texturesMap[textureName] = textureInMap;
+		}
+		std::cout << "TEXTURE ASSEGNATA" << std::endl;
 		this->setTexture(textureInMap);
 	}
+	
+	
 
 	this->setAlpha(alpha);
 	this->setEmission(emission);

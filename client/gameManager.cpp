@@ -1,6 +1,7 @@
 #include "gameManager.h"
 #include <thread>
 #include <chrono>
+#include <filesystem>
 
 struct GameManager::Reserved
 {
@@ -38,6 +39,7 @@ void GameManager::startGame() {
 
 	this->gameLoop(); 
 }
+
 
 void GameManager::gameLoop() {
 	while (true) {

@@ -22,11 +22,12 @@
     #include "fileOVOReader.h"
     #include "list.h"
 
+    #include "FreeImage.h"
+
    // C/C++:
     #include <iostream>
     #include <source_location>
     #include <chrono>
-
 
 
 /////////////////////////
@@ -134,6 +135,7 @@ bool ENG_API Eng::Base::init(void(*reshapeCallback)(int, int))
    glutDisplayFunc([](){});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height);});
 
+
    glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
 
 
@@ -143,6 +145,8 @@ bool ENG_API Eng::Base::init(void(*reshapeCallback)(int, int))
    glEnable(GL_LIGHTING);
    glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1.0f);
    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, glm::value_ptr(gAmbient));
+
+   FreeImage_Initialise();
 
    // Done:
    std::cout << "[>] " << LIB_NAME << " initialized" << std::endl;
@@ -235,6 +239,7 @@ bool ENG_API Eng::Base::free()
       return false;
    }
 
+   FreeImage_DeInitialise();
    // Here you can properly dispose of any allocated resource (including third-party dependencies)...
 
    // Done:

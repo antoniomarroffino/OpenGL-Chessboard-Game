@@ -14,6 +14,7 @@
 
 	// C/C++:
 #include "object.h"
+#include <memory>
 
 
  ///////////////////////
@@ -26,10 +27,11 @@
 class ENG_API Texture : public Object {
 public:
 	Texture(const std::string&);
+	~Texture();
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const unsigned int parse(const char*, unsigned int&) override;
 
 private:
-	unsigned int m_textureId;
-
+	struct Reserved;
+	std::unique_ptr<Reserved> m_reserved;
 };

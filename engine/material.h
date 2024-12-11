@@ -45,9 +45,11 @@ public:
 	const float& getShininess() const;
 	void setTexture(Texture*);
 	const Texture* getTexture() const;
+
+	static std::map<std::string, Texture*> m_texturesMap;
 private:
 	Texture* getTexture(const std::string&) const;
-	static std::map<const std::string&, Texture*> m_texturesMap;
+	
 
 	float m_alpha;
 	glm::vec4 m_emission;

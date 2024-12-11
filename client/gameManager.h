@@ -20,6 +20,7 @@ public:
 private:
 	void gameLoop();
 	void createCameras();
+	void loadTexturesFromDirectory(const std::string&);
 
 	GameManager();
 	
