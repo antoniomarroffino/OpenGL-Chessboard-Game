@@ -10,7 +10,7 @@ RCFLAGS =
 RESINC = 
 LIBDIR =
 LIB =
-LDFLAGS = -m64 -lGL -lGLU -lglut
+LDFLAGS = -m64 -lGL -lGLU -lglut -lfreeimage
 
 INC_DEBUG = $(INC)
 CFLAGS_DEBUG = $(CFLAGS) -g -D_DEBUG

@@ -47,7 +47,9 @@ before_debug:
 	test -d bin/Debug || mkdir -p bin/Debug
 	test -d $(OBJDIR_DEBUG) || mkdir -p $(OBJDIR_DEBUG)
 
-after_debug: 
+after_debug: out_debug
+	cp -r textures/ bin/Debug
+	cp *.ovo bin/Debug
 
 debug: before_debug out_debug after_debug
 
@@ -61,12 +63,15 @@ clean_debug:
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
 	rm -rf bin/Debug
 	rm -rf $(OBJDIR_DEBUG)
+	rm -rf target/
 
 before_release: 
 	test -d bin/Release || mkdir -p bin/Release
 	test -d $(OBJDIR_RELEASE) || mkdir -p $(OBJDIR_RELEASE)
 
-after_release: 
+after_release: out_release
+	cp -r textures/ bin/Release
+	cp *.ovo bin/Release
 
 release: before_release out_release after_release
 
@@ -80,5 +85,6 @@ clean_release:
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)
 	rm -rf bin/Release
 	rm -rf $(OBJDIR_RELEASE)
+	rm -rf target/
 
 .PHONY: before_debug after_debug clean_debug before_release after_release clean_release
