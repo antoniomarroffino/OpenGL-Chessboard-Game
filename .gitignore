@@ -16,6 +16,7 @@ ipch/
 [Oo]bj/
 client/[Bb]in/
 client/[Oo]bj/
+client/target/
 engine/[Bb]in/
 engine/[Oo]bj/
 

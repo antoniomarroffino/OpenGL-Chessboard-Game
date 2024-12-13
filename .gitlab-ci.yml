@@ -8,6 +8,7 @@ stages:
   - engine
   - engineTest
   - client
+  - install_package
 
 image: gitlab-edu.supsi.ch:5050/dti-isin/labingsw/common:ubuntu2404-cg
 
@@ -33,7 +34,7 @@ engine:
 
   script:
     - 'make clean'
-    - 'make'
+    - 'make build_engine'
 
   after_script:
     - 'cd ..'
@@ -57,7 +58,7 @@ engineTest:
 
   script:
     - 'make clean'
-    - 'make'
+    - 'make build_engineTest'
 
   after_script:
     - 'cd ..'
@@ -77,7 +78,7 @@ client:
 
   script:
     - 'make clean'
-    - 'make'
+    - 'make build_client'
 
   after_script:
     - 'cd ..'
@@ -90,4 +91,18 @@ client:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+
+install-package:
+  stage: install_package
+
+  script:
+    - 'make clean'
+    - 'make package'
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+
+  artifacts:
+    paths:
+      - client/target/*.tar.gz
 
