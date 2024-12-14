@@ -37,5 +37,5 @@ clean_engineTest:
 clean_client: 
 	$(MAKE) -C client clean
 
-.PHONY: clean_engine clean_engineTest clean_client package
+.PHONY: clean_engine clean_engineTest clean_client build_client build_engine build_engineTest package
 
