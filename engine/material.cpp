@@ -4,11 +4,11 @@
 std::map<std::string, Texture*> Material::m_texturesMap{ std::map<std::string, Texture*>() };
 
 ENG_API Material::Material(const std::string& name)
-	: Object(name), m_alpha{1.0f}, m_emission{glm::vec4(0.0f)}, m_ambient{glm::vec4(0.0f)}, m_specular{glm::vec4(0.0f)},
-	m_diffuse{ glm::vec4(0.0f) }, m_shininess{ 1.0f }, m_texture{nullptr} {}
+	: Object(name), m_alpha{ 1.0f }, m_emission{ glm::vec4(0.0f) }, m_ambient{ glm::vec4(0.0f) }, m_specular{ glm::vec4(0.0f) },
+	m_diffuse{ glm::vec4(0.0f) }, m_shininess{ 1.0f }, m_texture{ nullptr } {}
 
 ENG_API void Material::setAlpha(const float& alpha) {
-	if(alpha >= 0.0f && alpha <= 1.0f)
+	if (alpha >= 0.0f && alpha <= 1.0f)
 		this->m_alpha = alpha;
 }
 
@@ -49,7 +49,7 @@ const ENG_API glm::vec4& Material::getDiffuse() const {
 }
 
 ENG_API void Material::setShininess(const float& shininess) {
-	if(shininess >= 0.0f)
+	if (shininess >= 0.0f)
 		this->m_shininess = shininess;
 }
 
@@ -66,20 +66,14 @@ const ENG_API Texture* Material::getTexture() const {
 }
 
 ENG_API void Material::render(const glm::mat4& matrix) {
-	if (this->m_texture) {
-		glEnable(GL_TEXTURE_2D);
-		this->m_texture->render(matrix);
-	}
-
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(this->m_emission));
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, powf(2.0f, this->m_shininess));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glm::value_ptr(this->m_ambient));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glm::value_ptr(this->m_diffuse));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(this->m_specular));
+	if (this->m_texture != nullptr)
+		this->m_texture->render();
 
-	if (!this->m_texture) {
-		glDisable(GL_TEXTURE_2D);
-	}
 }
 
 
@@ -123,7 +117,7 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 	strncpy(textureName, data + position, sizeof(textureName) - 1);
 	position += (unsigned int)strlen(textureName) + 1;
 	std::cout << textureName << std::endl;
-	
+
 
 	if (strcmp(textureName, "[none]") != 0) {
 		Texture* textureInMap = this->getTexture(textureName);
@@ -132,11 +126,10 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 			textureInMap->parse(data, position);
 			Material::m_texturesMap[textureName] = textureInMap;
 		}
-		std::cout << "TEXTURE ASSEGNATA" << std::endl;
 		this->setTexture(textureInMap);
 	}
-	
-	
+
+
 
 	this->setAlpha(alpha);
 	this->setEmission(emission);
@@ -153,5 +146,21 @@ ENG_API Texture* Material::getTexture(const std::string& textureName) const {
 		return it->second;
 	}
 	return nullptr;
+}
+
+ENG_API void Material::setEnableTexture() {
+	if (this->m_texture != nullptr)
+		glEnable(GL_TEXTURE_2D);
+
+}
+
+ENG_API void Material::setDisableTexture() {
+	if (this->m_texture != nullptr)
+		glDisable(GL_TEXTURE_2D);
+
+}
+
+ENG_API bool Material::isTextureExists() {
+	return this->m_texture != nullptr;
 }
 

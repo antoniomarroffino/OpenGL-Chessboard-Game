@@ -1,10 +1,8 @@
 #include "cameraManager.h"
 
-struct CameraManager::Reserved {
-	//possibile salvataggio delle camere, esempio map<String, Camera*> e riempite / svuotata ogni add / remove -> meno interpolazioni nell'albero
-};
 
-CameraManager::CameraManager() : m_reserved{std::make_unique<CameraManager::Reserved>()} {}
+
+CameraManager::CameraManager() {}
 
 CameraManager& CameraManager::getInstance() {
 	static CameraManager instance;

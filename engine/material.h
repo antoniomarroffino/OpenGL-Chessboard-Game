@@ -45,6 +45,9 @@ public:
 	const float& getShininess() const;
 	void setTexture(Texture*);
 	const Texture* getTexture() const;
+	void setEnableTexture();
+	void setDisableTexture();
+	bool isTextureExists();
 
 	static std::map<std::string, Texture*> m_texturesMap;
 private:

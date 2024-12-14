@@ -47,7 +47,7 @@ public:
 	virtual const std::vector<Node*> getChildren() const;
 	void setMaterial(Material*);
 	const Material* getMaterial() const;
-	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override {};
+	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override { std::cout << this->getName() << std::endl; };
 	const virtual unsigned int parse(const char*, unsigned int&) override;
 
 protected:

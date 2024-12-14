@@ -1,11 +1,15 @@
+#include "GL/freeglut.h"
 #include "light.h"
-#include <GL/freeglut.h>
 
 
 unsigned int Light::lightActiveCounter{ GL_LIGHT0 };
 unsigned int Light::maxNumberOfActiveLights{ GL_LIGHT0 + 7 };
 
-ENG_API Light::Light(const std::string& name, const glm::vec4& position) : Node(name), m_position{ position }, m_lightMaterial{ nullptr } {}
+
+
+ENG_API Light::Light(const std::string& name, const glm::vec4& position) : Node(name), m_position{ position }, m_lightMaterial{ nullptr } {
+}
+
 
 ENG_API void Light::setPosition(const glm::vec3& position) {
 	this->m_position = glm::vec4(position, 1.0f);

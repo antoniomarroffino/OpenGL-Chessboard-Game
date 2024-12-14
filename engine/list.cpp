@@ -41,8 +41,10 @@ void ENG_API List::clearList() {
 }
 
 void ENG_API List::renderElements(const glm::mat4& cameraInverseFinalMatrix) const {
-	for (const auto* reservedRow : this->m_listOfReservedToRender)
+	for (const auto* reservedRow : this->m_listOfReservedToRender) 
 		reservedRow->r_node->render(cameraInverseFinalMatrix * reservedRow->r_nodeFinalMatrix);
+	
+		
 	Light::resetLightCounter();
 	glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
 }

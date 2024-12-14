@@ -20,6 +20,4 @@ public:
 private:
 	CameraManager();
 
-	struct Reserved;
-	std::unique_ptr<Reserved> m_reserved;
 };

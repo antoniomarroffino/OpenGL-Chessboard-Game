@@ -57,18 +57,29 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 	//GLLOAD MATRIX
     glMatrixMode(GL_MODELVIEW);
     glLoadMatrixf(glm::value_ptr(matrix));
+    
 
-    if (this->m_material != nullptr) this->m_material->render();
+    if (this->m_material != nullptr) {
+        this->m_material->setEnableTexture();
+        this->m_material->render();
+    }
 
     glBegin(GL_TRIANGLES);
     for (const auto& face : m_reserved->m_faces) 
         for (const auto& vertex : face) {
             glNormal3fv(glm::value_ptr(vertex.v_normal));
-
+            if(this->m_material->isTextureExists())
+                glTexCoord2fv(glm::value_ptr(vertex.v_textureUV));
             glVertex3fv(glm::value_ptr(vertex.v_coords));
         }
-    
+
     glEnd();
+
+    if (this->m_material != nullptr) {
+        this->m_material->setDisableTexture();
+    }
+
+    
 }
 
 const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position) {
