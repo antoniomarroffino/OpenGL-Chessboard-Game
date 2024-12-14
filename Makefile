@@ -12,7 +12,7 @@ package: build_client
 	mkdir -p $(PACKAGE_DIR)/
 	cp engine/bin/$(CONFIGURATION)/libengine.so $(PACKAGE_DIR)/
 	cp client/bin/$(CONFIGURATION)/client $(PACKAGE_DIR)/
-	cp client/bin/$(CONFIGURATION)/*.ovo $(PACKAGE_DIR)/
+	#cp client/bin/$(CONFIGURATION)/*.ovo $(PACKAGE_DIR)/
 	#cp -r client/bin/$(CONFIGURATION)/textures $(PACKAGE_DIR)/
 	$(TARGZ_CREATE) $(ARCHIVE_DIR)/$(ARCHIVE_NAME) -C $(PACKAGE_DIR)/ .
 	rm -rf $(PACKAGE_DIR)

@@ -49,7 +49,7 @@ before_debug:
 
 after_debug: out_debug
 	#cp -r textures/ bin/Debug
-	cp *.ovo bin/Debug
+	#cp *.ovo bin/Debug
 
 debug: before_debug out_debug after_debug
 
@@ -71,7 +71,7 @@ before_release:
 
 after_release: out_release
 	#cp -r textures/ bin/Release
-	cp *.ovo bin/Release
+	#cp *.ovo bin/Release
 
 release: before_release out_release after_release
 
