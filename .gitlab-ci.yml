@@ -34,7 +34,7 @@ engine:
 
   script:
     - 'make clean'
-    - 'make build_engine'
+    - 'make'
 
   after_script:
     - 'cd ..'
@@ -58,7 +58,7 @@ engineTest:
 
   script:
     - 'make clean'
-    - 'make build_engineTest'
+    - 'make'
 
   after_script:
     - 'cd ..'
@@ -78,7 +78,7 @@ client:
 
   script:
     - 'make clean'
-    - 'make build_client'
+    - 'make'
 
   after_script:
     - 'cd ..'
