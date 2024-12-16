@@ -135,18 +135,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fileOVOReaderTest.cpp" />
     <ClCompile Include="listTest.cpp" />
     <ClCompile Include="nodeTest.cpp" />
+    <ClCompile Include="notificationServiceTest.cpp" />
     <ClCompile Include="objectTest.cpp" />
     <ClCompile Include="orthoCameraTest.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="fileOVOReaderTest.h" />
     <ClInclude Include="listTest.h" />
     <ClInclude Include="mockCamera.h" />
     <ClInclude Include="mockLight.h" />
     <ClInclude Include="mockNode.h" />
     <ClInclude Include="nodeTest.h" />
+    <ClInclude Include="notificationServiceTest.h" />
     <ClInclude Include="objectTest.h" />
     <ClInclude Include="orthoCameraTest.h" />
     <ClInclude Include="test.h" />

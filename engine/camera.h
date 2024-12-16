@@ -31,7 +31,7 @@ public:
 	void virtual loadProjectionMatrix() = 0;
 	void virtual render(const glm::mat4& = glm::mat4(1.0f)) override;
 	const virtual unsigned int parse(const char*, unsigned int&) override { return 0; };
-	void onWindowReshape(int, int) override;
+	void virtual onWindowReshape(int, int) override;
 
 	const glm::mat4 getInverseCameraFinalMatrix() const;
 	void setMainCamera(const bool&);

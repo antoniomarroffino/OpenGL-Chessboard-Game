@@ -23,11 +23,8 @@ ENG_API char* FileOVOReader::getDataOfChunkFromFile(unsigned int& chunkId, unsig
     size_t bytesRead = fread(&chunkId, sizeof(unsigned int), 1, this->m_dat);
 
     if(bytesRead < 1) return nullptr;
-    else{
-        if (feof(this->m_dat)) return nullptr;
-    }
-
-
+    else if (feof(this->m_dat)) return nullptr;
+    
     bytesRead = fread(&chunkSize, sizeof(unsigned int), 1, this->m_dat);
     if(bytesRead < 1) return nullptr;
 

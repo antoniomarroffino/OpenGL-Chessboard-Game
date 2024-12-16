@@ -10,11 +10,15 @@ public:
         const float& height = 100.0,
         const float& near = 0.1f,
         const float& far = 100.0f)
-        : Camera(name, width, height, near, far) {}
+        : Camera(name, width, height, near, far) 
+    {
+        
+    }
 
     MOCK_METHOD(const bool&, isMainCamera, (), (const, override));
     MOCK_METHOD(void, loadProjectionMatrix, (), (override));
     MOCK_METHOD(void, render, (const glm::mat4&), (override));
+    MOCK_METHOD(void, onWindowReshape, (int, int), (override));
     MOCK_METHOD(const glm::mat4, getFinalMatrix, (), (const, override));
     MOCK_METHOD(const std::vector<Node*>, getChildren, (), (const, override));
 };
