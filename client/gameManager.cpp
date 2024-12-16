@@ -26,7 +26,7 @@ GameManager& GameManager::getInstance()
 
 void GameManager::startGame() {
 	this->m_reserved->engine.init();
-	this->m_reserved->rootNode = this->m_reserved->engine.load("Pippolone.ovo");
+	this->m_reserved->rootNode = this->m_reserved->engine.load("scene.ovo");
 	if (this->m_reserved->rootNode == nullptr) {
 		std::cerr << "ERROR: Error during parse of the scene" << std::endl;
 		return;

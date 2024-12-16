@@ -48,8 +48,8 @@ before_debug:
 	test -d $(OBJDIR_DEBUG) || mkdir -p $(OBJDIR_DEBUG)
 
 after_debug: out_debug
-	#cp -r textures/ bin/Debug
-	#cp *.ovo bin/Debug
+	cp -r textures/ bin/Debug
+	cp *.ovo bin/Debug
 
 debug: before_debug out_debug after_debug
 
@@ -70,8 +70,8 @@ before_release:
 	test -d $(OBJDIR_RELEASE) || mkdir -p $(OBJDIR_RELEASE)
 
 after_release: out_release
-	#cp -r textures/ bin/Release
-	#cp *.ovo bin/Release
+	cp -r textures/ bin/Release
+	cp *.ovo bin/Release
 
 release: before_release out_release after_release
 

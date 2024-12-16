@@ -35,18 +35,14 @@ engine/[Oo]bj/
 *.so
 *.a
 *.la
-*.ovo
-*/textures/*
 
 *.glsl
 *.vert
 *.frag
 *.spv
 
-!dependencies/freeglut/lib/x64/Debug/freeglut_staticd.lib
-!dependencies/freeglut/lib/x64/Release/freeglut_static.lib
-!dependencies/freeglut/lib/x64/Debug/freeglut_staticd.a
-!dependencies/freeglut/lib/x64/Release/freeglut_static.a
+!dependencies/freeglut/lib/*
+!dependencies/freeimage/lib/*
 
 shaders_cache/
 
