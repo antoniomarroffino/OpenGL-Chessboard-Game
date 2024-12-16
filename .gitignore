@@ -19,6 +19,9 @@ client/[Oo]bj/
 client/target/
 engine/[Bb]in/
 engine/[Oo]bj/
+client/textures/*.Identifier
+
+!client/*.ovo
 
 *.o
 *.obj
