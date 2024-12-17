@@ -23,7 +23,6 @@ structure:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
-    - if: $CI_COMMIT_BRANCH == "testing"
 
 
 engine:
@@ -49,7 +48,6 @@ engine:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
-    - if: $CI_COMMIT_BRANCH == "testing"
 
 client:
   stage: client
@@ -71,7 +69,6 @@ client:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
-    - if: $CI_COMMIT_BRANCH == "testing"
 
 install-package:
   stage: install_package
@@ -86,7 +83,6 @@ install-package:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
-    - if: $CI_COMMIT_BRANCH == "testing"
 
   artifacts:
     paths:
