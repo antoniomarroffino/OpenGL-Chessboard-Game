@@ -76,6 +76,11 @@ client:
 install-package:
   stage: install_package
 
+  before_script:
+    - 'apt update'
+    - 'apt install -y libgtest-dev'
+    - 'apt install -y libgmock-dev'
+    
   script:
     - 'make package'
 
