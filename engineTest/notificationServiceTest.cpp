@@ -1,20 +1,18 @@
 #include "notificationServiceTest.h"
 
-NotificationService& NotificationServiceTest::notificationService{ NotificationService::getInstance()};
-MockCamera* NotificationServiceTest::mockCamera1 = nullptr;
-MockCamera* NotificationServiceTest::mockCamera2 = nullptr;
+TEST(NotificationServiceTest, GetInstance){
+	NotificationService& notificationService1 = NotificationService::getInstance();
+	NotificationService& notificationService2 = NotificationService::getInstance();
 
-void NotificationServiceTest::SetUpTestSuite() {
-	mockCamera1 = new MockCamera();
-	mockCamera2 = new MockCamera();
+	EXPECT_NE(&notificationService1, nullptr);
+	EXPECT_EQ(&notificationService1, &notificationService2);
 }
 
-void NotificationServiceTest::TearDownTestSuite() {
-	delete mockCamera1;
-	delete mockCamera2;
-}
+TEST(NotificationServiceTest, NotifyOnReshapeWindow) {
+	NotificationService& notificationService = NotificationService::getInstance();
+	MockCamera* mockCamera1{new MockCamera()};
+	MockCamera* mockCamera2{new MockCamera()};
 
-TEST_F(NotificationServiceTest, NotifyOnReshapeWindow) {
 	notificationService.subscribeListener(mockCamera1);
 	notificationService.subscribeListener(mockCamera2);
 
@@ -32,4 +30,7 @@ TEST_F(NotificationServiceTest, NotifyOnReshapeWindow) {
 	EXPECT_CALL(*mockCamera2, onWindowReshape)
 		.Times(0);
 	notificationService.notifyOnReshapeWindow(1, 1);
+
+	delete mockCamera1;
+	delete mockCamera2;
 }

@@ -11,6 +11,7 @@ engine/x*
 *.layout
 ipch/
 *.pdb
+.vscode
 
 [Bb]in/
 [Oo]bj/

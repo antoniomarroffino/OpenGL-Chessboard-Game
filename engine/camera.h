@@ -2,7 +2,7 @@
  * @file		camera.h
  * @brief	Camera include file
  *
- * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ * @author	Luca Fantï¿½ (C) SUPSI [luca.fanto@student.supsi.ch]
  * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
  * @author	Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
@@ -31,13 +31,13 @@ public:
 	void virtual loadProjectionMatrix() = 0;
 	void virtual render(const glm::mat4& = glm::mat4(1.0f)) override;
 	const virtual unsigned int parse(const char*, unsigned int&) override { return 0; };
-	void virtual onWindowReshape(int, int) override;
 
 	const glm::mat4 getInverseCameraFinalMatrix() const;
 	void setMainCamera(const bool&);
 	virtual const bool& isMainCamera() const;
 protected:
 	Camera(const std::string&, const float&, const float&, const float&, const float&);
+	void virtual onWindowReshape(int, int) override;
 
 	glm::mat4 m_projectionMatrix;
 	bool m_isCurrentCamera;

@@ -4,10 +4,9 @@ PerspCamera::PerspCamera(const std::string& name, const float& width, const floa
 	: Camera(name, width, height, near_val, far_val), m_fovY{ fovY }
 {
 	this->loadProjectionMatrix();
-	m_notificationService.subscribeListener(this);
+	this->m_notificationService.subscribeListener(this);
 }
 
 void PerspCamera::loadProjectionMatrix() {
-	//gl load matrix con gl projection view per poi tornare a gl model view
 	this->m_projectionMatrix = glm::perspective(m_fovY, m_width / m_height, m_near, m_far);
 }
