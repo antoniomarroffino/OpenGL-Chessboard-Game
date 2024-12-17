@@ -30,8 +30,11 @@ engine:
   stage: engine
 
   before_script:
+    - 'apt update'
+    - 'apt install -y libgtest-dev'
+    - 'apt install -y libgmock-dev'
     - 'cd engine'
-
+    
   script:
     - 'make clean'
     - 'make'
@@ -47,7 +50,6 @@ engine:
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
     - if: $CI_COMMIT_BRANCH == "testing"
-
 
 client:
   stage: client
@@ -66,7 +68,7 @@ client:
     paths:
       - client/bin/Release/*
       - client/bin/Debug/*
-      
+
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
     - if: $CI_COMMIT_BRANCH == "testing"
