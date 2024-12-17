@@ -20,6 +20,7 @@ client/target/
 engine/[Bb]in/
 engine/[Oo]bj/
 client/textures/*.Identifier
+engine/test/*
 
 !client/*.ovo
 

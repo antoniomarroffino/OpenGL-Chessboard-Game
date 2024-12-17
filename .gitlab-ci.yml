@@ -6,7 +6,6 @@ variables:
 stages:
   - structure
   - engine
-  - engineTest
   - client
   - install_package
 
@@ -24,6 +23,7 @@ structure:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "testing"
 
 
 engine:
@@ -46,29 +46,8 @@ engine:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "testing"
 
-engineTest:
-  stage: engineTest
-
-  before_script:
-    - 'apt update'
-    - 'apt install -y libgtest-dev'
-    - 'apt install -y libgmock-dev'
-    - 'cd engineTest'
-
-  script:
-    - 'make clean'
-    - 'make'
-
-  after_script:
-    - 'cd ..'
-
-  artifacts:
-    paths:
-      - engineTest/bin/Release/*
-      - engineTest/bin/Debug/*
-  rules:
-    - if: $CI_COMMIT_BRANCH == "dev"
 
 client:
   stage: client
@@ -87,10 +66,10 @@ client:
     paths:
       - client/bin/Release/*
       - client/bin/Debug/*
-
-
+      
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "testing"
 
 install-package:
   stage: install_package
@@ -101,6 +80,7 @@ install-package:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "testing"
 
   artifacts:
     paths:

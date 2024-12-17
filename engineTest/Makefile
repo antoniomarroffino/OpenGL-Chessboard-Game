@@ -35,11 +35,9 @@ OUT_RELEASE = bin/Release/engineTest
 
 SRC_DEBUG = $(wildcard *.cpp)
 OBJ_DEBUG = $(SRC_DEBUG:%.cpp=$(OBJDIR_DEBUG)/%.o)
-#OBJ_DEBUG = $(OBJDIR_DEBUG)/%.o
 
 SRC_RELEASE = $(wildcard *.cpp)
 OBJ_RELEASE = $(SRC_RELEASE:%.cpp=$(OBJDIR_RELEASE)/%.o)
-#OBJ_RELEASE = $(OBJDIR_RELEASE)/%.o
 
 all: debug release
 

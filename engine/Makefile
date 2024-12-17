@@ -37,13 +37,29 @@ OUT_RELEASE = bin/Release/libengine.so
 SRC_DIR = $(wildcard *.cpp)
 OBJ_DEBUG = $(SRC_DIR:%.cpp=$(OBJDIR_DEBUG)/%.o)
 OBJ_RELEASE = $(SRC_DIR:%.cpp=$(OBJDIR_RELEASE)/%.o)
-#OBJ_DEBUG = $(OBJDIR_DEBUG)/engine.o
 
-#OBJ_RELEASE = $(OBJDIR_RELEASE)/engine.o
+all: debug release test
 
-all: debug release
+clean: clean_debug clean_release clean_test
 
-clean: clean_debug clean_release
+before_test:
+	test -d test/Debug || mkdir -p test/Debug
+	test -d test/Release || mkdir -p test/Release
+
+after_test: out_test
+	cd test/Debug && LD_LIBRARY_PATH=../../bin/Debug ./engineTest
+	cd test/Release && LD_LIBRARY_PATH=../../bin/Release ./engineTest
+
+test: before_test out_test after_test
+
+out_test: before_test
+	cd ../engineTest && make all
+	cp -r ../engineTest/bin/Debug/* test/Debug
+	cp -r ../engineTest/bin/Release/* test/Release
+
+clean_test:
+	rm -rf test
+	cd ../engineTest && make clean
 
 before_debug: 
 	test -d bin/Debug || mkdir -p bin/Debug
@@ -83,4 +99,4 @@ clean_release:
 	rm -rf bin/Release
 	rm -rf $(OBJDIR_RELEASE)
 
-.PHONY: before_debug after_debug clean_debug before_release after_release clean_release
+.PHONY: before_debug after_debug clean_debug before_release after_release clean_release before_test after_test clean_test

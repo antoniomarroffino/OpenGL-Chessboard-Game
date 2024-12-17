@@ -6,7 +6,7 @@ TARGZ_CREATE = tar -zcf
 
 MAKE = make
 
-all: build_engine build_engineTest build_client package
+all: build_engine build_client package
 
 package: build_client
 	mkdir -p $(PACKAGE_DIR)/
@@ -20,22 +20,16 @@ package: build_client
 build_engine: 
 	$(MAKE) -C engine all
 
-build_engineTest: build_engine
-	$(MAKE) -C engineTest all
-
 build_client: build_engine
 	$(MAKE) -C client all
 
-clean: clean_engine clean_engineTest clean_client
+clean: clean_engine clean_client
 
 clean_engine: 
 	$(MAKE) -C engine clean
 
-clean_engineTest:
-	$(MAKE) -C engineTest clean
-
 clean_client: 
 	$(MAKE) -C client clean
 
-.PHONY: clean_engine clean_engineTest clean_client package
+.PHONY: clean_engine clean_client package
 
