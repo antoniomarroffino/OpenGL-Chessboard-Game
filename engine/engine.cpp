@@ -16,6 +16,7 @@
    // Main include:
     #include "engine.h"
     #include "notificationService.h"
+    #include "textManager.h"
     #include "glm/glm.hpp"
     #include "glm/gtc/type_ptr.hpp"
     #include "GL/freeglut.h"
@@ -49,11 +50,13 @@ struct Eng::Base::Reserved
 
    NotificationService& notificationService;
 
+   TextManager& textManager;
 
    /**
     * Constructor.
     */
-   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader() }, listOfScene{ List() }, notificationService{NotificationService::getInstance()}
+   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader() }, listOfScene{ List() }, notificationService{NotificationService::getInstance()}, 
+       textManager{TextManager::getInstance()}
    {}
 };
 
@@ -107,11 +110,27 @@ Eng::Base ENG_API &Eng::Base::getInstance()
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ENG_API Eng::Base::setKeyboardCallback(void (*keyboardCallback)(unsigned char, int, int)) 
+{
+    if (keyboardCallback != nullptr)
+        glutKeyboardFunc(keyboardCallback);
+}
+
+void ENG_API Eng::Base::setSpecialCallback(void (*specialCallback)(int, int, int)) 
+{
+    if (specialCallback != nullptr)
+        glutSpecialFunc(specialCallback);
+}
+
+void ENG_API Eng::Base::setMenu(std::list<std::string> menu) {
+
+}
+
 /**
  * Init internal components.
  * @return TF
  */
-bool ENG_API Eng::Base::init(void(*reshapeCallback)(int, int))
+bool ENG_API Eng::Base::init(void(*keyboardCallback)(unsigned char, int, int), void(*specialCallback)(int, int, int))
 {
    // Already initialized?
    if (reserved->initFlag)
@@ -134,7 +153,8 @@ bool ENG_API Eng::Base::init(void(*reshapeCallback)(int, int))
 
    glutDisplayFunc([](){});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height);});
-
+   setKeyboardCallback(keyboardCallback);
+   setSpecialCallback(specialCallback);
 
    glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
 

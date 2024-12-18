@@ -24,12 +24,21 @@
     <ClCompile Include="cameraManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="statusManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cameraManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="statusManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -83,10 +83,13 @@
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="gameManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="statusManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="gameManager.h" />
+    <ClInclude Include="gameStatus.h" />
+    <ClInclude Include="statusManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -20,7 +20,15 @@ public:
 private:
 	void gameLoop();
 	void createCameras();
-	void loadTexturesFromDirectory(const std::string&);
+
+	void keyboardCallbackPreGame(unsigned char, int, int);
+	void specialKeyCallbackPreGame(int, int, int);
+
+	void keyboardCallbackGame(unsigned char, int, int);
+	void specialKeyCallbackGame(int, int, int);
+
+	void keyboardCallbackEndGame(unsigned char, int, int);
+	void specialKeyCallbackEndGame(int, int, int);
 
 	GameManager();
 	

@@ -1,4 +1,5 @@
 #include "gameManager.h"
+#include "statusManager.h"
 #include <thread>
 #include <chrono>
 #include <filesystem>
@@ -6,10 +7,11 @@
 struct GameManager::Reserved
 {
 	CameraManager& cameraManager;
+	StatusManager statusManager;
 	Eng::Base& engine;
 	Node* rootNode;
 	
-	Reserved() : cameraManager{ CameraManager::getInstance() }, engine { Eng::Base::getInstance() }, rootNode{ nullptr }
+	Reserved() : cameraManager{ CameraManager::getInstance() }, statusManager{ StatusManager() }, engine{Eng::Base::getInstance()}, rootNode{nullptr}
 	{}
 };
 
@@ -17,15 +19,145 @@ GameManager::GameManager() : m_reserved(std::make_unique<GameManager::Reserved>(
 
 GameManager::~GameManager() = default;
 
-GameManager& GameManager::getInstance()
-{
+GameManager& GameManager::getInstance() {
 	static GameManager instance;
 	return instance;
 }
 
+void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY)
+{
+	switch (key)
+	{
+	case 13: // Confirm choice
+		std::cout << "Enter pressed" << std::endl;
+
+		break;
+	}
+}
+
+void specialKeyCallbackGame(int key, int mouseX, int mouseY)
+{
+	switch (key)
+	{
+	case 13: // Confirm choice
+		std::cout << "Enter pressed" << std::endl;
+
+		break;
+	}
+}
+
+void keyboardCallbackEndGame(unsigned char key, int mouseX, int mouseY)
+{
+	switch (key)
+	{
+	case 13: // Confirm choice
+		std::cout << "Enter pressed" << std::endl;
+
+		break;
+	}
+}
+
+void specialKeyCallbackEndGame(int key, int mouseX, int mouseY)
+{
+	switch (key)
+	{
+	case 13: // Confirm choice
+		std::cout << "Enter pressed" << std::endl;
+
+		break;
+	}
+}
+
+void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mouseY) 
+{
+	Camera* mainCamera;
+	switch (key)
+	{
+	case 13: // Confirm choice
+		std::cout << "Enter pressed" << std::endl;
+		
+		break;
+	case 32: // Change camera
+		std::cout << "Space pressed" << std::endl;
+		mainCamera = dynamic_cast<Camera*>(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("chessboardCamera")));
+		this->m_reserved->cameraManager.setNewMainCamera(mainCamera->getName(), this->m_reserved->rootNode);
+		this->m_reserved->statusManager.changeState(GameStatus::GAME);
+		break;
+	case 127: // Delete choice
+		std::cout << "Delete pressed" << std::endl;
+		break;
+	case 'w':
+	case 'W':
+		std::cout << "w" << std::endl;
+	break; 
+	case 'a':
+	case 'A':
+		std::cout << "a" << std::endl;
+		break;
+	case 's':
+	case 'S':
+		std::cout << "s" << std::endl;
+		break;
+	case 'd':
+	case 'D':
+		std::cout << "d" << std::endl;
+		break;
+	case 'c':
+	case 'C':
+		std::cout << "c" << std::endl;
+		break;
+	}
+}
+
+void GameManager::specialKeyCallbackPreGame(int key, int mouseX, int mouseY) 
+{
+	Camera* mainCamera;
+	glm::mat4 currentMatrix, translationMatrix;
+	switch (key) {
+	case 100: // Left arrow
+		std::cout << "Left arrow pressed" << std::endl;
+		mainCamera = this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode);
+		currentMatrix = mainCamera->getMatrix();
+		translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -10.0f));
+		mainCamera->setMatrix(translationMatrix * currentMatrix);
+		break;
+	case 101: // Up arrow
+		std::cout << "Up arrow pressed" << std::endl;
+		mainCamera = this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode);
+		currentMatrix = mainCamera->getMatrix();
+		translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 10.0f, 0.0f));
+		mainCamera->setMatrix(translationMatrix * currentMatrix);
+		break;
+	case 102: // Right arrow
+		std::cout << "Right arrow pressed" << std::endl;
+		mainCamera = this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode);
+		currentMatrix = mainCamera->getMatrix();
+		translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 10.0f));
+		mainCamera->setMatrix(translationMatrix * currentMatrix);
+		break;
+	case 103: // Dowm arrow
+		std::cout << "Down arrow pressed" << std::endl;
+		mainCamera = this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode);
+		currentMatrix = mainCamera->getMatrix();
+		translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -10.0f, 0.0f));
+		mainCamera->setMatrix(translationMatrix * currentMatrix);
+		break;
+	}
+}
 
 void GameManager::startGame() {
-	this->m_reserved->engine.init();
+	this->m_reserved->engine.init(
+		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackPreGame(key, mouseX, mouseY); },
+		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackPreGame(key, mouseX, mouseY); }
+	);
+
+	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::PRE_GAME, 
+			[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackPreGame(key, mouseX, mouseY); }, 
+			[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackPreGame(key, mouseX, mouseY); });
+
+	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::GAME,
+		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackGame(key, mouseX, mouseY); });
+
 	this->m_reserved->rootNode = this->m_reserved->engine.load("scene.ovo");
 	if (this->m_reserved->rootNode == nullptr) {
 		std::cerr << "ERROR: Error during parse of the scene" << std::endl;
@@ -41,12 +173,14 @@ void GameManager::startGame() {
 
 
 void GameManager::gameLoop() {
+	this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
+
 	while (true) {
 		this->m_reserved->engine.clear();
 
 		this->m_reserved->engine.begin3D(this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode));
 
-		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
+		//std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
 
 		this->m_reserved->engine.swap();
 		

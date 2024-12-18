@@ -15,7 +15,8 @@
 //////////////
 
    // C/C++:         
-   #include <memory> 
+#include <memory> 
+#include <list> 
 #include "node.h"
 #include "camera.h"
 
@@ -89,17 +90,20 @@ public: //
    static Base &getInstance();
 
    // Init/free:
-   bool init(void(*reshapeCallback)(int, int) = nullptr);
+   bool init(void (*)(unsigned char, int, int), void(*)(int, int, int));
+   void setKeyboardCallback(void (*)(unsigned char, int, int));
+   void setSpecialCallback(void (*)(int, int, int));
+   void setMenu(std::list<std::string>);
    bool free();
    void clear();
    const float& getFPS();
 
    //add parameters
    //class Node;
-   Node* load(const std::string& fileName);
-   void passScene(Node* rootNode);
+   Node* load(const std::string&);
+   void passScene(Node*);
    void clearScene();
-   void begin3D(Camera* camera);
+   void begin3D(Camera*);
    void end3D();
 
    void swap();

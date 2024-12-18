@@ -1,7 +1,5 @@
 #include "cameraManager.h"
 
-
-
 CameraManager::CameraManager() {}
 
 CameraManager& CameraManager::getInstance() {

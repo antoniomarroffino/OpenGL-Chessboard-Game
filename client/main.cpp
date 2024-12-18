@@ -30,7 +30,7 @@
 int main(int argc, char *argv[])
 {
 	std::cout << "\n[application start]" << std::endl;
-   GameManager::getInstance().startGame();
-   std::cout << "\n[application terminated]" << std::endl;
-   return 0;
+	GameManager::getInstance().startGame();
+    std::cout << "\n[application terminated]" << std::endl;
+    return 0;
 }
