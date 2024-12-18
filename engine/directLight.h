@@ -2,7 +2,7 @@
  * @file		directLight.h
  * @brief	DirectLight include file
  *
- * @author	Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ * @author	Luca Fantï¿½ (C) SUPSI [luca.fanto@student.supsi.ch]
  * @author	Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
  * @author	Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
@@ -29,5 +29,4 @@ public:
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
 
 	void setPosition(const glm::vec3&) override;
-private:
 };
