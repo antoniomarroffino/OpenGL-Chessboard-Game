@@ -20,6 +20,9 @@ void ENG_API TextManager::displayText(const std::list<std::string>& texts, Camer
 
     glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
 
+    float y = 10.0f;
+    float yIncrement = 15.0f;
+
     glDisable(GL_LIGHTING);
     glDisable(GL_DEPTH_TEST);
 
@@ -30,18 +33,15 @@ void ENG_API TextManager::displayText(const std::list<std::string>& texts, Camer
     glBegin(GL_TRIANGLE_STRIP);
     glVertex2f(0.0f, 0.0f);
     glVertex2f(300.0f, 0.0f);
-    glVertex2f(0.0f, 80.0f);
-    glVertex2f(300.0f, 80.0f);
+    glVertex2f(0.0f, yIncrement * texts.size() + y * 1.5f);
+    glVertex2f(300.0f, yIncrement * texts.size() + y * 1.5f);
     glEnd();
     glDisable(GL_BLEND);
 
     glColor3f(1.0f, 1.0f, 1.0f);
 
-    float y = 2.0f;
-    float yIncrement = 15.0f;
-
     for (const auto& text : texts) {
-        glRasterPos2f(2.0f, y);
+        glRasterPos2f(5.0f, y);
         glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)text.c_str());
         y += yIncrement;
     }

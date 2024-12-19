@@ -28,18 +28,11 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 	Camera* mainCamera;
 	switch (key)
 	{
-	case 13: // Confirm choice
-		std::cout << "Enter pressed" << std::endl;
-
-		break;
 	case 32: // Change camera
 		std::cout << "Space pressed" << std::endl;
 		mainCamera = dynamic_cast<Camera*>(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("chessboardCamera")));
 		this->m_reserved->cameraManager.setNewMainCamera(mainCamera->getName(), this->m_reserved->rootNode);
 		this->m_reserved->statusManager.changeState(GameStatus::GAME);
-		break;
-	case 127: // Delete choice
-		std::cout << "Delete pressed" << std::endl;
 		break;
 	}
 }
@@ -82,7 +75,8 @@ void GameManager::specialKeyCallbackPreGame(int key, int mouseX, int mouseY)
 
 std::list<std::string> GameManager::menuPreGame() {
 	std::list<std::string> menu;
-	menu.push_back("ANTO GAY");
+	menu.push_back("[Spacebar] Go to cheesboard view");
+	menu.push_back("[Arrow key] Move camera");
 	return menu;
 }
 
@@ -100,6 +94,9 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		mainCamera = dynamic_cast<Camera*>(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("firstCamera")));
 		this->m_reserved->cameraManager.setNewMainCamera(mainCamera->getName(), this->m_reserved->rootNode);
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
+		break;
+	case 127: // Delete
+		std::cout << "Delete (Canc) pressed" << std::endl;
 		break;
 	case 'w':
 	case 'W':
@@ -128,16 +125,16 @@ void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
 {
 	switch (key)
 	{
-	case 13: // Confirm choice
-		std::cout << "Enter pressed" << std::endl;
-
-		break;
+	
 	}
 }
 
 std::list<std::string> GameManager::menuGame() {
 	std::list<std::string> menu;
-	menu.push_back("ADEL GAY");
+	menu.push_back("[Spacebar] Go to scene view");
+	menu.push_back("[Enter] Confirm choice/Switch mode");
+	menu.push_back("[Canc] Delete choice/Switch mode");
+	menu.push_back("[W - A - S - D] Move pawn");
 	return menu;
 }
 
@@ -145,9 +142,9 @@ void GameManager::keyboardCallbackEndGame(unsigned char key, int mouseX, int mou
 {
 	switch (key)
 	{
-	case 13: // Confirm choice
-		std::cout << "Enter pressed" << std::endl;
-
+	case 32: // Change camera
+		std::cout << "Space pressed" << std::endl;
+		
 		break;
 	}
 }
@@ -165,7 +162,7 @@ void GameManager::specialKeyCallbackEndGame(int key, int mouseX, int mouseY)
 
 std::list<std::string> GameManager::menuEndGame() {
 	std::list<std::string> menu;
-	//menu.push_back("ANTO GAY");
+	menu.push_back("[Spacebar] Go to ... view");
 	return menu;
 }
 
@@ -221,8 +218,7 @@ void GameManager::gameLoop() {
 void GameManager::createCameras() {
 	Camera* startCamera = new PerspCamera("firstCamera", 100.0f, 100.0f, 1.0f, 1000.0f, glm::radians(45.0f));
 	startCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 15.0f))
+		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 15.0f))
 	);
 	this->m_reserved->cameraManager.addNewCamera(startCamera, this->m_reserved->rootNode);
 	this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
@@ -233,9 +229,7 @@ void GameManager::createCameras() {
 	);
 	chessboardCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
 		glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(2.1f, 0.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.6f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 20.0f))
+		glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 0.0f, 20.0f))
 	);
 	this->m_reserved->cameraManager.addNewCamera(chessboardCamera, this->m_reserved->rootNode);
 
