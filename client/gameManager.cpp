@@ -210,7 +210,7 @@ void GameManager::gameLoop() {
 		this->m_reserved->engine.begin3D(this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode), 
 				this->m_reserved->cameraManager.findCameraByName("menuCamera", this->m_reserved->rootNode), this->m_reserved->statusManager.getMenu());
 
-		//std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
+		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
 
 		this->m_reserved->engine.swap();
 		
@@ -222,7 +222,7 @@ void GameManager::createCameras() {
 	Camera* startCamera = new PerspCamera("firstCamera", 100.0f, 100.0f, 1.0f, 1000.0f, glm::radians(45.0f));
 	startCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
 		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 30.0f))
+		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 15.0f))
 	);
 	this->m_reserved->cameraManager.addNewCamera(startCamera, this->m_reserved->rootNode);
 	this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
