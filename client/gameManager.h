@@ -1,10 +1,12 @@
 #pragma once
 
 #include <memory>
+#include "statusManager.h"
 #include "cameraManager.h"
 #include "engine.h"
 #include "node.h"
 #include "perspCamera.h"
+#include "orthoCamera.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
@@ -23,12 +25,15 @@ private:
 
 	void keyboardCallbackPreGame(unsigned char, int, int);
 	void specialKeyCallbackPreGame(int, int, int);
+	std::list<std::string> menuPreGame();
 
 	void keyboardCallbackGame(unsigned char, int, int);
 	void specialKeyCallbackGame(int, int, int);
+	std::list<std::string> menuGame();
 
 	void keyboardCallbackEndGame(unsigned char, int, int);
 	void specialKeyCallbackEndGame(int, int, int);
+	std::list<std::string> menuEndGame();
 
 	GameManager();
 	

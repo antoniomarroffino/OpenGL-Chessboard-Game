@@ -26,8 +26,8 @@ void StatusManager::addGameStatusAndCallbacks(const GameStatus& gameStatus, void
 void StatusManager::changeState(const GameStatus& gameStatus) {
 	this->m_engine.setKeyboardCallback(this->getKeyboardCallback(gameStatus) == nullptr ? [](unsigned char, int, int) {} : this->getKeyboardCallback(gameStatus));
 	this->m_engine.setSpecialCallback(this->getSpecialKeyCallback(gameStatus) == nullptr ? [](int, int, int) {} : this->getSpecialKeyCallback(gameStatus));
-	if (!this->m_reserved[gameStatus].menu.empty())
-		this->m_engine.setMenu(this->m_reserved[gameStatus].menu);
+
+	this->m_currentState = gameStatus;
 }
 
 void (*StatusManager::getKeyboardCallback(const GameStatus& gameStatus))(unsigned char, int, int) {
@@ -42,8 +42,9 @@ void (*StatusManager::getSpecialKeyCallback(const GameStatus& gameStatus))(int, 
     return nullptr;
 }
 
-std::list<std::string> StatusManager::getMenu(const GameStatus& gameStatus) {
-	if (this->m_reserved.count(gameStatus))
-		return this->m_reserved[gameStatus].menu;
-    return {};
+const std::list<std::string> StatusManager::getMenu() const {
+	auto it = this->m_reserved.find(this->m_currentState);
+	if (it != this->m_reserved.end())
+		return it->second.menu;
+	return { };
 }

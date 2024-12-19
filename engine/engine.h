@@ -90,10 +90,9 @@ public: //
    static Base &getInstance();
 
    // Init/free:
-   bool init(void (*)(unsigned char, int, int), void(*)(int, int, int));
+   bool init();
    void setKeyboardCallback(void (*)(unsigned char, int, int));
    void setSpecialCallback(void (*)(int, int, int));
-   void setMenu(std::list<std::string>);
    bool free();
    void clear();
    const float& getFPS();
@@ -103,7 +102,7 @@ public: //
    Node* load(const std::string&);
    void passScene(Node*);
    void clearScene();
-   void begin3D(Camera*);
+   void begin3D(Camera*, Camera*, const std::list<std::string>&);
    void end3D();
 
    void swap();

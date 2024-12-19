@@ -12,27 +12,40 @@ ENG_API TextManager& TextManager::getInstance() {
 	return instance;
 }
 
-void ENG_API TextManager::displayText(const std::list<std::string>& texts) const {
-    //glm::mat4 ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, -1.0f, 1.0f);
-    glm::mat4 ortho = glm::ortho(0.0f, (float)100, 0.0f, (float)100, -1.0f, 1.0f);
+void ENG_API TextManager::displayText(const std::list<std::string>& texts, Camera* camera) const {
+    if (dynamic_cast<OrthoCamera*>(camera) == nullptr)
+        return;
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadMatrixf(glm::value_ptr(ortho));
-    glMatrixMode(GL_MODELVIEW);
+    camera->render();
+
     glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
 
     glDisable(GL_LIGHTING);
+    glDisable(GL_DEPTH_TEST);
+
+    // Draw a semitransparent quad behind the text:
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4f(0.0f, 0.0f, 0.0f, 0.7f);
+    glBegin(GL_TRIANGLE_STRIP);
+    glVertex2f(0.0f, 0.0f);
+    glVertex2f(300.0f, 0.0f);
+    glVertex2f(0.0f, 80.0f);
+    glVertex2f(300.0f, 80.0f);
+    glEnd();
+    glDisable(GL_BLEND);
 
     glColor3f(1.0f, 1.0f, 1.0f);
 
-    float y = 0.0f;
+    float y = 2.0f;
     float yIncrement = 15.0f;
 
     for (const auto& text : texts) {
-        glRasterPos2f(0.0f, y);
+        glRasterPos2f(2.0f, y);
         glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)text.c_str());
         y += yIncrement;
     }
 
     glEnable(GL_LIGHTING);
+    glEnable(GL_DEPTH_TEST);
 }

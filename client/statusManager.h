@@ -18,14 +18,15 @@ public:
 		void (*)(int, int, int) = nullptr, const std::list<std::string> = std::list<std::string>());
 
 	void changeState(const GameStatus&);
+	const std::list<std::string> getMenu() const;
 
 private:
 	void (*getKeyboardCallback(const GameStatus&))(unsigned char, int, int);
 	void (*getSpecialKeyCallback(const GameStatus&))(int, int, int);
-	std::list<std::string> getMenu(const GameStatus&);
 
 	struct Reserved;
 	std::map<GameStatus, Reserved> m_reserved;
+	GameStatus m_currentState;
 
 	Eng::Base& m_engine;
 };

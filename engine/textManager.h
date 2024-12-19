@@ -2,6 +2,7 @@
 
 #include <list>
 #include <string>
+#include "orthoCamera.h"
 
 // Export API:
 #ifdef _WINDOWS
@@ -26,9 +27,10 @@ public:
 
 	static TextManager& getInstance();
 
-	void displayText(const std::list<std::string>&) const;
+	void displayText(const std::list<std::string>&, Camera* orthoCamera) const;
 
 private:
 	TextManager();
+
 };
 

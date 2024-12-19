@@ -36,5 +36,13 @@ bool CameraManager::setNewMainCamera(const std::string& cameraName, Node* rootNo
 }
 
 Camera* CameraManager::getMainCamera(const Node* rootNode) const {
-	return dynamic_cast<Camera*>(const_cast<Node*>(rootNode->getMainCamera()));
+	if (rootNode == nullptr)
+		return nullptr;
+	return dynamic_cast<Camera*>((rootNode->getMainCamera()));
+}
+
+Camera* CameraManager::findCameraByName(const std::string& cameraName, const Node* rootNode) const {
+	if (rootNode == nullptr)
+		return nullptr;
+	return dynamic_cast<Camera*>(const_cast<Node*>(rootNode->findNodeByName(cameraName)));
 }

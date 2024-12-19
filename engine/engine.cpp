@@ -122,15 +122,11 @@ void ENG_API Eng::Base::setSpecialCallback(void (*specialCallback)(int, int, int
         glutSpecialFunc(specialCallback);
 }
 
-void ENG_API Eng::Base::setMenu(std::list<std::string> menu) {
-
-}
-
 /**
  * Init internal components.
  * @return TF
  */
-bool ENG_API Eng::Base::init(void(*keyboardCallback)(unsigned char, int, int), void(*specialCallback)(int, int, int))
+bool ENG_API Eng::Base::init()
 {
    // Already initialized?
    if (reserved->initFlag)
@@ -153,11 +149,8 @@ bool ENG_API Eng::Base::init(void(*keyboardCallback)(unsigned char, int, int), v
 
    glutDisplayFunc([](){});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height);});
-   setKeyboardCallback(keyboardCallback);
-   setSpecialCallback(specialCallback);
 
    glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
-
 
    glEnable(GL_DEPTH_TEST);
    glEnable(GL_CULL_FACE);
@@ -219,11 +212,15 @@ void ENG_API Eng::Base::clearScene() {
 /**
  * passing all node of the scene and save them into a list
  */
-void ENG_API Eng::Base::begin3D(Camera* mainCamera) {
-    if (mainCamera == nullptr) return;
+void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const std::list<std::string>& menu) {
+    if (mainCamera == nullptr) 
+        return;
     mainCamera->render();
     this->reserved->listOfScene.renderElements(mainCamera->getInverseCameraFinalMatrix());
 
+    if (menuCamera == nullptr || menu.empty())
+        return;
+    this->reserved->textManager.displayText(menu, menuCamera);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

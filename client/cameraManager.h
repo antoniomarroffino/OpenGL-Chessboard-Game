@@ -17,6 +17,8 @@ public:
 	bool removeCamera(const std::string&, Node*);
 	bool setNewMainCamera(const std::string&, Node*) const;
 	Camera* getMainCamera(const Node*) const;
+	Camera* findCameraByName(const std::string&, const Node*) const;
+
 private:
 	CameraManager();
 
