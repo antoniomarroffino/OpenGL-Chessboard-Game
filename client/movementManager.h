@@ -12,7 +12,9 @@ public:
 	~MovementManager();
 
 	static MovementManager& getInstance();
+	bool getTurn() const;
 
+	void changeTurn();
 	void moveRight(Node* node);
 	void moveLeft(Node* node);
 	void moveUp(Node* node);

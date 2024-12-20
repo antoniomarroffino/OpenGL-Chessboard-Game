@@ -33,8 +33,7 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 	{
 	case 32: // Change camera
 		std::cout << "Space pressed" << std::endl;
-		mainCamera = dynamic_cast<Camera*>(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("chessboardCamera")));
-		this->m_reserved->cameraManager.setNewMainCamera(mainCamera->getName(), this->m_reserved->rootNode);
+		this->m_reserved->cameraManager.setNewMainCamera("playerWhiteCamera", this->m_reserved->rootNode);
 		this->m_reserved->statusManager.changeState(GameStatus::GAME);
 		break;
 	}
@@ -94,19 +93,21 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 	{
 	case 13: // Confirm choice
 		std::cout << "Enter pressed" << std::endl;
-
+		this->m_reserved->movementManager.changeTurn();
+		if (this->m_reserved->movementManager.getTurn())
+			this->m_reserved->cameraManager.setNewMainCamera("playerWhiteCamera", this->m_reserved->rootNode);
+		else
+			this->m_reserved->cameraManager.setNewMainCamera("playerBlackCamera", this->m_reserved->rootNode);
 		break;
 	case 27: // Exit from game
 		std::cout << "Esc pressed" << std::endl;
-		mainCamera = dynamic_cast<Camera*>(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("firstCamera")));
-		this->m_reserved->cameraManager.setNewMainCamera(mainCamera->getName(), this->m_reserved->rootNode);
+		this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
 		this->resetGame();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
 		break;
 	case 32: // Change camera
 		std::cout << "Space pressed" << std::endl;
-		mainCamera = dynamic_cast<Camera*>(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("firstCamera")));
-		this->m_reserved->cameraManager.setNewMainCamera(mainCamera->getName(), this->m_reserved->rootNode);
+		this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
 		break;
 	case 127: // Delete
@@ -293,7 +294,7 @@ void GameManager::gameLoop() {
 }
 
 void GameManager::createCameras() {
-	Camera* startCamera = new PerspCamera("firstCamera", 100.0f, 100.0f, 1.0f, 1000.0f, glm::radians(45.0f));
+	Camera* startCamera = new PerspCamera("firstCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
 	startCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
 		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 15.0f))
 	);
@@ -301,14 +302,26 @@ void GameManager::createCameras() {
 	this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
 
 	Camera* chessboardCamera = new PerspCamera("chessboardCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
-	chessboardCamera->setMatrix(
-		glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f))
-	);
 	chessboardCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
 		glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
 		glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 0.0f, 20.0f))
 	);
 	this->m_reserved->cameraManager.addNewCamera(chessboardCamera, this->m_reserved->rootNode);
+
+	Camera* playerWhiteCamera = new PerspCamera("playerWhiteCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
+	playerWhiteCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
+		glm::rotate(glm::mat4(1.0f), glm::radians(-30.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
+		glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 10.0f, 15.0f))
+	);
+	this->m_reserved->cameraManager.addNewCamera(playerWhiteCamera, this->m_reserved->rootNode);
+
+	Camera* playerBlackCamera = new PerspCamera("playerBlackCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
+	playerBlackCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
+		glm::rotate(glm::mat4(1.0f), glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
+		glm::rotate(glm::mat4(1.0f), glm::radians(-30.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
+		glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, 10.0f, 15.0f))
+	);
+	this->m_reserved->cameraManager.addNewCamera(playerBlackCamera, this->m_reserved->rootNode);
 
 	Camera* menuCamera = new OrthoCamera("menuCamera", 100.0f, 100.0f, -1.0f, 1.0f);
 	this->m_reserved->cameraManager.addNewCamera(menuCamera, this->m_reserved->rootNode);
