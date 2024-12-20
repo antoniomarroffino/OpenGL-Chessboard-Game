@@ -3,6 +3,8 @@
 #include <memory>
 #include "statusManager.h"
 #include "cameraManager.h"
+#include "movementManager.h"
+#include <array>
 #include "engine.h"
 #include "node.h"
 #include "perspCamera.h"
@@ -19,9 +21,13 @@ public:
 
 	static GameManager& getInstance();
 	void startGame();
+
 private:
 	void gameLoop();
 	void createCameras();
+	void buildCheesboard();
+	void resetGame();
+	void renderScene();
 
 	void keyboardCallbackPreGame(unsigned char, int, int);
 	void specialKeyCallbackPreGame(int, int, int);
