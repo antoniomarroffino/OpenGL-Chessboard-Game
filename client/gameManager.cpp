@@ -131,6 +131,7 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		std::cout << "Esc pressed" << std::endl;
 		this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
 		this->m_reserved->rootNode->removeChild(this->m_reserved->selectPointer);
+		this->m_reserved->iteratorOnList = 0;
 		this->resetGame();
 		this->renderScene();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
