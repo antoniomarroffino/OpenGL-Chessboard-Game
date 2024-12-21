@@ -27,6 +27,10 @@
 class ENG_API PerspCamera : public Camera {
 public:
 	PerspCamera(const std::string& name, const float& width, const float& height, const float& near_val, const float& far_val, const float& fovY);
+	PerspCamera(const PerspCamera&);
+	PerspCamera& operator=(const PerspCamera&) = delete;
+
+	Node* clone() const override;
 	void loadProjectionMatrix() override;
 private:
 	float m_fovY;

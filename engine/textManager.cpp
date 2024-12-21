@@ -5,8 +5,6 @@
 
 ENG_API TextManager::TextManager() {}
 
-ENG_API TextManager::~TextManager() = default;
-
 ENG_API TextManager& TextManager::getInstance() {
 	static TextManager instance;
 	return instance;
@@ -26,10 +24,9 @@ void ENG_API TextManager::displayText(const std::list<std::string>& texts, Camer
     glDisable(GL_LIGHTING);
     glDisable(GL_DEPTH_TEST);
 
-    // Draw a semitransparent quad behind the text:
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(0.0f, 0.0f, 0.0f, 0.7f);
+    glColor4f(0.0f, 0.0f, 0.0f, 0.6f);
     glBegin(GL_TRIANGLE_STRIP);
     glVertex2f(0.0f, 0.0f);
     glVertex2f(300.0f, 0.0f);

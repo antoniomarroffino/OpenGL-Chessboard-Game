@@ -103,6 +103,7 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		std::cout << "Esc pressed" << std::endl;
 		this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
 		this->resetGame();
+		this->renderScene();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
 		break;
 	case 32: // Change camera
@@ -231,7 +232,7 @@ void GameManager::buildCheesboard() {
 }
 
 void GameManager::resetGame() {
-	this->m_reserved->rootNode = this->m_reserved->rootResetNode;
+	this->m_reserved->rootNode = this->m_reserved->rootResetNode->clone();
 	this->buildCheesboard();
 }
 
@@ -269,7 +270,7 @@ void GameManager::startGame() {
 	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
 
 	this->buildCheesboard();
-	this->m_reserved->rootResetNode = this->m_reserved->rootNode;
+	this->m_reserved->rootResetNode = this->m_reserved->rootNode->clone();
 
 	this->gameLoop(); 
 }

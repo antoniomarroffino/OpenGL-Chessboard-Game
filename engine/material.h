@@ -28,6 +28,8 @@
 class ENG_API Material : public Object {
 public:
 	Material(const std::string& = "defaultMaterial");
+	Material(const Material&) = delete;
+	Material& operator=(const Material&) = delete;
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const unsigned int parse(const char*, unsigned int&) override;
 
@@ -53,7 +55,6 @@ public:
 private:
 	Texture* getTexture(const std::string&) const;
 	
-
 	float m_alpha;
 	glm::vec4 m_emission;
 	glm::vec4 m_ambient;

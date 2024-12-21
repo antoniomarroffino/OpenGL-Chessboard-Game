@@ -23,7 +23,7 @@ class ENG_API TextManager {
 public:
 	TextManager(const TextManager&) = delete;
 	TextManager& operator=(const TextManager&) = delete;
-	~TextManager();
+	~TextManager() = default;
 
 	static TextManager& getInstance();
 
@@ -31,6 +31,5 @@ public:
 
 private:
 	TextManager();
-
 };
 

@@ -7,6 +7,17 @@ ENG_API OrthoCamera::OrthoCamera(const std::string& name, const float& width, co
 	this->loadProjectionMatrix();
 }
 
+ENG_API OrthoCamera::OrthoCamera(const OrthoCamera& other) : Camera(other), m_left{other.m_left}, m_bottom{other.m_bottom} 
+{
+	this->m_notificationService.subscribeListener(this);
+}
+
+ENG_API Node* OrthoCamera::clone() const {
+	OrthoCamera* newOrthoCamera = new OrthoCamera(*this);
+	this->recursiveClone(newOrthoCamera);
+	return newOrthoCamera;
+}
+
 void ENG_API OrthoCamera::loadProjectionMatrix() {
 	this->m_projectionMatrix = glm::ortho(this->m_left, this->m_width, this->m_bottom, this->m_height);
 }

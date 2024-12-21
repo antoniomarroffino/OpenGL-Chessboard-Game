@@ -26,6 +26,10 @@
 class ENG_API OrthoCamera : public Camera {
 public:
 	OrthoCamera(const std::string& name, const float& width, const float& height, const float& near_val, const float& far_val);
+	OrthoCamera(const OrthoCamera&);
+	OrthoCamera& operator=(const OrthoCamera&) = delete;
+
+	Node* clone() const override;
 	void loadProjectionMatrix() override;
 private:
 	float m_left;

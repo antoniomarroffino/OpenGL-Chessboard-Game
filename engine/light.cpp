@@ -5,11 +5,9 @@
 unsigned int Light::lightActiveCounter{ GL_LIGHT0 };
 unsigned int Light::maxNumberOfActiveLights{ GL_LIGHT0 + 7 };
 
+ENG_API Light::Light(const std::string& name, const glm::vec4& position) : Node(name), m_position{ position }, m_lightMaterial{ nullptr } {}
 
-
-ENG_API Light::Light(const std::string& name, const glm::vec4& position) : Node(name), m_position{ position }, m_lightMaterial{ nullptr } {
-}
-
+ENG_API Light::Light(const Light& other) : Node(other), m_position{other.m_position}, m_lightMaterial{ other.m_lightMaterial } {}
 
 ENG_API void Light::setPosition(const glm::vec3& position) {
 	this->m_position = glm::vec4(position, 1.0f);
@@ -33,8 +31,7 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 	glLightfv(Light::lightActiveCounter, GL_AMBIENT, glm::value_ptr(this->m_lightMaterial->getAmbient()));
 	glLightfv(Light::lightActiveCounter, GL_DIFFUSE, glm::value_ptr(this->m_lightMaterial->getDiffuse()));
 	glLightfv(Light::lightActiveCounter, GL_SPECULAR, glm::value_ptr(this->m_lightMaterial->getSpecular()));
-	glm::vec4 transformedPosition = matrix * glm::vec4(this->getPosition());
-	glLightfv(Light::lightActiveCounter, GL_POSITION, glm::value_ptr(transformedPosition));
+	glLightfv(Light::lightActiveCounter, GL_POSITION, glm::value_ptr(matrix * glm::vec4(this->getPosition())));
 }
 
 const ENG_API unsigned int Light::parse(const char* data, unsigned int& position) {

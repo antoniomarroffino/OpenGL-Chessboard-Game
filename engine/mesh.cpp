@@ -53,6 +53,16 @@ ENG_API Mesh::Mesh(const std::string& name)
 
 ENG_API Mesh::~Mesh() = default;
 
+ENG_API Mesh::Mesh(const Mesh& other) : Node(other), m_reserved{ std::make_unique<Mesh::Reserved>() } {
+    this->m_reserved->m_faces = other.m_reserved->m_faces;
+}
+
+ENG_API Node* Mesh::clone() const {
+    Mesh* newMesh = new Mesh(*this);
+    this->recursiveClone(newMesh);
+    return newMesh;
+}
+
 void ENG_API Mesh::render(const glm::mat4& matrix) {
 	//GLLOAD MATRIX
     glMatrixMode(GL_MODELVIEW);
@@ -125,8 +135,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
     memcpy(&faces, data + position, sizeof(unsigned int));
     position += sizeof(unsigned int);
 
-
-    std::map<int, Reserved::Vertex> m_vertices;
+    std::vector<Reserved::Vertex> m_vertices;
 
     for (unsigned int c = 0; c < vertices; c++)
     {
@@ -153,7 +162,7 @@ const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position)
         glm::vec4 tangent = glm::unpackSnorm3x10_1x2(tangentData);*/
         position += sizeof(unsigned int);
 
-        m_vertices[c] = Reserved::Vertex(vertex, normal, uv);
+        m_vertices.push_back(Reserved::Vertex(vertex, normal, uv));
      }
 
     // Faces:
