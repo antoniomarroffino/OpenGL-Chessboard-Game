@@ -28,6 +28,7 @@ private:
 	void buildCheesboard();
 	void resetGame();
 	void renderScene();
+	void moveChoosePyramid(const std::vector<Node*>&, int);
 	void setCoordinates();
 
 	void keyboardCallbackPreGame(unsigned char, int, int);
