@@ -6,15 +6,26 @@
 struct GameManager::Reserved
 {
 	CameraManager& cameraManager;
-	StatusManager statusManager;
+	StatusManager& statusManager;
 	MovementManager& movementManager;
 	Eng::Base& engine;
 	Node* rootNode;
 	std::array<std::array<Node*, 8>, 8> cheesboard;
+	std::vector<Node*> whiteList;
+	std::vector<Node*> blackList;
 	Node* rootResetNode;
+	Node* selectPointer;
+	bool isChoiceMode;	//TRUE -> move SelectPointer ; FALSE -> move Piece
+	unsigned int row;
+	unsigned int col;
+	int iteratorOnList;
 
-	Reserved() : cameraManager{ CameraManager::getInstance() }, statusManager{ StatusManager() }, movementManager { MovementManager::getInstance() },
-		engine{ Eng::Base::getInstance() }, rootNode{ nullptr }, cheesboard{ std::array<std::array<Node*, 8>, 8>() }, rootResetNode{ nullptr } {}
+	Reserved() : cameraManager{ CameraManager::getInstance() }, statusManager{ StatusManager::getInstance() }, movementManager{MovementManager::getInstance()},
+		engine{ Eng::Base::getInstance() }, rootNode{ nullptr }, cheesboard{ std::array<std::array<Node*, 8>, 8>() },
+		whiteList{std::vector<Node*>()}, blackList{std::vector<Node*>()},
+		rootResetNode{ nullptr }, selectPointer{ nullptr }, 
+		isChoiceMode{ false }, row{ 0 }, col{ 0 }, iteratorOnList{ 0 } {
+	}
 };
 
 GameManager::GameManager() : m_reserved(std::make_unique<GameManager::Reserved>()) {}
@@ -28,12 +39,14 @@ GameManager& GameManager::getInstance() {
 
 void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mouseY)
 {
-	Camera* mainCamera;
 	switch (key)
 	{
 	case 32: // Change camera
 		std::cout << "Space pressed" << std::endl;
 		this->m_reserved->cameraManager.setNewMainCamera("playerWhiteCamera", this->m_reserved->rootNode);
+		this->m_reserved->isChoiceMode = true;
+		this->m_reserved->whiteList[0]->addChild(this->m_reserved->selectPointer);
+		this->renderScene();
 		this->m_reserved->statusManager.changeState(GameStatus::GAME);
 		break;
 	}
@@ -93,15 +106,31 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 	{
 	case 13: // Confirm choice
 		std::cout << "Enter pressed" << std::endl;
-		this->m_reserved->movementManager.changeTurn();
-		if (this->m_reserved->movementManager.getTurn())
-			this->m_reserved->cameraManager.setNewMainCamera("playerWhiteCamera", this->m_reserved->rootNode);
-		else
-			this->m_reserved->cameraManager.setNewMainCamera("playerBlackCamera", this->m_reserved->rootNode);
+		if (this->m_reserved->isChoiceMode){
+			this->m_reserved->selectPointer->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.3f, 0.0f)) * this->m_reserved->selectPointer->getMatrix());
+		}
+		else {
+			this->m_reserved->iteratorOnList = 0;
+			this->m_reserved->selectPointer->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.3f, 0.0f)) * this->m_reserved->selectPointer->getMatrix());
+			this->m_reserved->rootNode->removeChild(this->m_reserved->selectPointer);
+			this->m_reserved->movementManager.changeTurn();
+			if (this->m_reserved->movementManager.getTurn()) {
+				this->m_reserved->cameraManager.setNewMainCamera("playerWhiteCamera", this->m_reserved->rootNode);
+				this->m_reserved->whiteList[this->m_reserved->iteratorOnList]->addChild(this->m_reserved->selectPointer);
+			}
+			else {
+				this->m_reserved->cameraManager.setNewMainCamera("playerBlackCamera", this->m_reserved->rootNode);
+				this->m_reserved->blackList[this->m_reserved->iteratorOnList]->addChild(this->m_reserved->selectPointer);
+			}
+		}
+
+		this->m_reserved->isChoiceMode = !this->m_reserved->isChoiceMode;
+		this->renderScene();
 		break;
 	case 27: // Exit from game
 		std::cout << "Esc pressed" << std::endl;
 		this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
+		this->m_reserved->rootNode->removeChild(this->m_reserved->selectPointer);
 		this->resetGame();
 		this->renderScene();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
@@ -118,25 +147,25 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 	case 'w':
 	case 'W':
 		std::cout << "w" << std::endl;
-		this->m_reserved->movementManager.moveUp(this->m_reserved->cheesboard[0][1]);
+		this->m_reserved->movementManager.moveUp(this->m_reserved->cheesboard[this->m_reserved->row][this->m_reserved->col]);
 		this->renderScene();
 		break;
 	case 'a':
 	case 'A':
 		std::cout << "a" << std::endl;
-		this->m_reserved->movementManager.moveLeft(this->m_reserved->cheesboard[0][1]);
+		this->m_reserved->movementManager.moveLeft(this->m_reserved->cheesboard[this->m_reserved->row][this->m_reserved->col]);
 		this->renderScene();
 		break;
 	case 's':
 	case 'S':
 		std::cout << "s" << std::endl;
-		this->m_reserved->movementManager.moveDown(this->m_reserved->cheesboard[0][1]);
+		this->m_reserved->movementManager.moveDown(this->m_reserved->cheesboard[this->m_reserved->row][this->m_reserved->col]);
 		this->renderScene();
 		break;
 	case 'd':
 	case 'D':
 		std::cout << "d" << std::endl;
-		this->m_reserved->movementManager.moveRight(this->m_reserved->cheesboard[0][1]);
+		this->m_reserved->movementManager.moveRight(this->m_reserved->cheesboard[this->m_reserved->row][this->m_reserved->col]);
 		this->renderScene();
 		break;
 	case 'c':
@@ -148,9 +177,38 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 
 void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
 {
-	switch (key)
-	{
-	
+	if (!this->m_reserved->isChoiceMode) return;
+
+	switch (key) {
+	case 100: // Left arrow
+		if (this->m_reserved->movementManager.getTurn()) {
+			this->m_reserved->whiteList[this->m_reserved->iteratorOnList]->removeChild(this->m_reserved->selectPointer);
+			this->m_reserved->iteratorOnList = (this->m_reserved->iteratorOnList - 1) < 0? ((int)this->m_reserved->whiteList.size()) - 1 : this->m_reserved->iteratorOnList - 1;
+			this->m_reserved->whiteList[this->m_reserved->iteratorOnList]->addChild(this->m_reserved->selectPointer);
+		}
+		else {
+			this->m_reserved->blackList[this->m_reserved->iteratorOnList]->removeChild(this->m_reserved->selectPointer);
+			this->m_reserved->iteratorOnList = (this->m_reserved->iteratorOnList - 1) < 0? ((int)this->m_reserved->whiteList.size()) - 1 : this->m_reserved->iteratorOnList - 1;
+			this->m_reserved->blackList[this->m_reserved->iteratorOnList]->addChild(this->m_reserved->selectPointer);
+		}
+		this->setCoordinates();
+		this->renderScene();
+
+		break;
+	case 102: // Right arrow
+		if (this->m_reserved->movementManager.getTurn()) {
+			this->m_reserved->whiteList[this->m_reserved->iteratorOnList]->removeChild(this->m_reserved->selectPointer);
+			this->m_reserved->iteratorOnList = (this->m_reserved->iteratorOnList + 1) == (int)this->m_reserved->whiteList.size()? 0 : this->m_reserved->iteratorOnList + 1;
+			this->m_reserved->whiteList[this->m_reserved->iteratorOnList]->addChild(this->m_reserved->selectPointer);
+		}
+		else {
+			this->m_reserved->blackList[this->m_reserved->iteratorOnList]->removeChild(this->m_reserved->selectPointer);
+			this->m_reserved->iteratorOnList = (this->m_reserved->iteratorOnList + 1) == (int)this->m_reserved->blackList.size() ? 0 : this->m_reserved->iteratorOnList + 1;
+			this->m_reserved->blackList[this->m_reserved->iteratorOnList]->addChild(this->m_reserved->selectPointer);
+		}
+		this->setCoordinates();
+		this->renderScene();
+		break;
 	}
 }
 
@@ -212,6 +270,10 @@ void GameManager::buildCheesboard() {
 	this->m_reserved->cheesboard[1][6] = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("G"));
 	this->m_reserved->cheesboard[1][7] = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("H"));
 
+	for (int row = 0; row < 2; row++)
+		for (int col = 0; col < 8; col++)
+			this->m_reserved->whiteList.push_back(this->m_reserved->cheesboard[row][col]);
+
 	this->m_reserved->cheesboard[6][0] = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("A.001"));
 	this->m_reserved->cheesboard[6][1] = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("B.001"));
 	this->m_reserved->cheesboard[6][2] = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("C.001"));
@@ -229,6 +291,10 @@ void GameManager::buildCheesboard() {
 	this->m_reserved->cheesboard[7][5] = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black bitshop"));
 	this->m_reserved->cheesboard[7][6] = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black knight"));
 	this->m_reserved->cheesboard[7][7] = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black rook.001"));
+
+	for (int row = 7; row >= 6; row--)
+		for (int col = 7; col >= 0; col--)
+			this->m_reserved->blackList.push_back(this->m_reserved->cheesboard[row][col]);
 }
 
 void GameManager::resetGame() {
@@ -239,6 +305,16 @@ void GameManager::resetGame() {
 void GameManager::renderScene() {
 	this->m_reserved->engine.clearScene();
 	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
+}
+
+void GameManager::setCoordinates() {
+	for (int i = 0; i <= this->m_reserved->iteratorOnList; i++) {
+		this->m_reserved->col++;
+		if (i % 8 == 0) {
+			this->m_reserved->row++;
+			this->m_reserved->col = 0;
+		}
+	}
 }
 
 void GameManager::startGame() {
@@ -259,7 +335,7 @@ void GameManager::startGame() {
 		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackEndGame(key, mouseX, mouseY); },
 		this->menuEndGame());
 
-	this->m_reserved->rootNode = this->m_reserved->engine.load("scene.ovo");
+	this->m_reserved->rootNode = this->m_reserved->engine.load("scenaDef1.ovo");
 	if (this->m_reserved->rootNode == nullptr) {
 		std::cerr << "ERROR: Error during parse of the scene" << std::endl;
 		return;
@@ -267,10 +343,13 @@ void GameManager::startGame() {
 
 	this->createCameras();
 
-	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
-
 	this->buildCheesboard();
+	this->m_reserved->selectPointer = const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("SelectPointer"));
+	this->m_reserved->rootNode->removeChild(this->m_reserved->selectPointer);
+	this->m_reserved->selectPointer->setMatrix(glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(3.0f, 6.0f, 3.0f)) * glm::mat4(1.0f), glm::vec3(0.0f, 0.75f, 0.0f)) * glm::rotate(glm::mat4(1.0f), glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f)) * glm::mat4(1.0f));
+
 	this->m_reserved->rootResetNode = this->m_reserved->rootNode->clone();
+	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
 
 	this->gameLoop(); 
 }
@@ -290,7 +369,7 @@ void GameManager::gameLoop() {
 
 		this->m_reserved->engine.swap();
 		
-		//std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+		// std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 	}
 }
 

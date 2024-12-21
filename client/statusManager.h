@@ -9,10 +9,11 @@
 
 class StatusManager {
 public:
-	StatusManager();
 	StatusManager(const StatusManager&) = delete;
 	StatusManager& operator=(const StatusManager&) = delete;
 	~StatusManager();
+
+	static StatusManager& getInstance();
 
 	void addGameStatusAndCallbacks(const GameStatus&, void (*)(unsigned char, int, int) = nullptr,
 		void (*)(int, int, int) = nullptr, const std::list<std::string> = std::list<std::string>());
@@ -21,6 +22,8 @@ public:
 	const std::list<std::string> getMenu() const;
 
 private:
+	StatusManager();
+
 	void (*getKeyboardCallback(const GameStatus&))(unsigned char, int, int);
 	void (*getSpecialKeyCallback(const GameStatus&))(int, int, int);
 

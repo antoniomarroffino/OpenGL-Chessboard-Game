@@ -28,6 +28,7 @@ private:
 	void buildCheesboard();
 	void resetGame();
 	void renderScene();
+	void setCoordinates();
 
 	void keyboardCallbackPreGame(unsigned char, int, int);
 	void specialKeyCallbackPreGame(int, int, int);

@@ -13,6 +13,11 @@ StatusManager::StatusManager() : m_reserved{ std::map<GameStatus, StatusManager:
 
 StatusManager::~StatusManager() = default;
 
+StatusManager& StatusManager::getInstance() {
+	static StatusManager instance;
+	return instance;
+}
+
 void StatusManager::addGameStatusAndCallbacks(const GameStatus& gameStatus, void (*keyboardCallback)(unsigned char, int, int),
 		void (*specialKeyCallback)(int, int, int), const std::list<std::string> menu) {
 	Reserved reserved;
