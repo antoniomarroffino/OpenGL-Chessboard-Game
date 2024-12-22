@@ -40,7 +40,6 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 	{
 	case 32: // Change camera
 		std::cout << "Space pressed" << std::endl;
-		this->m_reserved->cameraManager.setNewMainCamera("playerWhiteCamera", this->m_reserved->rootNode);
 		this->m_reserved->isChoiceMode = true;
 		this->m_reserved->statusManager.changeState(GameStatus::GAME);
 		break;
@@ -54,7 +53,7 @@ void GameManager::specialKeyCallbackPreGame(int key, int mouseX, int mouseY)
 	glm::mat4 currentMatrix, translationMatrix;
 	switch (key) {
 	case 100: // Left arrow
-		mainCamera = this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode);
+		mainCamera = this->m_reserved->cameraManager.getMainCamera();
 		currentMatrix = mainCamera->getMatrix();
 		if (currentMatrix[3][2] > -21) {
 			translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1.0f));
@@ -62,7 +61,7 @@ void GameManager::specialKeyCallbackPreGame(int key, int mouseX, int mouseY)
 		}
 		break;
 	case 101: // Up arrow
-		mainCamera = this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode);
+		mainCamera = this->m_reserved->cameraManager.getMainCamera();
 		currentMatrix = mainCamera->getMatrix();
 		if (currentMatrix[3][1] < 24) {
 			translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -70,7 +69,7 @@ void GameManager::specialKeyCallbackPreGame(int key, int mouseX, int mouseY)
 		}
 		break;
 	case 102: // Right arrow
-		mainCamera = this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode);
+		mainCamera = this->m_reserved->cameraManager.getMainCamera();
 		currentMatrix = mainCamera->getMatrix();
 		if (currentMatrix[3][2] < 23) {
 			translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -78,7 +77,7 @@ void GameManager::specialKeyCallbackPreGame(int key, int mouseX, int mouseY)
 		}
 		break;
 	case 103: // Dowm arrow
-		mainCamera = this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode);
+		mainCamera = this->m_reserved->cameraManager.getMainCamera();
 		currentMatrix = mainCamera->getMatrix();
 		if (currentMatrix[3][1] > 6) {
 			translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
@@ -109,15 +108,14 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 			if (!isMovedCorrectly) break;
 			this->m_reserved->movementManager.changeTurn();
 			if (this->m_reserved->movementManager.getTurn())
-				this->m_reserved->cameraManager.setNewMainCamera("playerWhiteCamera", this->m_reserved->rootNode);
+				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_WHITE_CAMERA);
 			else
-				this->m_reserved->cameraManager.setNewMainCamera("playerBlackCamera", this->m_reserved->rootNode);
+				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_BLACK_CAMERA);
 		}
 		this->m_reserved->isChoiceMode = !this->m_reserved->isChoiceMode;
 		break;
 	case 27: // Exit from game
 		std::cout << "Esc pressed" << std::endl;
-		this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
 		this->resetGame();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
 		break;
@@ -291,7 +289,7 @@ void GameManager::startGame() {
 		return;
 	}
 
-	this->createCameras();
+	this->m_reserved->cameraManager.initialize(this->m_reserved->rootNode);
 
 	this->buildChessboard();
 
@@ -309,8 +307,8 @@ void GameManager::gameLoop() {
 	while (true) {
 		this->m_reserved->engine.clear();
 
-		this->m_reserved->engine.begin3D(this->m_reserved->cameraManager.getMainCamera(this->m_reserved->rootNode), 
-				this->m_reserved->cameraManager.findCameraByName("menuCamera", this->m_reserved->rootNode), 
+		this->m_reserved->engine.begin3D(this->m_reserved->cameraManager.getMainCamera(), 
+				this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA), 
 				this->m_reserved->statusManager.getMenu());
 
 		//std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
@@ -319,38 +317,4 @@ void GameManager::gameLoop() {
 		
 		// std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 	}
-}
-
-void GameManager::createCameras() {
-	Camera* startCamera = new PerspCamera("firstCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
-	startCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 15.0f))
-	);
-	this->m_reserved->cameraManager.addNewCamera(startCamera, this->m_reserved->rootNode);
-	this->m_reserved->cameraManager.setNewMainCamera("firstCamera", this->m_reserved->rootNode);
-
-	Camera* chessboardCamera = new PerspCamera("chessboardCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
-	chessboardCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 0.0f, 20.0f))
-	);
-	this->m_reserved->cameraManager.addNewCamera(chessboardCamera, this->m_reserved->rootNode);
-
-	Camera* playerWhiteCamera = new PerspCamera("playerWhiteCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
-	playerWhiteCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(-30.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 10.0f, 15.0f))
-	);
-	this->m_reserved->cameraManager.addNewCamera(playerWhiteCamera, this->m_reserved->rootNode);
-
-	Camera* playerBlackCamera = new PerspCamera("playerBlackCamera", 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));
-	playerBlackCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(-30.0f), glm::vec3(1.0f, 0.0f, 0.0f)) *
-		glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, 10.0f, 15.0f))
-	);
-	this->m_reserved->cameraManager.addNewCamera(playerBlackCamera, this->m_reserved->rootNode);
-
-	Camera* menuCamera = new OrthoCamera("menuCamera", 100.0f, 100.0f, -1.0f, 1.0f);
-	this->m_reserved->cameraManager.addNewCamera(menuCamera, this->m_reserved->rootNode);
 }

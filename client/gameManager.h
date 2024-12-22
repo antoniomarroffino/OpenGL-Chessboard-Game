@@ -8,8 +8,6 @@
 #include <array>
 #include "engine.h"
 #include "node.h"
-#include "perspCamera.h"
-#include "orthoCamera.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
@@ -25,7 +23,6 @@ public:
 
 private:
 	void gameLoop();
-	void createCameras();
 	void buildChessboard();
 	void resetGame();
 	void renderScene();

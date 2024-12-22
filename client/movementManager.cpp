@@ -1,12 +1,22 @@
 #include "movementManager.h"
 
-MovementManager::MovementManager() : m_turn{ true } {}
+MovementManager::MovementManager() : m_turn{ true }, m_statusManager{StatusManager::getInstance()}, m_mapFunctionOnState{std::map<GameStatus, std::function<void()>>()}
+{
+	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
+	this->m_mapFunctionOnState[GameStatus::PRE_GAME] = [this]() {this->preGameHandler();};
+}
 
 MovementManager::~MovementManager() = default;
 
 MovementManager& MovementManager::getInstance() {
 	static MovementManager instance;
 	return instance;
+}
+
+void MovementManager::onStateChangeUpdate(GameStatus gameState) {
+	auto it = this->m_mapFunctionOnState.find(gameState);
+	if (it != this->m_mapFunctionOnState.end() && it->second != nullptr)
+		it->second();
 }
 
 bool MovementManager::getTurn() const {
@@ -80,4 +90,8 @@ void MovementManager::moveDown(Piece* piece) {
 	piece->getNode()->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(-(this->MOVEMENT_SPACE) * this->getFactoryByTurn(), 0.0f, 0.0f)) * piece->getNode()->getMatrix());
 
 	piece->setRow(piece->getRow() - (1 * (int)this->getFactoryByTurn()));
+}
+
+void MovementManager::preGameHandler() {
+	this->m_turn = true;
 }

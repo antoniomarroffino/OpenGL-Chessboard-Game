@@ -10,6 +10,9 @@ m_iteratorOnList{ 0 }
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::GAME, this);
+	
+	this->m_mapFunctionOnState[GameStatus::PRE_GAME] = [this]() { this->preGameHandler(); };
+	this->m_mapFunctionOnState[GameStatus::GAME] = [this]() { this->gameHandler(); };
 }
 
 ListOfPiecesManager& ListOfPiecesManager::getInstance() {
@@ -35,8 +38,6 @@ bool ListOfPiecesManager::initialize(ListOfPieces* whiteList, ListOfPieces* blac
 				glm::rotate(glm::mat4(1.0f), glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f)) * glm::mat4(1.0f));
 	}
 
-	this->m_mapFunctionOnState[GameStatus::PRE_GAME] = [this]() { this->preGameHandler(); };
-	this->m_mapFunctionOnState[GameStatus::GAME] = [this]() { this->gameHandler(); };
 
 	return true;
 }
