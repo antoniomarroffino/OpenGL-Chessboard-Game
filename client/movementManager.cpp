@@ -21,26 +21,63 @@ void MovementManager::changeTurn() {
 	this->m_turn = !this->m_turn;
 }
 
-void MovementManager::moveRight(Node* node) {
-	if (node == nullptr)
-		return;
-	node->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, this->MOVEMENT_SPACE * this->getFactoryByTurn())) * node->getMatrix());
+void MovementManager::moveRight(Piece* piece) {
+	if (piece == nullptr) return;
+
+	if (this->getTurn()) {
+		if (piece->getCol() == 7) return;
+	}
+	else {
+		if (piece->getCol() == 0) return;
+	}
+
+	piece->getNode()->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, this->MOVEMENT_SPACE * this->getFactoryByTurn())) * piece->getNode()->getMatrix());
+
+	piece->setCol(piece->getCol() + (1 * (int)this->getFactoryByTurn()));
 }
 
-void MovementManager::moveLeft(Node* node) {
-	if (node == nullptr)
-		return; 
-	node->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -(this->MOVEMENT_SPACE) * this->getFactoryByTurn())) * node->getMatrix());
+void MovementManager::moveLeft(Piece* piece) {
+	if (piece == nullptr) return;
+
+	if (this->getTurn()) {
+		if (piece->getCol() == 0) return;
+	}
+	else {
+		if (piece->getCol() == 7) return;
+	}
+
+
+	piece->getNode()->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -(this->MOVEMENT_SPACE) * this->getFactoryByTurn())) * piece->getNode()->getMatrix());
+
+	piece->setCol(piece->getCol() - (1 * (int)this->getFactoryByTurn()));
 }
 
-void MovementManager::moveUp(Node* node) {
-	if (node == nullptr)
-		return; 
-	node->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(this->MOVEMENT_SPACE * this->getFactoryByTurn(), 0.0f, 0.0f)) * node->getMatrix());
+void MovementManager::moveUp(Piece* piece) {
+	if (piece == nullptr) return;
+
+	if (this->getTurn()) {
+		if (piece->getRow() == 7) return;
+	}
+	else {
+		if (piece->getRow() == 0) return;
+	}
+
+	piece->getNode()->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(this->MOVEMENT_SPACE * this->getFactoryByTurn(), 0.0f, 0.0f)) * piece->getNode()->getMatrix());
+
+	piece->setRow(piece->getRow() + (1 * (int)this->getFactoryByTurn()));
 }
 
-void MovementManager::moveDown(Node* node) {
-	if (node == nullptr)
-		return;
-	node->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(-(this->MOVEMENT_SPACE) * this->getFactoryByTurn(), 0.0f, 0.0f)) * node->getMatrix());
+void MovementManager::moveDown(Piece* piece) {
+	if (piece == nullptr) return;
+
+	if (this->getTurn()) {
+		if (piece->getRow() == 0) return;
+	}
+	else {
+		if (piece->getRow() == 7) return;
+	}
+
+	piece->getNode()->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(-(this->MOVEMENT_SPACE) * this->getFactoryByTurn(), 0.0f, 0.0f)) * piece->getNode()->getMatrix());
+
+	piece->setRow(piece->getRow() - (1 * (int)this->getFactoryByTurn()));
 }

@@ -4,6 +4,7 @@
 #include "statusManager.h"
 #include "cameraManager.h"
 #include "movementManager.h"
+#include "listOfPiecesManager.h"
 #include <array>
 #include "engine.h"
 #include "node.h"
@@ -25,11 +26,9 @@ public:
 private:
 	void gameLoop();
 	void createCameras();
-	void buildCheesboard();
+	void buildChessboard();
 	void resetGame();
 	void renderScene();
-	void moveChoosePyramid(const std::vector<Node*>&, int);
-	void setCoordinates();
 
 	void keyboardCallbackPreGame(unsigned char, int, int);
 	void specialKeyCallbackPreGame(int, int, int);

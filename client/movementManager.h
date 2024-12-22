@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+#include "piece.h"
 #include "node.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -13,16 +15,16 @@ public:
 
 	static MovementManager& getInstance();
 	bool getTurn() const;
+	float getFactoryByTurn() const;
 
 	void changeTurn();
-	void moveRight(Node* node);
-	void moveLeft(Node* node);
-	void moveUp(Node* node);
-	void moveDown(Node* node);
+	void moveRight(Piece*);
+	void moveLeft(Piece*);
+	void moveUp(Piece*);
+	void moveDown(Piece*);
 
 private:
 	MovementManager();
-	float getFactoryByTurn() const;
 
 	// True: white - False: black
 	bool m_turn;

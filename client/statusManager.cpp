@@ -9,13 +9,25 @@ struct StatusManager::Reserved
 	Reserved() : keyboardCallback(nullptr), specialKeyCallback(nullptr), menu(std::list<std::string>()) {}
 };
 
-StatusManager::StatusManager() : m_reserved{ std::map<GameStatus, StatusManager::Reserved>() }, m_engine{Eng::Base::getInstance()} {}
+StatusManager::StatusManager() : m_reserved{ std::map<GameStatus, StatusManager::Reserved>() }, m_engine{ Eng::Base::getInstance() }, 
+m_listener{std::map<GameStatus, std::list<OnStateUpdateListener*>>()} 
+{
+	this->m_listener[GameStatus::PRE_GAME] = std::list<OnStateUpdateListener*>();
+	this->m_listener[GameStatus::GAME] = std::list<OnStateUpdateListener*>();
+	this->m_listener[GameStatus::END_GAME] = std::list<OnStateUpdateListener*>();
+}
 
 StatusManager::~StatusManager() = default;
 
 StatusManager& StatusManager::getInstance() {
 	static StatusManager instance;
 	return instance;
+}
+
+void StatusManager::subscribeListener(GameStatus gameState, OnStateUpdateListener* listener) {
+	if (listener == nullptr) return;
+
+	this->m_listener[gameState].push_back(listener);
 }
 
 void StatusManager::addGameStatusAndCallbacks(const GameStatus& gameStatus, void (*keyboardCallback)(unsigned char, int, int),
@@ -31,6 +43,8 @@ void StatusManager::addGameStatusAndCallbacks(const GameStatus& gameStatus, void
 void StatusManager::changeState(const GameStatus& gameStatus) {
 	this->m_engine.setKeyboardCallback(this->getKeyboardCallback(gameStatus) == nullptr ? [](unsigned char, int, int) {} : this->getKeyboardCallback(gameStatus));
 	this->m_engine.setSpecialCallback(this->getSpecialKeyCallback(gameStatus) == nullptr ? [](int, int, int) {} : this->getSpecialKeyCallback(gameStatus));
+
+	for (auto* listener : this->m_listener[gameStatus]) listener->onStateChangeUpdate(gameStatus);
 
 	this->m_currentState = gameStatus;
 }

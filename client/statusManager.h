@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include "gameStatus.h"
+#include "onStateUpdate.h"
 #include "engine.h"
 
 class StatusManager {
@@ -14,6 +15,8 @@ public:
 	~StatusManager();
 
 	static StatusManager& getInstance();
+
+	void subscribeListener(GameStatus, OnStateUpdateListener*);
 
 	void addGameStatusAndCallbacks(const GameStatus&, void (*)(unsigned char, int, int) = nullptr,
 		void (*)(int, int, int) = nullptr, const std::list<std::string> = std::list<std::string>());
@@ -30,6 +33,6 @@ private:
 	struct Reserved;
 	std::map<GameStatus, Reserved> m_reserved;
 	GameStatus m_currentState;
-
+	std::map<GameStatus, std::list<OnStateUpdateListener*>> m_listener;
 	Eng::Base& m_engine;
 };

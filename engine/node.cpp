@@ -143,7 +143,7 @@ ENG_API bool Node::addChild(Node* child) {
 }
 
 ENG_API bool Node::removeChild(Node* child) {
-	if (this->m_children.size() == 0 || child == nullptr) return false;
+	if (child == nullptr) return false;
 
 	auto it = std::find(this->m_children.begin(), this->m_children.end(), child);
 	if (it != this->m_children.end()) {
@@ -151,6 +151,13 @@ ENG_API bool Node::removeChild(Node* child) {
 		child->setParent(nullptr);
 		return true;
 	}
+
+	for (Node* childNode : this->m_children) {
+		if (childNode->removeChild(child)) {
+			return true;
+		}
+	}
+
 	return false;
 }
 

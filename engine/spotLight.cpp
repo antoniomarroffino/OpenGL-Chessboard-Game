@@ -23,7 +23,7 @@ ENG_API void SpotLight::setDirection(const glm::vec3& direction) {
 }
 
 const ENG_API glm::vec3& SpotLight::getDirection() const {
-    return m_direction;
+    return this->m_direction;
 }
 
 ENG_API void SpotLight::setCutoff(const float& cutoff) {
