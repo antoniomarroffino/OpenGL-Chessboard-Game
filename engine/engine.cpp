@@ -44,7 +44,7 @@ struct Eng::Base::Reserved
    // Flags:
    bool initFlag;
 
-   FileOVOReader fileOVOReader;
+   FileOVOReader& fileOVOReader;
 
    List listOfScene;
 
@@ -55,7 +55,7 @@ struct Eng::Base::Reserved
    /**
     * Constructor.
     */
-   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader() }, listOfScene{ List() }, notificationService{NotificationService::getInstance()}, 
+   Reserved() : windowId{ -1 }, initFlag{ false }, fileOVOReader{ FileOVOReader::getInstance() }, listOfScene{List()}, notificationService{NotificationService::getInstance()},
        textManager{TextManager::getInstance()}
    {}
 };

@@ -4,15 +4,12 @@ unsigned int tempRow = 0;
 unsigned int tempCol = 0;
 
 
-ListOfPiecesManager::ListOfPiecesManager() : m_movementManager{ MovementManager::getInstance() }, m_statusManager{ StatusManager::getInstance() }, 
-m_mapFunctionOnState{std::map<GameStatus, std::function<void()>>()}, m_whiteList{nullptr}, m_blackList{nullptr}, m_selectPointer{ nullptr }, m_rootNode{nullptr}, 
+ListOfPiecesManager::ListOfPiecesManager() : OnStateUpdateListener(), m_movementManager{MovementManager::getInstance()}, m_statusManager{StatusManager::getInstance()},
+m_whiteList{nullptr}, m_blackList{nullptr}, m_selectPointer{ nullptr }, m_rootNode{nullptr}, 
 m_iteratorOnList{ 0 } 
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::GAME, this);
-	
-	this->m_mapFunctionOnState[GameStatus::PRE_GAME] = [this]() { this->preGameHandler(); };
-	this->m_mapFunctionOnState[GameStatus::GAME] = [this]() { this->gameHandler(); };
 }
 
 ListOfPiecesManager& ListOfPiecesManager::getInstance() {
@@ -40,12 +37,6 @@ bool ListOfPiecesManager::initialize(ListOfPieces* whiteList, ListOfPieces* blac
 
 
 	return true;
-}
-
-void ListOfPiecesManager::onStateChangeUpdate(GameStatus gameState) {
-	auto it = this->m_mapFunctionOnState.find(gameState);
-	if (it != this->m_mapFunctionOnState.end() && it->second != nullptr)
-		it->second();
 }
 
 void ListOfPiecesManager::clearLists() {

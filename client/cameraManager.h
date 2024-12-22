@@ -7,7 +7,6 @@
 #define MENU_CAMERA "menuCamera"
 
 #include <memory>
-#include <functional>
 #include "onStateUpdate.h"
 #include "statusManager.h"
 #include "perspCamera.h"
@@ -23,22 +22,24 @@ public:
 	static CameraManager& getInstance();
 	bool initialize(Node*);
 
-	void onStateChangeUpdate(GameStatus);
-
 	bool addNewCamera(Camera*, Node* = nullptr);
 	bool removeCamera(const std::string&, Node* = nullptr);
 	bool setNewMainCamera(const std::string&, Node* = nullptr) const;
 	Camera* getMainCamera(const Node* = nullptr) const;
 	Camera* findCameraByName(const std::string&, const Node* = nullptr) const;
 
+	void moveCameraRight();
+	void moveCameraLeft();
+	void moveCameraUp();
+	void moveCameraDown();
+
 private:
 	CameraManager();
 
 	void createCameras();
-	void preGameHandler();
-	void gameHandler();
+	void preGameHandler() override;
+	void gameHandler() override;
 
 	Node* m_rootNode;
 	StatusManager& m_statusManager;
-	std::map<GameStatus, std::function<void()>> m_mapFunctionOnState;
 };

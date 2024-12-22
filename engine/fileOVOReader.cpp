@@ -8,6 +8,11 @@ ENG_API std::string FileOVOReader::ovoExtension{ ".ovo" };
 
 ENG_API FileOVOReader::FileOVOReader() : m_dat{ nullptr }, m_materialsMap{std::map<std::string, Material*>()} {}
 
+ENG_API FileOVOReader& FileOVOReader::getInstance() {
+    static FileOVOReader instance;
+    return instance;
+}
+
 ENG_API bool FileOVOReader::hasOVOExtension(const std::string& fileName) {
     return fileName.size() >= ovoExtension.size() &&
         std::equal(ovoExtension.rbegin(), ovoExtension.rend(), fileName.rbegin());

@@ -86,6 +86,7 @@
     <ClCompile Include="listOfPiecesManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movementManager.cpp" />
+    <ClCompile Include="onStateUpdate.cpp" />
     <ClCompile Include="piece.cpp" />
     <ClCompile Include="statusManager.cpp" />
   </ItemGroup>

@@ -1,12 +1,9 @@
 #include "cameraManager.h"
 
-CameraManager::CameraManager() : m_rootNode{ nullptr }, m_statusManager{StatusManager::getInstance()}, m_mapFunctionOnState{ std::map<GameStatus, std::function<void()>>() }
+CameraManager::CameraManager() : OnStateUpdateListener(), m_rootNode{nullptr}, m_statusManager{StatusManager::getInstance()}
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::GAME, this);
-
-	this->m_mapFunctionOnState[GameStatus::PRE_GAME] = [this]() {this->preGameHandler();};
-	this->m_mapFunctionOnState[GameStatus::GAME] = [this]() {this->gameHandler();};
 }
 
 CameraManager& CameraManager::getInstance() {
@@ -21,12 +18,6 @@ bool CameraManager::initialize(Node* rootNode) {
 	this->createCameras();
 
 	return true;
-}
-
-void CameraManager::onStateChangeUpdate(GameStatus gameState) {
-	auto it = this->m_mapFunctionOnState.find(gameState);
-	if (it != this->m_mapFunctionOnState.end() && it->second != nullptr)
-		it->second();
 }
 
 void CameraManager::createCameras() {
@@ -101,6 +92,30 @@ Camera* CameraManager::findCameraByName(const std::string& cameraName, const Nod
 	if (parentNode == nullptr) parentNode = this->m_rootNode;
 
 	return dynamic_cast<Camera*>(const_cast<Node*>(parentNode->findNodeByName(cameraName)));
+}
+
+void CameraManager::moveCameraRight() {
+	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
+
+	if (mainCamera->getMatrix()[3][2] < 23) mainCamera->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * mainCamera->getMatrix());
+}
+
+void CameraManager::moveCameraLeft() {
+	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
+
+	if (mainCamera->getMatrix()[3][2] > -21) mainCamera->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1.0f)) * mainCamera->getMatrix());
+}
+
+void CameraManager::moveCameraUp() {
+	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
+
+	if (mainCamera->getMatrix()[3][1] < 24) mainCamera->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * mainCamera->getMatrix());
+}
+
+void CameraManager::moveCameraDown() {
+	Camera* mainCamera = this->findCameraByName(MAIN_CAMERA);
+
+	if (mainCamera->getMatrix()[3][1] > 6) mainCamera->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f)) * mainCamera->getMatrix());
 }
 
 void CameraManager::preGameHandler() {

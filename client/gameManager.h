@@ -22,6 +22,8 @@ public:
 	void startGame();
 
 private:
+	void initialize();
+
 	void gameLoop();
 	void buildChessboard();
 	void resetGame();

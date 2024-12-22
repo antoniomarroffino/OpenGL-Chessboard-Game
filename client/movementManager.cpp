@@ -1,9 +1,8 @@
 #include "movementManager.h"
 
-MovementManager::MovementManager() : m_turn{ true }, m_statusManager{StatusManager::getInstance()}, m_mapFunctionOnState{std::map<GameStatus, std::function<void()>>()}
+MovementManager::MovementManager() : OnStateUpdateListener(), m_turn{true}, m_statusManager{StatusManager::getInstance()}
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
-	this->m_mapFunctionOnState[GameStatus::PRE_GAME] = [this]() {this->preGameHandler();};
 }
 
 MovementManager::~MovementManager() = default;
@@ -11,12 +10,6 @@ MovementManager::~MovementManager() = default;
 MovementManager& MovementManager::getInstance() {
 	static MovementManager instance;
 	return instance;
-}
-
-void MovementManager::onStateChangeUpdate(GameStatus gameState) {
-	auto it = this->m_mapFunctionOnState.find(gameState);
-	if (it != this->m_mapFunctionOnState.end() && it->second != nullptr)
-		it->second();
 }
 
 bool MovementManager::getTurn() const {

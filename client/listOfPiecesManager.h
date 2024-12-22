@@ -1,7 +1,6 @@
 #pragma once
 
 #include <map>
-#include <functional>
 #include "listOfPieces.h"
 #include "movementManager.h"
 #include "onStateUpdate.h"
@@ -17,8 +16,6 @@ public:
 	ListOfPiecesManager& operator=(const ListOfPiecesManager&) = delete;
 	~ListOfPiecesManager() = default;
 
-	void onStateChangeUpdate(GameStatus) override;
-
 	static ListOfPiecesManager& getInstance();
 	bool initialize(ListOfPieces*, ListOfPieces*, Node*);
 
@@ -33,12 +30,11 @@ private:
 	ListOfPiecesManager();
 	ListOfPieces* getCurrentList() const;
 	void moveChooseNode(const int&);
-	void preGameHandler();
-	void gameHandler();
+	void preGameHandler() override;
+	void gameHandler() override;
 
 	MovementManager& m_movementManager;
 	StatusManager& m_statusManager;
-	std::map<GameStatus, std::function<void()>> m_mapFunctionOnState;
 	ListOfPieces* m_whiteList;
 	ListOfPieces* m_blackList;
 	Node* m_selectPointer;

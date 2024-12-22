@@ -1,7 +1,6 @@
 #pragma once
 
 #include <array>
-#include <functional>
 #include "onStateUpdate.h"
 #include "statusManager.h"
 #include "piece.h"
@@ -18,8 +17,6 @@ public:
 
 	static MovementManager& getInstance();
 
-	void onStateChangeUpdate(GameStatus) override;
-
 	bool getTurn() const;
 	float getFactoryByTurn() const;
 
@@ -32,11 +29,10 @@ public:
 private:
 	MovementManager();
 
-	void preGameHandler();
+	void preGameHandler() override;
 
 	// True: white - False: black
 	bool m_turn;
 	StatusManager& m_statusManager;
-	std::map<GameStatus, std::function<void()>> m_mapFunctionOnState;
 	const float MOVEMENT_SPACE = 0.54f;
 };

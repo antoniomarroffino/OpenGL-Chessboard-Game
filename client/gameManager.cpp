@@ -25,9 +25,11 @@ struct GameManager::Reserved
 	}
 };
 
-GameManager::GameManager() : m_reserved(std::make_unique<GameManager::Reserved>()) {}
+GameManager::GameManager() : m_reserved(std::make_unique<GameManager::Reserved>()) { this->initialize(); }
 
-GameManager::~GameManager() = default;
+GameManager::~GameManager() {
+	this->m_reserved->engine.free();
+}
 
 GameManager& GameManager::getInstance() {
 	static GameManager instance;
@@ -49,40 +51,18 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 
 void GameManager::specialKeyCallbackPreGame(int key, int mouseX, int mouseY)
 {
-	Camera* mainCamera;
-	glm::mat4 currentMatrix, translationMatrix;
 	switch (key) {
 	case 100: // Left arrow
-		mainCamera = this->m_reserved->cameraManager.getMainCamera();
-		currentMatrix = mainCamera->getMatrix();
-		if (currentMatrix[3][2] > -21) {
-			translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1.0f));
-			mainCamera->setMatrix(translationMatrix * currentMatrix);
-		}
+		this->m_reserved->cameraManager.moveCameraLeft();
 		break;
 	case 101: // Up arrow
-		mainCamera = this->m_reserved->cameraManager.getMainCamera();
-		currentMatrix = mainCamera->getMatrix();
-		if (currentMatrix[3][1] < 24) {
-			translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-			mainCamera->setMatrix(translationMatrix * currentMatrix);
-		}
+		this->m_reserved->cameraManager.moveCameraUp();
 		break;
 	case 102: // Right arrow
-		mainCamera = this->m_reserved->cameraManager.getMainCamera();
-		currentMatrix = mainCamera->getMatrix();
-		if (currentMatrix[3][2] < 23) {
-			translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-			mainCamera->setMatrix(translationMatrix * currentMatrix);
-		}
+		this->m_reserved->cameraManager.moveCameraRight();
 		break;
 	case 103: // Dowm arrow
-		mainCamera = this->m_reserved->cameraManager.getMainCamera();
-		currentMatrix = mainCamera->getMatrix();
-		if (currentMatrix[3][1] > 6) {
-			translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
-			mainCamera->setMatrix(translationMatrix * currentMatrix);
-		}
+		this->m_reserved->cameraManager.moveCameraDown();
 		break;
 	}
 }
@@ -266,23 +246,6 @@ void GameManager::renderScene() {
 }
 
 void GameManager::startGame() {
-	this->m_reserved->engine.init();
-
-	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::PRE_GAME,
-		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackPreGame(key, mouseX, mouseY); },
-		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackPreGame(key, mouseX, mouseY); },
-		this->menuPreGame());
-
-	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::GAME,
-		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackGame(key, mouseX, mouseY); },
-		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackGame(key, mouseX, mouseY); },
-		this->menuGame());
-
-	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::END_GAME,
-		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackEndGame(key, mouseX, mouseY); },
-		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackEndGame(key, mouseX, mouseY); },
-		this->menuEndGame());
-
 	this->m_reserved->rootNode = this->m_reserved->engine.load("scenaDef.ovo");
 	if (this->m_reserved->rootNode == nullptr) {
 		std::cerr << "ERROR: Error during parse of the scene" << std::endl;
@@ -317,4 +280,23 @@ void GameManager::gameLoop() {
 		
 		// std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 	}
+}
+
+void GameManager::initialize() {
+	this->m_reserved->engine.init();
+
+	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::PRE_GAME,
+		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackPreGame(key, mouseX, mouseY); },
+		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackPreGame(key, mouseX, mouseY); },
+		this->menuPreGame());
+
+	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::GAME,
+		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackGame(key, mouseX, mouseY); },
+		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackGame(key, mouseX, mouseY); },
+		this->menuGame());
+
+	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::END_GAME,
+		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackEndGame(key, mouseX, mouseY); },
+		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackEndGame(key, mouseX, mouseY); },
+		this->menuEndGame());
 }
