@@ -25,7 +25,8 @@ public:
 	void moveChooseNodeLeft();
 	void moveChooseNodeRight();
 	void confirmChoice();
-    bool confirmMove();
+	void deleteChoice();
+	bool confirmMove();
 private:
 	ListOfPiecesManager();
 	ListOfPieces* getCurrentList() const;

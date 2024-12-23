@@ -2,7 +2,7 @@
 
 unsigned int tempRow = 0;
 unsigned int tempCol = 0;
-
+glm::mat4 tempMatrix = glm::mat4(1.0f);
 
 ListOfPiecesManager::ListOfPiecesManager() : OnStateUpdateListener(), m_movementManager{MovementManager::getInstance()}, m_statusManager{StatusManager::getInstance()},
 m_whiteList{nullptr}, m_blackList{nullptr}, m_selectPointer{ nullptr }, m_rootNode{nullptr}, 
@@ -78,6 +78,19 @@ void ListOfPiecesManager::confirmChoice() {
 
 	tempRow = this->getChoosenPiece()->getRow();
 	tempCol = this->getChoosenPiece()->getCol();
+	tempMatrix = this->getChoosenPiece()->getNode()->getMatrix();
+}
+
+void ListOfPiecesManager::deleteChoice() {
+	this->m_selectPointer->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.3f, 0.0f)) * this->m_selectPointer->getMatrix());
+
+	this->getChoosenPiece()->setCol(tempCol);
+	this->getChoosenPiece()->setRow(tempRow);
+	this->getChoosenPiece()->getNode()->setMatrix(tempMatrix);
+
+	this->m_rootNode->removeChild(this->m_selectPointer);
+	this->m_iteratorOnList = 0;
+	this->getCurrentList()->getPieceByIndex(this->m_iteratorOnList)->getNode()->addChild(this->m_selectPointer);
 }
 
 bool ListOfPiecesManager::confirmMove() {

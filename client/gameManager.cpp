@@ -12,7 +12,7 @@ struct GameManager::Reserved
 	Eng::Base& engine;
 	Node* rootNode;
 	Node* rootResetNode;
-	bool isChoiceMode;	//TRUE -> move SelectPointer ; FALSE -> move Piece
+	bool isChoiceMode;	// TRUE -> move SelectPointer - FALSE -> move Piece
 
 	Reserved() : cameraManager{ CameraManager::getInstance() }, 
 		statusManager{ StatusManager::getInstance() }, 
@@ -41,7 +41,6 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 	switch (key)
 	{
 	case 32: // Change camera
-		std::cout << "Space pressed" << std::endl;
 		this->m_reserved->isChoiceMode = true;
 		this->m_reserved->statusManager.changeState(GameStatus::GAME);
 		break;
@@ -79,7 +78,6 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 	switch (key)
 	{
 	case 13: // Confirm choice
-		std::cout << "Enter pressed" << std::endl;
 		if (this->m_reserved->isChoiceMode) {
 			this->m_reserved->listOfPiecesManager.confirmChoice();
 		}
@@ -95,34 +93,34 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		this->m_reserved->isChoiceMode = !this->m_reserved->isChoiceMode;
 		break;
 	case 27: // Exit from game
-		std::cout << "Esc pressed" << std::endl;
 		this->resetGame();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
 		break;
+	case 127:
+		if (!this->m_reserved->isChoiceMode) {
+			this->m_reserved->listOfPiecesManager.deleteChoice();
+			this->m_reserved->isChoiceMode = true;
+		}
+		break;
 	}
-
 
 	//PIECE MOVEMENT
 	if (!this->m_reserved->isChoiceMode) {
 		switch (key) {
 		case 'w':
 		case 'W':
-			std::cout << "w" << std::endl;
 			this->m_reserved->movementManager.moveUp(this->m_reserved->listOfPiecesManager.getChoosenPiece());
 			break;
 		case 'a':
 		case 'A':
-			std::cout << "a" << std::endl;
 			this->m_reserved->movementManager.moveLeft(this->m_reserved->listOfPiecesManager.getChoosenPiece());
 			break;
 		case 's':
 		case 'S':
-			std::cout << "s" << std::endl;
 			this->m_reserved->movementManager.moveDown(this->m_reserved->listOfPiecesManager.getChoosenPiece());
 			break;
 		case 'd':
 		case 'D':
-			std::cout << "d" << std::endl;
 			this->m_reserved->movementManager.moveRight(this->m_reserved->listOfPiecesManager.getChoosenPiece());
 			break;
 		}
@@ -149,11 +147,11 @@ void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
 
 std::list<std::string> GameManager::menuGame() {
 	std::list<std::string> menu;
-	menu.push_back("[Spacebar] Go to scene view");
 	menu.push_back("[Enter] Confirm choice/Switch mode");
-	menu.push_back("[Canc] Delete choice/Switch mode");
+	menu.push_back("[CANC] Return to initial position");
+	menu.push_back("[Arrow key] Move camera");
 	menu.push_back("[W - A - S - D] Move pawn");
-	menu.push_back("Esc] Reset current game");
+	menu.push_back("[Esc] Reset current game");
 	return menu;
 }
 
@@ -274,7 +272,7 @@ void GameManager::gameLoop() {
 				this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA), 
 				this->m_reserved->statusManager.getMenu());
 
-		//std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
+		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
 
 		this->m_reserved->engine.swap();
 		

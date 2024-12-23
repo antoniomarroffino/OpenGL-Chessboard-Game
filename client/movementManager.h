@@ -31,8 +31,7 @@ private:
 
 	void preGameHandler() override;
 
-	// True: white - False: black
-	bool m_turn;
+	bool m_turn;  // TRUE -> white - FALSE -> black
 	StatusManager& m_statusManager;
 	const float MOVEMENT_SPACE = 0.54f;
 };
