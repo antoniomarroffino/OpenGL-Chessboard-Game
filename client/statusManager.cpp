@@ -9,8 +9,8 @@ struct StatusManager::Reserved
 	Reserved() : keyboardCallback(nullptr), specialKeyCallback(nullptr), menu(std::list<std::string>()) {}
 };
 
-StatusManager::StatusManager() : m_reserved{ std::map<GameStatus, StatusManager::Reserved>() }, m_engine{ Eng::Base::getInstance() }, 
-m_listener{std::map<GameStatus, std::list<OnStateUpdateListener*>>()} 
+StatusManager::StatusManager() : m_reserved{ std::map<GameStatus, StatusManager::Reserved>() }, m_currentState{GameStatus::PRE_GAME}, 
+m_listener{std::map<GameStatus, std::list<OnStateUpdateListener*>>()}, m_engine{Eng::Base::getInstance()}
 {
 	this->m_listener[GameStatus::PRE_GAME] = std::list<OnStateUpdateListener*>();
 	this->m_listener[GameStatus::GAME] = std::list<OnStateUpdateListener*>();
