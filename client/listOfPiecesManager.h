@@ -27,6 +27,7 @@ public:
 	void confirmChoice();
 	void deleteChoice();
 	bool confirmMove();
+	void updateSelectPointer();
 private:
 	ListOfPiecesManager();
 	ListOfPieces* getCurrentList() const;
@@ -41,5 +42,6 @@ private:
 	Node* m_selectPointer;
 	Node* m_rootNode;
 	int m_iteratorOnList;
+	float m_rotationAngle;
 };
 

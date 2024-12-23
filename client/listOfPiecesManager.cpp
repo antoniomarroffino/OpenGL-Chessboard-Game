@@ -4,9 +4,9 @@ unsigned int tempRow = 0;
 unsigned int tempCol = 0;
 glm::mat4 tempMatrix = glm::mat4(1.0f);
 
-ListOfPiecesManager::ListOfPiecesManager() : OnStateUpdateListener(), m_movementManager{MovementManager::getInstance()}, m_statusManager{StatusManager::getInstance()},
-m_whiteList{nullptr}, m_blackList{nullptr}, m_selectPointer{ nullptr }, m_rootNode{nullptr}, 
-m_iteratorOnList{ 0 } 
+ListOfPiecesManager::ListOfPiecesManager() : OnStateUpdateListener(), m_movementManager{ MovementManager::getInstance() }, m_statusManager{ StatusManager::getInstance() },
+m_whiteList{ nullptr }, m_blackList{ nullptr }, m_selectPointer{ nullptr }, m_rootNode{ nullptr },
+m_iteratorOnList{ 0 }, m_rotationAngle{ 1.2f }
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::GAME, this);
@@ -120,4 +120,9 @@ void  ListOfPiecesManager::preGameHandler() {
 void ListOfPiecesManager::gameHandler() {
 	this->m_iteratorOnList = 0;
 	this->m_whiteList->getPieceByIndex(this->m_iteratorOnList)->getNode()->addChild(this->m_selectPointer);
+}
+
+void ListOfPiecesManager::updateSelectPointer() {
+	if (this->m_selectPointer != nullptr) 
+		this->m_selectPointer->setMatrix(this->m_selectPointer->getMatrix() * glm::rotate(glm::mat4(1.0f), glm::radians(this->m_rotationAngle), glm::vec3(0.0f, 1.0f, 0.0f)));
 }

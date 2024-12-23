@@ -125,7 +125,7 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 			break;
 		}
 	}
-
+	std::cout << "sono qui" << std::endl;
 	this->renderScene();
 }
 
@@ -273,7 +273,9 @@ void GameManager::gameLoop() {
 				this->m_reserved->statusManager.getMenu());
 
 		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
-
+		this->m_reserved->listOfPiecesManager.updateSelectPointer();
+		this->renderScene();
+		
 		this->m_reserved->engine.swap();
 		
 		// std::this_thread::sleep_for(std::chrono::milliseconds(5000));
