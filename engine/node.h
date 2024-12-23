@@ -35,7 +35,6 @@ public:
 	const glm::mat4& getMatrix() const;
 	virtual const glm::mat4 getFinalMatrix() const;
 	const Node* findNodeByName(const std::string&) const;
-	/*const Node* findNodeById(const unsigned int&) const;*/
 
 	Node* getMainCamera() const;
 

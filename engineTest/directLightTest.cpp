@@ -3,7 +3,7 @@
 TEST(DirectLightTest, Constructor){
     DirectLight* direct = new DirectLight();
 
-    EXPECT_EQ(direct->getPosition(), glm::vec4(0.0f));
+    EXPECT_EQ(direct->getPosition(), glm::vec4(1.0f, 1.0f, 1.0f, 0.0f));
 
     delete direct;
 }

@@ -56,25 +56,6 @@ const ENG_API Node* Node::findNodeByName(const std::string& name) const {
 	return nullptr;
 }
 
-/*
-const ENG_API Node* Node::findNodeById(const unsigned int& id) const {
-	for (const auto* node : this->m_children)
-		if (node->getId() == id)
-			return node;
-
-	for (const auto* node : this->m_children) {
-		const Node* nodeById = node->findNodeById(id);
-		if (nodeById != nullptr)
-			return nodeById;
-	}
-
-	return nullptr;
-}*/
-
-/*void ENG_API Node::pass() {
-
-}*/
-
 const ENG_API unsigned int Node::parse(const char* data, unsigned int& position) {
 	// Node name:
 	char nodeName[FILENAME_MAX];

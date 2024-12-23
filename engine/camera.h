@@ -41,7 +41,6 @@ protected:
 	Camera(const std::string&, const float&, const float&, const float&, const float&);
 	Camera(const Camera&);
 	Camera& operator=(const Camera&) = delete;
-	void virtual onWindowReshape(int, int) override;
 
 	glm::mat4 m_projectionMatrix;
 	bool m_isCurrentCamera;

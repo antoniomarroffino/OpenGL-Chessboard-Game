@@ -1,24 +1,22 @@
 #include "fileOVOReaderTest.h"
 
-FileOVOReader* FileOVOReaderTest::readerOVO{ nullptr };
-
-void FileOVOReaderTest::SetUpTestSuite() {
-	readerOVO = new FileOVOReader();
+TEST(FileOVOReaderTest, GetInstance) {
+	FileOVOReader& readerOVO1 = FileOVOReader::getInstance();
+	FileOVOReader& readerOVO2 = FileOVOReader::getInstance();
+	EXPECT_EQ(&readerOVO1, &readerOVO2);
 }
 
-void FileOVOReaderTest::TearDownTestSuite() {
-	delete readerOVO;
+TEST(FileOVOReaderTest, HasOVOExtension) {
+	FileOVOReader& readerOVO = FileOVOReader::getInstance();
+	EXPECT_FALSE(readerOVO.hasOVOExtension("fileIsNotOVO.txt"));
+	EXPECT_TRUE(readerOVO.hasOVOExtension("fileIsOVO.ovo"));
 }
 
-TEST_F(FileOVOReaderTest, HasOVOExtension) {
-	EXPECT_FALSE(readerOVO->hasOVOExtension("fileIsNotOVO.txt"));
-	EXPECT_TRUE(readerOVO->hasOVOExtension("fileIsOVO.ovo"));
-}
+TEST(FileOVOReaderTest, Parse) {
+	FileOVOReader& readerOVO = FileOVOReader::getInstance();
+	EXPECT_EQ(readerOVO.parseFile("thisFileDoesNotExist.ovo"), nullptr);
 
-TEST_F(FileOVOReaderTest, Parse) {
-	EXPECT_EQ(readerOVO->parseFile("thisFileDoesNotExist.ovo"), nullptr);
-
-	Node* rootTestingNode = readerOVO->parseFile("testing.ovo");
+	Node* rootTestingNode = readerOVO.parseFile("testing.ovo");
 
 	EXPECT_NE(rootTestingNode, nullptr);
 

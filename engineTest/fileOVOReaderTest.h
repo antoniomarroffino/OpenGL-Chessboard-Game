@@ -9,10 +9,4 @@
 #include "spotLight.h"
 
 class FileOVOReaderTest : public ::testing::Test {
-protected:
-	static FileOVOReader* readerOVO;
-
-	static void SetUpTestSuite();
-
-	static void TearDownTestSuite();
 };

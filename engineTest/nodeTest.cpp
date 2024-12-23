@@ -12,8 +12,6 @@ void NodeTest::SetUpTestSuite() {
 
 void NodeTest::TearDownTestSuite() {
 	delete node_root;
-	delete node_middle;
-	delete node_leaf;
 }
 
 TEST_F(NodeTest, Constructor) {
@@ -179,4 +177,7 @@ TEST_F(NodeTest, GetMainCamera) {
 		.Times(1)
 		.WillOnce(testing::ReturnRef(expectedValueTrue));
 	EXPECT_EQ(node_root->getMainCamera(), &mockCamera2);
+
+	node_leaf->removeChild(&mockCamera1);
+	node_middle->removeChild(&mockCamera2);
 }

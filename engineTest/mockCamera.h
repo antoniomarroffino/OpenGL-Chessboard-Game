@@ -15,6 +15,7 @@ public:
         
     }
 
+    MOCK_METHOD(Node*, clone, (), (const, override));
     MOCK_METHOD(const bool&, isMainCamera, (), (const, override));
     MOCK_METHOD(void, loadProjectionMatrix, (), (override));
     MOCK_METHOD(void, render, (const glm::mat4&), (override));
