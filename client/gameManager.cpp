@@ -150,7 +150,7 @@ std::list<std::string> GameManager::menuGame() {
 	menu.push_back("[Enter] Confirm choice/Switch mode");
 	menu.push_back("[CANC] Return to initial position");
 	menu.push_back("[Arrow key] Move camera");
-	menu.push_back("[W - A - S - D] Move pawn");
+	menu.push_back("[W - A - S - D] Move piece");
 	menu.push_back("[Esc] Reset current game");
 	return menu;
 }
