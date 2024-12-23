@@ -135,15 +135,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="directLightTest.cpp" />
     <ClCompile Include="fileOVOReaderTest.cpp" />
     <ClCompile Include="listTest.cpp" />
     <ClCompile Include="nodeTest.cpp" />
     <ClCompile Include="notificationServiceTest.cpp" />
     <ClCompile Include="objectTest.cpp" />
+    <ClCompile Include="omniLightTest.cpp" />
     <ClCompile Include="orthoCameraTest.cpp" />
+    <ClCompile Include="spotLightTest.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="directLightTest.h" />
     <ClInclude Include="fileOVOReaderTest.h" />
     <ClInclude Include="listTest.h" />
     <ClInclude Include="mockCamera.h" />
@@ -152,7 +156,9 @@
     <ClInclude Include="nodeTest.h" />
     <ClInclude Include="notificationServiceTest.h" />
     <ClInclude Include="objectTest.h" />
+    <ClInclude Include="omniLightTest.h" />
     <ClInclude Include="orthoCameraTest.h" />
+    <ClInclude Include="spotLightTest.h" />
     <ClInclude Include="test.h" />
   </ItemGroup>
   <ItemGroup>
