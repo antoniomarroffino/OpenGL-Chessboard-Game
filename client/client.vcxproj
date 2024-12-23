@@ -82,11 +82,24 @@
   <ItemGroup>
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="gameManager.cpp" />
+    <ClCompile Include="listOfPieces.cpp" />
+    <ClCompile Include="listOfPiecesManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="movementManager.cpp" />
+    <ClCompile Include="onStateUpdate.cpp" />
+    <ClCompile Include="piece.cpp" />
+    <ClCompile Include="statusManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="gameManager.h" />
+    <ClInclude Include="gameStatus.h" />
+    <ClInclude Include="listOfPieces.h" />
+    <ClInclude Include="listOfPiecesManager.h" />
+    <ClInclude Include="movementManager.h" />
+    <ClInclude Include="onStateUpdate.h" />
+    <ClInclude Include="piece.h" />
+    <ClInclude Include="statusManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

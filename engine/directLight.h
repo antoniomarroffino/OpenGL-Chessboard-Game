@@ -25,8 +25,12 @@
   */
 class ENG_API DirectLight : public Light {
 public:
-	DirectLight(const std::string& = "defaultDirectLight", const glm::vec3& = glm::vec3(0.0f));
+	DirectLight(const std::string& = "defaultDirectLight", const glm::vec3& = glm::vec3(1.0f));
+	DirectLight(const DirectLight&);
+	DirectLight& operator=(const DirectLight&) = delete;
+
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
+	Node* clone() const override;
 
 	void setPosition(const glm::vec3&) override;
 };

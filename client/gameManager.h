@@ -1,10 +1,13 @@
 #pragma once
 
 #include <memory>
+#include "statusManager.h"
 #include "cameraManager.h"
+#include "movementManager.h"
+#include "listOfPiecesManager.h"
+#include <array>
 #include "engine.h"
 #include "node.h"
-#include "perspCamera.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
@@ -17,10 +20,26 @@ public:
 
 	static GameManager& getInstance();
 	void startGame();
+
 private:
+	void initialize();
+
 	void gameLoop();
-	void createCameras();
-	void loadTexturesFromDirectory(const std::string&);
+	void buildChessboard();
+	void resetGame();
+	void renderScene();
+
+	void keyboardCallbackPreGame(unsigned char, int, int);
+	void specialKeyCallbackPreGame(int, int, int);
+	std::list<std::string> menuPreGame();
+
+	void keyboardCallbackGame(unsigned char, int, int);
+	void specialKeyCallbackGame(int, int, int);
+	std::list<std::string> menuGame();
+
+	void keyboardCallbackEndGame(unsigned char, int, int);
+	void specialKeyCallbackEndGame(int, int, int);
+	std::list<std::string> menuEndGame();
 
 	GameManager();
 	

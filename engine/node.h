@@ -27,8 +27,8 @@
 class ENG_API Node : public Object {
 public:
 	Node(const std::string& = "defaultNode");
-	Node(const Node&);
-	virtual ~Node() = default;
+	virtual ~Node();
+	Node& operator=(const Node&) = delete;
 
 
 	void setMatrix(const glm::mat4&);
@@ -49,8 +49,13 @@ public:
 	const Material* getMaterial() const;
 	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override { std::cout << this->getName() << std::endl; };
 	const virtual unsigned int parse(const char*, unsigned int&) override;
+	virtual Node* clone() const;
 
 protected:
+	Node(const Node&);
+	
+	virtual void recursiveClone(Node*) const;
+
 	glm::mat4 m_matrix;
 	Node* m_parent;
 	std::vector<Node*> m_children;

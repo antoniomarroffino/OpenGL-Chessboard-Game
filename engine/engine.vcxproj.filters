@@ -66,6 +66,9 @@
     <ClCompile Include="notificationService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="textManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="reshapeListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="textManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,12 +10,20 @@ ENG_API SpotLight::SpotLight(const std::string& name, const glm::vec3& position,
         this->m_cutoff = 45.0f;
 }
 
+ENG_API SpotLight::SpotLight(const SpotLight& other) : Light(other), m_direction{ other.m_direction }, m_cutoff{ other.m_cutoff }{}
+
+ENG_API Node* SpotLight::clone() const {
+    SpotLight* newSpotLight = new SpotLight(*this);
+    this->recursiveClone(newSpotLight);
+    return newSpotLight;
+}
+
 ENG_API void SpotLight::setDirection(const glm::vec3& direction) {
     this->m_direction = direction;
 }
 
 const ENG_API glm::vec3& SpotLight::getDirection() const {
-    return m_direction;
+    return this->m_direction;
 }
 
 ENG_API void SpotLight::setCutoff(const float& cutoff) {

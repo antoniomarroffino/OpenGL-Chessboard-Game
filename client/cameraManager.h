@@ -1,23 +1,45 @@
 #pragma once
 
-#include <list>
+#define MAIN_CAMERA "firstCamera"
+#define CHESSBOARD_CAMERA "chessboardCamera"
+#define PLAYER_WHITE_CAMERA "playerWhiteCamera"
+#define PLAYER_BLACK_CAMERA "playerBlackCamera"
+#define MENU_CAMERA "menuCamera"
+
 #include <memory>
+#include "onStateUpdate.h"
+#include "statusManager.h"
+#include "perspCamera.h"
+#include "orthoCamera.h"
 
-#include "camera.h"
-
-class CameraManager {
+class CameraManager : public OnStateUpdateListener
+{
 public:
 	CameraManager(const CameraManager&) = delete;
 	CameraManager& operator=(const CameraManager&) = delete;
-
-	~CameraManager();
+	~CameraManager() = default;
 
 	static CameraManager& getInstance();
-	bool addNewCamera(Camera*, Node*);
-	bool removeCamera(const std::string&, Node*);
-	bool setNewMainCamera(const std::string&, Node*) const;
-	Camera* getMainCamera(const Node*) const;
+	bool initialize(Node*);
+
+	bool addNewCamera(Camera*, Node* = nullptr);
+	bool removeCamera(const std::string&, Node* = nullptr);
+	bool setNewMainCamera(const std::string&, Node* = nullptr) const;
+	Camera* getMainCamera(const Node* = nullptr) const;
+	Camera* findCameraByName(const std::string&, const Node* = nullptr) const;
+
+	void moveCameraRight();
+	void moveCameraLeft();
+	void moveCameraUp();
+	void moveCameraDown();
+
 private:
 	CameraManager();
 
+	void createCameras();
+	void preGameHandler() override;
+	void gameHandler() override;
+
+	Node* m_rootNode;
+	StatusManager& m_statusManager;
 };

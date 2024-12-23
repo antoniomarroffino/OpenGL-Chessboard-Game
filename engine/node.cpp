@@ -5,7 +5,28 @@
 
 ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{ std::vector<Node*>() }, m_material{ nullptr } {}
 
-ENG_API Node::Node(const Node& other) : Object(other), m_matrix(other.m_matrix), m_parent(other.m_parent), m_children(other.m_children), m_material{ other.m_material } {}
+ENG_API Node::Node(const Node& other) : Object(other), m_matrix{other.m_matrix}, m_parent{other.m_parent}, m_children{std::vector<Node*>()}, m_material{other.m_material} {}
+
+ENG_API Node::~Node() {
+	for (auto child : m_children) {
+		delete child;
+	}
+	m_children.clear();
+}
+
+ENG_API Node* Node::clone() const {
+	Node* newNode = new Node(*this);
+	this->recursiveClone(newNode);
+
+	return newNode;
+}
+
+ENG_API void Node::recursiveClone(Node* newNode) const {
+	for (auto* child : this->m_children) {
+		Node* clonedChild = child->clone();
+		newNode->addChild(clonedChild);
+	}
+}
 
 void ENG_API Node::setMatrix(const glm::mat4& matrix) {
 	this->m_matrix = matrix;
@@ -122,7 +143,7 @@ ENG_API bool Node::addChild(Node* child) {
 }
 
 ENG_API bool Node::removeChild(Node* child) {
-	if (this->m_children.size() == 0 || child == nullptr) return false;
+	if (child == nullptr) return false;
 
 	auto it = std::find(this->m_children.begin(), this->m_children.end(), child);
 	if (it != this->m_children.end()) {
@@ -130,6 +151,13 @@ ENG_API bool Node::removeChild(Node* child) {
 		child->setParent(nullptr);
 		return true;
 	}
+
+	for (Node* childNode : this->m_children) {
+		if (childNode->removeChild(child)) {
+			return true;
+		}
+	}
+
 	return false;
 }
 

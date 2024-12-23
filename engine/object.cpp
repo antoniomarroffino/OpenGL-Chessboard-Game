@@ -5,8 +5,13 @@ ENG_API unsigned int Object::m_cnt_object{ 0 };
 ENG_API Object::Object(const std::string& name)
 	: m_id{ createNewId() }, m_name{name} {}
 
-Object::Object(const Object& object)
-	: m_id{object.m_id}, m_name{object.m_name} {}
+ENG_API Object::Object(const Object& other) : m_id{other.m_id}, m_name{other.m_name} {}
+
+ENG_API Object& Object::operator=(const Object& other) {
+	this->m_id = other.m_id;
+	this->m_name = other.m_name;
+	return *this;
+}
 
 const ENG_API unsigned int& Object::getId() const {
 	return this->m_id;

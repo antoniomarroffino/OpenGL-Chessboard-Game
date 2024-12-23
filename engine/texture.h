@@ -30,8 +30,6 @@ public:
 	~Texture();
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
 	const unsigned int parse(const char*, unsigned int&) override;
-
-	
 private:
 	struct Reserved;
 	std::unique_ptr<Reserved> m_reserved;

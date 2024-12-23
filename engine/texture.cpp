@@ -1,5 +1,5 @@
-#include <GL/freeglut.h> // Include OpenGL e GLUT
-#include "FreeImage.h"   // Libreria per immagini
+#include <GL/freeglut.h>
+#include "FreeImage.h"
 #include "texture.h"
 
 #define GL_TEXTURE_MAX_ANISOTROPY_EXT 0x84FE
@@ -32,7 +32,6 @@ ENG_API void Texture::setAnisotropicFilter() {
 		}
 		Texture::isAnisotropicAlreadySet = true;
 	}
-
 }
 
 ENG_API Texture::~Texture() {

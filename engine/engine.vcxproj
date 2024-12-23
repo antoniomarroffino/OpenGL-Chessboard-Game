@@ -98,6 +98,7 @@
     <ClCompile Include="ovoObjectFactory.cpp" />
     <ClCompile Include="perspCamera.cpp" />
     <ClCompile Include="spotLight.cpp" />
+    <ClCompile Include="textManager.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +119,7 @@
     <ClInclude Include="perspCamera.h" />
     <ClInclude Include="reshapeListener.h" />
     <ClInclude Include="spotLight.h" />
+    <ClInclude Include="textManager.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

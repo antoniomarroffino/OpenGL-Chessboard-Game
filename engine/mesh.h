@@ -29,8 +29,11 @@
 class ENG_API Mesh : public Node {
 public:
 	Mesh(const std::string& = "defaultMesh");
+	Mesh(const Mesh&);
+	Mesh& operator=(const Mesh&) = delete;
 	void render(const glm::mat4&) override;
 	const unsigned int parse(const char*, unsigned int&) override;
+	Node* clone() const override;
 
 	~Mesh();
 
