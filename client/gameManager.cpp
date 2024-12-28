@@ -9,6 +9,7 @@ struct GameManager::Reserved
 	StatusManager& statusManager;
 	MovementManager& movementManager;
 	ListOfPiecesManager& listOfPiecesManager;
+	HistoryManager& historyManager;
 	Eng::Base& engine;
 	Node* rootNode;
 	Node* rootResetNode;
@@ -18,6 +19,7 @@ struct GameManager::Reserved
 		statusManager{ StatusManager::getInstance() },
 		movementManager{ MovementManager::getInstance() },
 		listOfPiecesManager{ ListOfPiecesManager::getInstance() },
+		historyManager{ HistoryManager::getInstance() },
 		engine{ Eng::Base::getInstance() },
 		rootNode{ nullptr },
 		rootResetNode{ nullptr },
@@ -36,12 +38,23 @@ GameManager& GameManager::getInstance() {
 	return instance;
 }
 
+void GameManager::setRootNode(Node* rootNode) {
+	if (rootNode == nullptr)
+		return;
+	getInstance().m_reserved->rootNode = rootNode;
+}
+
+Node* GameManager::getRootNode() {
+	return getInstance().m_reserved->rootNode;
+}
+
 void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mouseY)
 {
 	switch (key)
 	{
 	case 32: // Change camera
 		this->m_reserved->isChoiceMode = true;
+		this->m_reserved->historyManager.saveState();
 		this->m_reserved->statusManager.changeState(GameStatus::GAME);
 		break;
 	}
@@ -83,6 +96,9 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		else {
 			bool isMovedCorrectly = this->m_reserved->listOfPiecesManager.confirmMove();
 			if (!isMovedCorrectly) break;
+
+			this->m_reserved->historyManager.saveState();
+
 			this->m_reserved->movementManager.changeTurn();
 			if (this->m_reserved->movementManager.getTurn())
 				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_WHITE_CAMERA);
@@ -103,7 +119,14 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		break;
 	case 'u':
 	case 'U':
-
+		if (this->m_reserved->historyManager.undo()) {
+			this->m_reserved->movementManager.changeTurn();
+			if (this->m_reserved->movementManager.getTurn())
+				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_WHITE_CAMERA);
+			else
+				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_BLACK_CAMERA);
+			this->m_reserved->isChoiceMode = true;
+		}
 		break;
 	case 'r':
 	case 'R':
@@ -189,58 +212,9 @@ std::list<std::string> GameManager::menuEndGame() {
 	return menu;
 }
 
-void GameManager::buildChessboard() {
-	this->m_reserved->listOfPiecesManager.clearLists();
-
-	std::vector<Piece*> whitePieces;
-	std::vector<Piece*> blackPieces;
-
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("White rook")), 0, 0));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("White knight.001")), 0, 1));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("White bitshop.001")), 0, 2));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("White queen")), 0, 3));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("White king")), 0, 4));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("White bitshop")), 0, 5));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("White knight")), 0, 6));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("White rook.001")), 0, 7));
-
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("A")), 1, 0));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("B")), 1, 1));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("C")), 1, 2));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("D")), 1, 3));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("E")), 1, 4));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("F")), 1, 5));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("G")), 1, 6));
-	whitePieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("H")), 1, 7));
-
-	ListOfPieces* white = new ListOfPieces(whitePieces);
-
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black rook.001")), 7, 7));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black knight")), 7, 6));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black bitshop")), 7, 5));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black king")), 7, 4));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black queen")), 7, 3));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black bitshop.001")), 7, 2));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black knight.001")), 7, 1));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("Black rook")), 7, 0));
-
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("H.001")), 6, 7));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("G.001")), 6, 6));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("F.001")), 6, 5));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("E.001")), 6, 4));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("D.001")), 6, 3));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("C.001")), 6, 2));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("B.001")), 6, 1));
-	blackPieces.push_back(new Piece(const_cast<Node*>(this->m_reserved->rootNode->findNodeByName("A.001")), 6, 0));
-
-	ListOfPieces* black = new ListOfPieces(blackPieces);
-
-	this->m_reserved->listOfPiecesManager.initialize(white, black, this->m_reserved->rootNode);
-}
-
 void GameManager::resetGame() {
 	this->m_reserved->rootNode = this->m_reserved->rootResetNode->clone();
-	this->buildChessboard();
+	this->m_reserved->listOfPiecesManager.initialize();
 }
 
 void GameManager::renderScene() {
@@ -255,9 +229,9 @@ void GameManager::startGame() {
 		return;
 	}
 
-	this->m_reserved->cameraManager.initialize(this->m_reserved->rootNode);
+	this->m_reserved->cameraManager.initialize();
 
-	this->buildChessboard();
+	this->m_reserved->listOfPiecesManager.initialize();
 
 	this->m_reserved->rootResetNode = this->m_reserved->rootNode->clone();
 
@@ -277,7 +251,7 @@ void GameManager::gameLoop() {
 			this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA),
 			this->m_reserved->statusManager.getMenu());
 
-		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
+		//std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
 
 
 		this->m_reserved->listOfPiecesManager.updateSelectPointer();

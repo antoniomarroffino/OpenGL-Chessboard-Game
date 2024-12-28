@@ -20,7 +20,7 @@ public:
 	~CameraManager() = default;
 
 	static CameraManager& getInstance();
-	bool initialize(Node*);
+	void initialize();
 
 	bool addNewCamera(Camera*, Node* = nullptr);
 	bool removeCamera(const std::string&, Node* = nullptr);
@@ -40,6 +40,5 @@ private:
 	void preGameHandler() override;
 	void gameHandler() override;
 
-	Node* m_rootNode;
 	StatusManager& m_statusManager;
 };

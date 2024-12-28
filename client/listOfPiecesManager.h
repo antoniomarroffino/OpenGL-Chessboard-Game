@@ -17,9 +17,8 @@ public:
 	~ListOfPiecesManager() = default;
 
 	static ListOfPiecesManager& getInstance();
-	bool initialize(ListOfPieces*, ListOfPieces*, Node*);
+	bool initialize();
 
-	void clearLists();
 	Piece* getChoosenPiece();
 
 	void moveChooseNodeLeft();
@@ -28,19 +27,23 @@ public:
 	void deleteChoice();
 	bool confirmMove();
 	void updateSelectPointer();
+
+	ListOfPieces* getWhitePieces() const;
+	ListOfPieces* getBlackPieces() const;
 private:
 	ListOfPiecesManager();
 	ListOfPieces* getCurrentList() const;
 	void moveChooseNode(const int&);
 	void preGameHandler() override;
 	void gameHandler() override;
+	void buildChessboard();
+	void clearLists();
 
 	MovementManager& m_movementManager;
 	StatusManager& m_statusManager;
 	ListOfPieces* m_whiteList;
 	ListOfPieces* m_blackList;
 	Node* m_selectPointer;
-	Node* m_rootNode;
 	int m_iteratorOnList;
 	float m_rotationAngle;
 };

@@ -42,6 +42,9 @@
     <ClCompile Include="onStateUpdate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="historyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameManager.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="handlerCallbacksI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="historyManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

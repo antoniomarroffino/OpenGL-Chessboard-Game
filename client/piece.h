@@ -6,6 +6,7 @@ class Piece
 {
 public:
 	Piece(Node*, const unsigned int&, const unsigned int&);
+	Piece(const Piece*);
 	~Piece() = default;
 	Node* getNode() const;
 	const unsigned int& getRow() const;

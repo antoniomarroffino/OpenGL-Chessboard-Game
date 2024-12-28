@@ -5,6 +5,7 @@
 #include "cameraManager.h"
 #include "movementManager.h"
 #include "listOfPiecesManager.h"
+#include "historyManager.h"
 #include <array>
 #include "engine.h"
 #include "node.h"
@@ -19,13 +20,14 @@ public:
 	~GameManager();
 
 	static GameManager& getInstance();
+	static void setRootNode(Node* rootNode);
+	static Node* getRootNode();
 	void startGame();
 
 private:
 	void initialize();
 
 	void gameLoop();
-	void buildChessboard();
 	void resetGame();
 	void renderScene();
 

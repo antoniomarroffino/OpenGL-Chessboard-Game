@@ -1,6 +1,7 @@
 #include "cameraManager.h"
+#include "gameManager.h"
 
-CameraManager::CameraManager() : OnStateUpdateListener(), m_rootNode{nullptr}, m_statusManager{StatusManager::getInstance()}
+CameraManager::CameraManager() : OnStateUpdateListener(), m_statusManager{StatusManager::getInstance()}
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::GAME, this);
@@ -11,13 +12,8 @@ CameraManager& CameraManager::getInstance() {
 	return instance;
 }
 
-bool CameraManager::initialize(Node* rootNode) {
-	if (rootNode == nullptr) return false;
-
-	this->m_rootNode = rootNode;
+void CameraManager::initialize() {
 	this->createCameras();
-
-	return true;
 }
 
 void CameraManager::createCameras() {
@@ -56,19 +52,19 @@ void CameraManager::createCameras() {
 bool CameraManager::addNewCamera(Camera* newCamera, Node* parentNode) {
 	if (newCamera == nullptr) return false;
 
-	if (parentNode == nullptr) parentNode = this->m_rootNode;
+	if (parentNode == nullptr) parentNode = GameManager::getRootNode();
 
 	return parentNode->addChild(newCamera);
 }
 
 bool CameraManager::removeCamera(const std::string& cameraName, Node* parentNode) {
-	if (parentNode == nullptr) parentNode = this->m_rootNode;
+	if (parentNode == nullptr) parentNode = GameManager::getRootNode();
 
 	return parentNode->removeChild(const_cast<Node*>(parentNode->findNodeByName(cameraName)));
 }
 
 bool CameraManager::setNewMainCamera(const std::string& cameraName, Node* parentNode) const {
-	if (parentNode == nullptr) parentNode = this->m_rootNode;
+	if (parentNode == nullptr) parentNode = GameManager::getRootNode();
 
 	Camera* oldMainCamera = dynamic_cast<Camera*>(parentNode->getMainCamera());
 	
@@ -83,13 +79,13 @@ bool CameraManager::setNewMainCamera(const std::string& cameraName, Node* parent
 }
 
 Camera* CameraManager::getMainCamera(const Node* parentNode) const {
-	if (parentNode == nullptr) parentNode = this->m_rootNode;
+	if (parentNode == nullptr) parentNode = GameManager::getRootNode();
 
 	return dynamic_cast<Camera*>((parentNode->getMainCamera()));
 }
 
 Camera* CameraManager::findCameraByName(const std::string& cameraName, const Node* parentNode) const {
-	if (parentNode == nullptr) parentNode = this->m_rootNode;
+	if (parentNode == nullptr) parentNode = GameManager::getRootNode();
 
 	return dynamic_cast<Camera*>(const_cast<Node*>(parentNode->findNodeByName(cameraName)));
 }

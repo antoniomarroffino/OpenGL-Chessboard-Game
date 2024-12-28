@@ -9,6 +9,7 @@ class ListOfPieces
 public:
 	ListOfPieces(const std::vector<Piece*>&);
 
+	ListOfPieces* clone();
 	bool removePiece(Piece*);
 	void clearList();
 	int getSize() const;
@@ -16,6 +17,8 @@ public:
 	Piece* getPieceByCoordinates(const unsigned int&, const unsigned int&) const;
 	unsigned int getNumberOfPiecesByCoordinates(const unsigned int&, const unsigned int&) const;
 private:
+	ListOfPieces(const ListOfPieces&);
+
 	std::vector<Piece*> m_listOfPieces;
 };
 

@@ -3,6 +3,15 @@
 
 ListOfPieces::ListOfPieces(const std::vector<Piece*>& pieces) : m_listOfPieces{pieces} {}
 
+ListOfPieces::ListOfPieces(const ListOfPieces& other) : m_listOfPieces{ std::vector<Piece*>() } {
+	for (auto* piece : other.m_listOfPieces)
+		this->m_listOfPieces.push_back(new Piece(*piece));
+}
+
+ListOfPieces* ListOfPieces::clone() {
+	return new ListOfPieces(*this);
+}
+
 bool ListOfPieces::removePiece(Piece* piece) {
 	if (piece == nullptr) return false;
 
