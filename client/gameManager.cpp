@@ -48,6 +48,8 @@ Node* GameManager::getRootNode() {
 	return getInstance().m_reserved->rootNode;
 }
 
+
+//------------------------------------------------------------------------------------------------------------------------
 void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mouseY)
 {
 	switch (key)
@@ -55,7 +57,7 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 	case 32: // Change camera
 		this->m_reserved->isChoiceMode = true;
 		this->m_reserved->historyManager.saveState();
-		this->m_reserved->statusManager.changeState(GameStatus::GAME);
+		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		break;
 	}
 }
@@ -84,38 +86,23 @@ std::list<std::string> GameManager::menuPreGame() {
 	menu.push_back("[Arrow key] Move camera");
 	return menu;
 }
+//------------------------------------------------------------------------------------------------------------------------
 
-void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY)
+
+
+//------------------------------------------------------------------------------------------------------------------------
+
+void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mouseY)
 {
 	switch (key)
 	{
-	case 13: // Confirm choice
-		if (this->m_reserved->isChoiceMode) {
-			this->m_reserved->listOfPiecesManager.confirmChoice();
-		}
-		else {
-			bool isMovedCorrectly = this->m_reserved->listOfPiecesManager.confirmMove();
-			if (!isMovedCorrectly) break;
-
-			this->m_reserved->historyManager.saveState();
-
-			this->m_reserved->movementManager.changeTurn();
-			if (this->m_reserved->movementManager.getTurn())
-				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_WHITE_CAMERA);
-			else
-				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_BLACK_CAMERA);
-		}
-		this->m_reserved->isChoiceMode = !this->m_reserved->isChoiceMode;
+	case 13:
+		this->m_reserved->listOfPiecesManager.confirmChoice();
+		this->m_reserved->statusManager.changeState(GameStatus::GAME);
 		break;
-	case 27: // Exit from game
+	case 27:
 		this->resetGame();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
-		break;
-	case 127:
-		if (!this->m_reserved->isChoiceMode) {
-			this->m_reserved->listOfPiecesManager.deleteChoice();
-			this->m_reserved->isChoiceMode = true;
-		}
 		break;
 	case 'u':
 	case 'U':
@@ -133,34 +120,10 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 
 		break;
 	}
-
-	//PIECE MOVEMENT
-	if (!this->m_reserved->isChoiceMode) {
-		switch (key) {
-		case 'w':
-		case 'W':
-			this->m_reserved->movementManager.moveUp(this->m_reserved->listOfPiecesManager.getChoosenPiece());
-			break;
-		case 'a':
-		case 'A':
-			this->m_reserved->movementManager.moveLeft(this->m_reserved->listOfPiecesManager.getChoosenPiece());
-			break;
-		case 's':
-		case 'S':
-			this->m_reserved->movementManager.moveDown(this->m_reserved->listOfPiecesManager.getChoosenPiece());
-			break;
-		case 'd':
-		case 'D':
-			this->m_reserved->movementManager.moveRight(this->m_reserved->listOfPiecesManager.getChoosenPiece());
-			break;
-		}
-	}
 }
 
-void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
+void GameManager::specialKeyCallbackChoice(int key, int mouseX, int mouseY)
 {
-	if (!this->m_reserved->isChoiceMode) return;
-
 	switch (key) {
 	case 100: // Left arrow
 		this->m_reserved->listOfPiecesManager.moveChooseNodeLeft();
@@ -171,9 +134,70 @@ void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
 	}
 }
 
+std::list<std::string> GameManager::menuChoice() {
+	std::list<std::string> menu;
+	menu.push_back("[Enter] Confirm choice");
+	menu.push_back("[Left: < / Right: >] Move choice selector");
+	return menu;
+}
+//------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------------
+void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY)
+{
+	switch (key)
+	{
+	case 13: // Confirm choice
+		if (!this->m_reserved->listOfPiecesManager.confirmMove()) break;
+
+		this->m_reserved->historyManager.saveState();
+
+		this->m_reserved->movementManager.changeTurn();
+		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
+		break;
+	case 27: // Exit from game
+		this->resetGame();
+		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
+		break;
+	case 127:
+		this->m_reserved->listOfPiecesManager.deleteChoice();
+		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
+		break;
+	}
+
+	//PIECE MOVEMENT
+	switch (key) {
+	case 'w':
+	case 'W':
+		this->m_reserved->movementManager.moveUp(this->m_reserved->listOfPiecesManager.getChoosenPiece());
+		break;
+	case 'a':
+	case 'A':
+		this->m_reserved->movementManager.moveLeft(this->m_reserved->listOfPiecesManager.getChoosenPiece());
+		break;
+	case 's':
+	case 'S':
+		this->m_reserved->movementManager.moveDown(this->m_reserved->listOfPiecesManager.getChoosenPiece());
+		break;
+	case 'd':
+	case 'D':
+		this->m_reserved->movementManager.moveRight(this->m_reserved->listOfPiecesManager.getChoosenPiece());
+		break;
+	}
+
+}
+
+void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
+{
+}
+
 std::list<std::string> GameManager::menuGame() {
 	std::list<std::string> menu;
-	menu.push_back("[Enter] Confirm choice/Switch mode");
+	menu.push_back("[Enter] Confirm Move");
 	menu.push_back("[CANC] Return to initial position");
 	menu.push_back("[Arrow key] Move camera");
 	menu.push_back("[W - A - S - D] Move piece");
@@ -182,7 +206,11 @@ std::list<std::string> GameManager::menuGame() {
 	menu.push_back("[Esc] Reset current game");
 	return menu;
 }
+//------------------------------------------------------------------------------------------------------------------------
 
+
+
+//------------------------------------------------------------------------------------------------------------------------
 void GameManager::keyboardCallbackEndGame(unsigned char key, int mouseX, int mouseY)
 {
 	switch (key)
@@ -211,6 +239,9 @@ std::list<std::string> GameManager::menuEndGame() {
 	menu.push_back("[Spacebar] Go to ... view");
 	return menu;
 }
+//------------------------------------------------------------------------------------------------------------------------
+
+
 
 void GameManager::resetGame() {
 	this->m_reserved->rootNode = this->m_reserved->rootResetNode->clone();
@@ -251,7 +282,7 @@ void GameManager::gameLoop() {
 			this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA),
 			this->m_reserved->statusManager.getMenu());
 
-		//std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
+		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
 
 
 		this->m_reserved->listOfPiecesManager.updateSelectPointer();
@@ -272,6 +303,11 @@ void GameManager::initialize() {
 		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackPreGame(key, mouseX, mouseY); },
 		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackPreGame(key, mouseX, mouseY); },
 		this->menuPreGame());
+
+	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::CHOICE,
+		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackChoice(key, mouseX, mouseY); },
+		[](int key, int mouseX, int mouseY) { getInstance().specialKeyCallbackChoice(key, mouseX, mouseY); },
+		this->menuChoice());
 
 	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::GAME,
 		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackGame(key, mouseX, mouseY); },

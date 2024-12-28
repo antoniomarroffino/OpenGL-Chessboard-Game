@@ -35,6 +35,10 @@ private:
 	void specialKeyCallbackPreGame(int, int, int);
 	std::list<std::string> menuPreGame();
 
+	void keyboardCallbackChoice(unsigned char, int, int);
+	void specialKeyCallbackChoice(int, int, int);
+	std::list<std::string> menuChoice();
+
 	void keyboardCallbackGame(unsigned char, int, int);
 	void specialKeyCallbackGame(int, int, int);
 	std::list<std::string> menuGame();

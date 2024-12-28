@@ -9,6 +9,7 @@ public:
 	OnStateUpdateListener();
 	void onStateChangeUpdate(GameStatus);
 	virtual void preGameHandler();
+	virtual void choiceHandler();
 	virtual void gameHandler();
 	virtual void endGameHandler();
 

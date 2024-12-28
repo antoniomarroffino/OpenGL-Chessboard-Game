@@ -35,7 +35,7 @@ private:
 	ListOfPieces* getCurrentList() const;
 	void moveChooseNode(const int&);
 	void preGameHandler() override;
-	void gameHandler() override;
+	void choiceHandler() override;
 	void buildChessboard();
 	void clearLists();
 

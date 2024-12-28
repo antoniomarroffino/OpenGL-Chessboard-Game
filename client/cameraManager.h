@@ -9,6 +9,7 @@
 #include <memory>
 #include "onStateUpdate.h"
 #include "statusManager.h"
+#include "movementManager.h"
 #include "perspCamera.h"
 #include "orthoCamera.h"
 
@@ -38,7 +39,8 @@ private:
 
 	void createCameras();
 	void preGameHandler() override;
-	void gameHandler() override;
+	void choiceHandler() override;
 
 	StatusManager& m_statusManager;
+	MovementManager& m_movementManager;
 };

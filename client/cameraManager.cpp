@@ -1,10 +1,10 @@
 #include "cameraManager.h"
 #include "gameManager.h"
 
-CameraManager::CameraManager() : OnStateUpdateListener(), m_statusManager{StatusManager::getInstance()}
+CameraManager::CameraManager() : OnStateUpdateListener(), m_statusManager{StatusManager::getInstance()}, m_movementManager{MovementManager::getInstance()}
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
-	this->m_statusManager.subscribeListener(GameStatus::GAME, this);
+	this->m_statusManager.subscribeListener(GameStatus::CHOICE, this);
 }
 
 CameraManager& CameraManager::getInstance() {
@@ -118,6 +118,9 @@ void CameraManager::preGameHandler() {
 	this->setNewMainCamera(MAIN_CAMERA);
 }
 
-void CameraManager::gameHandler() {
-	this->setNewMainCamera(PLAYER_WHITE_CAMERA);
+void CameraManager::choiceHandler() {
+	if(this->m_movementManager.getTurn())
+		this->setNewMainCamera(PLAYER_WHITE_CAMERA);
+	else
+		this->setNewMainCamera(PLAYER_BLACK_CAMERA);
 }

@@ -10,7 +10,7 @@ m_whiteList{ nullptr }, m_blackList{ nullptr }, m_selectPointer{ nullptr },
 m_iteratorOnList{ 0 }, m_rotationAngle{ 1.2f }
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
-	this->m_statusManager.subscribeListener(GameStatus::GAME, this);
+	this->m_statusManager.subscribeListener(GameStatus::CHOICE, this);
 }
 
 ListOfPiecesManager& ListOfPiecesManager::getInstance() {
@@ -164,9 +164,10 @@ void  ListOfPiecesManager::preGameHandler() {
 	GameManager::getRootNode()->removeChild(this->m_selectPointer);
 }
 
-void ListOfPiecesManager::gameHandler() {
+void ListOfPiecesManager::choiceHandler() {
 	this->m_iteratorOnList = 0;
-	this->m_whiteList->getPieceByIndex(this->m_iteratorOnList)->getNode()->addChild(this->m_selectPointer);
+	GameManager::getRootNode()->removeChild(this->m_selectPointer);
+	this->getCurrentList()->getPieceByIndex(this->m_iteratorOnList)->getNode()->addChild(this->m_selectPointer);
 }
 
 void ListOfPiecesManager::updateSelectPointer() {
