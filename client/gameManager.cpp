@@ -14,13 +14,13 @@ struct GameManager::Reserved
 	Node* rootResetNode;
 	bool isChoiceMode;	// TRUE -> move SelectPointer - FALSE -> move Piece
 
-	Reserved() : cameraManager{ CameraManager::getInstance() }, 
-		statusManager{ StatusManager::getInstance() }, 
-		movementManager{MovementManager::getInstance()},
-		listOfPiecesManager{ListOfPiecesManager::getInstance()},
-		engine{ Eng::Base::getInstance() }, 
+	Reserved() : cameraManager{ CameraManager::getInstance() },
+		statusManager{ StatusManager::getInstance() },
+		movementManager{ MovementManager::getInstance() },
+		listOfPiecesManager{ ListOfPiecesManager::getInstance() },
+		engine{ Eng::Base::getInstance() },
 		rootNode{ nullptr },
-		rootResetNode{ nullptr }, 
+		rootResetNode{ nullptr },
 		isChoiceMode{ false } {
 	}
 };
@@ -45,7 +45,6 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 		this->m_reserved->statusManager.changeState(GameStatus::GAME);
 		break;
 	}
-	this->renderScene();
 }
 
 void GameManager::specialKeyCallbackPreGame(int key, int mouseX, int mouseY)
@@ -102,6 +101,14 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 			this->m_reserved->isChoiceMode = true;
 		}
 		break;
+	case 'u':
+	case 'U':
+
+		break;
+	case 'r':
+	case 'R':
+
+		break;
 	}
 
 	//PIECE MOVEMENT
@@ -125,8 +132,6 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 			break;
 		}
 	}
-	std::cout << "sono qui" << std::endl;
-	this->renderScene();
 }
 
 void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
@@ -141,8 +146,6 @@ void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
 		this->m_reserved->listOfPiecesManager.moveChooseNodeRight();
 		break;
 	}
-
-	this->renderScene();
 }
 
 std::list<std::string> GameManager::menuGame() {
@@ -151,6 +154,8 @@ std::list<std::string> GameManager::menuGame() {
 	menu.push_back("[CANC] Return to initial position");
 	menu.push_back("[Arrow key] Move camera");
 	menu.push_back("[W - A - S - D] Move piece");
+	menu.push_back("[U] Undo");
+	menu.push_back("[R] Redo");
 	menu.push_back("[Esc] Reset current game");
 	return menu;
 }
@@ -161,7 +166,7 @@ void GameManager::keyboardCallbackEndGame(unsigned char key, int mouseX, int mou
 	{
 	case 32: // Change camera
 		std::cout << "Space pressed" << std::endl;
-		
+
 		break;
 	case 13: // Confirm choice
 		std::cout << "Enter pressed" << std::endl;
@@ -174,7 +179,7 @@ void GameManager::specialKeyCallbackEndGame(int key, int mouseX, int mouseY)
 {
 	/*switch (key)
 	{
-	
+
 	}*/
 }
 
@@ -258,7 +263,7 @@ void GameManager::startGame() {
 
 	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
 
-	this->gameLoop(); 
+	this->gameLoop();
 }
 
 
@@ -268,16 +273,20 @@ void GameManager::gameLoop() {
 	while (true) {
 		this->m_reserved->engine.clear();
 
-		this->m_reserved->engine.begin3D(this->m_reserved->cameraManager.getMainCamera(), 
-				this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA), 
-				this->m_reserved->statusManager.getMenu());
+		this->m_reserved->engine.begin3D(this->m_reserved->cameraManager.getMainCamera(),
+			this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA),
+			this->m_reserved->statusManager.getMenu());
 
 		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
+
+
 		this->m_reserved->listOfPiecesManager.updateSelectPointer();
 		this->renderScene();
-		
+
+
+
 		this->m_reserved->engine.swap();
-		
+
 		// std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 	}
 }

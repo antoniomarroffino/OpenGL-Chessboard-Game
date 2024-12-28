@@ -94,6 +94,7 @@
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="gameManager.h" />
     <ClInclude Include="gameStatus.h" />
+    <ClInclude Include="handlerCallbacksI.h" />
     <ClInclude Include="listOfPieces.h" />
     <ClInclude Include="listOfPiecesManager.h" />
     <ClInclude Include="movementManager.h" />
