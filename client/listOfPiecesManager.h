@@ -30,6 +30,7 @@ public:
 
 	ListOfPieces* getWhitePieces() const;
 	ListOfPieces* getBlackPieces() const;
+	void updateChessboard(ListOfPieces*, ListOfPieces*);
 private:
 	ListOfPiecesManager();
 	ListOfPieces* getCurrentList() const;

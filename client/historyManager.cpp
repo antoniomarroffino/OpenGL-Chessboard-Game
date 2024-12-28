@@ -4,43 +4,64 @@
 struct HistoryManager::Reserved {
 	ListOfPieces* listOfPiecesWhite;
 	ListOfPieces* listOfPiecesBlack;
-	Node* rootNode;
 
-	Reserved(ListOfPieces* piecesWhite, ListOfPieces* piecesBlack, Node* root) :
+	Reserved(ListOfPieces* piecesWhite, ListOfPieces* piecesBlack) :
 		listOfPiecesWhite{ piecesWhite },
-		listOfPiecesBlack{ piecesBlack },
-		rootNode{root} {}
+		listOfPiecesBlack{ piecesBlack }
+		{}
 };
 
-HistoryManager::HistoryManager() : m_history(std::vector<HistoryManager::Reserved>()), 
-		m_currentRootNode{nullptr},
+HistoryManager::HistoryManager() : m_history(std::vector<HistoryManager::Reserved>()),
 		m_listOfPiecesManager{ListOfPiecesManager::getInstance()},
-		m_pointer{ -1 } { }
+		m_movementManager{MovementManager::getInstance()},
+		m_statusManager{StatusManager::getInstance()},
+		m_pointer{ 0 }, m_undoCalled{ false } 
+{
+	this->m_statusManager.subscribeListener(GameStatus::CHOICE, this);
+}
 
 HistoryManager& HistoryManager::getInstance() {
 	static HistoryManager instance;
 	return instance;
 }
 
-void HistoryManager::saveState() {
+void HistoryManager::choiceHandler() {
+	if(!this->isUndoCalled())
+		this->takeSnapshot();
+}
+
+void HistoryManager::takeSnapshot() {
 	Reserved reserved{ Reserved(this->m_listOfPiecesManager.getWhitePieces()->clone(),
-		this->m_listOfPiecesManager.getBlackPieces()->clone(),
-		GameManager::getRootNode()->clone())
+		this->m_listOfPiecesManager.getBlackPieces()->clone())
 	};
 	this->m_history.push_back(reserved);
+	std::cout << "take snap pointer: " << this->m_pointer << std::endl;
 	this->m_pointer++;
 }
 
 bool HistoryManager::undo() {
 	if (this->m_pointer == 0)
 		return false;
-	this->m_pointer--;
-
-	GameManager::setRootNode(this->m_history[this->m_pointer].rootNode);
-	this->m_listOfPiecesManager.initialize();
+	if (this->isUndoCalled())
+		this->m_pointer--;
+	else
+		this->m_pointer -= 2;
+	std::cout << "undo pointer: " << this->m_pointer << std::endl;
+	this->m_movementManager.changeTurn();
+	this->m_listOfPiecesManager.updateChessboard(this->m_history[this->m_pointer].listOfPiecesWhite, this->m_history[this->m_pointer].listOfPiecesBlack);
+	GameManager::getRootNode()->removeChild(const_cast<Node*>(GameManager::getRootNode()->findNodeByName("SelectPointer")));
+	this->m_undoCalled = true;
 	return true;
 }
 
 bool HistoryManager::redo() {
 	return true;
+}
+
+bool HistoryManager::isUndoCalled() {
+	return this->m_undoCalled;
+}
+
+void HistoryManager::setUndoCalled(const bool& val) {
+	this->m_undoCalled = val;
 }

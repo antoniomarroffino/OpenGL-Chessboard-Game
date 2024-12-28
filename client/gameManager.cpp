@@ -56,7 +56,6 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 	{
 	case 32: // Change camera
 		this->m_reserved->isChoiceMode = true;
-		this->m_reserved->historyManager.saveState();
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		break;
 	}
@@ -91,7 +90,6 @@ std::list<std::string> GameManager::menuPreGame() {
 
 
 //------------------------------------------------------------------------------------------------------------------------
-
 void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mouseY)
 {
 	switch (key)
@@ -106,14 +104,9 @@ void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mous
 		break;
 	case 'u':
 	case 'U':
-		if (this->m_reserved->historyManager.undo()) {
-			this->m_reserved->movementManager.changeTurn();
-			if (this->m_reserved->movementManager.getTurn())
-				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_WHITE_CAMERA);
-			else
-				this->m_reserved->cameraManager.setNewMainCamera(PLAYER_BLACK_CAMERA);
-			this->m_reserved->isChoiceMode = true;
-		}
+		//NON DEVE FARE CHANGE TURN LA PRIMA VOLTA
+		if (this->m_reserved->historyManager.undo())
+			this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		break;
 	case 'r':
 	case 'R':
@@ -153,9 +146,6 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 	{
 	case 13: // Confirm choice
 		if (!this->m_reserved->listOfPiecesManager.confirmMove()) break;
-
-		this->m_reserved->historyManager.saveState();
-
 		this->m_reserved->movementManager.changeTurn();
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		break;
@@ -282,7 +272,7 @@ void GameManager::gameLoop() {
 			this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA),
 			this->m_reserved->statusManager.getMenu());
 
-		std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
+		//std::cout << "FPS: " << this->m_reserved->engine.getFPS() << std::endl;
 
 
 		this->m_reserved->listOfPiecesManager.updateSelectPointer();

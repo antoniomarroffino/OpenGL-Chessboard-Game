@@ -182,3 +182,18 @@ ListOfPieces* ListOfPiecesManager::getWhitePieces() const {
 ListOfPieces* ListOfPiecesManager::getBlackPieces() const {
 	return this->m_blackList;
 }
+
+void ListOfPiecesManager::updateChessboard(ListOfPieces* whiteList, ListOfPieces* blackList) {
+	this->m_whiteList = whiteList;
+	this->m_blackList = blackList;
+
+	Node* chessboardNode = const_cast<Node*>(GameManager::getRootNode()->findNodeByName("Chessboard"));
+	for (auto* child : chessboardNode->getChildren())
+		chessboardNode->removeChild(child);
+
+	for (int i = 0; i < whiteList->getSize(); i++)
+		chessboardNode->addChild(whiteList->getPieceByIndex(i)->getNode());
+
+	for (int i = 0; i < blackList->getSize(); i++)
+		chessboardNode->addChild(blackList->getPieceByIndex(i)->getNode());
+}
