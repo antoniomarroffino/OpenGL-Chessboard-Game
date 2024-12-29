@@ -17,11 +17,12 @@ public:
 	void takeSnapshot();
 	bool undo();
 	bool redo();
-	bool isUndoCalled();
-	void setUndoCalled(const bool&);
+	void setUndoRedoCalled(const bool&);
 private:
 	HistoryManager();
+	bool isUndoRedoCalled();
 
+	void preGameHandler() override;
 	void choiceHandler() override;
 
 	
@@ -30,6 +31,6 @@ private:
 	ListOfPiecesManager& m_listOfPiecesManager;
 	MovementManager& m_movementManager;
 	StatusManager& m_statusManager;
-	unsigned int m_pointer;
-	bool m_undoCalled;
+	int m_pointer;
+	bool m_undoRedoCalled;
 };

@@ -104,13 +104,13 @@ void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mous
 		break;
 	case 'u':
 	case 'U':
-		//NON DEVE FARE CHANGE TURN LA PRIMA VOLTA
 		if (this->m_reserved->historyManager.undo())
 			this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		break;
 	case 'r':
 	case 'R':
-
+		if (this->m_reserved->historyManager.redo())
+			this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		break;
 	}
 }
@@ -147,6 +147,7 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 	case 13: // Confirm choice
 		if (!this->m_reserved->listOfPiecesManager.confirmMove()) break;
 		this->m_reserved->movementManager.changeTurn();
+		this->m_reserved->historyManager.setUndoRedoCalled(false);
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		break;
 	case 27: // Exit from game

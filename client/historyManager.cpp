@@ -15,8 +15,9 @@ HistoryManager::HistoryManager() : m_history(std::vector<HistoryManager::Reserve
 		m_listOfPiecesManager{ListOfPiecesManager::getInstance()},
 		m_movementManager{MovementManager::getInstance()},
 		m_statusManager{StatusManager::getInstance()},
-		m_pointer{ 0 }, m_undoCalled{ false } 
+		m_pointer{ -1 }, m_undoRedoCalled{ false } 
 {
+	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::CHOICE, this);
 }
 
@@ -26,8 +27,14 @@ HistoryManager& HistoryManager::getInstance() {
 }
 
 void HistoryManager::choiceHandler() {
-	if(!this->isUndoCalled())
+	if(!this->isUndoRedoCalled())
 		this->takeSnapshot();
+}
+
+void HistoryManager::preGameHandler() {
+	this->m_history.clear();
+	this->m_pointer = -1;
+	this->m_undoRedoCalled = false;
 }
 
 void HistoryManager::takeSnapshot() {
@@ -35,33 +42,33 @@ void HistoryManager::takeSnapshot() {
 		this->m_listOfPiecesManager.getBlackPieces()->clone())
 	};
 	this->m_history.push_back(reserved);
-	std::cout << "take snap pointer: " << this->m_pointer << std::endl;
 	this->m_pointer++;
 }
 
 bool HistoryManager::undo() {
 	if (this->m_pointer == 0)
 		return false;
-	if (this->isUndoCalled())
-		this->m_pointer--;
-	else
-		this->m_pointer -= 2;
-	std::cout << "undo pointer: " << this->m_pointer << std::endl;
+	this->m_pointer--;
 	this->m_movementManager.changeTurn();
 	this->m_listOfPiecesManager.updateChessboard(this->m_history[this->m_pointer].listOfPiecesWhite, this->m_history[this->m_pointer].listOfPiecesBlack);
 	GameManager::getRootNode()->removeChild(const_cast<Node*>(GameManager::getRootNode()->findNodeByName("SelectPointer")));
-	this->m_undoCalled = true;
+	this->m_undoRedoCalled = true;
 	return true;
 }
 
 bool HistoryManager::redo() {
+	if (this->m_pointer == (int)this->m_history.size() - 1)
+		return false;
+	this->m_pointer++;
+	this->m_movementManager.changeTurn();
+	this->m_listOfPiecesManager.updateChessboard(this->m_history[this->m_pointer].listOfPiecesWhite, this->m_history[this->m_pointer].listOfPiecesBlack);
+	GameManager::getRootNode()->removeChild(const_cast<Node*>(GameManager::getRootNode()->findNodeByName("SelectPointer")));
 	return true;
 }
 
-bool HistoryManager::isUndoCalled() {
-	return this->m_undoCalled;
+bool HistoryManager::isUndoRedoCalled() {
+	return this->m_undoRedoCalled;
 }
-
-void HistoryManager::setUndoCalled(const bool& val) {
-	this->m_undoCalled = val;
+void HistoryManager::setUndoRedoCalled(const bool& val) {
+	this->m_undoRedoCalled = val;
 }

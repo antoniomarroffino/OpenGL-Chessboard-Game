@@ -58,7 +58,6 @@ void ListOfPiecesManager::buildChessboard() {
 	std::vector<Piece*> blackPieces;
 
 	Node* tempRoot = GameManager::getRootNode();
-	std::cout << GameManager::getRootNode() << std::endl;
 
 	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White rook")), 0, 0));
 	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White knight.001")), 0, 1));
@@ -184,16 +183,16 @@ ListOfPieces* ListOfPiecesManager::getBlackPieces() const {
 }
 
 void ListOfPiecesManager::updateChessboard(ListOfPieces* whiteList, ListOfPieces* blackList) {
-	this->m_whiteList = whiteList;
-	this->m_blackList = blackList;
+	this->m_whiteList = whiteList->clone();
+	this->m_blackList = blackList->clone();
 
 	Node* chessboardNode = const_cast<Node*>(GameManager::getRootNode()->findNodeByName("Chessboard"));
 	for (auto* child : chessboardNode->getChildren())
 		chessboardNode->removeChild(child);
 
-	for (int i = 0; i < whiteList->getSize(); i++)
-		chessboardNode->addChild(whiteList->getPieceByIndex(i)->getNode());
+	for (int i = 0; i < this->m_whiteList->getSize(); i++)
+		chessboardNode->addChild(this->m_whiteList->getPieceByIndex(i)->getNode());
 
-	for (int i = 0; i < blackList->getSize(); i++)
-		chessboardNode->addChild(blackList->getPieceByIndex(i)->getNode());
+	for (int i = 0; i < this->m_blackList->getSize(); i++)
+		chessboardNode->addChild(this->m_blackList->getPieceByIndex(i)->getNode());
 }
