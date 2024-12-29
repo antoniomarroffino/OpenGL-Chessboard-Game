@@ -1,6 +1,9 @@
 #include "listOfPiecesManager.h"
 #include "gameManager.h"
 
+#define CHESSBOARD "Chessboard"
+#define SELECT_POINTER "SelectPointer"
+
 unsigned int tempRow = 0;
 unsigned int tempCol = 0;
 glm::mat4 tempMatrix = glm::mat4(1.0f);
@@ -11,6 +14,7 @@ m_iteratorOnList{ 0 }, m_rotationAngle{ 1.2f }
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::CHOICE, this);
+	this->m_statusManager.subscribeListener(GameStatus::END_GAME, this);
 }
 
 ListOfPiecesManager& ListOfPiecesManager::getInstance() {
@@ -26,7 +30,7 @@ bool ListOfPiecesManager::initialize() {
 	this->m_iteratorOnList = 0;
 
 	if (!this->m_selectPointer) {
-		this->m_selectPointer = const_cast<Node*>(GameManager::getRootNode()->findNodeByName("SelectPointer"));
+		this->m_selectPointer = const_cast<Node*>(GameManager::getRootNode()->findNodeByName(SELECT_POINTER));
 		if (!this->m_selectPointer) return false;
 
 		if (this->m_selectPointer != nullptr)
@@ -161,12 +165,17 @@ bool ListOfPiecesManager::confirmMove() {
 void  ListOfPiecesManager::preGameHandler() {
 	this->m_iteratorOnList = 0;
 	GameManager::getRootNode()->removeChild(this->m_selectPointer);
+	this->createShadow();
 }
 
 void ListOfPiecesManager::choiceHandler() {
 	this->m_iteratorOnList = 0;
 	GameManager::getRootNode()->removeChild(this->m_selectPointer);
 	this->getCurrentList()->getPieceByIndex(this->m_iteratorOnList)->getNode()->addChild(this->m_selectPointer);
+}
+
+void ListOfPiecesManager::endGameHandler() {
+	GameManager::getRootNode()->removeChild(this->m_selectPointer);
 }
 
 void ListOfPiecesManager::updateSelectPointer() {
@@ -186,7 +195,7 @@ void ListOfPiecesManager::updateChessboard(ListOfPieces* whiteList, ListOfPieces
 	this->m_whiteList = whiteList->clone();
 	this->m_blackList = blackList->clone();
 
-	Node* chessboardNode = const_cast<Node*>(GameManager::getRootNode()->findNodeByName("Chessboard"));
+	Node* chessboardNode = const_cast<Node*>(GameManager::getRootNode()->findNodeByName(CHESSBOARD));
 	for (auto* child : chessboardNode->getChildren())
 		chessboardNode->removeChild(child);
 
@@ -195,4 +204,20 @@ void ListOfPiecesManager::updateChessboard(ListOfPieces* whiteList, ListOfPieces
 
 	for (int i = 0; i < this->m_blackList->getSize(); i++)
 		chessboardNode->addChild(this->m_blackList->getPieceByIndex(i)->getNode());
+}
+
+void ListOfPiecesManager::createShadow() {
+	Node* chessboardNode = const_cast<Node*>(GameManager::getRootNode()->findNodeByName(CHESSBOARD));
+
+	for (auto* child : chessboardNode->getChildren()) {
+		Node* childCloned = child->clone();
+		childCloned->setEnableLighting(false);
+		childCloned->setName(childCloned->getName() + "_shadow");
+		childCloned->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.01f, 0.05f)) * glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 0.0f, 1.0f)) * childCloned->getMatrix());
+		childCloned->getMaterial()->setTexture(nullptr);
+		childCloned->getMaterial()->setAmbient(glm::vec3(0.2f, 0.2f, 0.2f));
+		childCloned->getMaterial()->setDiffuse(glm::vec3(0.2f, 0.2f, 0.2f));
+		childCloned->getMaterial()->setSpecular(glm::vec3(0.2f, 0.2f, 0.2f));
+		chessboardNode->addChild(childCloned);
+	}
 }

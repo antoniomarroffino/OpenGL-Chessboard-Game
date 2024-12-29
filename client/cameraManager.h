@@ -40,6 +40,7 @@ private:
 	void createCameras();
 	void preGameHandler() override;
 	void choiceHandler() override;
+	void endGameHandler() override;
 
 	StatusManager& m_statusManager;
 	MovementManager& m_movementManager;

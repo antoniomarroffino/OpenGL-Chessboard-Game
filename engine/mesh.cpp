@@ -71,7 +71,17 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
 
     if (this->m_material != nullptr) {
         this->m_material->setEnableTexture();
-        this->m_material->render();
+
+        if (this->getMaterial()->getAlpha() < 1.0f) {
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        } else if (!this->isEnableLighting()) {
+            glDisable(GL_LIGHTING);
+            glColor4f(this->getMaterial()->getAmbient().x, this->getMaterial()->getAmbient().y, this->getMaterial()->getAmbient().z, this->getMaterial()->getAlpha());
+        }
+        else {
+            this->m_material->render();
+        }
     }
 
     glBegin(GL_TRIANGLES);
@@ -89,7 +99,11 @@ void ENG_API Mesh::render(const glm::mat4& matrix) {
         this->m_material->setDisableTexture();
     }
 
-    
+    if (this->getMaterial()->getAlpha() < 1.0f)
+        glDisable(GL_BLEND);
+        
+    if (!this->isEnableLighting())
+        glEnable(GL_LIGHTING);
 }
 
 const ENG_API unsigned int Mesh::parse(const char* data, unsigned int& position) {

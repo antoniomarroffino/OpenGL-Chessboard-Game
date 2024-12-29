@@ -4,8 +4,11 @@
 std::map<std::string, Texture*> Material::m_texturesMap{ std::map<std::string, Texture*>() };
 
 ENG_API Material::Material(const std::string& name)
-	: Object(name), m_alpha{ 1.0f }, m_emission{ glm::vec4(0.0f) }, m_ambient{ glm::vec4(0.0f) }, m_specular{ glm::vec4(0.0f) },
-	m_diffuse{ glm::vec4(0.0f) }, m_shininess{ 1.0f }, m_texture{ nullptr } {}
+	: Object(name), m_alpha{ 1.0f }, m_emission{ glm::vec3(0.0f) }, m_ambient{ glm::vec3(0.0f) }, m_specular{ glm::vec3(0.0f) },
+	m_diffuse{ glm::vec3(0.0f) }, m_shininess{ 1.0f }, m_texture{ nullptr } {}
+
+ENG_API Material::Material(const Material& other) : Object(other), m_alpha{ other.m_alpha }, m_emission{ other.m_emission }, m_ambient{ other.m_ambient }, m_specular{ other.m_specular },
+m_diffuse{ other.m_diffuse }, m_shininess{ other.m_shininess }, m_texture{ other.m_texture } {}
 
 ENG_API void Material::setAlpha(const float& alpha) {
 	if (alpha >= 0.0f && alpha <= 1.0f)
@@ -17,34 +20,34 @@ const ENG_API float& Material::getAlpha() const {
 }
 
 ENG_API void Material::setEmission(const glm::vec3& emission) {
-	this->m_emission = glm::vec4(emission, this->getAlpha());
+	this->m_emission = emission;
 }
 
-const ENG_API glm::vec4& Material::getEmission() const {
+const ENG_API glm::vec3& Material::getEmission() const {
 	return this->m_emission;
 }
 
 ENG_API void Material::setAmbient(const glm::vec3& ambient) {
-	this->m_ambient = glm::vec4(ambient, this->getAlpha());
+	this->m_ambient = ambient;
 }
 
-const ENG_API glm::vec4& Material::getAmbient() const {
+const ENG_API glm::vec3& Material::getAmbient() const {
 	return this->m_ambient;
 }
 
 ENG_API void Material::setSpecular(const glm::vec3& specular) {
-	this->m_specular = glm::vec4(specular, this->getAlpha());
+	this->m_specular = specular;
 }
 
-const ENG_API glm::vec4& Material::getSpecular() const {
+const ENG_API glm::vec3& Material::getSpecular() const {
 	return this->m_specular;
 }
 
 ENG_API void Material::setDiffuse(const glm::vec3& diffuse) {
-	this->m_diffuse = glm::vec4(diffuse, this->getAlpha());
+	this->m_diffuse = diffuse;
 }
 
-const ENG_API glm::vec4& Material::getDiffuse() const {
+const ENG_API glm::vec3& Material::getDiffuse() const {
 	return this->m_diffuse;
 }
 
@@ -62,18 +65,18 @@ ENG_API void Material::setTexture(Texture* texture) {
 }
 
 const ENG_API Texture* Material::getTexture() const {
-	return this->m_texture;
+	return this->m_texture; 
 }
 
 ENG_API void Material::render(const glm::mat4& matrix) {
-	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(this->getEmission()));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(glm::vec4(this->getEmission(), this->getAlpha())));
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, powf(2.0f, this->getShininess()));
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glm::value_ptr(this->getAmbient()));
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glm::value_ptr(this->getDiffuse()));
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(this->getSpecular()));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glm::value_ptr(glm::vec4(this->getAmbient(), this->getAlpha())));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glm::value_ptr(glm::vec4(this->getDiffuse(), this->getAlpha())));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(glm::vec4(this->getSpecular(), this->getAlpha())));
+
 	if (this->m_texture != nullptr)
 		this->m_texture->render();
-
 }
 
 

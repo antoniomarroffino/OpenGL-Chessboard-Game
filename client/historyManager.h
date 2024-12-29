@@ -24,6 +24,7 @@ private:
 
 	void preGameHandler() override;
 	void choiceHandler() override;
+	void endGameHandler() override;
 
 	
 	struct Reserved;

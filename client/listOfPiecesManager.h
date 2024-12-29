@@ -37,8 +37,10 @@ private:
 	void moveChooseNode(const int&);
 	void preGameHandler() override;
 	void choiceHandler() override;
+	void endGameHandler() override;
 	void buildChessboard();
 	void clearLists();
+	void createShadow();
 
 	MovementManager& m_movementManager;
 	StatusManager& m_statusManager;

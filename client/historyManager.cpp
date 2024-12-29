@@ -19,6 +19,7 @@ HistoryManager::HistoryManager() : m_history(std::vector<HistoryManager::Reserve
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::CHOICE, this);
+	this->m_statusManager.subscribeListener(GameStatus::END_GAME, this);
 }
 
 HistoryManager& HistoryManager::getInstance() {
@@ -35,6 +36,11 @@ void HistoryManager::preGameHandler() {
 	this->m_history.clear();
 	this->m_pointer = -1;
 	this->m_undoRedoCalled = false;
+}
+
+void HistoryManager::endGameHandler() {
+	this->m_pointer = 1;
+	this->undo();
 }
 
 void HistoryManager::takeSnapshot() {

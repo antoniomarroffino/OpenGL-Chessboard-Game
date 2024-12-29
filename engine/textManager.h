@@ -2,6 +2,9 @@
 
 #include <list>
 #include <string>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
 #include "orthoCamera.h"
 
 class ENG_API TextManager {
@@ -13,7 +16,7 @@ public:
 	static TextManager& getInstance();
 
 	void displayText(const std::list<std::string>&, Camera* orthoCamera) const;
-
+	void displayFPS(const float&, Camera* orthoCamera) const;
 private:
 	TextManager();
 

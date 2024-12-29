@@ -5,6 +5,7 @@ CameraManager::CameraManager() : OnStateUpdateListener(), m_statusManager{Status
 {
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 	this->m_statusManager.subscribeListener(GameStatus::CHOICE, this);
+	this->m_statusManager.subscribeListener(GameStatus::END_GAME, this);
 }
 
 CameraManager& CameraManager::getInstance() {
@@ -123,4 +124,8 @@ void CameraManager::choiceHandler() {
 		this->setNewMainCamera(PLAYER_WHITE_CAMERA);
 	else
 		this->setNewMainCamera(PLAYER_BLACK_CAMERA);
+}
+
+void CameraManager::endGameHandler() {
+	this->setNewMainCamera(CHESSBOARD_CAMERA);
 }

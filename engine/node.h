@@ -45,20 +45,24 @@ public:
 	const unsigned int getNumberOfChildren() const;
 	virtual const std::vector<Node*> getChildren() const;
 	void setMaterial(Material*);
-	const Material* getMaterial() const;
+	Material* getMaterial() const;
 	void virtual render(const glm::mat4 & = glm::mat4(1.0f)) override { std::cout << this->getName() << std::endl; };
 	const virtual unsigned int parse(const char*, unsigned int&) override;
 	virtual Node* clone() const;
+	void setEnableLighting(const bool&);
 
 protected:
 	Node(const Node&);
 	
 	virtual void recursiveClone(Node*) const;
 
+	bool isEnableLighting() const;
+
 	glm::mat4 m_matrix;
 	Node* m_parent;
 	std::vector<Node*> m_children;
 	Material* m_material;
+	bool m_enableLighting;
 private:
 	void setParent(Node*);
 };

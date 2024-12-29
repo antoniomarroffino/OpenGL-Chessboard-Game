@@ -33,5 +33,5 @@ private:
 
 	bool m_turn;  // TRUE -> white - FALSE -> black
 	StatusManager& m_statusManager;
-	const float MOVEMENT_SPACE = 0.54f;
+	const float MOVEMENT_SPACE = 0.545f;
 };

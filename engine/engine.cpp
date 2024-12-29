@@ -221,6 +221,7 @@ void ENG_API Eng::Base::begin3D(Camera* mainCamera, Camera* menuCamera, const st
     if (menuCamera == nullptr || menu.empty())
         return;
     this->reserved->textManager.displayText(menu, menuCamera);
+    this->reserved->textManager.displayFPS(this->getFPS(), menuCamera);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

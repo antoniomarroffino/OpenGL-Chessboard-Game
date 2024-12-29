@@ -3,9 +3,9 @@
 #include <iostream>
 #include <algorithm>
 
-ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{ std::vector<Node*>() }, m_material{ nullptr } {}
+ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{ std::vector<Node*>() }, m_material{ nullptr }, m_enableLighting{ true } {}
 
-ENG_API Node::Node(const Node& other) : Object(other), m_matrix{other.m_matrix}, m_parent{other.m_parent}, m_children{std::vector<Node*>()}, m_material{other.m_material} {}
+ENG_API Node::Node(const Node& other) : Object(other), m_matrix{ other.m_matrix }, m_parent{ other.m_parent }, m_children{ std::vector<Node*>() }, m_material{ other.m_material == nullptr ? other.m_material : new Material(*other.m_material) }, m_enableLighting{ other.m_enableLighting } {}
 
 ENG_API Node::~Node() {
 	for (auto child : m_children) {
@@ -164,6 +164,14 @@ void ENG_API Node::setMaterial(Material* material) {
 	this->m_material = material;
 }
 
-const ENG_API Material* Node::getMaterial() const{
+ENG_API Material* Node::getMaterial() const{
 	return this->m_material;
+}
+
+ENG_API void Node::setEnableLighting(const bool& val) {
+	this->m_enableLighting = val;
+}
+
+ENG_API bool Node::isEnableLighting() const {
+	return this->m_enableLighting;
 }
