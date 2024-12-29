@@ -83,6 +83,7 @@
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="gameManager.cpp" />
     <ClCompile Include="historyManager.cpp" />
+    <ClCompile Include="lightManager.cpp" />
     <ClCompile Include="listOfPieces.cpp" />
     <ClCompile Include="listOfPiecesManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="gameStatus.h" />
     <ClInclude Include="handlerCallbacksI.h" />
     <ClInclude Include="historyManager.h" />
+    <ClInclude Include="lightManager.h" />
     <ClInclude Include="listOfPieces.h" />
     <ClInclude Include="listOfPiecesManager.h" />
     <ClInclude Include="movementManager.h" />

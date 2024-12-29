@@ -66,11 +66,11 @@ const ENG_API Texture* Material::getTexture() const {
 }
 
 ENG_API void Material::render(const glm::mat4& matrix) {
-	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(this->m_emission));
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, powf(2.0f, this->m_shininess));
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glm::value_ptr(this->m_ambient));
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glm::value_ptr(this->m_diffuse));
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(this->m_specular));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(this->getEmission()));
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, powf(2.0f, this->getShininess()));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glm::value_ptr(this->getAmbient()));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glm::value_ptr(this->getDiffuse()));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(this->getSpecular()));
 	if (this->m_texture != nullptr)
 		this->m_texture->render();
 

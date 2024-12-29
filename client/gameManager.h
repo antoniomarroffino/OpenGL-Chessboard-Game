@@ -6,6 +6,7 @@
 #include "movementManager.h"
 #include "listOfPiecesManager.h"
 #include "historyManager.h"
+#include "lightManager.h"
 #include <array>
 #include "engine.h"
 #include "node.h"

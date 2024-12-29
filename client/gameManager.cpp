@@ -10,6 +10,7 @@ struct GameManager::Reserved
 	MovementManager& movementManager;
 	ListOfPiecesManager& listOfPiecesManager;
 	HistoryManager& historyManager;
+	LightManager& lightManager;
 	Eng::Base& engine;
 	Node* rootNode;
 	Node* rootResetNode;
@@ -20,6 +21,7 @@ struct GameManager::Reserved
 		movementManager{ MovementManager::getInstance() },
 		listOfPiecesManager{ ListOfPiecesManager::getInstance() },
 		historyManager{ HistoryManager::getInstance() },
+		lightManager{ LightManager::getInstance() },
 		engine{ Eng::Base::getInstance() },
 		rootNode{ nullptr },
 		rootResetNode{ nullptr },
@@ -112,6 +114,19 @@ void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mous
 		if (this->m_reserved->historyManager.redo())
 			this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		break;
+	case 'l':
+	case 'L':
+		if (this->m_reserved->lightManager.isLightOn(LAMP_OMNI))
+			this->m_reserved->lightManager.turnOff(LAMP_OMNI);
+		else
+			this->m_reserved->lightManager.turnOn(LAMP_OMNI);
+		break;
+	case '+':
+		this->m_reserved->lightManager.increaseLight(LAMP_OMNI);
+		break;
+	case '-':
+		this->m_reserved->lightManager.decreaseLight(LAMP_OMNI);
+		break;
 	}
 }
 
@@ -130,7 +145,12 @@ void GameManager::specialKeyCallbackChoice(int key, int mouseX, int mouseY)
 std::list<std::string> GameManager::menuChoice() {
 	std::list<std::string> menu;
 	menu.push_back("[Enter] Confirm choice");
-	menu.push_back("[Left: < / Right: >] Move choice selector");
+	menu.push_back("[Left / Right Arrow Key] Move choice selector");
+	menu.push_back("[U] Undo");
+	menu.push_back("[R] Redo");
+	menu.push_back("[L] Turn on / off light");
+	menu.push_back("[+] Increase light intensity");
+	menu.push_back("[-] Decrease light intensity");
 	return menu;
 }
 //------------------------------------------------------------------------------------------------------------------------
@@ -157,6 +177,19 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 	case 127:
 		this->m_reserved->listOfPiecesManager.deleteChoice();
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
+		break;
+	case 'l':
+	case 'L':
+		if (this->m_reserved->lightManager.isLightOn(LAMP_OMNI))
+			this->m_reserved->lightManager.turnOff(LAMP_OMNI);
+		else
+			this->m_reserved->lightManager.turnOn(LAMP_OMNI);
+		break;
+	case '+':
+		this->m_reserved->lightManager.increaseLight(LAMP_OMNI);
+		break;
+	case '-':
+		this->m_reserved->lightManager.decreaseLight(LAMP_OMNI);
 		break;
 	}
 
@@ -188,13 +221,13 @@ void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
 
 std::list<std::string> GameManager::menuGame() {
 	std::list<std::string> menu;
+	menu.push_back("[W - A - S - D] Move piece");
 	menu.push_back("[Enter] Confirm Move");
 	menu.push_back("[CANC] Return to initial position");
-	menu.push_back("[Arrow key] Move camera");
-	menu.push_back("[W - A - S - D] Move piece");
-	menu.push_back("[U] Undo");
-	menu.push_back("[R] Redo");
 	menu.push_back("[Esc] Reset current game");
+	menu.push_back("[L] Turn on / off light");
+	menu.push_back("[+] Increase light intensity");
+	menu.push_back("[-] Decrease light intensity");
 	return menu;
 }
 //------------------------------------------------------------------------------------------------------------------------

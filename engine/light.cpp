@@ -1,6 +1,7 @@
 #include "GL/freeglut.h"
 #include "light.h"
 
+glm::vec4 deltaIncrement{ glm::vec4(0.1f,0.1f,0.1f,0.0f) };
 
 unsigned int Light::lightActiveCounter{ GL_LIGHT0 };
 unsigned int Light::maxNumberOfActiveLights{ GL_LIGHT0 + 7 };
@@ -20,6 +21,24 @@ const ENG_API glm::vec4& Light::getPosition() const {
 ENG_API void Light::resetLightCounter() {
 	for (unsigned int lightCounter = GL_LIGHT0; lightCounter < Light::lightActiveCounter; lightCounter++) glDisable(lightCounter);
 	Light::lightActiveCounter = GL_LIGHT0;
+}
+
+ENG_API void Light::increaseIntensity() {
+	glm::vec4 diffuse = this->m_lightMaterial->getDiffuse();
+	if (diffuse.x >= 10.0) return;
+	diffuse += deltaIncrement;
+	this->m_lightMaterial->setDiffuse(diffuse);
+	this->m_lightMaterial->setAmbient(diffuse);
+	this->m_lightMaterial->setSpecular(diffuse);
+}
+
+ENG_API void Light::decreaseIntensity() {
+	glm::vec4 diffuse = this->m_lightMaterial->getDiffuse();
+	if (diffuse.x <= 0.1) return;
+	diffuse -= deltaIncrement;
+	this->m_lightMaterial->setDiffuse(diffuse);
+	this->m_lightMaterial->setAmbient(diffuse);
+	this->m_lightMaterial->setSpecular(diffuse);
 }
 
 ENG_API void Light::render(const glm::mat4& matrix) {

@@ -32,6 +32,8 @@ public:
 	virtual void setPosition(const glm::vec3&);
 	const glm::vec4& getPosition() const;
 	static void resetLightCounter();
+	void increaseIntensity();
+	void decreaseIntensity();
 protected:
 	Light(const std::string&, const glm::vec4&);
 	Light(const Light&);
