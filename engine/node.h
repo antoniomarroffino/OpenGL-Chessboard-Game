@@ -16,6 +16,7 @@
 #include <vector>
 #include "object.h"
 #include "material.h"
+#include "notificationService.h"
 
  ///////////////////////
  // MAIN NODE CLASS //
@@ -65,4 +66,7 @@ protected:
 	bool m_enableLighting;
 private:
 	void setParent(Node*);
+
+	bool m_isMatrixParsed;
+	NotificationService& m_notificationService;
 };

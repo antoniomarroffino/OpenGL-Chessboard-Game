@@ -30,7 +30,7 @@ private:
 
 	void gameLoop();
 	void resetGame();
-	void renderScene();
+	void createGraphicsList();
 
 	void keyboardCallbackPreGame(unsigned char, int, int);
 	void specialKeyCallbackPreGame(int, int, int);

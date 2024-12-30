@@ -16,6 +16,8 @@
 #include "node.h"
 #include <memory>
 #include <list>
+#include "notificationService.h"
+#include "changeMatrixListener.h"
 
 
  ///////////////////////
@@ -25,7 +27,7 @@
  /**
   * @brief Base List class
   */
-class ENG_API List{
+class ENG_API List : public ChangeMatrixListener {
 public:
 	List();
 	~List();
@@ -37,10 +39,15 @@ public:
 	void renderElements(const glm::mat4&) const;
 	const unsigned int getNumberOfElementsInList() const;
 private:
+	struct Reserved;
+
 	void addRowToListOfNodeToRender(Node*);
 	void resetListAndFreeMemory();
+	void onMatrixChange(const unsigned int&) override;
+	Reserved* getReservedById(const unsigned int&);
 
-	struct Reserved;
+
 	std::unique_ptr<Reserved> m_reserved;
 	std::list<Reserved*> m_listOfReservedToRender;
+	NotificationService& m_notificationService;
 };

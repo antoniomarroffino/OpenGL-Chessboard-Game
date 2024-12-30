@@ -11,7 +11,9 @@ struct ENG_API List::Reserved {
 	{}
 };
 
-ENG_API List::List() : m_reserved{std::unique_ptr<List::Reserved>()}, m_listOfReservedToRender{std::list<List::Reserved*>()} {}
+ENG_API List::List() : m_reserved{ std::unique_ptr<List::Reserved>() }, m_listOfReservedToRender{ std::list<List::Reserved*>() }, m_notificationService{ NotificationService::getInstance() } {
+	this->m_notificationService.subscribeListener(this);
+}
 
 ENG_API List::~List() {
 	this->resetListAndFreeMemory();
@@ -56,4 +58,20 @@ void ENG_API List::resetListAndFreeMemory() {
 	for (auto* element : this->m_listOfReservedToRender)
 		delete element;
 	this->m_listOfReservedToRender.clear();
+}
+
+void ENG_API List::onMatrixChange(const unsigned int& nodeChangedID) {
+	List::Reserved* changedReserved = this->getReservedById(nodeChangedID);
+	if (changedReserved == nullptr) {
+		std::cout << "parsing" << std::endl;
+		return;
+	}
+	changedReserved->r_nodeFinalMatrix = dynamic_cast<Node*>(changedReserved->r_node)->getFinalMatrix();
+}
+
+ENG_API List::Reserved* List::getReservedById(const unsigned int& id) {
+	for (auto* reserved : this->m_listOfReservedToRender)
+		if (reserved->r_node->getId() == id)
+			return reserved;
+	return nullptr;
 }

@@ -86,9 +86,6 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 	this->setName(materialName);
 	position += (unsigned int)strlen(materialName) + 1;
 
-	std::cout << "Parse: " << this->getName() << std::endl;
-
-
 	// Material term colors, starting with emissive:
 	glm::vec3 emission, albedo;
 	memcpy(&emission, data + position, sizeof(glm::vec3));
@@ -119,8 +116,6 @@ const ENG_API unsigned int Material::parse(const char* data, unsigned int& posit
 	char textureName[FILENAME_MAX];
 	strncpy(textureName, data + position, sizeof(textureName) - 1);
 	position += (unsigned int)strlen(textureName) + 1;
-	std::cout << textureName << std::endl;
-
 
 	if (strcmp(textureName, "[none]") != 0) {
 		Texture* textureInMap = this->getTexture(textureName);

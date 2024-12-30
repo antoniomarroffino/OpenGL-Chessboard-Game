@@ -57,6 +57,7 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 	{
 	case 32: // Change camera
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
+		this->createGraphicsList();
 		break;
 	}
 }
@@ -97,24 +98,31 @@ void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mous
 	case 13:
 		this->m_reserved->listOfPiecesManager.confirmChoice();
 		this->m_reserved->statusManager.changeState(GameStatus::GAME);
+		this->createGraphicsList();
 		break;
 	case 27:
 		this->resetGame();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
+		this->createGraphicsList();
 		break;
 	case 'f':
 	case 'F':
 		this->m_reserved->statusManager.changeState(GameStatus::END_GAME);
+		this->createGraphicsList();
 		break;
 	case 'u':
 	case 'U':
-		if (this->m_reserved->historyManager.undo())
+		if (this->m_reserved->historyManager.undo()) {
 			this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
+			this->createGraphicsList();
+		}
 		break;
 	case 'r':
 	case 'R':
-		if (this->m_reserved->historyManager.redo())
+		if (this->m_reserved->historyManager.redo()) {
 			this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
+			this->createGraphicsList();
+		}
 		break;
 	case 'l':
 	case 'L':
@@ -122,6 +130,7 @@ void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mous
 			this->m_reserved->lightManager.turnOff(LAMP_OMNI);
 		else
 			this->m_reserved->lightManager.turnOn(LAMP_OMNI);
+		this->createGraphicsList();
 		break;
 	case '+':
 		this->m_reserved->lightManager.increaseLight(LAMP_OMNI);
@@ -137,9 +146,11 @@ void GameManager::specialKeyCallbackChoice(int key, int mouseX, int mouseY)
 	switch (key) {
 	case 100: // Left arrow
 		this->m_reserved->listOfPiecesManager.moveChooseNodeLeft();
+		this->createGraphicsList();
 		break;
 	case 102: // Right arrow
 		this->m_reserved->listOfPiecesManager.moveChooseNodeRight();
+		this->createGraphicsList();
 		break;
 	}
 }
@@ -168,14 +179,17 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		this->m_reserved->movementManager.changeTurn();
 		this->m_reserved->historyManager.setUndoRedoCalled(false);
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
+		this->createGraphicsList();
 		break;
 	case 27: // Exit from game
 		this->resetGame();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
+		this->createGraphicsList();
 		break;
 	case 127:
 		this->m_reserved->listOfPiecesManager.deleteChoice();
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
+		this->createGraphicsList();
 		break;
 	case 'l':
 	case 'L':
@@ -183,12 +197,15 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 			this->m_reserved->lightManager.turnOff(LAMP_OMNI);
 		else
 			this->m_reserved->lightManager.turnOn(LAMP_OMNI);
+		this->createGraphicsList();
 		break;
 	case '+':
 		this->m_reserved->lightManager.increaseLight(LAMP_OMNI);
+		this->createGraphicsList();
 		break;
 	case '-':
 		this->m_reserved->lightManager.decreaseLight(LAMP_OMNI);
+		this->createGraphicsList();
 		break;
 	}
 
@@ -241,14 +258,17 @@ void GameManager::keyboardCallbackEndGame(unsigned char key, int mouseX, int mou
 	case 27: // Change camera
 		this->resetGame();
 		this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
+		this->createGraphicsList();
 		break;
 	case 'u':
 	case 'U':
 		this->m_reserved->historyManager.undo();
+		this->createGraphicsList();
 		break;
 	case 'r':
 	case 'R':
 		this->m_reserved->historyManager.redo();
+		this->createGraphicsList();
 	break;	
 	case 'l':
 	case 'L':
@@ -256,12 +276,15 @@ void GameManager::keyboardCallbackEndGame(unsigned char key, int mouseX, int mou
 			this->m_reserved->lightManager.turnOff(LAMP_OMNI);
 		else
 			this->m_reserved->lightManager.turnOn(LAMP_OMNI);
+		this->createGraphicsList();
 		break;
 	case '+':
 		this->m_reserved->lightManager.increaseLight(LAMP_OMNI);
+		this->createGraphicsList();
 		break;
 	case '-':
 		this->m_reserved->lightManager.decreaseLight(LAMP_OMNI);
+		this->createGraphicsList();
 		break;
 	}
 }
@@ -292,7 +315,7 @@ void GameManager::resetGame() {
 	this->m_reserved->listOfPiecesManager.initialize();
 }
 
-void GameManager::renderScene() {
+void GameManager::createGraphicsList() {
 	this->m_reserved->engine.clearScene();
 	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
 }
@@ -303,14 +326,11 @@ void GameManager::startGame() {
 		std::cerr << "ERROR: Error during parse of the scene" << std::endl;
 		return;
 	}
-
 	this->m_reserved->cameraManager.initialize();
 
 	this->m_reserved->listOfPiecesManager.initialize();
 
 	this->m_reserved->rootResetNode = this->m_reserved->rootNode->clone();
-
-	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
 
 	this->gameLoop();
 }
@@ -318,6 +338,7 @@ void GameManager::startGame() {
 
 void GameManager::gameLoop() {
 	this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
+	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
 
 	while (true) {
 		this->m_reserved->engine.clear();
@@ -326,12 +347,12 @@ void GameManager::gameLoop() {
 			this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA),
 			this->m_reserved->statusManager.getMenu());
 
-		this->m_reserved->listOfPiecesManager.updateSelectPointer();
-		this->renderScene();
+		if(this->m_reserved->statusManager.getCurrentGameStatus() == GameStatus::CHOICE || this->m_reserved->statusManager.getCurrentGameStatus() == GameStatus::GAME)
+			this->m_reserved->listOfPiecesManager.updateSelectPointer();
 
 		this->m_reserved->engine.swap();
 
-	    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+	    //std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 	}
 }
 

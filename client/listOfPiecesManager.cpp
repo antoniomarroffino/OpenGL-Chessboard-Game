@@ -165,7 +165,7 @@ bool ListOfPiecesManager::confirmMove() {
 void  ListOfPiecesManager::preGameHandler() {
 	this->m_iteratorOnList = 0;
 	GameManager::getRootNode()->removeChild(this->m_selectPointer);
-	this->createShadow();
+	//this->createShadow();
 }
 
 void ListOfPiecesManager::choiceHandler() {
@@ -208,7 +208,6 @@ void ListOfPiecesManager::updateChessboard(ListOfPieces* whiteList, ListOfPieces
 
 void ListOfPiecesManager::createShadow() {
 	Node* chessboardNode = const_cast<Node*>(GameManager::getRootNode()->findNodeByName(CHESSBOARD));
-
 	for (auto* child : chessboardNode->getChildren()) {
 		Node* childCloned = child->clone();
 		childCloned->setEnableLighting(false);

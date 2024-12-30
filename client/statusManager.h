@@ -23,6 +23,7 @@ public:
 
 	void changeState(const GameStatus&);
 	const std::list<std::string> getMenu() const;
+	GameStatus getCurrentGameStatus() const;
 
 private:
 	StatusManager();

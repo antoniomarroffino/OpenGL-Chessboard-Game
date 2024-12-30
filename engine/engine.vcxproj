@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="changeMatrixListener.h" />
     <ClInclude Include="directLight.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="fileOVOReader.h" />

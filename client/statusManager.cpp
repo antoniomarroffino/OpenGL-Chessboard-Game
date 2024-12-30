@@ -67,3 +67,7 @@ const std::list<std::string> StatusManager::getMenu() const {
 		return it->second.menu;
 	return { };
 }
+
+GameStatus StatusManager::getCurrentGameStatus() const {
+	return this->m_currentState;
+}

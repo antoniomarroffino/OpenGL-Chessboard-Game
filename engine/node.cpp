@@ -3,9 +3,9 @@
 #include <iostream>
 #include <algorithm>
 
-ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{ std::vector<Node*>() }, m_material{ nullptr }, m_enableLighting{ true } {}
+ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(1.0f) }, m_parent{ nullptr }, m_children{ std::vector<Node*>() }, m_material{ nullptr }, m_enableLighting{ true }, m_notificationService{ NotificationService::getInstance() }, m_isMatrixParsed{ false } {}
 
-ENG_API Node::Node(const Node& other) : Object(other), m_matrix{ other.m_matrix }, m_parent{ other.m_parent }, m_children{ std::vector<Node*>() }, m_material{ other.m_material == nullptr ? other.m_material : new Material(*other.m_material) }, m_enableLighting{ other.m_enableLighting } {}
+ENG_API Node::Node(const Node& other) : Object(other), m_matrix{ other.m_matrix }, m_parent{ other.m_parent }, m_children{ std::vector<Node*>() }, m_material{ other.m_material == nullptr ? other.m_material : new Material(*other.m_material) }, m_enableLighting{ other.m_enableLighting }, m_notificationService{ NotificationService::getInstance() }, m_isMatrixParsed{ false } {}
 
 ENG_API Node::~Node() {
 	for (auto child : m_children) {
@@ -30,6 +30,12 @@ ENG_API void Node::recursiveClone(Node* newNode) const {
 
 void ENG_API Node::setMatrix(const glm::mat4& matrix) {
 	this->m_matrix = matrix;
+	if (dynamic_cast<Camera*>(this) == nullptr) {
+		if (this->m_isMatrixParsed)
+			this->m_notificationService.notifyOnChangeMatrix(this->getId());
+		else
+			this->m_isMatrixParsed = true;
+	}	
 }
 
 const ENG_API glm::mat4& Node::getMatrix() const {
@@ -80,8 +86,6 @@ const ENG_API unsigned int Node::parse(const char* data, unsigned int& position)
 	char targetName[FILENAME_MAX];
 	strncpy(targetName, data + position, sizeof(targetName) - 1);
 	position += (unsigned int)strlen(targetName) + 1;
-
-	std::cout << "Parse: " << this->getName() << std::endl;
 
 	return children;
 }
