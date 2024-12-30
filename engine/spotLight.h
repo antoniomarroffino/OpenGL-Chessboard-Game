@@ -25,7 +25,7 @@
   */
 class ENG_API SpotLight : public Light {
 public:
-	SpotLight(const std::string& = "defaultSpotLight", const glm::vec3 & = glm::vec3(1.0f), const glm::vec3& = glm::vec3(0.0f), const float& cutoff = 45.0f);
+	SpotLight(const std::string& = "defaultSpotLight", const glm::vec3 & = glm::vec3(1.0f), const glm::vec3& = glm::vec3(0.0f), const float& = 45.0f, const float& = 1.0f);
 	SpotLight(const SpotLight&);
 	SpotLight& operator=(const SpotLight&) = delete;
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
@@ -36,7 +36,10 @@ public:
 	const glm::vec3& getDirection() const;
 	void setCutoff(const float&);
 	const float& getCutoff() const;
+	void setSpotExponent(const float&);
+	const float& getSpotExponent() const;
 private:
 	glm::vec3 m_direction;
 	float m_cutoff;
+	float m_spotExponent;
 };

@@ -47,6 +47,7 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 
 	glEnable(Light::lightActiveCounter);
 	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf(glm::value_ptr(matrix));
 	glLightfv(Light::lightActiveCounter, GL_AMBIENT, glm::value_ptr(this->m_lightMaterial->getAmbient()));
 	glLightfv(Light::lightActiveCounter, GL_DIFFUSE, glm::value_ptr(this->m_lightMaterial->getDiffuse()));
 	glLightfv(Light::lightActiveCounter, GL_SPECULAR, glm::value_ptr(this->m_lightMaterial->getSpecular()));
