@@ -7,6 +7,7 @@ struct ENG_API List::Reserved {
 	Object* r_node;
 	glm::mat4 r_nodeFinalMatrix;
 
+	~Reserved() = default;
 	Reserved(Object* node, const glm::mat4& finalMatrix) : r_node{node}, r_nodeFinalMatrix{finalMatrix} 
 	{}
 };
@@ -17,6 +18,7 @@ ENG_API List::List() : m_reserved{ std::unique_ptr<List::Reserved>() }, m_listOf
 
 ENG_API List::~List() {
 	this->resetListAndFreeMemory();
+	this->m_notificationService.unsubscribeListener(this);
 }
 
 void ENG_API List::pass(const Node* rootNode) {
@@ -62,10 +64,9 @@ void ENG_API List::resetListAndFreeMemory() {
 
 void ENG_API List::onMatrixChange(const unsigned int& nodeChangedID) {
 	List::Reserved* changedReserved = this->getReservedById(nodeChangedID);
-	if (changedReserved == nullptr) {
-		std::cout << "parsing" << std::endl;
+	if (changedReserved == nullptr)
 		return;
-	}
+	
 	changedReserved->r_nodeFinalMatrix = dynamic_cast<Node*>(changedReserved->r_node)->getFinalMatrix();
 }
 
