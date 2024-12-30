@@ -67,6 +67,6 @@ protected:
 private:
 	void setParent(Node*);
 
-	bool m_isMatrixParsed;
 	NotificationService& m_notificationService;
+	bool m_isMatrixParsed;
 };
