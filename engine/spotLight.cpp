@@ -3,59 +3,66 @@
 #include <GL/freeglut.h>
 
 
-ENG_API SpotLight::SpotLight(const std::string& name, const glm::vec3& position, const glm::vec3& direction, const float& cutoff) 
-    : Light(name, glm::vec4(position, 1.0f)), m_direction{ direction }, m_cutoff{ cutoff } 
+ENG_API SpotLight::SpotLight(const std::string& name, const glm::vec3& position, const glm::vec3& direction, const float& cutoff)
+	: Light(name, glm::vec4(position, 1.0f)), m_direction{ direction }, m_cutoff{ cutoff }
 {
-    if (cutoff < 0.0f || cutoff > 90.0f)
-        this->m_cutoff = 45.0f;
+	if (cutoff < 0.0f || cutoff > 90.0f)
+		this->m_cutoff = 45.0f;
 }
 
-ENG_API SpotLight::SpotLight(const SpotLight& other) : Light(other), m_direction{ other.m_direction }, m_cutoff{ other.m_cutoff }{}
+ENG_API SpotLight::SpotLight(const SpotLight& other) : Light(other), m_direction{ other.m_direction }, m_cutoff{ other.m_cutoff } {}
 
 ENG_API Node* SpotLight::clone() const {
-    SpotLight* newSpotLight = new SpotLight(*this);
-    this->recursiveClone(newSpotLight);
-    return newSpotLight;
+	SpotLight* newSpotLight = new SpotLight(*this);
+	this->recursiveClone(newSpotLight);
+	return newSpotLight;
 }
 
 ENG_API void SpotLight::setDirection(const glm::vec3& direction) {
-    this->m_direction = direction;
+	this->m_direction = direction;
 }
 
 const ENG_API glm::vec3& SpotLight::getDirection() const {
-    return this->m_direction;
+	return this->m_direction;
 }
 
 ENG_API void SpotLight::setCutoff(const float& cutoff) {
-    if (cutoff >= 0.0f && cutoff <= 90.0f)
-        this->m_cutoff = cutoff;
+	if (cutoff >= 0.0f && cutoff <= 90.0f)
+		this->m_cutoff = cutoff;
 }
 
 const ENG_API float& SpotLight::getCutoff() const {
-    return this->m_cutoff;
+	return this->m_cutoff;
 }
 
 void ENG_API SpotLight::render(const glm::mat4& matrix) {
-    Light::render(matrix);
-    glLightfv(Light::lightActiveCounter, GL_SPOT_CUTOFF, &this->getCutoff());
-    glLightfv(Light::lightActiveCounter, GL_SPOT_DIRECTION, glm::value_ptr(this->getDirection()));
-    Light::lightActiveCounter++;
+	Light::render(matrix);
+	glLightfv(Light::lightActiveCounter, GL_SPOT_CUTOFF, &this->getCutoff());
+	glLightfv(Light::lightActiveCounter, GL_SPOT_DIRECTION, glm::value_ptr(this->getDirection()));
+	Light::lightActiveCounter++;
 }
 
 const ENG_API unsigned int SpotLight::parse(const char* data, unsigned int& position) {
 	const unsigned int& children = Light::parse(data, position);
 
-    // Direction:
-    glm::vec3 direction;
-    memcpy(&direction, data + position, sizeof(glm::vec3));
-    position += sizeof(glm::vec3);
-    this->setDirection(direction);
+	// Direction:
+	glm::vec3 direction;
+	memcpy(&direction, data + position, sizeof(glm::vec3));
+	position += sizeof(glm::vec3);
+	this->setDirection(direction);
+	std::cout << "direction x: " << direction.x << " direction y: " << direction.y << " direction z: " << direction.z << std::endl;
+	//cutoff
+	float cutoff;
+	memcpy(&cutoff, data + position, sizeof(float));
+	position += sizeof(float);
+	this->setCutoff(cutoff);
+	std::cout << "cutoff: " << cutoff << std::endl;
 
-    //cutoff
-    float cutoff;
-    memcpy(&cutoff, data + position, sizeof(float));
-    position += sizeof(float);
-    this->setCutoff(cutoff);
+	float spot;
+	memcpy(&spot, data + position, sizeof(float));
+	position += sizeof(float);
+
+	std::cout << "spot: " << spot << std::endl;
 
 	return children;
 }

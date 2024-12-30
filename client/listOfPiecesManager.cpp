@@ -63,43 +63,43 @@ void ListOfPiecesManager::buildChessboard() {
 
 	Node* tempRoot = GameManager::getRootNode();
 
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White rook")), 0, 0));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White knight.001")), 0, 1));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White bitshop.001")), 0, 2));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White queen")), 0, 3));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White king")), 0, 4));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White bitshop")), 0, 5));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White knight")), 0, 6));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("White rook.001")), 0, 7));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhiteRookSx")), 0, 0));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhiteKnightSx")), 0, 1));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhiteBishopSx")), 0, 2));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhiteQueen")), 0, 3));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhiteKing")), 0, 4));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhiteBishopDx")), 0, 5));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhiteKnightDx")), 0, 6));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhiteRookDx")), 0, 7));
 
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("A")), 1, 0));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("B")), 1, 1));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("C")), 1, 2));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("D")), 1, 3));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("E")), 1, 4));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("F")), 1, 5));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("G")), 1, 6));
-	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("H")), 1, 7));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhitePawn1")), 1, 0));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhitePawn2")), 1, 1));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhitePawn3")), 1, 2));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhitePawn4")), 1, 3));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhitePawn5")), 1, 4));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhitePawn6")), 1, 5));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhitePawn7")), 1, 6));
+	whitePieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("WhitePawn8")), 1, 7));
 
 	this->m_whiteList = new ListOfPieces(whitePieces);
 
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("Black rook.001")), 7, 7));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("Black knight")), 7, 6));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("Black bitshop")), 7, 5));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("Black king")), 7, 4));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("Black queen")), 7, 3));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("Black bitshop.001")), 7, 2));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("Black knight.001")), 7, 1));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("Black rook")), 7, 0));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackRookSx")), 7, 7));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackKnightSx")), 7, 6));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackBishopSx")), 7, 5));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackKing")), 7, 4));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackQueen")), 7, 3));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackBishopDx")), 7, 2));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackKnightDx")), 7, 1));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackRookDx")), 7, 0));
 
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("H.001")), 6, 7));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("G.001")), 6, 6));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("F.001")), 6, 5));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("E.001")), 6, 4));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("D.001")), 6, 3));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("C.001")), 6, 2));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("B.001")), 6, 1));
-	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("A.001")), 6, 0));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackPawn1")), 6, 7));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackPawn2")), 6, 6));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackPawn3")), 6, 5));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackPawn4")), 6, 4));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackPawn5")), 6, 3));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackPawn6")), 6, 2));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackPawn7")), 6, 1));
+	blackPieces.push_back(new Piece(const_cast<Node*>(tempRoot->findNodeByName("BlackPawn8")), 6, 0));
 	
 	this->m_blackList = new ListOfPieces(blackPieces);
 }
