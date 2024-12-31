@@ -1,5 +1,4 @@
 #include "notificationService.h"
-#include "iostream"
 
 ENG_API NotificationService::NotificationService() : m_reshapeListeners{ std::vector<ReshapeListener*>() }, m_changeMatrixListeners{ std::vector<ChangeMatrixListener*>() } {}
 

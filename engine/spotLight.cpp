@@ -45,6 +45,7 @@ const ENG_API float& SpotLight::getSpotExponent() const {
 
 void ENG_API SpotLight::render(const glm::mat4& matrix) {
 	Light::render(matrix);
+
 	glLightfv(Light::lightActiveCounter, GL_SPOT_CUTOFF, &this->getCutoff());
 	glLightfv(Light::lightActiveCounter, GL_SPOT_DIRECTION, glm::value_ptr(this->getDirection()));
 	glLightfv(Light::lightActiveCounter, GL_SPOT_EXPONENT, &this->getSpotExponent());

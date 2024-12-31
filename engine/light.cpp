@@ -1,4 +1,7 @@
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include "GL/freeglut.h"
+#include "glm/gtx/string_cast.hpp"
 #include "light.h"
 
 glm::vec3 deltaIncrement{ glm::vec3(0.1f,0.1f,0.1f) };
@@ -48,14 +51,22 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 	glEnable(Light::lightActiveCounter);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(glm::value_ptr(matrix));
+
+	glDisable(GL_LIGHTING);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	glutSolidCone(0.2, 0.5, 20, 20);
+	glEnable(GL_LIGHTING);
+
+	std::cout << getName() << std::endl;
 	glLightfv(Light::lightActiveCounter, GL_AMBIENT, glm::value_ptr(this->m_lightMaterial->getAmbient()));
 	glLightfv(Light::lightActiveCounter, GL_DIFFUSE, glm::value_ptr(this->m_lightMaterial->getDiffuse()));
 	glLightfv(Light::lightActiveCounter, GL_SPECULAR, glm::value_ptr(this->m_lightMaterial->getSpecular()));
-	glLightfv(Light::lightActiveCounter, GL_POSITION, glm::value_ptr(matrix * this->getPosition()));
+	glLightfv(Light::lightActiveCounter, GL_POSITION, glm::value_ptr(this->getPosition()));
 }
 
 const ENG_API unsigned int Light::parse(const char* data, unsigned int& position) {
 	unsigned int children = Node::parse(data, position);
+	std::cout << glm::to_string(getMatrix()) << std::endl << std::endl;
 
 	//subtype
 	position += sizeof(unsigned char);
