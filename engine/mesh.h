@@ -35,6 +35,8 @@ public:
 	const unsigned int parse(const char*, unsigned int&) override;
 	Node* clone() const override;
 
+	std::vector<glm::vec3> getVertices();
+
 	~Mesh();
 
 private:

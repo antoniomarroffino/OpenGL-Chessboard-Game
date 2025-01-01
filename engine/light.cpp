@@ -57,7 +57,7 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 	glutSolidCone(0.2, 0.5, 20, 20);
 	glEnable(GL_LIGHTING);
 
-	std::cout << getName() << std::endl;
+	//std::cout << getName() << std::endl;
 	glLightfv(Light::lightActiveCounter, GL_AMBIENT, glm::value_ptr(this->m_lightMaterial->getAmbient()));
 	glLightfv(Light::lightActiveCounter, GL_DIFFUSE, glm::value_ptr(this->m_lightMaterial->getDiffuse()));
 	glLightfv(Light::lightActiveCounter, GL_SPECULAR, glm::value_ptr(this->m_lightMaterial->getSpecular()));
@@ -66,7 +66,7 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 
 const ENG_API unsigned int Light::parse(const char* data, unsigned int& position) {
 	unsigned int children = Node::parse(data, position);
-	std::cout << glm::to_string(getMatrix()) << std::endl << std::endl;
+	//std::cout << glm::to_string(getMatrix()) << std::endl << std::endl;
 
 	//subtype
 	position += sizeof(unsigned char);

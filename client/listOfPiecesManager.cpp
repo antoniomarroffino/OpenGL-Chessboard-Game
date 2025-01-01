@@ -1,5 +1,6 @@
 #include "listOfPiecesManager.h"
 #include "gameManager.h"
+#include "mesh.h"
 
 #define CHESSBOARD "Chessboard"
 #define SELECT_POINTER "SelectPointer"
@@ -165,7 +166,7 @@ bool ListOfPiecesManager::confirmMove() {
 void  ListOfPiecesManager::preGameHandler() {
 	this->m_iteratorOnList = 0;
 	GameManager::getRootNode()->removeChild(this->m_selectPointer);
-	//this->createShadow();
+	this->createShadow();
 }
 
 void ListOfPiecesManager::choiceHandler() {
@@ -208,15 +209,32 @@ void ListOfPiecesManager::updateChessboard(ListOfPieces* whiteList, ListOfPieces
 
 void ListOfPiecesManager::createShadow() {
 	Node* chessboardNode = const_cast<Node*>(GameManager::getRootNode()->findNodeByName(CHESSBOARD));
-	for (auto* child : chessboardNode->getChildren()) {
-		Node* childCloned = child->clone();
+
+	for (Node* child : chessboardNode->getChildren()) {
+		Mesh* meshChild = dynamic_cast<Mesh*>(child);
+		float minY = std::numeric_limits<float>::max();
+		float maxY = std::numeric_limits<float>::lowest();
+
+		for (const glm::vec3& vertex : meshChild->getVertices()) {
+			minY = std::min(minY, vertex.y);
+			maxY = std::max(maxY, vertex.y);
+		}
+
+		float height = maxY - minY;
+		float offset = height / 2.0f;
+
+		Node* childCloned = meshChild->clone();
 		childCloned->setEnableLighting(false);
 		childCloned->setName(childCloned->getName() + "_shadow");
-		childCloned->setMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.01f, 0.05f)) * glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 0.0f, 1.0f)) * childCloned->getMatrix());
-		childCloned->getMaterial()->setTexture(nullptr);
-		childCloned->getMaterial()->setAmbient(glm::vec3(0.2f, 0.2f, 0.2f));
-		childCloned->getMaterial()->setDiffuse(glm::vec3(0.2f, 0.2f, 0.2f));
-		childCloned->getMaterial()->setSpecular(glm::vec3(0.2f, 0.2f, 0.2f));
-		chessboardNode->addChild(childCloned);
+		childCloned->setMatrix(
+			glm::translate(glm::mat4(1.0f), glm::vec3(-0.3f, -offset + 0.01f, 0.0f)) *
+			glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 0.0f, 1.0f))
+		);
+		auto* material = childCloned->getMaterial();
+		material->setTexture(nullptr);
+		material->setAmbient(glm::vec3(0.2f, 0.2f, 0.2f));
+		material->setDiffuse(glm::vec3(0.2f, 0.2f, 0.2f));
+		material->setSpecular(glm::vec3(0.2f, 0.2f, 0.2f));
+		child->addChild(childCloned);
 	}
 }

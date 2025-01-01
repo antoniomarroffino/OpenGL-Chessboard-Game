@@ -63,6 +63,20 @@ ENG_API Node* Mesh::clone() const {
     return newMesh;
 }
 
+ENG_API std::vector<glm::vec3> Mesh::getVertices() {
+    std::vector<glm::vec3> vertices;
+
+    // Itera su tutte le facce
+    for (const auto& face : this->m_reserved->m_faces) {
+        // Itera su tutti i vertici della faccia
+        for (const auto& vertex : face) {
+            vertices.push_back(vertex.v_coords);
+        }
+    }
+
+    return vertices;
+}
+
 void ENG_API Mesh::render(const glm::mat4& matrix) {
 	//GLLOAD MATRIX
     glMatrixMode(GL_MODELVIEW);
