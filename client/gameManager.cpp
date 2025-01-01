@@ -228,7 +228,6 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		this->m_reserved->movementManager.moveRight(this->m_reserved->listOfPiecesManager.getChoosenPiece());
 		break;
 	}
-
 }
 
 void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
@@ -321,7 +320,7 @@ void GameManager::createGraphicsList() {
 }
 
 void GameManager::startGame() {
-	this->m_reserved->rootNode = this->m_reserved->engine.load("scenaDef1.ovo");
+	this->m_reserved->rootNode = this->m_reserved->engine.load("scenaDef.ovo");
 	if (this->m_reserved->rootNode == nullptr) {
 		std::cerr << "ERROR: Error during parse of the scene" << std::endl;
 		return;
