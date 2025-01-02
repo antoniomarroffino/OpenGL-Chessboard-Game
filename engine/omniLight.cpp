@@ -17,6 +17,8 @@ const ENG_API float& OmniLight::getCutoff() const {
 
 void ENG_API OmniLight::render(const glm::mat4& matrix) {
     Light::render(matrix);
+
     glLightfv(Light::lightActiveCounter, GL_SPOT_CUTOFF, &this->m_cutoff);
+
     Light::lightActiveCounter++;
 } 

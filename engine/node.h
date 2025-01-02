@@ -56,6 +56,7 @@ protected:
 	Node(const Node&);
 	
 	virtual void recursiveClone(Node*) const;
+	void recursiveNotifyChangeMatrix();
 
 	bool isEnableLighting() const;
 

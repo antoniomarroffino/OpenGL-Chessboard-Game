@@ -47,8 +47,9 @@ void ENG_API SpotLight::render(const glm::mat4& matrix) {
 	Light::render(matrix);
 
 	glLightfv(Light::lightActiveCounter, GL_SPOT_CUTOFF, &this->getCutoff());
-	glLightfv(Light::lightActiveCounter, GL_SPOT_DIRECTION, glm::value_ptr(this->getDirection()));
+	glLightfv(Light::lightActiveCounter, GL_SPOT_DIRECTION, glm::value_ptr(glm::vec4(this->getDirection(), 1.0f)));
 	glLightfv(Light::lightActiveCounter, GL_SPOT_EXPONENT, &this->getSpotExponent());
+
 	Light::lightActiveCounter++;
 }
 
@@ -59,6 +60,7 @@ const ENG_API unsigned int SpotLight::parse(const char* data, unsigned int& posi
 	glm::vec3 direction;
 	memcpy(&direction, data + position, sizeof(glm::vec3));
 	position += sizeof(glm::vec3);
+
 	this->setDirection(direction);
 
 	//cutoff

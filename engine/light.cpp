@@ -1,7 +1,4 @@
-#define GLM_ENABLE_EXPERIMENTAL
-
 #include "GL/freeglut.h"
-#include "glm/gtx/string_cast.hpp"
 #include "light.h"
 
 glm::vec3 deltaIncrement{ glm::vec3(0.1f,0.1f,0.1f) };
@@ -9,9 +6,9 @@ glm::vec3 deltaIncrement{ glm::vec3(0.1f,0.1f,0.1f) };
 unsigned int Light::lightActiveCounter{ GL_LIGHT0 };
 unsigned int Light::maxNumberOfActiveLights{ GL_LIGHT0 + 7 };
 
-ENG_API Light::Light(const std::string& name, const glm::vec4& position) : Node(name), m_position{ position }, m_lightMaterial{ nullptr } {}
+ENG_API Light::Light(const std::string& name, const glm::vec4& position) : Node(name), m_position{ position }, m_lightMaterial{ nullptr }, m_tempAlbedo{ glm::vec3(0.0f) }, m_lightIsOn{ true } {}
 
-ENG_API Light::Light(const Light& other) : Node(other), m_position{ other.m_position }, m_lightMaterial{ other.m_lightMaterial } {}
+ENG_API Light::Light(const Light& other) : Node(other), m_position{ other.m_position }, m_lightMaterial{ other.m_lightMaterial == nullptr ? other.m_lightMaterial : new Material(*other.m_lightMaterial) }, m_tempAlbedo{ other.m_tempAlbedo }, m_lightIsOn{ other.m_lightIsOn } {}
 
 ENG_API void Light::setPosition(const glm::vec3& position) {
 	this->m_position = glm::vec4(position, 1.0f);
@@ -24,6 +21,21 @@ const ENG_API glm::vec4& Light::getPosition() const {
 ENG_API void Light::resetLightCounter() {
 	for (unsigned int lightCounter = GL_LIGHT0; lightCounter < Light::lightActiveCounter; lightCounter++) glDisable(lightCounter);
 	Light::lightActiveCounter = GL_LIGHT0;
+}
+
+ENG_API void Light::turnOn() {
+	this->m_lightMaterial->setDiffuse(this->m_tempAlbedo);
+	this->m_lightMaterial->setAmbient(this->m_tempAlbedo);
+	this->m_lightMaterial->setSpecular(this->m_tempAlbedo);
+	this->m_lightIsOn = true;
+}
+
+ENG_API void Light::turnOff() {
+	this->m_tempAlbedo = this->m_lightMaterial->getDiffuse();
+	this->m_lightMaterial->setDiffuse(glm::vec3(0.0f));
+	this->m_lightMaterial->setAmbient(glm::vec3(0.0f));
+	this->m_lightMaterial->setSpecular(glm::vec3(0.0f));
+	this->m_lightIsOn = false;
 }
 
 ENG_API void Light::increaseIntensity() {
@@ -44,6 +56,10 @@ ENG_API void Light::decreaseIntensity() {
 	this->m_lightMaterial->setSpecular(diffuse);
 }
 
+ENG_API const bool& Light::isLightOn() const {
+	return this->m_lightIsOn;
+}
+
 ENG_API void Light::render(const glm::mat4& matrix) {
 	if (this->m_lightMaterial == nullptr) return;
 	if (Light::lightActiveCounter > Light::maxNumberOfActiveLights) return;
@@ -53,8 +69,8 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 	glLoadMatrixf(glm::value_ptr(matrix));
 
 	glDisable(GL_LIGHTING);
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glutSolidCone(0.2, 0.5, 20, 20);
+	glColor3f(0.5f, 1.0f, 1.0f);
+	glutSolidSphere(0.5, 20, 20);
 	glEnable(GL_LIGHTING);
 
 	//std::cout << getName() << std::endl;
@@ -66,7 +82,6 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 
 const ENG_API unsigned int Light::parse(const char* data, unsigned int& position) {
 	unsigned int children = Node::parse(data, position);
-	//std::cout << glm::to_string(getMatrix()) << std::endl << std::endl;
 
 	//subtype
 	position += sizeof(unsigned char);

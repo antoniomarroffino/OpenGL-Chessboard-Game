@@ -32,10 +32,16 @@ void ENG_API Node::setMatrix(const glm::mat4& matrix) {
 	this->m_matrix = matrix;
 	if (dynamic_cast<Camera*>(this) == nullptr) {
 		if (this->m_isMatrixParsed)
-			this->m_notificationService.notifyOnChangeMatrix(this->getId());
+			this->recursiveNotifyChangeMatrix();
 		else
 			this->m_isMatrixParsed = true;
 	}	
+}
+
+void ENG_API Node::recursiveNotifyChangeMatrix() {
+	this->m_notificationService.notifyOnChangeMatrix(this->getId());
+	for (auto* child : this->getChildren())
+		child->recursiveNotifyChangeMatrix();
 }
 
 const ENG_API glm::mat4& Node::getMatrix() const {

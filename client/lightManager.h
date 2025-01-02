@@ -16,17 +16,11 @@ public:
 
 	static LightManager& getInstance();
 
-	void turnOn(const std::string&, Node* = nullptr);
-	void turnOff(const std::string&, Node* = nullptr);
-	bool isLightOn(const std::string&, Node* = nullptr) const;
+	void pressButton(const std::string&, Node* = nullptr);
 
 	void increaseLight(const std::string&, Node* = nullptr);
 	void decreaseLight(const std::string&, Node* = nullptr);
 private:
 	LightManager();
-
-	Light* isLightPresent(const std::string&) const;
-
-	std::vector<Light*> m_lights;
 };
 

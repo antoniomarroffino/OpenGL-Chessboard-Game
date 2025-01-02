@@ -59,6 +59,10 @@ void GameManager::keyboardCallbackPreGame(unsigned char key, int mouseX, int mou
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		this->createGraphicsList();
 		break;
+	case 'l':
+	case 'L':
+		this->m_reserved->lightManager.pressButton(LAMP_OMNI);
+		break;
 	}
 }
 
@@ -84,6 +88,7 @@ std::list<std::string> GameManager::menuPreGame() {
 	std::list<std::string> menu;
 	menu.push_back("[Spacebar] Go to cheesboard view");
 	menu.push_back("[Arrow key] Move camera");
+	menu.push_back("[L] Turn on / off light");
 	return menu;
 }
 //------------------------------------------------------------------------------------------------------------------------
@@ -126,17 +131,13 @@ void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mous
 		break;
 	case 'l':
 	case 'L':
-		if (this->m_reserved->lightManager.isLightOn(LAMP_OMNI))
-			this->m_reserved->lightManager.turnOff(LAMP_OMNI);
-		else
-			this->m_reserved->lightManager.turnOn(LAMP_OMNI);
-		this->createGraphicsList();
+		this->m_reserved->lightManager.pressButton(LAMP_OMNI);
 		break;
 	case '+':
-		this->m_reserved->lightManager.increaseLight(LAMP_OMNI);
+		this->m_reserved->lightManager.increaseLight(CHESSBOARD_SPOT);
 		break;
 	case '-':
-		this->m_reserved->lightManager.decreaseLight(LAMP_OMNI);
+		this->m_reserved->lightManager.decreaseLight(CHESSBOARD_SPOT);
 		break;
 	}
 }
@@ -193,19 +194,13 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 		break;
 	case 'l':
 	case 'L':
-		if (this->m_reserved->lightManager.isLightOn(LAMP_OMNI))
-			this->m_reserved->lightManager.turnOff(LAMP_OMNI);
-		else
-			this->m_reserved->lightManager.turnOn(LAMP_OMNI);
-		this->createGraphicsList();
+		this->m_reserved->lightManager.pressButton(LAMP_OMNI);
 		break;
 	case '+':
-		this->m_reserved->lightManager.increaseLight(LAMP_OMNI);
-		this->createGraphicsList();
+		this->m_reserved->lightManager.increaseLight(CHESSBOARD_SPOT);
 		break;
 	case '-':
-		this->m_reserved->lightManager.decreaseLight(LAMP_OMNI);
-		this->createGraphicsList();
+		this->m_reserved->lightManager.decreaseLight(CHESSBOARD_SPOT);
 		break;
 	}
 
@@ -268,22 +263,16 @@ void GameManager::keyboardCallbackEndGame(unsigned char key, int mouseX, int mou
 	case 'R':
 		this->m_reserved->historyManager.redo();
 		this->createGraphicsList();
-	break;	
+		break;
 	case 'l':
 	case 'L':
-		if (this->m_reserved->lightManager.isLightOn(LAMP_OMNI))
-			this->m_reserved->lightManager.turnOff(LAMP_OMNI);
-		else
-			this->m_reserved->lightManager.turnOn(LAMP_OMNI);
-		this->createGraphicsList();
+		this->m_reserved->lightManager.pressButton(LAMP_OMNI);
 		break;
 	case '+':
-		this->m_reserved->lightManager.increaseLight(LAMP_OMNI);
-		this->createGraphicsList();
+		this->m_reserved->lightManager.increaseLight(CHESSBOARD_SPOT);
 		break;
 	case '-':
-		this->m_reserved->lightManager.decreaseLight(LAMP_OMNI);
-		this->createGraphicsList();
+		this->m_reserved->lightManager.decreaseLight(CHESSBOARD_SPOT);
 		break;
 	}
 }
@@ -346,12 +335,12 @@ void GameManager::gameLoop() {
 			this->m_reserved->cameraManager.findCameraByName(MENU_CAMERA),
 			this->m_reserved->statusManager.getMenu());
 
-		if(this->m_reserved->statusManager.getCurrentGameStatus() == GameStatus::CHOICE || this->m_reserved->statusManager.getCurrentGameStatus() == GameStatus::GAME)
+		if (this->m_reserved->statusManager.getCurrentGameStatus() == GameStatus::CHOICE || this->m_reserved->statusManager.getCurrentGameStatus() == GameStatus::GAME)
 			this->m_reserved->listOfPiecesManager.updateSelectPointer();
 
 		this->m_reserved->engine.swap();
 
-	    //std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+		//std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 	}
 }
 

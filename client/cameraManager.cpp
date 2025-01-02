@@ -22,6 +22,10 @@ void CameraManager::createCameras() {
 	startCamera->setMatrix(glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
 		glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 15.0f))
 	);
+	//startCamera->setMatrix(
+		//glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) *
+	//	glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 25.0f, 200.0f))
+	//);
 	this->addNewCamera(startCamera);
 
 	Camera* chessboardCamera = new PerspCamera(CHESSBOARD_CAMERA, 100.0f, 100.0f, 1.0f, 100.0f, glm::radians(45.0f));

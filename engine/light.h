@@ -32,8 +32,11 @@ public:
 	virtual void setPosition(const glm::vec3&);
 	const glm::vec4& getPosition() const;
 	static void resetLightCounter();
+	void turnOn();
+	void turnOff();
 	void increaseIntensity();
 	void decreaseIntensity();
+	const bool& isLightOn() const;
 protected:
 	Light(const std::string&, const glm::vec4&);
 	Light(const Light&);
@@ -41,6 +44,8 @@ protected:
 
 	glm::vec4 m_position;
 	Material* m_lightMaterial;
+	glm::vec3 m_tempAlbedo;
+	bool m_lightIsOn;
 	static unsigned int maxNumberOfActiveLights;
 	static unsigned int lightActiveCounter;
 };

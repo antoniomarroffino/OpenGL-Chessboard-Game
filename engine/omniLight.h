@@ -25,7 +25,7 @@
   */
 class ENG_API OmniLight : public Light {
 public:
-	OmniLight(const std::string& = "defaultOmniLight", const glm::vec3& = glm::vec3(1.0f));
+	OmniLight(const std::string& = "defaultOmniLight", const glm::vec3& = glm::vec3(0.0f));
 	OmniLight(const OmniLight&);
 	OmniLight& operator=(const OmniLight&) = delete;
 	void render(const glm::mat4 & = glm::mat4(1.0f)) override;
