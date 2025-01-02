@@ -3,8 +3,8 @@
 TEST(SpotLightTest, Constructor){
     SpotLight* spot = new SpotLight();
 
-    EXPECT_EQ(spot->getPosition(), glm::vec4(1.0f));
-    EXPECT_EQ(spot->getDirection(), glm::vec3(0.0f));
+    EXPECT_EQ(spot->getPosition(), glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    EXPECT_EQ(spot->getDirection(), glm::vec3(1.0f));
     EXPECT_EQ(spot->getCutoff(), 45.0f);
 
     SpotLight* spot2 = new SpotLight("name", glm::vec3(1.0f), glm::vec3(1.0f), 91.0f);
