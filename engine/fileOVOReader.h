@@ -1,29 +1,147 @@
+/**
+ * @file    fileOVOReader.h
+ * @brief   FileOVOReader include file
+ *
+ * This file defines the FileOVOReader class, which is responsible for reading and parsing `.ovo` files,
+ * a custom binary format. It handles the file opening, chunk reading, material retrieval, and node parsing.
+ * This class uses a singleton pattern to ensure only one instance is used for file processing.
+ *
+ * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ */
+
 #pragma once
 
+ //////////////
+ // #INCLUDE //
+ //////////////
+
+ // Project-specific includes
 #include "ovoObjectFactory.h"
 #include "node.h"
 #include "material.h"
+
+// Standard libraries
 #include <map>
 
+///////////////////////
+// MAIN FILEOVOREADER CLASS //
+///////////////////////
+
+/**
+ * @brief Concrete FileOVOReader class.
+ *
+ * The FileOVOReader class is responsible for parsing `.ovo` files. It reads the file, processes the chunks of data,
+ * retrieves materials, and constructs a hierarchical scene graph of nodes from the parsed data.
+ */
 class ENG_API FileOVOReader {
 public:
-	FileOVOReader(const FileOVOReader&) = delete;
-	FileOVOReader& operator=(const FileOVOReader&) = delete;
+    /**
+     * @brief Copy constructor is deleted to ensure singleton usage.
+     */
+    FileOVOReader(const FileOVOReader&) = delete;
 
-	static FileOVOReader& getInstance();
+    /**
+     * @brief Assignment operator is deleted to ensure singleton usage.
+     */
+    FileOVOReader& operator=(const FileOVOReader&) = delete;
 
-	bool hasOVOExtension(const std::string&);
-	Node* parseFile(const std::string&);
+    /**
+     * @brief Returns the singleton instance of the FileOVOReader.
+     *
+     * This method returns the unique instance of the FileOVOReader.
+     *
+     * @return The singleton instance of FileOVOReader.
+     */
+    static FileOVOReader& getInstance();
+
+    /**
+     * @brief Checks if the provided file name has the `.ovo` extension.
+     *
+     * This method checks if the given file name has the `.ovo` extension.
+     *
+     * @param fileName The file name to check.
+     * @return `true` if the file has `.ovo` extension, `false` otherwise.
+     */
+    bool hasOVOExtension(const std::string& fileName);
+
+    /**
+     * @brief Parses the `.ovo` file and constructs the scene graph.
+     *
+     * This method opens the specified `.ovo` file, reads its chunks, and recursively constructs the scene graph
+     * from the parsed data, returning the root node of the scene.
+     *
+     * @param fileName The file name of the `.ovo` file to parse.
+     * @return A pointer to the root node of the parsed scene graph.
+     */
+    Node* parseFile(const std::string& fileName);
+
 private:
-	FileOVOReader();
+    /**
+     * @brief Constructor that initializes the FileOVOReader.
+     */
+    FileOVOReader();
 
-	const bool openFile(const std::string&);
-	char* getDataOfChunkFromFile(unsigned int&, unsigned int&);
-	void undoReadDataFromFile(const unsigned int&);
-	void retrieveMaterials();
-	Node* recursiveLoad();
+    /**
+     * @brief Opens the specified file.
+     *
+     * This method attempts to open the file in binary read mode.
+     *
+     * @param fileName The name of the file to open.
+     * @return `true` if the file was successfully opened, `false` otherwise.
+     */
+    const bool openFile(const std::string& fileName);
 
-	static std::string ovoExtension;
-	FILE *m_dat;
-	std::map<std::string, Material*> m_materialsMap;
+    /**
+     * @brief Reads a chunk of data from the opened file.
+     *
+     * This method reads the chunk ID and size from the file, followed by the chunk data itself.
+     *
+     * @param chunkId A reference to store the chunk ID.
+     * @param chunkSize A reference to store the chunk size.
+     * @return A pointer to the chunk data, or `nullptr` if an error occurs.
+     */
+    char* getDataOfChunkFromFile(unsigned int& chunkId, unsigned int& chunkSize);
+
+    /**
+     * @brief Rolls back the file pointer after reading a chunk.
+     *
+     * This method undoes the reading of a chunk by moving the file pointer back to the previous position.
+     *
+     * @param chunkSize The size of the chunk to roll back.
+     */
+    void undoReadDataFromFile(const unsigned int& chunkSize);
+
+    /**
+     * @brief Retrieves materials from the file.
+     *
+     * This method reads the material chunks from the file and stores them in the `m_materialsMap` map.
+     */
+    void retrieveMaterials();
+
+    /**
+     * @brief Recursively loads the scene graph from the file.
+     *
+     * This method recursively reads the nodes from the file, constructing the scene graph of `Node` objects,
+     * and assigns materials to meshes.
+     *
+     * @return A pointer to the root node of the scene graph.
+     */
+    Node* recursiveLoad();
+
+    /**
+     * @brief The `.ovo` file extension.
+     */
+    static std::string ovoExtension;
+
+    /**
+     * @brief File pointer for reading the `.ovo` file.
+     */
+    FILE* m_dat;
+
+    /**
+     * @brief Map of materials indexed by their names.
+     */
+    std::map<std::string, Material*> m_materialsMap;
 };

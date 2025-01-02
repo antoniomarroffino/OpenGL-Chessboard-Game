@@ -68,12 +68,6 @@ ENG_API void Light::render(const glm::mat4& matrix) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(glm::value_ptr(matrix));
 
-	glDisable(GL_LIGHTING);
-	glColor3f(0.5f, 1.0f, 1.0f);
-	glutSolidSphere(0.5, 20, 20);
-	glEnable(GL_LIGHTING);
-
-	//std::cout << getName() << std::endl;
 	glLightfv(Light::lightActiveCounter, GL_AMBIENT, glm::value_ptr(this->m_lightMaterial->getAmbient()));
 	glLightfv(Light::lightActiveCounter, GL_DIFFUSE, glm::value_ptr(this->m_lightMaterial->getDiffuse()));
 	glLightfv(Light::lightActiveCounter, GL_SPECULAR, glm::value_ptr(this->m_lightMaterial->getSpecular()));

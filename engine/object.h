@@ -13,18 +13,18 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
- // Standard libraries
+// Standard libraries
 #include <string>
 #include <iostream>
 #include <iomanip>
 #include <limits.h>
 #include <cstring>
 
-// Third-party libraries
+// Project-specific headers
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
