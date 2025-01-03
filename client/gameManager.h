@@ -23,6 +23,7 @@
 
 // Standard libraries
 #include <memory>
+#include <array>
 
 // Project-specific headers
 #include "statusManager.h"
@@ -31,7 +32,6 @@
 #include "listOfPiecesManager.h"
 #include "historyManager.h"
 #include "lightManager.h"
-#include <array>
 #include "engine.h"
 #include "node.h"
 #include "glm/glm.hpp"
@@ -51,71 +51,71 @@
   */
 class GameManager {
 public:
-    /**
-     * @brief Deleted copy constructor to prevent copying of the singleton instance.
-     */
-    GameManager(const GameManager&) = delete;
+	/**
+	 * @brief Deleted copy constructor to prevent copying of the singleton instance.
+	 */
+	GameManager(const GameManager&) = delete;
 
-    /**
-     * @brief Deleted copy assignment operator to prevent copying of the singleton instance.
-     */
-    GameManager& operator=(const GameManager&) = delete;
+	/**
+	 * @brief Deleted copy assignment operator to prevent copying of the singleton instance.
+	 */
+	GameManager& operator=(const GameManager&) = delete;
 
-    /**
-     * @brief Destructor that releases resources associated with the game.
-     */
-    ~GameManager();
+	/**
+	 * @brief Destructor that releases resources associated with the game.
+	 */
+	~GameManager();
 
-    /**
-     * @brief Returns the singleton instance of GameManager.
-     * @return Reference to the singleton GameManager instance.
-     */
-    static GameManager& getInstance();
+	/**
+	 * @brief Returns the singleton instance of GameManager.
+	 * @return Reference to the singleton GameManager instance.
+	 */
+	static GameManager& getInstance();
 
-    /**
-     * @brief Sets the root node for the game scene.
-     * @param rootNode The root node to set for the scene.
-     */
-    static void setRootNode(Node* rootNode);
+	/**
+	 * @brief Sets the root node for the game scene.
+	 * @param rootNode The root node to set for the scene.
+	 */
+	static void setRootNode(Node* rootNode);
 
-    /**
-     * @brief Returns the root node of the game scene.
-     * @return Pointer to the root node.
-     */
-    static Node* getRootNode();
+	/**
+	 * @brief Returns the root node of the game scene.
+	 * @return Pointer to the root node.
+	 */
+	static Node* getRootNode();
 
-    /**
-     * @brief Starts the game by loading the scene and initializing necessary components.
-     */
-    void startGame();
+	/**
+	 * @brief Starts the game by loading the scene and initializing necessary components.
+	 */
+	void startGame();
 
 private:
-    /**
-     * @brief Initializes the game components.
-     */
-    void initialize();
+	/**
+	 * @brief Initializes the game components.
+	 */
+	void initialize();
+
+	/**
+	 * @brief Main game loop that processes game logic and rendering.
+	 */
+	void gameLoop();
+
+	/**
+	 * @brief Resets the game state to the initial pre-game state.
+	 */
+	void resetGame();
+
+	/**
+	 * @brief Creates the graphics list for the game scene.
+	 */
+	void createGraphicsList();
 
     /**
-     * @brief Main game loop that processes game logic and rendering.
-     */
-    void gameLoop();
-
-    /**
-     * @brief Resets the game state to the initial pre-game state.
-     */
-    void resetGame();
-
-    /**
-     * @brief Creates the graphics list for the game scene.
-     */
-    void createGraphicsList();
-
-    /**
-     * @brief Handles keyboard input during the pre-game state.
-     * @param key The pressed key.
-     * @param mouseX The mouse X position.
-     * @param mouseY The mouse Y position.
-     */
+        * @brief Handles keyboard input during the pre-game state.
+        * @param key The pressed key.
+        * @param mouseX The mouse X position.
+        * @param mouseY The mouse Y position.
+        */
     void keyboardCallbackPreGame(unsigned char key, int mouseX, int mouseY);
 
     /**
@@ -196,32 +196,19 @@ private:
      * @brief Displays the menu options during the end game state.
      * @return List of menu options as strings.
      */
-    std::list<std::string> menuEndGame();
+	std::list<std::string> menuEndGame();
+
+	GameManager();
 
     /**
-     * @brief Resets the game scene and pieces to their initial state.
-     */
-    void resetGame();
+    * @struct Reserved
+    * @brief Struct to hold references to various game subsystems.
+    *
+    * This struct holds references to game components such as camera, status manager, movement manager, list of pieces
+    * manager, history manager, light manager, engine, and root nodes for the game scene. It is used internally by
+    * the GameManager class to interact with these subsystems.
+    */
+	struct Reserved;
 
-    /**
-     * @brief Creates and updates the game graphics list.
-     */
-    void createGraphicsList();
-
-    /**
-     * @brief Initializes the game components and sets up the game status callbacks.
-     */
-    void initialize();
-
-    /**
-     * @struct Reserved
-     * @brief Struct to hold references to various game subsystems.
-     *
-     * This struct holds references to game components such as camera, status manager, movement manager, list of pieces
-     * manager, history manager, light manager, engine, and root nodes for the game scene. It is used internally by
-     * the GameManager class to interact with these subsystems.
-     */
-    struct Reserved;
-
-    std::unique_ptr<Reserved> m_reserved;
+	std::unique_ptr<Reserved> m_reserved;
 };

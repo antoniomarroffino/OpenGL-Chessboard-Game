@@ -1,0 +1,136 @@
+\doxysection{Game\+Manager Class Reference}
+\hypertarget{class_game_manager}{}\label{class_game_manager}\index{GameManager@{GameManager}}
+
+
+Singleton class responsible for managing the game state, input handling, and transitioning between different game modes.  
+
+
+
+
+{\ttfamily \#include $<$game\+Manager.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_game_manager_1_1_reserved}{Reserved}}
+\begin{DoxyCompactList}\small\item\em Struct to hold references to various game subsystems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_manager_a5af1609aaeb8c7c74356a108c1d16ba8}{Game\+Manager}} (const \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor to prevent copying of the singleton instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_manager}{Game\+Manager}} \& \mbox{\hyperlink{class_game_manager_a4f30ff58781438a8814e009a55c6de65}{operator=}} (const \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator to prevent copying of the singleton instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_manager_aaae63e38e358379c1fe507c5197a8435}{\texorpdfstring{$\sim$}{\string~}\+Game\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor that releases resources associated with the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_manager_ae272eb0bf4e4987797fcff97723819cc}{start\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Starts the game by loading the scene and initializing necessary components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \& \mbox{\hyperlink{class_game_manager_a62c0bd2e38276cc3805fb38a85890d42}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Returns the singleton instance of \doxylink{class_game_manager}{Game\+Manager}. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_game_manager_ac5e2d862b4c5ef4bd31bc8a288ce6b38}{set\+Root\+Node}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}root\+Node)
+\begin{DoxyCompactList}\small\item\em Sets the root node for the game scene. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_manager_ac81e49dcab325cf42543984b4329cd8c}{get\+Root\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Returns the root node of the game scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton class responsible for managing the game state, input handling, and transitioning between different game modes. 
+
+The \doxylink{class_game_manager}{Game\+Manager} class controls the game flow by maintaining and managing various game subsystems such as camera, status, movement, light, history, and game pieces. It also handles user input for camera control, light toggling, piece movement, and game state transitions (pre-\/game, in-\/game, and end-\/game).
+
+This class follows the Singleton pattern, meaning only one instance of \doxylink{class_game_manager}{Game\+Manager} can exist during the game lifecycle. It handles the game loop, processes user inputs via keyboard and special keys, and ensures that the appropriate actions are taken at each stage of the game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_manager_a5af1609aaeb8c7c74356a108c1d16ba8}\index{GameManager@{GameManager}!GameManager@{GameManager}}
+\index{GameManager@{GameManager}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{GameManager()}{GameManager()}}
+{\footnotesize\ttfamily \label{class_game_manager_a5af1609aaeb8c7c74356a108c1d16ba8} 
+Game\+Manager\+::\+Game\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor to prevent copying of the singleton instance. 
+
+\Hypertarget{class_game_manager_aaae63e38e358379c1fe507c5197a8435}\index{GameManager@{GameManager}!````~GameManager@{\texorpdfstring{$\sim$}{\string~}GameManager}}
+\index{````~GameManager@{\texorpdfstring{$\sim$}{\string~}GameManager}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GameManager()}{\string~GameManager()}}
+{\footnotesize\ttfamily \label{class_game_manager_aaae63e38e358379c1fe507c5197a8435} 
+Game\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Game\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor that releases resources associated with the game. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_manager_a62c0bd2e38276cc3805fb38a85890d42}\index{GameManager@{GameManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_game_manager_a62c0bd2e38276cc3805fb38a85890d42} 
+\mbox{\hyperlink{class_game_manager}{Game\+Manager}} \& Game\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the singleton instance of \doxylink{class_game_manager}{Game\+Manager}. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the singleton \doxylink{class_game_manager}{Game\+Manager} instance. 
+\end{DoxyReturn}
+\Hypertarget{class_game_manager_ac81e49dcab325cf42543984b4329cd8c}\index{GameManager@{GameManager}!getRootNode@{getRootNode}}
+\index{getRootNode@{getRootNode}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{getRootNode()}{getRootNode()}}
+{\footnotesize\ttfamily \label{class_game_manager_ac81e49dcab325cf42543984b4329cd8c} 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Game\+Manager\+::get\+Root\+Node (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the root node of the game scene. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the root node. 
+\end{DoxyReturn}
+\Hypertarget{class_game_manager_a4f30ff58781438a8814e009a55c6de65}\index{GameManager@{GameManager}!operator=@{operator=}}
+\index{operator=@{operator=}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_game_manager_a4f30ff58781438a8814e009a55c6de65} 
+\mbox{\hyperlink{class_game_manager}{Game\+Manager}} \& Game\+Manager\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_game_manager}{Game\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator to prevent copying of the singleton instance. 
+
+\Hypertarget{class_game_manager_ac5e2d862b4c5ef4bd31bc8a288ce6b38}\index{GameManager@{GameManager}!setRootNode@{setRootNode}}
+\index{setRootNode@{setRootNode}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{setRootNode()}{setRootNode()}}
+{\footnotesize\ttfamily \label{class_game_manager_ac5e2d862b4c5ef4bd31bc8a288ce6b38} 
+void Game\+Manager\+::set\+Root\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root\+Node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sets the root node for the game scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\+Node} & The root node to set for the scene. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_manager_ae272eb0bf4e4987797fcff97723819cc}\index{GameManager@{GameManager}!startGame@{startGame}}
+\index{startGame@{startGame}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{startGame()}{startGame()}}
+{\footnotesize\ttfamily \label{class_game_manager_ae272eb0bf4e4987797fcff97723819cc} 
+void Game\+Manager\+::start\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Starts the game by loading the scene and initializing necessary components. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+client/\mbox{\hyperlink{game_manager_8h}{game\+Manager.\+h}}\item 
+client/\mbox{\hyperlink{game_manager_8cpp}{game\+Manager.\+cpp}}\end{DoxyCompactItemize}

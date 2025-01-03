@@ -1,0 +1,160 @@
+\doxysection{List Class Reference}
+\hypertarget{class_list}{}\label{class_list}\index{List@{List}}
+
+
+Base \doxylink{class_list}{List} class.  
+
+
+
+
+{\ttfamily \#include $<$list.\+h$>$}
+
+Inheritance diagram for List\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_list}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_list_1_1_reserved}{Reserved}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_list_a206eadb5753473eb913668b85b819b18}{List}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor of the \doxylink{class_list}{List} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_a16f695e1cdf5be28f7107f2226c9f87f}{\texorpdfstring{$\sim$}{\string~}\+List}} ()
+\begin{DoxyCompactList}\small\item\em Destructor of the \doxylink{class_list}{List} class. Frees memory by resetting the list and unsubscribing from the notification service. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_a2ebef7c72b962d8c9a3d45ebea0b727c}{List}} (const \mbox{\hyperlink{class_list}{List}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Copy constructor is deleted to prevent copying the \doxylink{class_list}{List} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a30c550a25292468955bcc1a7fdbf9cba}{operator=}} (const \mbox{\hyperlink{class_list}{List}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Assignment operator is deleted to prevent assignment of \doxylink{class_list}{List} objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a1affb58167f2b0337e81a340fdfb10e8}{pass}} (const \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}root\+Node)
+\begin{DoxyCompactList}\small\item\em Passes a root node to be added to the list for rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88}{clear\+List}} ()
+\begin{DoxyCompactList}\small\item\em Clears the list and frees all reserved memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_a622ba78734aaa8ec7ca035931e4db04a}{render\+Elements}} (const glm\+::mat4 \&camera\+Inverse\+Final\+Matrix) const
+\begin{DoxyCompactList}\small\item\em Renders all elements in the list. \end{DoxyCompactList}\item 
+const unsigned int \mbox{\hyperlink{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d}{get\+Number\+Of\+Elements\+In\+List}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of elements in the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_change_matrix_listener_ad60053b99dda20a9ce16555c10ac0695}{\texorpdfstring{$\sim$}{\string~}\+Change\+Matrix\+Listener}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_change_matrix_listener}{Change\+Matrix\+Listener} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base \doxylink{class_list}{List} class. 
+
+The \doxylink{class_list}{List} class is responsible for managing a collection of {\ttfamily \doxylink{class_node}{Node}} objects for rendering purposes. It stores the nodes and their transformation matrices, renders them, and listens for any changes in the transformation matrices of the nodes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_list_a206eadb5753473eb913668b85b819b18}\index{List@{List}!List@{List}}
+\index{List@{List}!List@{List}}
+\doxysubsubsection{\texorpdfstring{List()}{List()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_list_a206eadb5753473eb913668b85b819b18} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor of the \doxylink{class_list}{List} class. 
+
+\Hypertarget{class_list_a16f695e1cdf5be28f7107f2226c9f87f}\index{List@{List}!````~List@{\texorpdfstring{$\sim$}{\string~}List}}
+\index{````~List@{\texorpdfstring{$\sim$}{\string~}List}!List@{List}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}List()}{\string~List()}}
+{\footnotesize\ttfamily \label{class_list_a16f695e1cdf5be28f7107f2226c9f87f} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::\texorpdfstring{$\sim$}{\string~}\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor of the \doxylink{class_list}{List} class. Frees memory by resetting the list and unsubscribing from the notification service. 
+
+\Hypertarget{class_list_a2ebef7c72b962d8c9a3d45ebea0b727c}\index{List@{List}!List@{List}}
+\index{List@{List}!List@{List}}
+\doxysubsubsection{\texorpdfstring{List()}{List()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_list_a2ebef7c72b962d8c9a3d45ebea0b727c} 
+List\+::\+List (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_list}{List}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Copy constructor is deleted to prevent copying the \doxylink{class_list}{List} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88}\index{List@{List}!clearList@{clearList}}
+\index{clearList@{clearList}!List@{List}}
+\doxysubsubsection{\texorpdfstring{clearList()}{clearList()}}
+{\footnotesize\ttfamily \label{class_list_a3de5b85b2ecbc2dfe8a54a93ebe08e88} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::clear\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears the list and frees all reserved memory. 
+
+\Hypertarget{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d}\index{List@{List}!getNumberOfElementsInList@{getNumberOfElementsInList}}
+\index{getNumberOfElementsInList@{getNumberOfElementsInList}!List@{List}}
+\doxysubsubsection{\texorpdfstring{getNumberOfElementsInList()}{getNumberOfElementsInList()}}
+{\footnotesize\ttfamily \label{class_list_a5ad0e2eecaf0872f9d6b6302b93a495d} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned int List\+::get\+Number\+Of\+Elements\+In\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of elements in the list. 
+
+\begin{DoxyReturn}{Returns}
+The number of elements currently in the list. 
+\end{DoxyReturn}
+\Hypertarget{class_list_a30c550a25292468955bcc1a7fdbf9cba}\index{List@{List}!operator=@{operator=}}
+\index{operator=@{operator=}!List@{List}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_list_a30c550a25292468955bcc1a7fdbf9cba} 
+void List\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_list}{List}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Assignment operator is deleted to prevent assignment of \doxylink{class_list}{List} objects. 
+
+\Hypertarget{class_list_a1affb58167f2b0337e81a340fdfb10e8}\index{List@{List}!pass@{pass}}
+\index{pass@{pass}!List@{List}}
+\doxysubsubsection{\texorpdfstring{pass()}{pass()}}
+{\footnotesize\ttfamily \label{class_list_a1affb58167f2b0337e81a340fdfb10e8} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::pass (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root\+Node}{}\end{DoxyParamCaption})}
+
+
+
+Passes a root node to be added to the list for rendering. 
+
+This method recursively traverses the scene graph and adds nodes to the rendering list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\+Node} & The root node of the scene graph to traverse. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_list_a622ba78734aaa8ec7ca035931e4db04a}\index{List@{List}!renderElements@{renderElements}}
+\index{renderElements@{renderElements}!List@{List}}
+\doxysubsubsection{\texorpdfstring{renderElements()}{renderElements()}}
+{\footnotesize\ttfamily \label{class_list_a622ba78734aaa8ec7ca035931e4db04a} 
+void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} List\+::render\+Elements (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{camera\+Inverse\+Final\+Matrix}{}\end{DoxyParamCaption}) const}
+
+
+
+Renders all elements in the list. 
+
+This method iterates through all nodes in the list and renders them using Open\+GL.
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera\+Inverse\+Final\+Matrix} & The inverse transformation matrix of the camera. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/\mbox{\hyperlink{list_8h}{list.\+h}}\item 
+engine/\mbox{\hyperlink{list_8cpp}{list.\+cpp}}\end{DoxyCompactItemize}

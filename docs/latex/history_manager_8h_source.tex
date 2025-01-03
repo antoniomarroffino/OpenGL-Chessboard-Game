@@ -1,0 +1,65 @@
+\doxysection{history\+Manager.\+h}
+\hypertarget{history_manager_8h_source}{}\label{history_manager_8h_source}\index{client/historyManager.h@{client/historyManager.h}}
+\mbox{\hyperlink{history_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{list_of_pieces_manager_8h}{listOfPiecesManager.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{movement_manager_8h}{movementManager.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{on_state_update_8h}{onStateUpdate.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{status_manager_8h}{statusManager.h}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{camera_manager_8h}{cameraManager.h}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_history_manager_acddff2557a0796b6dde82a28fe07975a}{HistoryManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_on_state_update_listener_a4c51d36e1eea93d42e57f3fa63feafaf}{OnStateUpdateListener}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_history_manager_acddff2557a0796b6dde82a28fe07975a}{HistoryManager}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_history_manager_acddff2557a0796b6dde82a28fe07975a}{HistoryManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_history_manager_acddff2557a0796b6dde82a28fe07975a}{HistoryManager}}\&\ \mbox{\hyperlink{class_history_manager_a5fc5df82934fe1d843c6b3816c88f861}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_history_manager_acddff2557a0796b6dde82a28fe07975a}{HistoryManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_history_manager_a321e8c5aa4aa8fa3e700a97c380cc2b1}{\string~HistoryManager}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_history_manager_acddff2557a0796b6dde82a28fe07975a}{HistoryManager}}\&\ \mbox{\hyperlink{class_history_manager_a9bcd4cfa308bf0e4e258f1a15c0283a4}{getInstance}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_history_manager_a3c57480105b255b11a421b6316991c7d}{takeSnapshot}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_history_manager_ae8c9e3650126909cef61685f44afe9bc}{undo}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_history_manager_a2bb6e5b49ee8ac27fba3084a99c2f88c}{redo}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_history_manager_ada15512ed9af827233850187658cd343}{setUndoRedoCalled}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ val);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{class_history_manager_acddff2557a0796b6dde82a28fe07975a}{HistoryManager}}();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ isUndoRedoCalled();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ preGameHandler()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ choiceHandler()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ endGameHandler()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_history_manager_1_1_reserved}{Reserved}};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00121\ \ \ \ \ std::vector<Reserved>\ m\_history;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{class_list_of_pieces_manager}{ListOfPiecesManager}}\&\ m\_listOfPiecesManager;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{class_movement_manager}{MovementManager}}\&\ m\_movementManager;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{class_status_manager}{StatusManager}}\&\ m\_statusManager;}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_pointer;}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_undoRedoCalled;}
+\DoxyCodeLine{00147\ \};}
+
+\end{DoxyCode}

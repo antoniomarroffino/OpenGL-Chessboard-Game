@@ -1,0 +1,25 @@
+var class_material =
+[
+    [ "Material", "class_material.html#a013564c944720310144f297fa0c3e2d4", null ],
+    [ "Material", "class_material.html#a53dfe7bfdb3c34d83c5b93281aad0b97", null ],
+    [ "getAlpha", "class_material.html#a488a35f63d8d166e3c76ffa32f9f658b", null ],
+    [ "getAmbient", "class_material.html#a69c2110c5768c088cf3e2ec1739e12e4", null ],
+    [ "getDiffuse", "class_material.html#a9ba405df6faa50f830a54682450c397f", null ],
+    [ "getEmission", "class_material.html#a08f30a15f2cfe4430b0dc18bc89ef1a3", null ],
+    [ "getShininess", "class_material.html#a465eed2656271d4ab414c048c2b09515", null ],
+    [ "getSpecular", "class_material.html#a422497e8dafbbb04ea5add4590d66013", null ],
+    [ "getTexture", "class_material.html#a07946c5acec3285e92ea7b69c29607cd", null ],
+    [ "isTextureExists", "class_material.html#ad7cd8c42e37b4c1156e5496f2329f338", null ],
+    [ "operator=", "class_material.html#aa114078f437ae09781af21ed23dfce45", null ],
+    [ "parse", "class_material.html#adf701a1c684a4661d4b98859a8fa6abf", null ],
+    [ "render", "class_material.html#adba6a1994c7bf7ca45aee17a80082965", null ],
+    [ "setAlpha", "class_material.html#a4729eb07e436a455a9cd87c52d4c6141", null ],
+    [ "setAmbient", "class_material.html#a749ff888223a1c0d0e2f49aa451a5ebb", null ],
+    [ "setDiffuse", "class_material.html#a74f9d5996da8a2f24db8daff8a4b4bd4", null ],
+    [ "setDisableTexture", "class_material.html#aa8a5144da2aa562990f611d8457fb358", null ],
+    [ "setEmission", "class_material.html#a8afc802783b3c8f70e6cf9410d779eb7", null ],
+    [ "setEnableTexture", "class_material.html#afd846bce44c1e226f3d43587acd4b569", null ],
+    [ "setShininess", "class_material.html#a24b1f8bc201bc8aad012391927fb4c95", null ],
+    [ "setSpecular", "class_material.html#a91fb0c8d4020d62bdf4b37f8c79bc1a9", null ],
+    [ "setTexture", "class_material.html#abf79ffb83ac049ebaa48fc5b47635ea2", null ]
+];

@@ -1,0 +1,53 @@
+\doxysection{file\+OVOReader.\+h}
+\hypertarget{file_o_v_o_reader_8h_source}{}\label{file_o_v_o_reader_8h_source}\index{engine/fileOVOReader.h@{engine/fileOVOReader.h}}
+\mbox{\hyperlink{file_o_v_o_reader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \textcolor{comment}{//\ Project-\/specific\ includes}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ovo_object_factory_8h}{ovoObjectFactory.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{node_8h}{node.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{material_8h}{material.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Standard\ libraries}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ MAIN\ FILEOVOREADER\ CLASS\ //}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\_API}}\ \mbox{\hyperlink{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}{FileOVOReader}}\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}{FileOVOReader}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}{FileOVOReader}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}{FileOVOReader}}\&\ \mbox{\hyperlink{class_file_o_v_o_reader_addb7b683c4f94a77f6f51ff3e20f21a0}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}{FileOVOReader}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}{FileOVOReader}}\&\ \mbox{\hyperlink{class_file_o_v_o_reader_a2429e74d465e06e769c4b1db53de632d}{getInstance}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_file_o_v_o_reader_a743b20d061ac1003294dd6c4e4556313}{hasOVOExtension}}(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_file_o_v_o_reader_a060880442cc787ac0dc4b7be66befb32}{parseFile}}(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_file_o_v_o_reader_ad4c141fe15e9c99c38fa15a514b2eea6}{FileOVOReader}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ openFile(\textcolor{keyword}{const}\ std::string\&\ fileName);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{char}*\ getDataOfChunkFromFile(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ chunkId,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ chunkSize);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ undoReadDataFromFile(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ chunkSize);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ retrieveMaterials();}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ recursiveLoad();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ ovoExtension;}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00141\ \ \ \ \ FILE*\ m\_dat;}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00146\ \ \ \ \ std::map<std::string,\ Material*>\ m\_materialsMap;}
+\DoxyCodeLine{00147\ \};}
+
+\end{DoxyCode}

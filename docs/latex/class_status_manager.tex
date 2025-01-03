@@ -1,0 +1,179 @@
+\doxysection{Status\+Manager Class Reference}
+\hypertarget{class_status_manager}{}\label{class_status_manager}\index{StatusManager@{StatusManager}}
+
+
+Singleton class for managing game states and their associated behaviors.  
+
+
+
+
+{\ttfamily \#include $<$status\+Manager.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_status_manager_1_1_reserved}{Reserved}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9}{Status\+Manager}} (const \mbox{\hyperlink{class_status_manager}{Status\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor to enforce singleton pattern. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}} \& \mbox{\hyperlink{class_status_manager_abff163ed962a77b4c6a0704e67e09477}{operator=}} (const \mbox{\hyperlink{class_status_manager}{Status\+Manager}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator to enforce singleton pattern. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_status_manager_a857013103366741c630cd33c62f1537a}{\texorpdfstring{$\sim$}{\string~}\+Status\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_status_manager}{Status\+Manager} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_status_manager_a3bcc7c2715708eebc62f9293dcb69016}{subscribe\+Listener}} (\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} game\+State, \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}} \texorpdfstring{$\ast$}{*}listener)
+\begin{DoxyCompactList}\small\item\em Subscribe a listener to updates for a specific game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_status_manager_aed84825ee1d1af4458c3a556e5c95b55}{add\+Game\+Status\+And\+Callbacks}} (const \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} \&game\+Status, void(\texorpdfstring{$\ast$}{*}keyboard\+Callback)(unsigned char, int, int)=nullptr, void(\texorpdfstring{$\ast$}{*}special\+Key\+Callback)(int, int, int)=nullptr, const std\+::list$<$ std\+::string $>$ menu=std\+::list$<$ std\+::string $>$())
+\begin{DoxyCompactList}\small\item\em Add a new game state with its associated callbacks and menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_status_manager_a0b0ac196c2d6eacb7de48245268bb281}{change\+State}} (const \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} \&game\+Status)
+\begin{DoxyCompactList}\small\item\em Change the current game state and trigger associated behaviors. \end{DoxyCompactList}\item 
+const std\+::list$<$ std\+::string $>$ \mbox{\hyperlink{class_status_manager_a18e536b0c54d9ff93b419c7c9a49d32b}{get\+Menu}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the menu associated with the current game state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} \mbox{\hyperlink{class_status_manager_a6a7927c732f1f4d6366ea2cf5a3071fa}{get\+Current\+Game\+Status}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the current game state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_status_manager}{Status\+Manager}} \& \mbox{\hyperlink{class_status_manager_a6a3229097c3198f4905b922aee1c9191}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve the singleton instance of \doxylink{class_status_manager}{Status\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton class for managing game states and their associated behaviors. 
+
+The \doxylink{class_status_manager}{Status\+Manager} class maintains a mapping of game states to their callbacks and menus. It also allows for the registration of listeners that are notified when the game state changes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9}\index{StatusManager@{StatusManager}!StatusManager@{StatusManager}}
+\index{StatusManager@{StatusManager}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{StatusManager()}{StatusManager()}}
+{\footnotesize\ttfamily \label{class_status_manager_a11378a286cd8975dd80d1fc55b2b87c9} 
+Status\+Manager\+::\+Status\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_status_manager}{Status\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor to enforce singleton pattern. 
+
+\Hypertarget{class_status_manager_a857013103366741c630cd33c62f1537a}\index{StatusManager@{StatusManager}!````~StatusManager@{\texorpdfstring{$\sim$}{\string~}StatusManager}}
+\index{````~StatusManager@{\texorpdfstring{$\sim$}{\string~}StatusManager}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StatusManager()}{\string~StatusManager()}}
+{\footnotesize\ttfamily \label{class_status_manager_a857013103366741c630cd33c62f1537a} 
+Status\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Status\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{class_status_manager}{Status\+Manager} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_status_manager_aed84825ee1d1af4458c3a556e5c95b55}\index{StatusManager@{StatusManager}!addGameStatusAndCallbacks@{addGameStatusAndCallbacks}}
+\index{addGameStatusAndCallbacks@{addGameStatusAndCallbacks}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{addGameStatusAndCallbacks()}{addGameStatusAndCallbacks()}}
+{\footnotesize\ttfamily \label{class_status_manager_aed84825ee1d1af4458c3a556e5c95b55} 
+void Status\+Manager\+::add\+Game\+Status\+And\+Callbacks (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} \&}]{game\+Status}{, }\item[{void(\texorpdfstring{$\ast$}{*}}]{keyboard\+Callback~}{)(unsigned char, int, int) = {\ttfamily nullptr}, }\item[{void(\texorpdfstring{$\ast$}{*}}]{special\+Key\+Callback~}{)(int, int, int) = {\ttfamily nullptr}, }\item[{const std\+::list$<$ std\+::string $>$}]{menu}{ = {\ttfamily std\+:\+:list$<$std\+:\+:string$>$()}}\end{DoxyParamCaption})}
+
+
+
+Add a new game state with its associated callbacks and menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Status} & The game state to add. \\
+\hline
+{\em keyboard\+Callback} & Optional keyboard callback for the state. \\
+\hline
+{\em special\+Key\+Callback} & Optional special key callback for the state. \\
+\hline
+{\em menu} & Optional menu associated with the state. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_status_manager_a0b0ac196c2d6eacb7de48245268bb281}\index{StatusManager@{StatusManager}!changeState@{changeState}}
+\index{changeState@{changeState}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{changeState()}{changeState()}}
+{\footnotesize\ttfamily \label{class_status_manager_a0b0ac196c2d6eacb7de48245268bb281} 
+void Status\+Manager\+::change\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} \&}]{game\+Status}{}\end{DoxyParamCaption})}
+
+
+
+Change the current game state and trigger associated behaviors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Status} & The new game state to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_status_manager_a6a7927c732f1f4d6366ea2cf5a3071fa}\index{StatusManager@{StatusManager}!getCurrentGameStatus@{getCurrentGameStatus}}
+\index{getCurrentGameStatus@{getCurrentGameStatus}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{getCurrentGameStatus()}{getCurrentGameStatus()}}
+{\footnotesize\ttfamily \label{class_status_manager_a6a7927c732f1f4d6366ea2cf5a3071fa} 
+\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}} Status\+Manager\+::get\+Current\+Game\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieve the current game state. 
+
+\begin{DoxyReturn}{Returns}
+The current game state. 
+\end{DoxyReturn}
+\Hypertarget{class_status_manager_a6a3229097c3198f4905b922aee1c9191}\index{StatusManager@{StatusManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_status_manager_a6a3229097c3198f4905b922aee1c9191} 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}} \& Status\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieve the singleton instance of \doxylink{class_status_manager}{Status\+Manager}. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the singleton instance. 
+\end{DoxyReturn}
+\Hypertarget{class_status_manager_a18e536b0c54d9ff93b419c7c9a49d32b}\index{StatusManager@{StatusManager}!getMenu@{getMenu}}
+\index{getMenu@{getMenu}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{getMenu()}{getMenu()}}
+{\footnotesize\ttfamily \label{class_status_manager_a18e536b0c54d9ff93b419c7c9a49d32b} 
+const std\+::list$<$ std\+::string $>$ Status\+Manager\+::get\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieve the menu associated with the current game state. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_list}{List} of menu items for the current state. 
+\end{DoxyReturn}
+\Hypertarget{class_status_manager_abff163ed962a77b4c6a0704e67e09477}\index{StatusManager@{StatusManager}!operator=@{operator=}}
+\index{operator=@{operator=}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_status_manager_abff163ed962a77b4c6a0704e67e09477} 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}} \& Status\+Manager\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_status_manager}{Status\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator to enforce singleton pattern. 
+
+\Hypertarget{class_status_manager_a3bcc7c2715708eebc62f9293dcb69016}\index{StatusManager@{StatusManager}!subscribeListener@{subscribeListener}}
+\index{subscribeListener@{subscribeListener}!StatusManager@{StatusManager}}
+\doxysubsubsection{\texorpdfstring{subscribeListener()}{subscribeListener()}}
+{\footnotesize\ttfamily \label{class_status_manager_a3bcc7c2715708eebc62f9293dcb69016} 
+void Status\+Manager\+::subscribe\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_status_8h_a881b49e3802366255ad852f1c8624fd1}{Game\+Status}}}]{game\+State}{, }\item[{\mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}} \texorpdfstring{$\ast$}{*}}]{listener}{}\end{DoxyParamCaption})}
+
+
+
+Subscribe a listener to updates for a specific game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+State} & The game state to which the listener subscribes. \\
+\hline
+{\em listener} & Pointer to the listener to notify on state updates. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+client/\mbox{\hyperlink{status_manager_8h}{status\+Manager.\+h}}\item 
+client/\mbox{\hyperlink{status_manager_8cpp}{status\+Manager.\+cpp}}\end{DoxyCompactItemize}

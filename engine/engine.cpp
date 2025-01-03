@@ -145,7 +145,7 @@ bool ENG_API Eng::Base::init()
    glutInit(&argc, argv);
 
    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-   reserved->windowId = glutCreateWindow("Chess");
+   reserved->windowId = glutCreateWindow("3D Chessboard Game");
 
    glutDisplayFunc([](){});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height);});
