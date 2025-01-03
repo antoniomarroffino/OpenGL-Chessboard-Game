@@ -2,20 +2,20 @@
  * @file		main.cpp
  * @brief	Client application (that uses the graphics engine)
  *
- * @author	Achille Peternier (C) SUPSI [achille.peternier@supsi.ch] << change this to your group members
+ * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
  */
-
-
 
 //////////////
 // #INCLUDE //
 //////////////
 
-   // Library header:
-	#include "gameManager.h"
+// Project-specific includes
+#include "gameManager.h"
 
-   // C/C++:
-    #include <iostream>
+// Standard libraries
+#include <iostream>
 
 //////////
 // MAIN //
