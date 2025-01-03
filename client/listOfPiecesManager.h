@@ -1,6 +1,24 @@
+/**
+ * @file ListOfPiecesManager.h
+ * @brief Manages the list of chess pieces for a chess game, including initialization,
+ *        selection, and movement. Provides functionality for moving pieces, selecting,
+ *        confirming choices, and updating the game state.
+ * 
+ * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ */
+
 #pragma once
 
+//////////////
+// #INCLUDE //
+//////////////
+
+// Standard libraries
 #include <map>
+
+// Project-specific headers
 #include "listOfPieces.h"
 #include "movementManager.h"
 #include "onStateUpdate.h"
@@ -8,46 +26,176 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-
-class ListOfPiecesManager : public OnStateUpdateListener
-{
+ /**
+  * @class ListOfPiecesManager
+  * @brief Manages the list of chess pieces for a chess game, including initialization,
+  *        selection, and movement.
+  */
+class ListOfPiecesManager : public OnStateUpdateListener {
 public:
-	ListOfPiecesManager(const ListOfPiecesManager&) = delete;
-	ListOfPiecesManager& operator=(const ListOfPiecesManager&) = delete;
-	~ListOfPiecesManager() = default;
+    /**
+     * @brief Deleted copy constructor to enforce singleton pattern.
+     */
+    ListOfPiecesManager(const ListOfPiecesManager&) = delete;
 
-	static ListOfPiecesManager& getInstance();
-	bool initialize();
+    /**
+     * @brief Deleted assignment operator to enforce singleton pattern.
+     */
+    ListOfPiecesManager& operator=(const ListOfPiecesManager&) = delete;
 
-	Piece* getChoosenPiece();
+    /**
+     * @brief Destructor for ListOfPiecesManager.
+     */
+    ~ListOfPiecesManager() = default;
 
-	void moveChooseNodeLeft();
-	void moveChooseNodeRight();
-	void confirmChoice();
-	void deleteChoice();
-	bool confirmMove();
-	void updateSelectPointer();
+    /**
+     * @brief Returns the singleton instance of ListOfPiecesManager.
+     * @return Reference to the singleton instance.
+     */
+    static ListOfPiecesManager& getInstance();
 
-	ListOfPieces* getWhitePieces() const;
-	ListOfPieces* getBlackPieces() const;
-	void updateChessboard(ListOfPieces*, ListOfPieces*);
+    /**
+     * @brief Initializes the chessboard and pointer for piece selection.
+     * @return True if initialization is successful, false otherwise.
+     */
+    bool initialize();
+
+    /**
+     * @brief Retrieves the currently selected chess piece.
+     * @return Pointer to the currently selected chess piece.
+     */
+    Piece* getChoosenPiece();
+
+    /**
+     * @brief Moves the selection pointer to the left in the list of pieces.
+     */
+    void moveChooseNodeLeft();
+
+    /**
+     * @brief Moves the selection pointer to the right in the list of pieces.
+     */
+    void moveChooseNodeRight();
+
+    /**
+     * @brief Confirms the selection of the currently highlighted piece.
+     */
+    void confirmChoice();
+
+    /**
+     * @brief Deletes the current selection and resets the selection pointer.
+     */
+    void deleteChoice();
+
+    /**
+     * @brief Confirms the movement of the selected chess piece.
+     * @return True if the move is valid, false otherwise.
+     */
+    bool confirmMove();
+
+    /**
+     * @brief Updates the selection pointer's transformation matrix.
+     */
+    void updateSelectPointer();
+
+    /**
+     * @brief Gets the list of white chess pieces.
+     * @return Pointer to the list of white pieces.
+     */
+    ListOfPieces* getWhitePieces() const;
+
+    /**
+     * @brief Gets the list of black chess pieces.
+     * @return Pointer to the list of black pieces.
+     */
+    ListOfPieces* getBlackPieces() const;
+
+    /**
+     * @brief Updates the chessboard with new lists of white and black pieces.
+     * @param whiteList List of white pieces.
+     * @param blackList List of black pieces.
+     */
+    void updateChessboard(ListOfPieces* whiteList, ListOfPieces* blackList);
+
 private:
-	ListOfPiecesManager();
-	ListOfPieces* getCurrentList() const;
-	void moveChooseNode(const int&);
-	void preGameHandler() override;
-	void choiceHandler() override;
-	void endGameHandler() override;
-	void buildChessboard();
-	void clearLists();
-	void createShadow();
+    /**
+     * @brief Constructs a ListOfPiecesManager.
+     */
+    ListOfPiecesManager();
 
-	MovementManager& m_movementManager;
-	StatusManager& m_statusManager;
-	ListOfPieces* m_whiteList;
-	ListOfPieces* m_blackList;
-	Node* m_selectPointer;
-	int m_iteratorOnList;
-	float m_rotationAngle;
+    /**
+     * @brief Gets the current list of pieces based on the current turn.
+     * @return Pointer to the current list of pieces.
+     */
+    ListOfPieces* getCurrentList() const;
+
+    /**
+     * @brief Moves the selection pointer within the current list.
+     * @param sign Determines the direction (-1 for left, 1 for right).
+     */
+    void moveChooseNode(const int& sign);
+
+    /**
+     * @brief Handles events during the pre-game state.
+     */
+    void preGameHandler() override;
+
+    /**
+     * @brief Handles events during the piece choice state.
+     */
+    void choiceHandler() override;
+
+    /**
+     * @brief Handles events during the end-game state.
+     */
+    void endGameHandler() override;
+
+    /**
+     * @brief Builds the initial chessboard with all pieces.
+     */
+    void buildChessboard();
+
+    /**
+     * @brief Clears the lists of pieces for both players.
+     */
+    void clearLists();
+
+    /**
+     * @brief Creates shadow effects for the chess pieces.
+     */
+    void createShadow();
+
+    /**
+     * @brief Reference to the movement manager.
+     */
+    MovementManager& m_movementManager;
+
+    /**
+     * @brief Reference to the status manager.
+     */
+    StatusManager& m_statusManager;
+
+    /**
+     * @brief Pointer to the list of white pieces.
+     */
+    ListOfPieces* m_whiteList;
+
+    /**
+     * @brief Pointer to the list of black pieces.
+     */
+    ListOfPieces* m_blackList;
+
+    /**
+     * @brief Pointer to the selection node.
+     */
+    Node* m_selectPointer;
+
+    /**
+     * @brief Index of the currently selected piece.
+     */
+    int m_iteratorOnList;
+
+    /**
+     * @brief Rotation angle for the selection pointer animation.
+     */
+    float m_rotationAngle;
 };
-

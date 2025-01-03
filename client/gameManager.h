@@ -1,6 +1,30 @@
+/**
+ * @file gameManager.h
+ *
+ * @brief GameManager is responsible for managing the state and progression of the game, including handling user inputs,
+ *        transitioning between game states, and controlling the camera, lights, pieces, and movements in the game world.
+ *        It follows the Singleton design pattern to ensure that there is only one instance of GameManager during the
+ *        game lifecycle.
+ *
+ * This header defines the GameManager class and its methods for handling game initialization, game loop, and various
+ * callbacks for keyboard inputs during different game states (e.g., pre-game, choice, game, and end-game). It also manages
+ * the game state transitions and calls appropriate methods for handling game actions.
+ *
+ * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
+ *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
+ *          Antonio Marroffino (C) SUPSI [antonio.marroffino@student.supsi.ch]
+ */
+
 #pragma once
 
+//////////////
+// #INCLUDE //
+//////////////
+
+// Standard libraries
 #include <memory>
+
+// Project-specific headers
 #include "statusManager.h"
 #include "cameraManager.h"
 #include "movementManager.h"
@@ -13,43 +37,191 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-
+ /**
+  * @class GameManager
+  * @brief Singleton class responsible for managing the game state, input handling, and transitioning between different game modes.
+  *
+  * The GameManager class controls the game flow by maintaining and managing various game subsystems such as camera,
+  * status, movement, light, history, and game pieces. It also handles user input for camera control, light toggling,
+  * piece movement, and game state transitions (pre-game, in-game, and end-game).
+  *
+  * This class follows the Singleton pattern, meaning only one instance of GameManager can exist during the game
+  * lifecycle. It handles the game loop, processes user inputs via keyboard and special keys, and ensures that the
+  * appropriate actions are taken at each stage of the game.
+  */
 class GameManager {
 public:
-	GameManager(const GameManager&) = delete;
-	GameManager& operator=(const GameManager&) = delete;
-	~GameManager();
+    /**
+     * @brief Deleted copy constructor to prevent copying of the singleton instance.
+     */
+    GameManager(const GameManager&) = delete;
 
-	static GameManager& getInstance();
-	static void setRootNode(Node* rootNode);
-	static Node* getRootNode();
-	void startGame();
+    /**
+     * @brief Deleted copy assignment operator to prevent copying of the singleton instance.
+     */
+    GameManager& operator=(const GameManager&) = delete;
+
+    /**
+     * @brief Destructor that releases resources associated with the game.
+     */
+    ~GameManager();
+
+    /**
+     * @brief Returns the singleton instance of GameManager.
+     * @return Reference to the singleton GameManager instance.
+     */
+    static GameManager& getInstance();
+
+    /**
+     * @brief Sets the root node for the game scene.
+     * @param rootNode The root node to set for the scene.
+     */
+    static void setRootNode(Node* rootNode);
+
+    /**
+     * @brief Returns the root node of the game scene.
+     * @return Pointer to the root node.
+     */
+    static Node* getRootNode();
+
+    /**
+     * @brief Starts the game by loading the scene and initializing necessary components.
+     */
+    void startGame();
 
 private:
-	void initialize();
+    /**
+     * @brief Initializes the game components.
+     */
+    void initialize();
 
-	void gameLoop();
-	void resetGame();
-	void createGraphicsList();
+    /**
+     * @brief Main game loop that processes game logic and rendering.
+     */
+    void gameLoop();
 
-	void keyboardCallbackPreGame(unsigned char, int, int);
-	void specialKeyCallbackPreGame(int, int, int);
-	std::list<std::string> menuPreGame();
+    /**
+     * @brief Resets the game state to the initial pre-game state.
+     */
+    void resetGame();
 
-	void keyboardCallbackChoice(unsigned char, int, int);
-	void specialKeyCallbackChoice(int, int, int);
-	std::list<std::string> menuChoice();
+    /**
+     * @brief Creates the graphics list for the game scene.
+     */
+    void createGraphicsList();
 
-	void keyboardCallbackGame(unsigned char, int, int);
-	void specialKeyCallbackGame(int, int, int);
-	std::list<std::string> menuGame();
+    /**
+     * @brief Handles keyboard input during the pre-game state.
+     * @param key The pressed key.
+     * @param mouseX The mouse X position.
+     * @param mouseY The mouse Y position.
+     */
+    void keyboardCallbackPreGame(unsigned char key, int mouseX, int mouseY);
 
-	void keyboardCallbackEndGame(unsigned char, int, int);
-	void specialKeyCallbackEndGame(int, int, int);
-	std::list<std::string> menuEndGame();
+    /**
+     * @brief Handles special key input during the pre-game state.
+     * @param key The pressed special key.
+     * @param mouseX The mouse X position.
+     * @param mouseY The mouse Y position.
+     */
+    void specialKeyCallbackPreGame(int key, int mouseX, int mouseY);
 
-	GameManager();
-	
-	struct Reserved;
-	std::unique_ptr<Reserved> m_reserved;
+    /**
+     * @brief Displays the menu options during the pre-game state.
+     * @return List of menu options as strings.
+     */
+    std::list<std::string> menuPreGame();
+
+    /**
+     * @brief Handles keyboard input during the choice state.
+     * @param key The pressed key.
+     * @param mouseX The mouse X position.
+     * @param mouseY The mouse Y position.
+     */
+    void keyboardCallbackChoice(unsigned char key, int mouseX, int mouseY);
+
+    /**
+     * @brief Handles special key input during the choice state.
+     * @param key The pressed special key.
+     * @param mouseX The mouse X position.
+     * @param mouseY The mouse Y position.
+     */
+    void specialKeyCallbackChoice(int key, int mouseX, int mouseY);
+
+    /**
+     * @brief Displays the menu options during the choice state.
+     * @return List of menu options as strings.
+     */
+    std::list<std::string> menuChoice();
+
+    /**
+     * @brief Handles keyboard input during the game state.
+     * @param key The pressed key.
+     * @param mouseX The mouse X position.
+     * @param mouseY The mouse Y position.
+     */
+    void keyboardCallbackGame(unsigned char key, int mouseX, int mouseY);
+
+    /**
+     * @brief Handles special key input during the game state.
+     * @param key The pressed special key.
+     * @param mouseX The mouse X position.
+     * @param mouseY The mouse Y position.
+     */
+    void specialKeyCallbackGame(int key, int mouseX, int mouseY);
+
+    /**
+     * @brief Displays the menu options during the game state.
+     * @return List of menu options as strings.
+     */
+    std::list<std::string> menuGame();
+
+    /**
+     * @brief Handles keyboard input during the end game state.
+     * @param key The pressed key.
+     * @param mouseX The mouse X position.
+     * @param mouseY The mouse Y position.
+     */
+    void keyboardCallbackEndGame(unsigned char key, int mouseX, int mouseY);
+
+    /**
+     * @brief Handles special key input during the end game state.
+     * @param key The pressed special key.
+     * @param mouseX The mouse X position.
+     * @param mouseY The mouse Y position.
+     */
+    void specialKeyCallbackEndGame(int key, int mouseX, int mouseY);
+
+    /**
+     * @brief Displays the menu options during the end game state.
+     * @return List of menu options as strings.
+     */
+    std::list<std::string> menuEndGame();
+
+    /**
+     * @brief Resets the game scene and pieces to their initial state.
+     */
+    void resetGame();
+
+    /**
+     * @brief Creates and updates the game graphics list.
+     */
+    void createGraphicsList();
+
+    /**
+     * @brief Initializes the game components and sets up the game status callbacks.
+     */
+    void initialize();
+
+    /**
+     * @struct Reserved
+     * @brief Struct to hold references to various game subsystems.
+     *
+     * This struct holds references to game components such as camera, status manager, movement manager, list of pieces
+     * manager, history manager, light manager, engine, and root nodes for the game scene. It is used internally by
+     * the GameManager class to interact with these subsystems.
+     */
+    struct Reserved;
+
+    std::unique_ptr<Reserved> m_reserved;
 };
