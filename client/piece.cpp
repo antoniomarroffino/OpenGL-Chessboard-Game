@@ -1,6 +1,5 @@
 #include "piece.h"
 
-
 Piece::Piece(Node* node, const unsigned int& row, const unsigned int& col) : m_node{ node }, m_row{ row }, m_col{ col } {}
 
 Piece::Piece(const Piece& other) : m_node{ other.m_node->clone() }, m_row{ other.m_row }, m_col{ other.m_col } {}

@@ -1,5 +1,5 @@
 /**
- * @file		main.cpp
+ * @file	main.cpp
  * @brief	Client application (that uses the graphics engine)
  *
  * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]

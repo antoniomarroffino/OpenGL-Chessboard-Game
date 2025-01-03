@@ -1,6 +1,5 @@
 #include "listOfPieces.h"
 
-
 ListOfPieces::ListOfPieces(const std::vector<Piece*>& pieces) : m_listOfPieces{pieces} {}
 
 ListOfPieces::ListOfPieces(const ListOfPieces& other) : m_listOfPieces{ std::vector<Piece*>() } {

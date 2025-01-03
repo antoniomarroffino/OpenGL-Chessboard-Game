@@ -77,9 +77,6 @@
     <ClInclude Include="onStateUpdate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="handlerCallbacksI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="historyManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
