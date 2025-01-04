@@ -158,6 +158,9 @@ bool ListOfPiecesManager::confirmMove() {
 		againstListOfPieces->removePiece(eatenPiece);
 	}
 
+	if (this->isGameFinished())
+		return true;
+
 	this->m_iteratorOnList = 0;
 	againstListOfPieces->getPieceByIndex(this->m_iteratorOnList)->getNode()->addChild(this->m_selectPointer);
 	return true;
@@ -190,6 +193,10 @@ ListOfPieces* ListOfPiecesManager::getWhitePieces() const {
 
 ListOfPieces* ListOfPiecesManager::getBlackPieces() const {
 	return this->m_blackList;
+}
+
+const bool& ListOfPiecesManager::isGameFinished() const {
+	return (this->getCurrentList() == this->m_whiteList ? this->m_blackList : this->m_whiteList)->getSize() == 0;
 }
 
 void ListOfPiecesManager::updateChessboard(ListOfPieces* whiteList, ListOfPieces* blackList) {

@@ -116,6 +116,8 @@ public:
      */
     void updateChessboard(ListOfPieces* whiteList, ListOfPieces* blackList);
 
+    const bool& isGameFinished() const;
+
 private:
     /**
      * @brief Constructs a ListOfPiecesManager.

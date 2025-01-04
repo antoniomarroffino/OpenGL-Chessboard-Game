@@ -178,8 +178,14 @@ void GameManager::keyboardCallbackGame(unsigned char key, int mouseX, int mouseY
 	{
 	case 13: // Confirm choice
 		if (!this->m_reserved->listOfPiecesManager.confirmMove()) break;
-		this->m_reserved->movementManager.changeTurn();
 		this->m_reserved->historyManager.setUndoRedoCalled(false);
+		if (this->m_reserved->listOfPiecesManager.isGameFinished()) {
+			this->m_reserved->historyManager.takeSnapshot();
+			this->m_reserved->statusManager.changeState(GameStatus::END_GAME);
+			this->createGraphicsList();
+			break;
+		}
+		this->m_reserved->movementManager.changeTurn();
 		this->m_reserved->statusManager.changeState(GameStatus::CHOICE);
 		this->createGraphicsList();
 		break;
