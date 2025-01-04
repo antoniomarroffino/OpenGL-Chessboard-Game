@@ -94,7 +94,6 @@ std::list<std::string> GameManager::menuPreGame() {
 //------------------------------------------------------------------------------------------------------------------------
 
 
-
 //------------------------------------------------------------------------------------------------------------------------
 void GameManager::keyboardCallbackChoice(unsigned char key, int mouseX, int mouseY)
 {
@@ -158,10 +157,12 @@ void GameManager::specialKeyCallbackChoice(int key, int mouseX, int mouseY)
 
 std::list<std::string> GameManager::menuChoice() {
 	std::list<std::string> menu;
-	menu.push_back("[Enter] Confirm choice");
+	menu.push_back("[ESC] Reset game and go to pre start");
+	menu.push_back("[ENTER] Confirm choice");
 	menu.push_back("[Left / Right Arrow Key] Move choice selector");
 	menu.push_back("[U] Undo");
 	menu.push_back("[R] Redo");
+	menu.push_back("[F] Finish game");
 	menu.push_back("[L] Turn on / off light");
 	menu.push_back("[+] Increase light intensity");
 	menu.push_back("[-] Decrease light intensity");
@@ -231,17 +232,16 @@ void GameManager::specialKeyCallbackGame(int key, int mouseX, int mouseY)
 
 std::list<std::string> GameManager::menuGame() {
 	std::list<std::string> menu;
+	menu.push_back("[ESC] Reset game and go to pre start");
 	menu.push_back("[W - A - S - D] Move piece");
-	menu.push_back("[Enter] Confirm Move");
+	menu.push_back("[ENTER] Confirm Move");
 	menu.push_back("[CANC] Return to initial position");
-	menu.push_back("[Esc] Reset current game");
 	menu.push_back("[L] Turn on / off light");
 	menu.push_back("[+] Increase light intensity");
 	menu.push_back("[-] Decrease light intensity");
 	return menu;
 }
 //------------------------------------------------------------------------------------------------------------------------
-
 
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -279,10 +279,6 @@ void GameManager::keyboardCallbackEndGame(unsigned char key, int mouseX, int mou
 
 void GameManager::specialKeyCallbackEndGame(int key, int mouseX, int mouseY)
 {
-	/*switch (key)
-	{
-
-	}*/
 }
 
 std::list<std::string> GameManager::menuEndGame() {
