@@ -99,8 +99,10 @@ ENG_API void FileOVOReader::retrieveMaterials() {
             this->m_materialsMap[material->getName()] = material;
         } else {
             this->undoReadDataFromFile(chunkSize);
+            delete[] data;
             break;
         }
+        delete[] data;
     }
 }
 
