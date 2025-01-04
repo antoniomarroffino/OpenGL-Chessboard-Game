@@ -12,16 +12,16 @@
 
 #pragma once
 
- /**
-  * @enum    GameStatus
-  * @brief   Enumeration representing the various states of the game.
-  *
-  * The GameStatus enum class defines four states for managing the game lifecycle:
-  * - PRE_GAME: The game has not yet started.
-  * - CHOICE: The phase where players make choices, selecting pieces.
-  * - GAME:  The phase where players move the selected piece.
-  * - END_GAME: The game has concluded.
-  */
+/**
+ * @enum    GameStatus
+ * @brief   Enumeration representing the various states of the game.
+ *
+ * The GameStatus enum class defines four states for managing the game lifecycle:
+ * - PRE_GAME: The game has not yet started.
+ * - CHOICE: The phase where players make choices, selecting pieces.
+ * - GAME:  The phase where players move the selected piece.
+ * - END_GAME: The game has concluded.
+ */
 enum class GameStatus {
     PRE_GAME,
     CHOICE,

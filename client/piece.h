@@ -55,8 +55,6 @@ public:
 
     /**
      * @brief Destructor for the Piece class.
-     * 
-     * The destructor is defined as default since there are no special cleanup operations needed.
      */
 	~Piece() = default;
 

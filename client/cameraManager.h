@@ -14,26 +14,34 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
+// Standard libraries
 #include <memory>
+
+// Project-specific headers
 #include "onStateUpdate.h"
 #include "statusManager.h"
 #include "movementManager.h"
 #include "perspCamera.h"
 #include "orthoCamera.h"
 
+/**
+ * @brief Macro definitions for default cameras names.
+ *
+ * Defines the default names for the cameras used in the scene.
+ */
 #define MAIN_CAMERA "firstCamera"
 #define CHESSBOARD_CAMERA "chessboardCamera"
 #define PLAYER_WHITE_CAMERA "playerWhiteCamera"
 #define PLAYER_BLACK_CAMERA "playerBlackCamera"
 #define MENU_CAMERA "menuCamera"
 
-/////////////////////
-// CAMERA MANAGER  //
-/////////////////////
+////////////////////
+// CAMERA MANAGER //
+////////////////////
 
 /**
  * @brief Singleton class for managing cameras in a 3D rendering scene.
@@ -58,6 +66,9 @@ public:
 
     /**
      * @brief Destructor for CameraManager.
+     * 
+     * Unsubscribes the CameraManager as a listener from the StatusManager, 
+     * ensuring that it no longer receives updates or notifications from the game state changes.
      */
     ~CameraManager();
 

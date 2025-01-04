@@ -178,9 +178,7 @@ public: //
     */
    void swap();
 
-///////////
-private: //
-///////////
+private:
 
    /**
     * @brief Private method to handle window reshaping.

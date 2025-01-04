@@ -1,10 +1,10 @@
 /**
  * @file    textManager.h
- * @brief   Manager per la visualizzazione del testo.
+ * @brief   Manager for text rendering.
  *
- * Questo file contiene la classe `TextManager` che si occupa della gestione e visualizzazione del testo
- * sulla finestra grafica. La classe può visualizzare una lista di stringhe e i frame per secondo (FPS) in un
- * contesto 3D, utilizzando un'ortho camera (una proiezione ortogonale) per il rendering.
+ * This file contains the `TextManager` class, which manages and displays text
+ * on the graphical window. The class can render a list of strings and frames per second (FPS)
+ * in a 3D context using an orthographic camera for rendering.
  *
  * @authors Luca Fantò (C) SUPSI [luca.fanto@student.supsi.ch]
  *          Mattia Cainarca (C) SUPSI [mattia.cainarca@student.supsi.ch]
@@ -17,7 +17,7 @@
  // #INCLUDE //
  //////////////
 
-// Standard libraries
+ // Standard libraries
 #include <list>
 #include <string>
 #include <iostream>
@@ -27,75 +27,74 @@
 // Project-specific includes
 #include "orthoCamera.h"
 
- /**
-  * @brief Classe per la gestione della visualizzazione del testo.
-  *
-  * La classe `TextManager` si occupa di visualizzare testo sulla finestra grafica, utilizzando una
-  * `Camera` ortogonale per la proiezione. Supporta la visualizzazione di una lista di stringhe
-  * e dei frame per secondo (FPS).
-  */
+/**
+ * @brief Class for managing text rendering.
+ *
+ * The `TextManager` class handles rendering text on the graphical window using an
+ * orthographic `Camera` for projection. It supports rendering a list of strings
+ * and displaying frames per second (FPS).
+ */
 class ENG_API TextManager {
 public:
     /**
-     * @brief Costruttore di copia cancellato per evitare copie non necessarie.
+     * @brief Deleted copy constructor to avoid unnecessary copies.
      */
     TextManager(const TextManager&) = delete;
 
     /**
-     * @brief Operatore di assegnazione cancellato per evitare assegnamenti non necessari.
+     * @brief Deleted assignment operator to avoid unnecessary assignments.
      */
     TextManager& operator=(const TextManager&) = delete;
 
     /**
-     * @brief Distruttore di default.
+     * @brief Default destructor.
      */
     ~TextManager() = default;
 
     /**
-     * @brief Restituisce l'istanza singleton della classe `TextManager`.
+     * @brief Returns the singleton instance of the `TextManager` class.
      *
-     * Questa funzione fornisce l'accesso alla singola istanza della classe, utilizzando il pattern Singleton.
+     * This function provides access to the single instance of the class using the Singleton pattern.
      *
-     * @return L'istanza singleton della classe `TextManager`.
+     * @return The singleton instance of the `TextManager` class.
      */
     static TextManager& getInstance();
 
     /**
-     * @brief Visualizza una lista di testi sulla finestra.
+     * @brief Renders a list of text strings on the window.
      *
-     * Questo metodo utilizza la proiezione ortogonale per rendere il testo visibile nella finestra grafica.
-     * Ogni stringa viene visualizzata a partire dalla posizione verticale definita, incrementando la posizione
-     * verticale per ogni riga di testo.
+     * This method uses orthographic projection to render text on the graphical window.
+     * Each string is displayed starting at the defined vertical position, incrementing the
+     * vertical position for each line of text.
      *
-     * @param texts La lista di stringhe da visualizzare.
-     * @param orthoCamera La camera ortogonale da utilizzare per la proiezione.
+     * @param texts The list of strings to render.
+     * @param orthoCamera The orthographic camera to use for projection.
      */
     void displayText(const std::list<std::string>& texts, Camera* orthoCamera) const;
 
     /**
-     * @brief Visualizza i frame per secondo (FPS) sulla finestra.
+     * @brief Displays the frames per second (FPS) on the window.
      *
-     * Questo metodo visualizza il valore degli FPS nella finestra, posizionandolo nella parte inferiore della finestra.
+     * This method renders the FPS value on the window, positioning it at the bottom of the window.
      *
-     * @param fps Il valore degli FPS da visualizzare.
-     * @param orthoCamera La camera ortogonale da utilizzare per la proiezione.
+     * @param fps The FPS value to display.
+     * @param orthoCamera The orthographic camera to use for projection.
      */
     void displayFPS(const float& fps, Camera* orthoCamera) const;
 
 private:
     /**
-     * @brief Costruttore di default.
+     * @brief Default constructor.
      */
     TextManager();
 
     /**
-     * @brief Calcola la larghezza dinamica per il rendering del testo.
+     * @brief Calculates the dynamic width for text rendering.
      *
-     * Calcola la larghezza massima della lista di stringhe in base alla lunghezza della stringa più lunga.
+     * Computes the maximum width of the list of strings based on the length of the longest string.
      *
-     * @param texts La lista di stringhe da cui calcolare la larghezza.
-     * @return La larghezza massima calcolata.
+     * @param texts The list of strings to calculate the width from.
+     * @return The calculated maximum width.
      */
     float setDynamicWidth(const std::list<std::string>& texts) const;
 };
-

@@ -46,6 +46,11 @@ public:
      */
     virtual void render(const glm::mat4& matrix = glm::mat4(1.0f)) override;
 
+    /**
+     * @brief Destructor for the Light class.
+     *
+     * The destructor is responsible for cleaning up resources associated with the Light object.
+     */
     virtual ~Light() = default;
 
     /**

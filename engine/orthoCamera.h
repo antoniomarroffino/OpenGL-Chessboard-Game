@@ -12,16 +12,16 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
 // Project-specific headers
 #include "camera.h"
 
-///////////////////////
+////////////////////////////
 // MAIN ORTHOCAMERA CLASS //
-///////////////////////
+////////////////////////////
 
 /**
  * @brief Concrete OrthoCamera class.
@@ -47,6 +47,11 @@ public:
      */
     OrthoCamera(const std::string& name, const float& width, const float& height, const float& near_val, const float& far_val);
 
+    /**
+     * @brief Destructor for the OrthoCamera class.
+     *
+     * The destructor releases any resources associated with the OrthoCamera object.
+     */
     ~OrthoCamera() = default;
 
     /**

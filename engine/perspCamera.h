@@ -13,16 +13,16 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
 // Project-specific headers
 #include "camera.h"
 
-///////////////////////
+////////////////////////////
 // MAIN PERSPCAMERA CLASS //
-///////////////////////
+////////////////////////////
 
 /**
  * @brief Concrete PerspCamera class.
@@ -47,6 +47,11 @@ public:
      */
     PerspCamera(const std::string& name, const float& width, const float& height, const float& near_val, const float& far_val, const float& fovY);
 
+    /**
+     * @brief Destructor for the PerspCamera class.
+     *
+     * The destructor releases any resources associated with the PerspCamera object.
+     */
     ~PerspCamera() = default;
 
     /**

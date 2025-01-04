@@ -20,9 +20,9 @@
 // Project-specific includes
 #include "light.h"
 
-///////////////////////
+////////////////////////////
 // MAIN DIRECTLIGHT CLASS //
-///////////////////////
+////////////////////////////
 
 /**
  * @brief Concrete DirectLight class.
@@ -44,6 +44,11 @@ public:
      */
     DirectLight(const std::string& name = "defaultDirectLight", const glm::vec3& direction = glm::vec3(0.0f));
 
+    /**
+     * @brief Default destructor for the DirectLight class.
+     * 
+     * The destructor cleans up any resources associated with the DirectLight object.
+     */
     ~DirectLight() = default;
 
     /**

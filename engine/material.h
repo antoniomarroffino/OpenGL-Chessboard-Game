@@ -50,6 +50,11 @@ public:
      */
     Material(const Material& other);
 
+    /**
+     * @brief Destructor for the Material class.
+     *
+     * The destructor is responsible for cleaning up resources associated with the Material object.
+     */
     ~Material() = default;
 
     /**

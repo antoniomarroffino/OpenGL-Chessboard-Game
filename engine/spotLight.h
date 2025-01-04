@@ -13,16 +13,16 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
- // Project-specific includes
+// Project-specific includes
 #include "light.h"
 
-///////////////////////
+//////////////////////////
 // MAIN SPOTLIGHT CLASS //
-///////////////////////
+//////////////////////////
 
 /**
  * @brief Concrete SpotLight class.
@@ -48,6 +48,11 @@ public:
     SpotLight(const std::string& name = "defaultSpotLight", const glm::vec3& position = glm::vec3(0.0f),
         const glm::vec3& direction = glm::vec3(1.0f), const float& cutoff = 45.0f, const float& spotExponent = 1.0f);
 
+    /**
+     * @brief Default destructor for the SpotLight class.
+     * 
+     * The destructor cleans up any resources associated with the SpotLight object.
+     */
     ~SpotLight() = default;
 
     /**

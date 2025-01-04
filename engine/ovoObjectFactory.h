@@ -13,11 +13,11 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
- // Project-specific includes
+// Project-specific includes
 #include "object.h"
 
  /**

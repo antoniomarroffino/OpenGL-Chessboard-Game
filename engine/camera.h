@@ -13,11 +13,11 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
- // Project-specific includes
+// Project-specific includes
 #include "node.h"
 #include "glm/gtc/matrix_transform.hpp"
 #include "notificationService.h"

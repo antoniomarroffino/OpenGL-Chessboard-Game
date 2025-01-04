@@ -11,24 +11,24 @@
 
 #pragma once
 
- // Specifies I/O linkage for Windows (VC++ spec)
+// Specifies I/O linkage for Windows (VC++ spec)
 #ifdef _WINDOWS
-   // Defines API linkage depending on whether ENGINE_EXPORTS is defined
+// Defines API linkage depending on whether ENGINE_EXPORTS is defined
 #ifdef ENGINE_EXPORTS
 #define ENG_API __declspec(dllexport)
 #else
 #define ENG_API __declspec(dllimport)
 #endif
 
-   // Disables specific warnings related to DLL export/import
+// Disables specific warnings related to DLL export/import
 #pragma warning(disable : 4251)
 #else // For Linux
 #define ENG_API
 #endif
 
-//////////////////////////
+////////////////////////////////
 // RESHAPE LISTENER INTERFACE //
-//////////////////////////
+////////////////////////////////
 
 /**
  * @class ReshapeListener

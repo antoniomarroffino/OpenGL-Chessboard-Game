@@ -61,9 +61,17 @@ public:
 	 */
 	GameManager& operator=(const GameManager&) = delete;
 
-	/**
-	 * @brief Destructor that releases resources associated with the game.
-	 */
+    /**
+     * @brief Destructor to release resources associated with the game.
+     *
+     * This destructor is responsible for cleaning up all resources allocated by the GameManager.
+     * It performs the following operations:
+     * - Frees the engine resources by calling `free()` on the `engine` instance.
+     * - Deletes the `rootResetNode` and `rootNode`, which represent the root nodes in the game scene.
+     *
+     * This ensures that all game subsystems are properly cleaned up and that memory is freed when the
+     * `GameManager` instance is destroyed, helping to prevent memory leaks.
+     */
 	~GameManager();
 
 	/**
@@ -198,6 +206,13 @@ private:
      */
 	std::list<std::string> menuEndGame();
 
+    /**
+     * @brief Handles the callback for closing the application.
+     *
+     * This method is invoked when the application needs to shut down. It updates the internal state to indicate
+     * that the application is no longer running, allowing for a graceful termination of the game loop and other
+     * ongoing processes.
+     */
     void closeCallBack();
 
 	GameManager();

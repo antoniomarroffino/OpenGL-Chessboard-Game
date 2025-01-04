@@ -50,7 +50,11 @@ public:
 	MovementManager& operator=(const MovementManager&) = delete;
 
     /**
-     * @brief Destructor to clean up resources.
+     * @brief Destructor to clean up resources and unsubscribe from the status manager.
+     *
+     * This destructor is responsible for unsubscribing the MovementManager from the
+     * status manager's listeners. This ensures that no further updates are received
+     * once the object is destroyed, preventing any dangling pointers or memory leaks.
      */
 	~MovementManager();
 

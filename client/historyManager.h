@@ -48,6 +48,16 @@ public:
 
     /**
      * @brief Destructor for HistoryManager.
+     *
+     * The destructor is responsible for cleaning up resources when the HistoryManager instance is destroyed.
+     * It performs the following actions:
+     * - Unsubscribes the HistoryManager as a listener from the StatusManager, ensuring that it no longer receives
+     *   updates or notifications from the game state changes.
+     * - Iterates over the `m_history` vector, which contains pointers to stored snapshots of the game state,
+     *   and deletes each snapshot to free up memory.
+     *
+     * These steps ensure that the HistoryManager cleans up both its own internal state and any dynamic memory
+     * associated with the game state snapshots, preventing memory leaks.
      */
     ~HistoryManager();
 

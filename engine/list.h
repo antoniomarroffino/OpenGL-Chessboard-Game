@@ -13,9 +13,9 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
 // Standard libraries
 #include <memory>
@@ -26,9 +26,9 @@
 #include "notificationService.h"
 #include "changeMatrixListener.h"
 
-///////////////////////
+/////////////////////
 // MAIN LIST CLASS //
-///////////////////////
+/////////////////////
 
 /**
  * @brief Base List class

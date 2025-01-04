@@ -12,16 +12,16 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
 // Project-specific headers
 #include "light.h"
 
-///////////////////////
+//////////////////////////
 // MAIN OMNILIGHT CLASS //
-///////////////////////
+//////////////////////////
 
 /**
  * @brief Concrete OmniLight class.
@@ -42,6 +42,11 @@ public:
      */
     OmniLight(const std::string& name = "defaultOmniLight", const glm::vec3& position = glm::vec3(0.0f));
 
+    /**
+     * @brief Destructor for the OmniLight class.
+     *
+     * The destructor cleans up any resources associated with the OmniLight object.
+     */
     ~OmniLight() = default;
 
     /**

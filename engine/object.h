@@ -28,9 +28,9 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-///////////////
+////////////////
 // VERSIONING //
-///////////////
+////////////////
 
 #ifdef _WINDOWS
     // Specifies I/O linkage for Windows (VC++ spec)

@@ -44,6 +44,10 @@ public:
 
     /**
      * @brief Destructor that releases texture resources.
+     *
+     * This destructor ensures that all resources allocated for the texture,
+     * such as the OpenGL texture ID and any associated data, are properly
+     * released to avoid memory leaks or dangling pointers.
      */
     ~Texture();
 

@@ -13,11 +13,11 @@
 
 #pragma once
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
- // Project-specific includes
+// Project-specific includes
 #include "ovoObjectFactory.h"
 #include "node.h"
 #include "material.h"
@@ -26,9 +26,9 @@
 #include <map>
 #include <set>
 
-///////////////////////
+//////////////////////////////
 // MAIN FILEOVOREADER CLASS //
-///////////////////////
+//////////////////////////////
 
 /**
  * @brief Concrete FileOVOReader class.
@@ -43,6 +43,12 @@ public:
      */
     FileOVOReader(const FileOVOReader&) = delete;
 
+    /**
+     * @brief Destructor for the FileOVOReader class.
+     *
+     * This destructor ensures proper cleanup of resources used by the FileOVOReader instance.
+     * It deletes all textures and materials stored in the instance to prevent memory leaks.
+     */
     ~FileOVOReader();
 
     /**
@@ -133,8 +139,20 @@ private:
      */
     Node* recursiveLoad();
 
+    /**
+     * @brief Deletes all textures associated with the materials in the `.ovo` file.
+     *
+     * This method iterates through the materials map and collects unique texture pointers
+     * associated with the materials. It then deletes the textures to free up memory.
+     */
     void deleteTextures();
 
+    /**
+     * @brief Deletes all materials stored in the materials map.
+     *
+     * This method iterates through the materials map and deletes each material object,
+     * ensuring proper cleanup of dynamically allocated resources.
+     */
     void deleteMaterials();
 
     /**

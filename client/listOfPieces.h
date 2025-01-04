@@ -44,6 +44,12 @@ public:
      */
 	ListOfPieces(const std::vector<Piece*>& pieces);
 
+    /**
+     * @brief Destructor that cleans up resources.
+     *
+     * This destructor is responsible for releasing any allocated memory or resources
+     * associated with the ListOfPieces object.
+     */
     ~ListOfPieces();
 
     /**

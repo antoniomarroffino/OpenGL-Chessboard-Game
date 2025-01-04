@@ -45,6 +45,9 @@ public:
 
     /**
      * @brief Destructor for ListOfPiecesManager.
+     *
+     * Cleans up resources by unsubscribing the listener from the status manager and deleting
+     * the lists of white and black pieces.
      */
     ~ListOfPiecesManager();
 
@@ -116,6 +119,13 @@ public:
      */
     void updateChessboard(ListOfPieces* whiteList, ListOfPieces* blackList);
 
+    /**
+     * @brief Checks if the game is finished.
+     *
+     * This method checks whether the game has ended.
+     *
+     * @return True if the game is finished, false otherwise, based on turn.
+     */
     bool isGameFinished() const;
 
 private:

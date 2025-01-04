@@ -24,9 +24,9 @@
 #include "material.h"
 #include "notificationService.h"
 
-///////////////////////
+/////////////////////
 // MAIN NODE CLASS //
-///////////////////////
+/////////////////////
 
 /**
  * @brief Represents a node in a hierarchical 3D scene graph.
