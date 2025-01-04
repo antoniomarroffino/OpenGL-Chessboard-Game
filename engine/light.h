@@ -46,6 +46,8 @@ public:
      */
     virtual void render(const glm::mat4& matrix = glm::mat4(1.0f)) override;
 
+    virtual ~Light() = default;
+
     /**
      * @brief Parse the light data from a buffer and initialize the light's properties.
      *

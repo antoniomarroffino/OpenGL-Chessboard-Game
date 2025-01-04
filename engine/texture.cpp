@@ -37,6 +37,7 @@ ENG_API void Texture::setAnisotropicFilter() {
 ENG_API Texture::~Texture() {
 	if (this->m_reserved->m_bitmap != nullptr)
 		FreeImage_Unload(this->m_reserved->m_bitmap);
+	glDeleteTextures(1, &this->m_reserved->m_textureId);
 }
 
 ENG_API void Texture::render(const glm::mat4& matrix) {

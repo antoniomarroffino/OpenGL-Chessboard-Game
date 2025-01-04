@@ -5,7 +5,9 @@ MovementManager::MovementManager() : OnStateUpdateListener(), m_turn{true}, m_st
 	this->m_statusManager.subscribeListener(GameStatus::PRE_GAME, this);
 }
 
-MovementManager::~MovementManager() = default;
+MovementManager::~MovementManager() {
+	this->m_statusManager.unsubscribeListener(this);
+}
 
 MovementManager& MovementManager::getInstance() {
 	static MovementManager instance;

@@ -8,6 +8,11 @@ ENG_API std::string FileOVOReader::ovoExtension{ ".ovo" };
 
 ENG_API FileOVOReader::FileOVOReader() : m_dat{ nullptr }, m_materialsMap{std::map<std::string, Material*>()} {}
 
+ENG_API FileOVOReader::~FileOVOReader() {
+    this->deleteTextures();
+    this->deleteMaterials();
+}
+
 ENG_API FileOVOReader& FileOVOReader::getInstance() {
     static FileOVOReader instance;
     return instance;
@@ -71,6 +76,8 @@ ENG_API Node* FileOVOReader::parseFile(const std::string& fileName) {
 
     Node* rootNode = this->recursiveLoad();
 
+    fclose(this->m_dat);
+
     return rootNode;
 }
 
@@ -107,10 +114,15 @@ ENG_API Node* FileOVOReader::recursiveLoad() {
 
     unsigned int numberOfChildren = nodeToParse->parse(data, position);
 
+    delete[] data;
+
     Mesh* possibleMesh = dynamic_cast<Mesh*>(nodeToParse);
 
-    //da chiedere. Tanti if quanti oggetti hanno il material
-    if (possibleMesh != nullptr && possibleMesh->getMaterial() != nullptr)  possibleMesh->setMaterial(this->m_materialsMap[possibleMesh->getMaterial()->getName()]);
+    if (possibleMesh != nullptr && possibleMesh->getMaterial() != nullptr) {
+        const std::string materialName = possibleMesh->getMaterial()->getName();
+        delete possibleMesh->getMaterial();
+        possibleMesh->setMaterial(this->m_materialsMap[materialName]);
+    }
     
 
     if(numberOfChildren)
@@ -122,3 +134,23 @@ ENG_API Node* FileOVOReader::recursiveLoad() {
     return nodeToParse;
 }
 
+ENG_API void FileOVOReader::deleteTextures() {
+    std::set<Texture*> textures;
+
+    for (const auto& [materialName, materialPtr] : m_materialsMap) {
+        if (materialPtr != nullptr) {
+            Texture* texture = const_cast<Texture*>(materialPtr->getTexture());
+            if (texture != nullptr) {
+                textures.insert(texture);
+            }
+        }
+    }
+
+    for (auto* texture : textures)
+        delete texture;
+}
+
+ENG_API void FileOVOReader::deleteMaterials() {
+    for (const auto& [materialName, materialPtr] : m_materialsMap)
+        delete materialPtr;
+}

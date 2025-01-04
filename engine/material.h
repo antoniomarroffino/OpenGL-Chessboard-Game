@@ -50,6 +50,8 @@ public:
      */
     Material(const Material& other);
 
+    ~Material() = default;
+
     /**
      * @brief Deleted assignment operator.
      */

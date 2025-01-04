@@ -126,7 +126,7 @@ void ENG_API Eng::Base::setSpecialCallback(void (*specialCallback)(int, int, int
  * Init internal components.
  * @return TF
  */
-bool ENG_API Eng::Base::init()
+bool ENG_API Eng::Base::init(void (*closeCallBack)())
 {
    // Already initialized?
    if (reserved->initFlag)
@@ -149,6 +149,7 @@ bool ENG_API Eng::Base::init()
 
    glutDisplayFunc([](){});
    glutReshapeFunc([](int width, int height) {Eng::Base::instance.handleReshape(width, height);});
+   if (closeCallBack != nullptr) glutCloseFunc(closeCallBack);
 
    glm::vec4 gAmbient(0.2f, 0.2f, 0.2f, 1.0f);
 

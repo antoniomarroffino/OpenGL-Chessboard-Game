@@ -42,6 +42,8 @@ public:
      */
     OmniLight(const std::string& name = "defaultOmniLight", const glm::vec3& position = glm::vec3(0.0f));
 
+    ~OmniLight() = default;
+
     /**
      * @brief Copy constructor for creating an OmniLight object from another OmniLight.
      *

@@ -48,6 +48,8 @@ public:
     SpotLight(const std::string& name = "defaultSpotLight", const glm::vec3& position = glm::vec3(0.0f),
         const glm::vec3& direction = glm::vec3(1.0f), const float& cutoff = 45.0f, const float& spotExponent = 1.0f);
 
+    ~SpotLight() = default;
+
     /**
      * @brief Copy constructor for creating a SpotLight object from another SpotLight.
      *

@@ -66,6 +66,8 @@ public:
      */
     void subscribeListener(GameStatus gameState, OnStateUpdateListener* listener);
 
+    void unsubscribeListener(OnStateUpdateListener* listener);
+
     /**
      * @brief Add a new game state with its associated callbacks and menu.
      * @param gameStatus The game state to add.

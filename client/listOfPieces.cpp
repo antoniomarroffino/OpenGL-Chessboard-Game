@@ -7,6 +7,12 @@ ListOfPieces::ListOfPieces(const ListOfPieces& other) : m_listOfPieces{ std::vec
 		this->m_listOfPieces.push_back(new Piece(*piece));
 }
 
+ListOfPieces::~ListOfPieces() {
+	for (auto* piece : this->m_listOfPieces)
+		delete piece;
+	this->m_listOfPieces.clear();
+}
+
 ListOfPieces* ListOfPieces::clone() {
 	return new ListOfPieces(*this);
 }

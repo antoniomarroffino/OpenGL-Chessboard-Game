@@ -24,6 +24,7 @@
 
 // Standard libraries
 #include <map>
+#include <set>
 
 ///////////////////////
 // MAIN FILEOVOREADER CLASS //
@@ -41,6 +42,8 @@ public:
      * @brief Copy constructor is deleted to ensure singleton usage.
      */
     FileOVOReader(const FileOVOReader&) = delete;
+
+    ~FileOVOReader();
 
     /**
      * @brief Assignment operator is deleted to ensure singleton usage.
@@ -129,6 +132,10 @@ private:
      * @return A pointer to the root node of the scene graph.
      */
     Node* recursiveLoad();
+
+    void deleteTextures();
+
+    void deleteMaterials();
 
     /**
      * @brief The `.ovo` file extension.

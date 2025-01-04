@@ -3,13 +3,7 @@
 ENG_API NotificationService::NotificationService() : m_reshapeListeners{ std::vector<ReshapeListener*>() }, m_changeMatrixListeners{ std::vector<ChangeMatrixListener*>() } {}
 
 ENG_API NotificationService::~NotificationService() {
-	for (auto* listener : m_reshapeListeners)
-		delete listener;
 	m_reshapeListeners.clear();
-
-	for (auto* listener : m_changeMatrixListeners)
-		delete listener;
-
 	m_changeMatrixListeners.clear();
 }
 

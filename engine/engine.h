@@ -111,7 +111,7 @@ public: //
     * @brief Initialize the engine.
     * @return `true` if initialization is successful, `false` otherwise.
     */
-   bool init();
+   bool init(void (*closeCallBack)() = nullptr);
 
    /**
     * @brief Set the keyboard callback function for user input.

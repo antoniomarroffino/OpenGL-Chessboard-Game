@@ -49,7 +49,7 @@ public:
     /**
      * @brief Destructor for HistoryManager.
      */
-    ~HistoryManager() = default;
+    ~HistoryManager();
 
     /**
      * @brief Get the singleton instance of HistoryManager.
@@ -118,7 +118,7 @@ private:
     /**
      * @brief Stores the history of game state snapshots.
      */
-    std::vector<Reserved> m_history;
+    std::vector<Reserved*> m_history;
 
     /**
      * @brief The manager responsible for handling the list of pieces in the game.

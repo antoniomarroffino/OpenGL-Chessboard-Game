@@ -59,7 +59,7 @@ public:
     /**
      * @brief Destructor for CameraManager.
      */
-    ~CameraManager() = default;
+    ~CameraManager();
 
     /**
      * @brief Retrieves the singleton instance of CameraManager.

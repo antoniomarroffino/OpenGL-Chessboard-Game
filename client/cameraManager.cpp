@@ -8,6 +8,10 @@ CameraManager::CameraManager() : OnStateUpdateListener(), m_statusManager{Status
 	this->m_statusManager.subscribeListener(GameStatus::END_GAME, this);
 }
 
+CameraManager::~CameraManager() {
+	this->m_statusManager.unsubscribeListener(this);
+}
+
 CameraManager& CameraManager::getInstance() {
 	static CameraManager instance;
 	return instance;

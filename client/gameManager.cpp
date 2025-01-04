@@ -14,6 +14,7 @@ struct GameManager::Reserved
 	Eng::Base& engine;
 	Node* rootNode;
 	Node* rootResetNode;
+	bool isApplicationRunning;
 
 	Reserved() : cameraManager{ CameraManager::getInstance() },
 		statusManager{ StatusManager::getInstance() },
@@ -23,7 +24,8 @@ struct GameManager::Reserved
 		lightManager{ LightManager::getInstance() },
 		engine{ Eng::Base::getInstance() },
 		rootNode{ nullptr },
-		rootResetNode{ nullptr }
+		rootResetNode{ nullptr },
+		isApplicationRunning{false}
 	{
 	}
 };
@@ -32,6 +34,8 @@ GameManager::GameManager() : m_reserved(std::make_unique<GameManager::Reserved>(
 
 GameManager::~GameManager() {
 	this->m_reserved->engine.free();
+	delete this->m_reserved->rootResetNode;
+	delete this->m_reserved->rootNode;
 }
 
 GameManager& GameManager::getInstance() {
@@ -300,6 +304,10 @@ std::list<std::string> GameManager::menuEndGame() {
 //------------------------------------------------------------------------------------------------------------------------
 
 
+void GameManager::closeCallBack() {
+	this->m_reserved->isApplicationRunning = false;
+}
+
 void GameManager::resetGame() {
 	this->m_reserved->rootNode = this->m_reserved->rootResetNode->clone();
 	this->m_reserved->listOfPiecesManager.initialize();
@@ -327,10 +335,11 @@ void GameManager::startGame() {
 
 
 void GameManager::gameLoop() {
+	this->m_reserved->isApplicationRunning = true;
 	this->m_reserved->statusManager.changeState(GameStatus::PRE_GAME);
 	this->m_reserved->engine.passScene(this->m_reserved->rootNode);
 
-	while (true) {
+	while (this->m_reserved->isApplicationRunning) {
 		this->m_reserved->engine.clear();
 
 		this->m_reserved->engine.begin3D(this->m_reserved->cameraManager.getMainCamera(),
@@ -341,13 +350,11 @@ void GameManager::gameLoop() {
 			this->m_reserved->listOfPiecesManager.updateSelectPointer();
 
 		this->m_reserved->engine.swap();
-
-		//std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 	}
 }
 
 void GameManager::initialize() {
-	this->m_reserved->engine.init();
+	this->m_reserved->engine.init([]() {getInstance().closeCallBack();});
 
 	this->m_reserved->statusManager.addGameStatusAndCallbacks(GameStatus::PRE_GAME,
 		[](unsigned char key, int mouseX, int mouseY) { getInstance().keyboardCallbackPreGame(key, mouseX, mouseY); },

@@ -47,6 +47,8 @@ public:
      */
     OrthoCamera(const std::string& name, const float& width, const float& height, const float& near_val, const float& far_val);
 
+    ~OrthoCamera() = default;
+
     /**
      * @brief Copy constructor for creating a new OrthoCamera object from an existing one.
      *

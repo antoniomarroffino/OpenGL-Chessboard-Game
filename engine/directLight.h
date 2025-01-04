@@ -44,6 +44,8 @@ public:
      */
     DirectLight(const std::string& name = "defaultDirectLight", const glm::vec3& direction = glm::vec3(0.0f));
 
+    ~DirectLight() = default;
+
     /**
      * @brief Copy constructor for creating a new DirectLight object based on an existing one.
      *

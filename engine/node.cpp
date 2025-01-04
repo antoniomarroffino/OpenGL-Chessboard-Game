@@ -8,9 +8,8 @@ ENG_API Node::Node(const std::string& name) : Object(name), m_matrix{ glm::mat4(
 ENG_API Node::Node(const Node& other) : Object(other), m_matrix{ other.m_matrix }, m_parent{ other.m_parent }, m_children{ std::vector<Node*>() }, m_material{ other.m_material == nullptr ? other.m_material : new Material(*other.m_material) }, m_enableLighting{ other.m_enableLighting }, m_notificationService{ NotificationService::getInstance() }, m_isMatrixParsed{ false } {}
 
 ENG_API Node::~Node() {
-	for (auto child : m_children) {
+	for (auto child : m_children)
 		delete child;
-	}
 	m_children.clear();
 }
 

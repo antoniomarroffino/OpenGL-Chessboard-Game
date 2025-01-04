@@ -46,7 +46,7 @@ public:
     /**
      * @brief Destructor for ListOfPiecesManager.
      */
-    ~ListOfPiecesManager() = default;
+    ~ListOfPiecesManager();
 
     /**
      * @brief Returns the singleton instance of ListOfPiecesManager.

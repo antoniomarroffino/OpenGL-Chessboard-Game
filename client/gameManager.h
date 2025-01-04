@@ -198,6 +198,8 @@ private:
      */
 	std::list<std::string> menuEndGame();
 
+    void closeCallBack();
+
 	GameManager();
 
     /**

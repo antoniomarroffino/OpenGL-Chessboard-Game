@@ -30,6 +30,23 @@ void StatusManager::subscribeListener(GameStatus gameState, OnStateUpdateListene
 	this->m_listener[gameState].push_back(listener);
 }
 
+void StatusManager::unsubscribeListener(OnStateUpdateListener* listener) {
+	if (listener == nullptr) return;
+
+	std::vector<GameStatus> keysToErase;
+
+	for (auto& [gameStatus, listeners] : m_listener) {
+		listeners.remove(listener);
+
+		if (listeners.empty())
+			keysToErase.push_back(gameStatus);
+	}
+
+	for (const auto& key : keysToErase)
+		m_listener.erase(key);
+	
+}
+
 void StatusManager::addGameStatusAndCallbacks(const GameStatus& gameStatus, void (*keyboardCallback)(unsigned char, int, int),
 		void (*specialKeyCallback)(int, int, int), const std::list<std::string> menu) {
 	Reserved reserved;

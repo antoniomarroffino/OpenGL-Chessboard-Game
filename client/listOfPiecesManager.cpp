@@ -18,6 +18,12 @@ m_iteratorOnList{ 0 }, m_rotationAngle{ 1.2f }
 	this->m_statusManager.subscribeListener(GameStatus::END_GAME, this);
 }
 
+ListOfPiecesManager::~ListOfPiecesManager() {
+	this->m_statusManager.unsubscribeListener(this);
+	delete this->m_blackList;
+	delete this->m_whiteList;
+}
+
 ListOfPiecesManager& ListOfPiecesManager::getInstance() {
 	static ListOfPiecesManager instance;
 	return instance;

@@ -44,6 +44,8 @@ public:
      */
 	ListOfPieces(const std::vector<Piece*>& pieces);
 
+    ~ListOfPieces();
+
     /**
      * @brief Clone the current ListOfPieces object.
      * 
