@@ -201,7 +201,7 @@ ListOfPieces* ListOfPiecesManager::getBlackPieces() const {
 	return this->m_blackList;
 }
 
-const bool& ListOfPiecesManager::isGameFinished() const {
+bool ListOfPiecesManager::isGameFinished() const {
 	return (this->getCurrentList() == this->m_whiteList ? this->m_blackList : this->m_whiteList)->getSize() == 0;
 }
 
