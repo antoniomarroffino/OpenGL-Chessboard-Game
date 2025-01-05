@@ -20,6 +20,8 @@ Inheritance diagram for Spot\+Light\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_spot_light_a1f0f46c04f49ac526f47c6b584b8459b}{Spot\+Light}} (const std\+::string \&name="{}default\+Spot\+Light"{}, const glm\+::vec3 \&position=glm\+::vec3(0.\+0f), const glm\+::vec3 \&direction=glm\+::vec3(1.\+0f), const float \&cutoff=45.\+0f, const float \&spot\+Exponent=1.\+0f)
 \begin{DoxyCompactList}\small\item\em Constructor for initializing the spotlight with specific parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spot_light_a3b4bbc1a84476d47546b9554f700362b}{\texorpdfstring{$\sim$}{\string~}\+Spot\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the \doxylink{class_spot_light}{Spot\+Light} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_spot_light_a4d244391f83e4265b5ef7ea965a0baea}{Spot\+Light}} (const \mbox{\hyperlink{class_spot_light}{Spot\+Light}} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor for creating a \doxylink{class_spot_light}{Spot\+Light} object from another \doxylink{class_spot_light}{Spot\+Light}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_spot_light}{Spot\+Light}} \& \mbox{\hyperlink{class_spot_light_ae668ff6144ab46e9050401bcc6fb80eb}{operator=}} (const \mbox{\hyperlink{class_spot_light}{Spot\+Light}} \&)=delete
@@ -45,6 +47,8 @@ const float \& \mbox{\hyperlink{class_spot_light_a91659b95a6ab043ce9941c6c603961
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
 \begin{DoxyCompactItemize}
 \item 
+virtual \mbox{\hyperlink{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9}{\texorpdfstring{$\sim$}{\string~}\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_light_a5bc31ec3268cea795ce926bf8e885655}{set\+Position}} (const glm\+::vec3 \&position)
 \begin{DoxyCompactList}\small\item\em Set the position of the light in 3D space. \end{DoxyCompactList}\item 
 const glm\+::vec4 \& \mbox{\hyperlink{class_light_a6048e9eed2858d9ffd7a40c103627461}{get\+Position}} () const
@@ -107,6 +111,15 @@ const std\+::string \& \mbox{\hyperlink{class_object_a623e33bd86ef50533cc0737173
 \begin{DoxyCompactList}\small\item\em Retrieve the name of the object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}} (const std\+::string \&name)
 \begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \mbox{\hyperlink{class_spot_light_aeb4862a60780731c3582533b38862105}{m\+\_\+direction}}
+\begin{DoxyCompactList}\small\item\em The direction of the spotlight\textquotesingle{}s beam. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_spot_light_a8b0ff306977e3bd9da0301894a934320}{m\+\_\+cutoff}}
+\begin{DoxyCompactList}\small\item\em The cutoff angle for the spotlight\textquotesingle{}s beam (in degrees). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_spot_light_a5ff5e6038a7c044837224ea6852bb84c}{m\+\_\+spot\+Exponent}}
+\begin{DoxyCompactList}\small\item\em The spot exponent that controls the intensity falloff of the spotlight. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
 \begin{DoxyCompactItemize}
@@ -220,7 +233,17 @@ This constructor creates a \doxylink{class_spot_light}{Spot\+Light} object with 
 {\em spot\+Exponent} & The spot exponent that controls the intensity falloff (default\+: 1.\+0f). \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_spot_light_a4d244391f83e4265b5ef7ea965a0baea}\index{SpotLight@{SpotLight}!SpotLight@{SpotLight}}
+\Hypertarget{class_spot_light_a3b4bbc1a84476d47546b9554f700362b}\index{SpotLight@{SpotLight}!````~SpotLight@{\texorpdfstring{$\sim$}{\string~}SpotLight}}
+\index{````~SpotLight@{\texorpdfstring{$\sim$}{\string~}SpotLight}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SpotLight()}{\string~SpotLight()}}
+{\footnotesize\ttfamily \label{class_spot_light_a3b4bbc1a84476d47546b9554f700362b} 
+Spot\+Light\+::\texorpdfstring{$\sim$}{\string~}\+Spot\+Light (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor for the \doxylink{class_spot_light}{Spot\+Light} class. 
+
+The destructor cleans up any resources associated with the \doxylink{class_spot_light}{Spot\+Light} object. \Hypertarget{class_spot_light_a4d244391f83e4265b5ef7ea965a0baea}\index{SpotLight@{SpotLight}!SpotLight@{SpotLight}}
 \index{SpotLight@{SpotLight}!SpotLight@{SpotLight}}
 \doxysubsubsection{\texorpdfstring{SpotLight()}{SpotLight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{class_spot_light_a4d244391f83e4265b5ef7ea965a0baea} 
@@ -412,6 +435,39 @@ This method sets the spot exponent that controls the falloff of the spotlight\te
 {\em spot\+Exponent} & The spot exponent value. \\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_spot_light_a8b0ff306977e3bd9da0301894a934320}\index{SpotLight@{SpotLight}!m\_cutoff@{m\_cutoff}}
+\index{m\_cutoff@{m\_cutoff}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{m\_cutoff}{m\_cutoff}}
+{\footnotesize\ttfamily \label{class_spot_light_a8b0ff306977e3bd9da0301894a934320} 
+float Spot\+Light\+::m\+\_\+cutoff\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The cutoff angle for the spotlight\textquotesingle{}s beam (in degrees). 
+
+\Hypertarget{class_spot_light_aeb4862a60780731c3582533b38862105}\index{SpotLight@{SpotLight}!m\_direction@{m\_direction}}
+\index{m\_direction@{m\_direction}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{m\_direction}{m\_direction}}
+{\footnotesize\ttfamily \label{class_spot_light_aeb4862a60780731c3582533b38862105} 
+glm\+::vec3 Spot\+Light\+::m\+\_\+direction\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The direction of the spotlight\textquotesingle{}s beam. 
+
+\Hypertarget{class_spot_light_a5ff5e6038a7c044837224ea6852bb84c}\index{SpotLight@{SpotLight}!m\_spotExponent@{m\_spotExponent}}
+\index{m\_spotExponent@{m\_spotExponent}!SpotLight@{SpotLight}}
+\doxysubsubsection{\texorpdfstring{m\_spotExponent}{m\_spotExponent}}
+{\footnotesize\ttfamily \label{class_spot_light_a5ff5e6038a7c044837224ea6852bb84c} 
+float Spot\+Light\+::m\+\_\+spot\+Exponent\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The spot exponent that controls the intensity falloff of the spotlight. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -20,6 +20,8 @@ Inheritance diagram for Direct\+Light\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_direct_light_abbec17c25790803933eabadd3bb340e1}{Direct\+Light}} (const std\+::string \&name="{}default\+Direct\+Light"{}, const glm\+::vec3 \&direction=glm\+::vec3(0.\+0f))
 \begin{DoxyCompactList}\small\item\em Constructor for creating a new \doxylink{class_direct_light}{Direct\+Light} object with a specified name and direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_direct_light_a46f47f3b171fc6a95fa9e6dc6ef103f5}{\texorpdfstring{$\sim$}{\string~}\+Direct\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the \doxylink{class_direct_light}{Direct\+Light} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_direct_light_a5ecac7b12b5e74dba0d7af3756a092ce}{Direct\+Light}} (const \mbox{\hyperlink{class_direct_light}{Direct\+Light}} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor for creating a new \doxylink{class_direct_light}{Direct\+Light} object based on an existing one. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_direct_light}{Direct\+Light}} \& \mbox{\hyperlink{class_direct_light_ad3857caca1a103525047cde06ce1c971}{operator=}} (const \mbox{\hyperlink{class_direct_light}{Direct\+Light}} \&)=delete
@@ -33,6 +35,8 @@ void \mbox{\hyperlink{class_direct_light_aaa05a8451f446743bc59d0ca19d01911}{set\
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
 \begin{DoxyCompactItemize}
 \item 
+virtual \mbox{\hyperlink{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9}{\texorpdfstring{$\sim$}{\string~}\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
 virtual const unsigned int \mbox{\hyperlink{class_light_a9c2b3894860997c534ad58cf233231aa}{parse}} (const char \texorpdfstring{$\ast$}{*}data, unsigned int \&position) override
 \begin{DoxyCompactList}\small\item\em Parse the light data from a buffer and initialize the light\textquotesingle{}s properties. \end{DoxyCompactList}\item 
 const glm\+::vec4 \& \mbox{\hyperlink{class_light_a6048e9eed2858d9ffd7a40c103627461}{get\+Position}} () const
@@ -202,7 +206,17 @@ This constructor initializes the directional light with a given name and directi
 {\em direction} & The direction of the light (default is glm\+::vec3(0.\+0f)). \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_direct_light_a5ecac7b12b5e74dba0d7af3756a092ce}\index{DirectLight@{DirectLight}!DirectLight@{DirectLight}}
+\Hypertarget{class_direct_light_a46f47f3b171fc6a95fa9e6dc6ef103f5}\index{DirectLight@{DirectLight}!````~DirectLight@{\texorpdfstring{$\sim$}{\string~}DirectLight}}
+\index{````~DirectLight@{\texorpdfstring{$\sim$}{\string~}DirectLight}!DirectLight@{DirectLight}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}DirectLight()}{\string~DirectLight()}}
+{\footnotesize\ttfamily \label{class_direct_light_a46f47f3b171fc6a95fa9e6dc6ef103f5} 
+Direct\+Light\+::\texorpdfstring{$\sim$}{\string~}\+Direct\+Light (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor for the \doxylink{class_direct_light}{Direct\+Light} class. 
+
+The destructor cleans up any resources associated with the \doxylink{class_direct_light}{Direct\+Light} object. \Hypertarget{class_direct_light_a5ecac7b12b5e74dba0d7af3756a092ce}\index{DirectLight@{DirectLight}!DirectLight@{DirectLight}}
 \index{DirectLight@{DirectLight}!DirectLight@{DirectLight}}
 \doxysubsubsection{\texorpdfstring{DirectLight()}{DirectLight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{class_direct_light_a5ecac7b12b5e74dba0d7af3756a092ce} 

@@ -24,9 +24,12 @@ var class_node =
     [ "setEnableLighting", "class_node.html#ac5e09c5c3a1e6f32c1f424d963b58752", null ],
     [ "setMaterial", "class_node.html#a5cc54a3f7b5d0d2b6a15f2f871092488", null ],
     [ "setMatrix", "class_node.html#a604d4c4bd5493e160ea46a10116aa6aa", null ],
+    [ "setParent", "class_node.html#aeeb73e804bf64c943f764173d5b1f90a", null ],
     [ "m_children", "class_node.html#aa53106aecc1036cd2d9f47a2bb289a0b", null ],
     [ "m_enableLighting", "class_node.html#a8c670b312a88907a2511907ee514a75b", null ],
+    [ "m_isMatrixParsed", "class_node.html#ae25f796c38dc5d667abb8d87d78c2157", null ],
     [ "m_material", "class_node.html#a55e3fe37166de40f4259b4611f399b6a", null ],
     [ "m_matrix", "class_node.html#a4b08c324f54ebed78bb448a6a64a0e51", null ],
+    [ "m_notificationService", "class_node.html#a414659c714c3babcc307ddfc49ca7448", null ],
     [ "m_parent", "class_node.html#afb679f84ec475d10a2c6fafb7130dac5", null ]
 ];

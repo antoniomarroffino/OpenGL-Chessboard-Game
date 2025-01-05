@@ -20,6 +20,8 @@ Inheritance diagram for Persp\+Camera\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_persp_camera_a5af437157b95246a4ec426e37ee2ecae}{Persp\+Camera}} (const std\+::string \&name, const float \&width, const float \&height, const float \&near\+\_\+val, const float \&far\+\_\+val, const float \&fovY)
 \begin{DoxyCompactList}\small\item\em Constructor for initializing the perspective camera with specific parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_persp_camera_a0481f9ef5586716ea5d18bff5556fd90}{\texorpdfstring{$\sim$}{\string~}\+Persp\+Camera}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_persp_camera}{Persp\+Camera} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_persp_camera_a8137b8d562592619e125fac33013bafd}{Persp\+Camera}} (const \mbox{\hyperlink{class_persp_camera}{Persp\+Camera}} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor for creating a \doxylink{class_persp_camera}{Persp\+Camera} object from another \doxylink{class_persp_camera}{Persp\+Camera}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_persp_camera}{Persp\+Camera}} \& \mbox{\hyperlink{class_persp_camera_a20c2c5ba2fab8b01bd9ee862d6ed63e6}{operator=}} (const \mbox{\hyperlink{class_persp_camera}{Persp\+Camera}} \&)=delete
@@ -98,6 +100,11 @@ void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}
 \item 
 virtual \mbox{\hyperlink{class_reshape_listener_a59f7da873e620444bfb9de79d4452151}{\texorpdfstring{$\sim$}{\string~}\+Reshape\+Listener}} ()=default
 \begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_reshape_listener}{Reshape\+Listener} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_persp_camera_aaf93049c91c2c4c0bf89b08a96633bec}{m\+\_\+fovY}}
+\begin{DoxyCompactList}\small\item\em The vertical field of view (in degrees). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_camera}{Camera}}}
 \begin{DoxyCompactItemize}
@@ -207,7 +214,17 @@ This constructor creates a \doxylink{class_persp_camera}{Persp\+Camera} object w
 {\em fovY} & The vertical field of view in degrees. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_persp_camera_a8137b8d562592619e125fac33013bafd}\index{PerspCamera@{PerspCamera}!PerspCamera@{PerspCamera}}
+\Hypertarget{class_persp_camera_a0481f9ef5586716ea5d18bff5556fd90}\index{PerspCamera@{PerspCamera}!````~PerspCamera@{\texorpdfstring{$\sim$}{\string~}PerspCamera}}
+\index{````~PerspCamera@{\texorpdfstring{$\sim$}{\string~}PerspCamera}!PerspCamera@{PerspCamera}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PerspCamera()}{\string~PerspCamera()}}
+{\footnotesize\ttfamily \label{class_persp_camera_a0481f9ef5586716ea5d18bff5556fd90} 
+Persp\+Camera\+::\texorpdfstring{$\sim$}{\string~}\+Persp\+Camera (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{class_persp_camera}{Persp\+Camera} class. 
+
+The destructor releases any resources associated with the \doxylink{class_persp_camera}{Persp\+Camera} object. \Hypertarget{class_persp_camera_a8137b8d562592619e125fac33013bafd}\index{PerspCamera@{PerspCamera}!PerspCamera@{PerspCamera}}
 \index{PerspCamera@{PerspCamera}!PerspCamera@{PerspCamera}}
 \doxysubsubsection{\texorpdfstring{PerspCamera()}{PerspCamera()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{class_persp_camera_a8137b8d562592619e125fac33013bafd} 
@@ -271,6 +288,19 @@ Implements \mbox{\hyperlink{class_camera_a45d9b25f23a8862c296ab090701afa6d}{Came
 Assignment operator is deleted to prevent assignment of \doxylink{class_persp_camera}{Persp\+Camera} objects. 
 
 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_persp_camera_aaf93049c91c2c4c0bf89b08a96633bec}\index{PerspCamera@{PerspCamera}!m\_fovY@{m\_fovY}}
+\index{m\_fovY@{m\_fovY}!PerspCamera@{PerspCamera}}
+\doxysubsubsection{\texorpdfstring{m\_fovY}{m\_fovY}}
+{\footnotesize\ttfamily \label{class_persp_camera_aaf93049c91c2c4c0bf89b08a96633bec} 
+float Persp\+Camera\+::m\+\_\+fovY\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The vertical field of view (in degrees). 
+
+The vertical field of view controls how wide or narrow the camera\textquotesingle{}s view is. A higher value gives a wider view, while a smaller value gives a narrower view. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

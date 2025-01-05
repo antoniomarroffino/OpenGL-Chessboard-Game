@@ -105,6 +105,7 @@ $(function(){initNavTree('class_o_v_o_object_factory.html',''); initResizable(tr
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="class_o_v_o_object_factory-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">OVOObjectFactory Class Reference</div></div>
 </div><!--header-->
@@ -132,6 +133,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a848f1eef3f7ebe5eac8b257a3aadd23b" id="r_a848f1eef3f7ebe5eac8b257a3aadd23b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a848f1eef3f7ebe5eac8b257a3aadd23b">createObjectByChunkID</a> (const unsigned int &amp;chunkID, const char *data)</td></tr>
 <tr class="memdesc:a848f1eef3f7ebe5eac8b257a3aadd23b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an object based on a chunk ID and associated data.  <br /></td></tr>
 <tr class="separator:a848f1eef3f7ebe5eac8b257a3aadd23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a65a69f566aed717b3cdef4d2944db0de" id="r_a65a69f566aed717b3cdef4d2944db0de"><td class="memItemLeft" align="right" valign="top">static const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65a69f566aed717b3cdef4d2944db0de">skipToSubtype</a> (const char *data)</td></tr>
+<tr class="memdesc:a65a69f566aed717b3cdef4d2944db0de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skips to the subtype section of the data.  <br /></td></tr>
+<tr class="separator:a65a69f566aed717b3cdef4d2944db0de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7433846d46618e372bcfa192f057d1c0" id="r_a7433846d46618e372bcfa192f057d1c0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7433846d46618e372bcfa192f057d1c0">createLight</a> (const unsigned char &amp;subtype)</td></tr>
+<tr class="memdesc:a7433846d46618e372bcfa192f057d1c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a light object based on its subtype.  <br /></td></tr>
+<tr class="separator:a7433846d46618e372bcfa192f057d1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Factory class to create objects based on chunk ID and data. </p>
@@ -192,6 +202,41 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7433846d46618e372bcfa192f057d1c0" name="a7433846d46618e372bcfa192f057d1c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7433846d46618e372bcfa192f057d1c0">&#9670;&#160;</a></span>createLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> <a class="el" href="class_object.html">Object</a> * OVOObjectFactory::createLight </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned char &amp;</td>          <td class="paramname"><span class="paramname"><em>subtype</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a light object based on its subtype. </p>
+<p>This method creates a specific light object (e.g., <code><a class="el" href="class_direct_light.html" title="Concrete DirectLight class.">DirectLight</a></code>, <code><a class="el" href="class_omni_light.html" title="Concrete OmniLight class.">OmniLight</a></code>, <code><a class="el" href="class_spot_light.html" title="Concrete SpotLight class.">SpotLight</a></code>) based on the provided subtype value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subtype</td><td>The subtype of the light. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the created light object, or <code>nullptr</code> if the subtype is unsupported. </dd></dl>
+
+</div>
+</div>
 <a id="a848f1eef3f7ebe5eac8b257a3aadd23b" name="a848f1eef3f7ebe5eac8b257a3aadd23b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a848f1eef3f7ebe5eac8b257a3aadd23b">&#9670;&#160;</a></span>createObjectByChunkID()</h2>
 
@@ -256,6 +301,41 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Deleted assignment operator to prevent assignment of factory objects. </p>
+
+</div>
+</div>
+<a id="a65a69f566aed717b3cdef4d2944db0de" name="a65a69f566aed717b3cdef4d2944db0de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65a69f566aed717b3cdef4d2944db0de">&#9670;&#160;</a></span>skipToSubtype()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> unsigned char OVOObjectFactory::skipToSubtype </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Skips to the subtype section of the data. </p>
+<p>This helper method processes the data and extracts the subtype information. It is used specifically for objects of type <code>LIGHT</code> to determine the kind of light (e.g., omni, directional, spot).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The data to process. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The subtype of the light object. </dd></dl>
 
 </div>
 </div>

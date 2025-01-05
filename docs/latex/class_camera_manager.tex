@@ -22,7 +22,7 @@ Inheritance diagram for Camera\+Manager\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Deleted copy constructor to enforce singleton pattern. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_camera_manager}{Camera\+Manager}} \& \mbox{\hyperlink{class_camera_manager_aa7dd363a0c38f52c60d0981ad1be87a6}{operator=}} (const \mbox{\hyperlink{class_camera_manager}{Camera\+Manager}} \&)=delete
 \begin{DoxyCompactList}\small\item\em Deleted assignment operator to enforce singleton pattern. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_camera_manager_a3c3a4b611892c62ba0d6c91b54d7c7b3}{\texorpdfstring{$\sim$}{\string~}\+Camera\+Manager}} ()=default
+\mbox{\hyperlink{class_camera_manager_a7a5d263f3fc28809d6c8c3935e571143}{\texorpdfstring{$\sim$}{\string~}\+Camera\+Manager}} ()
 \begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_camera_manager}{Camera\+Manager}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_camera_manager_ac796e1405cb4440b42cbddd657cbff6a}{initialize}} ()
 \begin{DoxyCompactList}\small\item\em Initializes the \doxylink{class_camera_manager}{Camera\+Manager} by creating default cameras. \end{DoxyCompactList}\item 
@@ -58,6 +58,26 @@ virtual void \mbox{\hyperlink{class_on_state_update_listener_a7a0b5a95a38f1583d8
 \item 
 static \mbox{\hyperlink{class_camera_manager}{Camera\+Manager}} \& \mbox{\hyperlink{class_camera_manager_ac7e6b0996395dcaaa889d17d5a8a639e}{get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em Retrieves the singleton instance of \doxylink{class_camera_manager}{Camera\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_camera_manager_ab66d897f3d5f01efe7e4368f16c42d7f}{Camera\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor for singleton pattern. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_camera_manager_ae9daad88d4c752ead72590eadbcd14b8}{create\+Cameras}} ()
+\begin{DoxyCompactList}\small\item\em Creates default cameras for the game scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_camera_manager_a983fe356f39b4e59aaeb43e66f1a9649}{pre\+Game\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handles the pre-\/game state transition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_camera_manager_ae6445a8b0e55b9c65ea5ec9a3677c0a9}{choice\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handles the choice state transition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_camera_manager_a015b28d0d726b76b654e86b42ff4ab26}{end\+Game\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handles the end-\/game state transition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}} \& \mbox{\hyperlink{class_camera_manager_a442a35ae98e2d5f4d6f7722737b90553}{m\+\_\+status\+Manager}}
+\begin{DoxyCompactList}\small\item\em Reference to the \doxylink{class_status_manager}{Status\+Manager} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_movement_manager}{Movement\+Manager}} \& \mbox{\hyperlink{class_camera_manager_ae599cfb2c60480c77b2b7f4516f5f5e5}{m\+\_\+movement\+Manager}}
+\begin{DoxyCompactList}\small\item\em Reference to the \doxylink{class_movement_manager}{Movement\+Manager} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}}}
 \begin{DoxyCompactItemize}
@@ -74,7 +94,7 @@ The \doxylink{class_camera_manager}{Camera\+Manager} handles the creation, initi
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_camera_manager_a337865ab18c1a8bfc32d6bc65c294ebc}\index{CameraManager@{CameraManager}!CameraManager@{CameraManager}}
 \index{CameraManager@{CameraManager}!CameraManager@{CameraManager}}
-\doxysubsubsection{\texorpdfstring{CameraManager()}{CameraManager()}}
+\doxysubsubsection{\texorpdfstring{CameraManager()}{CameraManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{class_camera_manager_a337865ab18c1a8bfc32d6bc65c294ebc} 
 Camera\+Manager\+::\+Camera\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_camera_manager}{Camera\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
@@ -82,15 +102,25 @@ Camera\+Manager\+::\+Camera\+Manager (\begin{DoxyParamCaption}\item[{const \mbox
 
 Deleted copy constructor to enforce singleton pattern. 
 
-\Hypertarget{class_camera_manager_a3c3a4b611892c62ba0d6c91b54d7c7b3}\index{CameraManager@{CameraManager}!````~CameraManager@{\texorpdfstring{$\sim$}{\string~}CameraManager}}
+\Hypertarget{class_camera_manager_a7a5d263f3fc28809d6c8c3935e571143}\index{CameraManager@{CameraManager}!````~CameraManager@{\texorpdfstring{$\sim$}{\string~}CameraManager}}
 \index{````~CameraManager@{\texorpdfstring{$\sim$}{\string~}CameraManager}!CameraManager@{CameraManager}}
 \doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CameraManager()}{\string~CameraManager()}}
-{\footnotesize\ttfamily \label{class_camera_manager_a3c3a4b611892c62ba0d6c91b54d7c7b3} 
-Camera\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Camera\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily \label{class_camera_manager_a7a5d263f3fc28809d6c8c3935e571143} 
+Camera\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Camera\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
 Destructor for \doxylink{class_camera_manager}{Camera\+Manager}. 
+
+Unsubscribes the \doxylink{class_camera_manager}{Camera\+Manager} as a listener from the \doxylink{class_status_manager}{Status\+Manager}, ensuring that it no longer receives updates or notifications from the game state changes. \Hypertarget{class_camera_manager_ab66d897f3d5f01efe7e4368f16c42d7f}\index{CameraManager@{CameraManager}!CameraManager@{CameraManager}}
+\index{CameraManager@{CameraManager}!CameraManager@{CameraManager}}
+\doxysubsubsection{\texorpdfstring{CameraManager()}{CameraManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_camera_manager_ab66d897f3d5f01efe7e4368f16c42d7f} 
+Camera\+Manager\+::\+Camera\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor for singleton pattern. 
 
 
 
@@ -115,6 +145,44 @@ Adds a new camera to the scene.
 \begin{DoxyReturn}{Returns}
 True if the camera was successfully added, false otherwise. 
 \end{DoxyReturn}
+\Hypertarget{class_camera_manager_ae6445a8b0e55b9c65ea5ec9a3677c0a9}\index{CameraManager@{CameraManager}!choiceHandler@{choiceHandler}}
+\index{choiceHandler@{choiceHandler}!CameraManager@{CameraManager}}
+\doxysubsubsection{\texorpdfstring{choiceHandler()}{choiceHandler()}}
+{\footnotesize\ttfamily \label{class_camera_manager_ae6445a8b0e55b9c65ea5ec9a3677c0a9} 
+void Camera\+Manager\+::choice\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handles the choice state transition. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_a350dd3599b14c0fe0e8f0969d98948f1}{On\+State\+Update\+Listener}}.
+
+\Hypertarget{class_camera_manager_ae9daad88d4c752ead72590eadbcd14b8}\index{CameraManager@{CameraManager}!createCameras@{createCameras}}
+\index{createCameras@{createCameras}!CameraManager@{CameraManager}}
+\doxysubsubsection{\texorpdfstring{createCameras()}{createCameras()}}
+{\footnotesize\ttfamily \label{class_camera_manager_ae9daad88d4c752ead72590eadbcd14b8} 
+void Camera\+Manager\+::create\+Cameras (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Creates default cameras for the game scene. 
+
+\Hypertarget{class_camera_manager_a015b28d0d726b76b654e86b42ff4ab26}\index{CameraManager@{CameraManager}!endGameHandler@{endGameHandler}}
+\index{endGameHandler@{endGameHandler}!CameraManager@{CameraManager}}
+\doxysubsubsection{\texorpdfstring{endGameHandler()}{endGameHandler()}}
+{\footnotesize\ttfamily \label{class_camera_manager_a015b28d0d726b76b654e86b42ff4ab26} 
+void Camera\+Manager\+::end\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handles the end-\/game state transition. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_ac23acfdde2e7de9e0be282a6a4cd289c}{On\+State\+Update\+Listener}}.
+
 \Hypertarget{class_camera_manager_ad96fdedfc2a7ccf7b563a96e944859b5}\index{CameraManager@{CameraManager}!findCameraByName@{findCameraByName}}
 \index{findCameraByName@{findCameraByName}!CameraManager@{CameraManager}}
 \doxysubsubsection{\texorpdfstring{findCameraByName()}{findCameraByName()}}
@@ -226,6 +294,20 @@ Moves the main camera upwards.
 
 Deleted assignment operator to enforce singleton pattern. 
 
+\Hypertarget{class_camera_manager_a983fe356f39b4e59aaeb43e66f1a9649}\index{CameraManager@{CameraManager}!preGameHandler@{preGameHandler}}
+\index{preGameHandler@{preGameHandler}!CameraManager@{CameraManager}}
+\doxysubsubsection{\texorpdfstring{preGameHandler()}{preGameHandler()}}
+{\footnotesize\ttfamily \label{class_camera_manager_a983fe356f39b4e59aaeb43e66f1a9649} 
+void Camera\+Manager\+::pre\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handles the pre-\/game state transition. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220}{On\+State\+Update\+Listener}}.
+
 \Hypertarget{class_camera_manager_a50e2c7bb6885c55a8c08016d8081f8e1}\index{CameraManager@{CameraManager}!removeCamera@{removeCamera}}
 \index{removeCamera@{removeCamera}!CameraManager@{CameraManager}}
 \doxysubsubsection{\texorpdfstring{removeCamera()}{removeCamera()}}
@@ -266,6 +348,29 @@ Sets a new main camera by name.
 \begin{DoxyReturn}{Returns}
 True if the main camera was successfully set, false otherwise. 
 \end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_camera_manager_ae599cfb2c60480c77b2b7f4516f5f5e5}\index{CameraManager@{CameraManager}!m\_movementManager@{m\_movementManager}}
+\index{m\_movementManager@{m\_movementManager}!CameraManager@{CameraManager}}
+\doxysubsubsection{\texorpdfstring{m\_movementManager}{m\_movementManager}}
+{\footnotesize\ttfamily \label{class_camera_manager_ae599cfb2c60480c77b2b7f4516f5f5e5} 
+\mbox{\hyperlink{class_movement_manager}{Movement\+Manager}}\& Camera\+Manager\+::m\+\_\+movement\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the \doxylink{class_movement_manager}{Movement\+Manager} instance. 
+
+\Hypertarget{class_camera_manager_a442a35ae98e2d5f4d6f7722737b90553}\index{CameraManager@{CameraManager}!m\_statusManager@{m\_statusManager}}
+\index{m\_statusManager@{m\_statusManager}!CameraManager@{CameraManager}}
+\doxysubsubsection{\texorpdfstring{m\_statusManager}{m\_statusManager}}
+{\footnotesize\ttfamily \label{class_camera_manager_a442a35ae98e2d5f4d6f7722737b90553} 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}}\& Camera\+Manager\+::m\+\_\+status\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the \doxylink{class_status_manager}{Status\+Manager} instance. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

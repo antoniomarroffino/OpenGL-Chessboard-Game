@@ -66,6 +66,11 @@ public:
      */
     void subscribeListener(GameStatus gameState, OnStateUpdateListener* listener);
 
+    /**
+     * @brief Unsubscribe a listener from receiving updates for all game states.
+     * @param listener Pointer to the listener to unsubscribe. If the pointer
+     *                 is null, the method performs no operation.
+     */
     void unsubscribeListener(OnStateUpdateListener* listener);
 
     /**

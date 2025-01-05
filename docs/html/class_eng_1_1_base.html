@@ -106,6 +106,9 @@ $(function(){initNavTree('class_eng_1_1_base.html',''); initResizable(true); });
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_eng_1_1_base-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Eng::Base Class Reference<span class="mlabels"><span class="mlabel final">final</span></span></div></div>
 </div><!--header-->
@@ -133,9 +136,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4eb1f66179273abba59260a6b4c5cbd" id="r_ac4eb1f66179273abba59260a6b4c5cbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4eb1f66179273abba59260a6b4c5cbd">operator=</a> (<a class="el" href="class_eng_1_1_base.html">Base</a> const &amp;)=delete</td></tr>
 <tr class="memdesc:ac4eb1f66179273abba59260a6b4c5cbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleted copy assignment operator to prevent assignment of the <a class="el" href="class_eng_1_1_base.html" title="Main class for the graphics engine. Implements the Singleton pattern.">Base</a> instance.  <br /></td></tr>
 <tr class="separator:ac4eb1f66179273abba59260a6b4c5cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90edbcc7768cba11d81687bdcf7c10f5" id="r_a90edbcc7768cba11d81687bdcf7c10f5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90edbcc7768cba11d81687bdcf7c10f5">init</a> ()</td></tr>
-<tr class="memdesc:a90edbcc7768cba11d81687bdcf7c10f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the engine.  <br /></td></tr>
-<tr class="separator:a90edbcc7768cba11d81687bdcf7c10f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc0dd380b8955e2313d41893e630be12" id="r_afc0dd380b8955e2313d41893e630be12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc0dd380b8955e2313d41893e630be12">init</a> (void(*closeCallBack)()=nullptr)</td></tr>
+<tr class="memdesc:afc0dd380b8955e2313d41893e630be12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the engine.  <br /></td></tr>
+<tr class="separator:afc0dd380b8955e2313d41893e630be12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6ed5042d5fb8d46b3bd339ecc916d33" id="r_af6ed5042d5fb8d46b3bd339ecc916d33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6ed5042d5fb8d46b3bd339ecc916d33">setKeyboardCallback</a> (void(*callback)(unsigned char, int, int))</td></tr>
 <tr class="memdesc:af6ed5042d5fb8d46b3bd339ecc916d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the keyboard callback function for user input.  <br /></td></tr>
 <tr class="separator:af6ed5042d5fb8d46b3bd339ecc916d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,13 +178,34 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3c21bcd7bace09d5913ced6de5b15518" id="r_a3c21bcd7bace09d5913ced6de5b15518"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_eng_1_1_base.html">Base</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c21bcd7bace09d5913ced6de5b15518">getInstance</a> ()</td></tr>
 <tr class="memdesc:a3c21bcd7bace09d5913ced6de5b15518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the singleton instance of the <a class="el" href="class_eng_1_1_base.html" title="Main class for the graphics engine. Implements the Singleton pattern.">Base</a> class.  <br /></td></tr>
 <tr class="separator:a3c21bcd7bace09d5913ced6de5b15518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aa4056f5a3edbc6f4d1764d6cec20e16d" id="r_aa4056f5a3edbc6f4d1764d6cec20e16d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4056f5a3edbc6f4d1764d6cec20e16d">handleReshape</a> (int width, int height)</td></tr>
+<tr class="memdesc:aa4056f5a3edbc6f4d1764d6cec20e16d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private method to handle window reshaping.  <br /></td></tr>
+<tr class="separator:aa4056f5a3edbc6f4d1764d6cec20e16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46524a1c562ab3afca032e44a00ce7c6" id="r_a46524a1c562ab3afca032e44a00ce7c6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46524a1c562ab3afca032e44a00ce7c6">Base</a> ()</td></tr>
+<tr class="memdesc:a46524a1c562ab3afca032e44a00ce7c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private constructor for the singleton instance. Initializes internal resources for the engine.  <br /></td></tr>
+<tr class="separator:a46524a1c562ab3afca032e44a00ce7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a17dea5630935db11dec6d91c9fc88693" id="r_a17dea5630935db11dec6d91c9fc88693"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="struct_eng_1_1_base_1_1_reserved.html">Reserved</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17dea5630935db11dec6d91c9fc88693">reserved</a></td></tr>
+<tr class="memdesc:a17dea5630935db11dec6d91c9fc88693"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_eng_1_1_base_1_1_reserved.html" title="Base class reserved structure (using PIMPL/Bridge design pattern https://en.wikipedia....">Reserved</a> structure for internal use.  <br /></td></tr>
+<tr class="separator:a17dea5630935db11dec6d91c9fc88693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:ad981031db3f340f6674922fcc72dacbb" id="r_ad981031db3f340f6674922fcc72dacbb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_eng_1_1_base.html">Eng::Base</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad981031db3f340f6674922fcc72dacbb">instance</a></td></tr>
+<tr class="memdesc:ad981031db3f340f6674922fcc72dacbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The singleton instance of the engine.  <br /></td></tr>
+<tr class="separator:ad981031db3f340f6674922fcc72dacbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main class for the graphics engine. Implements the Singleton pattern. </p>
 <p>The <code><a class="el" href="class_eng_1_1_base.html" title="Main class for the graphics engine. Implements the Singleton pattern.">Base</a></code> class is responsible for initializing the engine, managing scenes, handling user input, and managing frame rate. It is designed as a singleton to ensure only one instance of the engine exists. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac9bc36f2293d517cc6f1b2ab348d4f69" name="ac9bc36f2293d517cc6f1b2ab348d4f69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9bc36f2293d517cc6f1b2ab348d4f69">&#9670;&#160;</a></span>Base()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9bc36f2293d517cc6f1b2ab348d4f69">&#9670;&#160;</a></span>Base() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,6 +249,34 @@ Static Public Member Functions</h2></td></tr>
 <p>Destructor for the <a class="el" href="class_eng_1_1_base.html" title="Main class for the graphics engine. Implements the Singleton pattern.">Base</a> class. </p>
 <p>Cleans up resources used by the graphics engine.</p>
 <p>Destructor. </p>
+
+</div>
+</div>
+<a id="a46524a1c562ab3afca032e44a00ce7c6" name="a46524a1c562ab3afca032e44a00ce7c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46524a1c562ab3afca032e44a00ce7c6">&#9670;&#160;</a></span>Base() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> Eng::Base::Base </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Private constructor for the singleton instance. Initializes internal resources for the engine. </p>
+<p>Constructor. </p>
 
 </div>
 </div>
@@ -395,8 +447,46 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a90edbcc7768cba11d81687bdcf7c10f5" name="a90edbcc7768cba11d81687bdcf7c10f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90edbcc7768cba11d81687bdcf7c10f5">&#9670;&#160;</a></span>init()</h2>
+<a id="aa4056f5a3edbc6f4d1764d6cec20e16d" name="aa4056f5a3edbc6f4d1764d6cec20e16d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4056f5a3edbc6f4d1764d6cec20e16d">&#9670;&#160;</a></span>handleReshape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Eng::Base::handleReshape </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Private method to handle window reshaping. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>The new width of the window. </td></tr>
+    <tr><td class="paramname">height</td><td>The new height of the window. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afc0dd380b8955e2313d41893e630be12" name="afc0dd380b8955e2313d41893e630be12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc0dd380b8955e2313d41893e630be12">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -404,7 +494,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">bool <a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> Eng::Base::init </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">void(*</td>          <td class="paramname"><span class="paramname"><em>closeCallBack&#160;</em></span>)()<span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -563,6 +653,56 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Swap the buffers for rendering. </p>
 <p>Swap buffers. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad981031db3f340f6674922fcc72dacbb" name="ad981031db3f340f6674922fcc72dacbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad981031db3f340f6674922fcc72dacbb">&#9670;&#160;</a></span>instance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_eng_1_1_base.html">Eng::Base</a> Eng::Base::instance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The singleton instance of the engine. </p>
+
+</div>
+</div>
+<a id="a17dea5630935db11dec6d91c9fc88693" name="a17dea5630935db11dec6d91c9fc88693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17dea5630935db11dec6d91c9fc88693">&#9670;&#160;</a></span>reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="struct_eng_1_1_base_1_1_reserved.html">Reserved</a>&gt; Eng::Base::reserved</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="struct_eng_1_1_base_1_1_reserved.html" title="Base class reserved structure (using PIMPL/Bridge design pattern https://en.wikipedia....">Reserved</a> structure for internal use. </p>
+<p>Unique pointer to the reserved structure </p>
 
 </div>
 </div>

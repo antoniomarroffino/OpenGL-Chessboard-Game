@@ -20,6 +20,8 @@ Inheritance diagram for Ortho\+Camera\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_ortho_camera_ad4af100a21fe6cedf21c20d07e6d3e64}{Ortho\+Camera}} (const std\+::string \&name, const float \&width, const float \&height, const float \&near\+\_\+val, const float \&far\+\_\+val)
 \begin{DoxyCompactList}\small\item\em Constructor for initializing the orthographic camera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ortho_camera_ae2824e19e68d30eadba56edb2720eb56}{\texorpdfstring{$\sim$}{\string~}\+Ortho\+Camera}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ortho_camera}{Ortho\+Camera} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_ortho_camera_a9a810c888f7aef4ae1f702bb5b117c84}{Ortho\+Camera}} (const \mbox{\hyperlink{class_ortho_camera}{Ortho\+Camera}} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor for creating a new \doxylink{class_ortho_camera}{Ortho\+Camera} object from an existing one. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_ortho_camera}{Ortho\+Camera}} \& \mbox{\hyperlink{class_ortho_camera_a2e90c4e01a9077637d7f42d9eeb2f0c9}{operator=}} (const \mbox{\hyperlink{class_ortho_camera}{Ortho\+Camera}} \&)=delete
@@ -98,6 +100,13 @@ void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}
 \item 
 virtual \mbox{\hyperlink{class_reshape_listener_a59f7da873e620444bfb9de79d4452151}{\texorpdfstring{$\sim$}{\string~}\+Reshape\+Listener}} ()=default
 \begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_reshape_listener}{Reshape\+Listener} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_ortho_camera_a7a8c30f2ee837327ed88672251fea7d6}{m\+\_\+left}}
+\begin{DoxyCompactList}\small\item\em The left boundary for the orthographic projection. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_ortho_camera_a36f74f45f56505e0b0ef24e3c6aa03c0}{m\+\_\+bottom}}
+\begin{DoxyCompactList}\small\item\em The bottom boundary for the orthographic projection. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_camera}{Camera}}}
 \begin{DoxyCompactItemize}
@@ -205,7 +214,17 @@ This constructor initializes the \doxylink{class_ortho_camera}{Ortho\+Camera} wi
 {\em far\+\_\+val} & The far clipping plane distance. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_ortho_camera_a9a810c888f7aef4ae1f702bb5b117c84}\index{OrthoCamera@{OrthoCamera}!OrthoCamera@{OrthoCamera}}
+\Hypertarget{class_ortho_camera_ae2824e19e68d30eadba56edb2720eb56}\index{OrthoCamera@{OrthoCamera}!````~OrthoCamera@{\texorpdfstring{$\sim$}{\string~}OrthoCamera}}
+\index{````~OrthoCamera@{\texorpdfstring{$\sim$}{\string~}OrthoCamera}!OrthoCamera@{OrthoCamera}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}OrthoCamera()}{\string~OrthoCamera()}}
+{\footnotesize\ttfamily \label{class_ortho_camera_ae2824e19e68d30eadba56edb2720eb56} 
+Ortho\+Camera\+::\texorpdfstring{$\sim$}{\string~}\+Ortho\+Camera (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{class_ortho_camera}{Ortho\+Camera} class. 
+
+The destructor releases any resources associated with the \doxylink{class_ortho_camera}{Ortho\+Camera} object. \Hypertarget{class_ortho_camera_a9a810c888f7aef4ae1f702bb5b117c84}\index{OrthoCamera@{OrthoCamera}!OrthoCamera@{OrthoCamera}}
 \index{OrthoCamera@{OrthoCamera}!OrthoCamera@{OrthoCamera}}
 \doxysubsubsection{\texorpdfstring{OrthoCamera()}{OrthoCamera()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{class_ortho_camera_a9a810c888f7aef4ae1f702bb5b117c84} 
@@ -267,6 +286,29 @@ Implements \mbox{\hyperlink{class_camera_a45d9b25f23a8862c296ab090701afa6d}{Came
 
 
 Assignment operator is deleted to prevent assignment of \doxylink{class_ortho_camera}{Ortho\+Camera} objects. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_ortho_camera_a36f74f45f56505e0b0ef24e3c6aa03c0}\index{OrthoCamera@{OrthoCamera}!m\_bottom@{m\_bottom}}
+\index{m\_bottom@{m\_bottom}!OrthoCamera@{OrthoCamera}}
+\doxysubsubsection{\texorpdfstring{m\_bottom}{m\_bottom}}
+{\footnotesize\ttfamily \label{class_ortho_camera_a36f74f45f56505e0b0ef24e3c6aa03c0} 
+float Ortho\+Camera\+::m\+\_\+bottom\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The bottom boundary for the orthographic projection. 
+
+\Hypertarget{class_ortho_camera_a7a8c30f2ee837327ed88672251fea7d6}\index{OrthoCamera@{OrthoCamera}!m\_left@{m\_left}}
+\index{m\_left@{m\_left}!OrthoCamera@{OrthoCamera}}
+\doxysubsubsection{\texorpdfstring{m\_left}{m\_left}}
+{\footnotesize\ttfamily \label{class_ortho_camera_a7a8c30f2ee837327ed88672251fea7d6} 
+float Ortho\+Camera\+::m\+\_\+left\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The left boundary for the orthographic projection. 
 
 
 

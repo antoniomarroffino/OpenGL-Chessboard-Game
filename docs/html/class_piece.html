@@ -104,6 +104,7 @@ $(function(){initNavTree('class_piece.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_piece-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Piece Class Reference</div></div>
 </div><!--header-->
@@ -140,6 +141,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa5602ce6d9c35fc3171cc9989dd3baf5" id="r_aa5602ce6d9c35fc3171cc9989dd3baf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5602ce6d9c35fc3171cc9989dd3baf5">setCol</a> (const unsigned int &amp;col)</td></tr>
 <tr class="memdesc:aa5602ce6d9c35fc3171cc9989dd3baf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the column position of the piece.  <br /></td></tr>
 <tr class="separator:aa5602ce6d9c35fc3171cc9989dd3baf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac9f20cb6ce149a765f5dc4f07ef13c8a" id="r_ac9f20cb6ce149a765f5dc4f07ef13c8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9f20cb6ce149a765f5dc4f07ef13c8a">m_node</a></td></tr>
+<tr class="memdesc:ac9f20cb6ce149a765f5dc4f07ef13c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the <a class="el" href="class_node.html" title="Represents a node in a hierarchical 3D scene graph.">Node</a> object representing the visual representation of the piece.  <br /></td></tr>
+<tr class="separator:ac9f20cb6ce149a765f5dc4f07ef13c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b776775cbe217c5ad2062c4fc4fd12a" id="r_a9b776775cbe217c5ad2062c4fc4fd12a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b776775cbe217c5ad2062c4fc4fd12a">m_row</a></td></tr>
+<tr class="memdesc:a9b776775cbe217c5ad2062c4fc4fd12a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The row position of the piece on the chessboard.  <br /></td></tr>
+<tr class="separator:a9b776775cbe217c5ad2062c4fc4fd12a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80cc6b1ca3e9e6cbba551211265f123" id="r_ac80cc6b1ca3e9e6cbba551211265f123"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac80cc6b1ca3e9e6cbba551211265f123">m_col</a></td></tr>
+<tr class="memdesc:ac80cc6b1ca3e9e6cbba551211265f123"><td class="mdescLeft">&#160;</td><td class="mdescRight">The column position of the piece on the chessboard.  <br /></td></tr>
+<tr class="separator:ac80cc6b1ca3e9e6cbba551211265f123"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class representing a game piece with its position and associated node in the scene. </p>
@@ -232,7 +245,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor for the <a class="el" href="class_piece.html" title="Class representing a game piece with its position and associated node in the scene.">Piece</a> class. </p>
-<p>The destructor is defined as default since there are no special cleanup operations needed. </p>
 
 </div>
 </div>
@@ -349,6 +361,79 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac80cc6b1ca3e9e6cbba551211265f123" name="ac80cc6b1ca3e9e6cbba551211265f123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac80cc6b1ca3e9e6cbba551211265f123">&#9670;&#160;</a></span>m_col</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Piece::m_col</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The column position of the piece on the chessboard. </p>
+
+</div>
+</div>
+<a id="ac9f20cb6ce149a765f5dc4f07ef13c8a" name="ac9f20cb6ce149a765f5dc4f07ef13c8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9f20cb6ce149a765f5dc4f07ef13c8a">&#9670;&#160;</a></span>m_node</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_node.html">Node</a>* Piece::m_node</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to the <a class="el" href="class_node.html" title="Represents a node in a hierarchical 3D scene graph.">Node</a> object representing the visual representation of the piece. </p>
+
+</div>
+</div>
+<a id="a9b776775cbe217c5ad2062c4fc4fd12a" name="a9b776775cbe217c5ad2062c4fc4fd12a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b776775cbe217c5ad2062c4fc4fd12a">&#9670;&#160;</a></span>m_row</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Piece::m_row</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The row position of the piece on the chessboard. </p>
 
 </div>
 </div>

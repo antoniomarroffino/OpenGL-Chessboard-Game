@@ -22,7 +22,7 @@ Inheritance diagram for List\+Of\+Pieces\+Manager\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Deleted copy constructor to enforce singleton pattern. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}} \& \mbox{\hyperlink{class_list_of_pieces_manager_a203979d1178fce558dbe8d6f1e477525}{operator=}} (const \mbox{\hyperlink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}} \&)=delete
 \begin{DoxyCompactList}\small\item\em Deleted assignment operator to enforce singleton pattern. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_list_of_pieces_manager_a579eccb05d88a565735fe7e1c6e5f721}{\texorpdfstring{$\sim$}{\string~}\+List\+Of\+Pieces\+Manager}} ()=default
+\mbox{\hyperlink{class_list_of_pieces_manager_a8f745bb781971ff59b6b03faae2a802e}{\texorpdfstring{$\sim$}{\string~}\+List\+Of\+Pieces\+Manager}} ()
 \begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_list_of_pieces_manager_aa0b7da85d0959a4b07d4fa65a509114a}{initialize}} ()
 \begin{DoxyCompactList}\small\item\em Initializes the chessboard and pointer for piece selection. \end{DoxyCompactList}\item 
@@ -45,7 +45,9 @@ void \mbox{\hyperlink{class_list_of_pieces_manager_a72e6593f72e8ef38e8fc1c0a258a
 \mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_manager_a7fb2cf963d2be6628c0060f21dac8464}{get\+Black\+Pieces}} () const
 \begin{DoxyCompactList}\small\item\em Gets the list of black chess pieces. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_list_of_pieces_manager_aee2f02c2a2aecd71b484e170b95c0fda}{update\+Chessboard}} (\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*}white\+List, \mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*}black\+List)
-\begin{DoxyCompactList}\small\item\em Updates the chessboard with new lists of white and black pieces. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the chessboard with new lists of white and black pieces. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_list_of_pieces_manager_a1add9aa78d5241ed85baf9cb6ac0176f}{is\+Game\+Finished}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the game is finished. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -60,6 +62,44 @@ virtual void \mbox{\hyperlink{class_on_state_update_listener_a7a0b5a95a38f1583d8
 \item 
 static \mbox{\hyperlink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}} \& \mbox{\hyperlink{class_list_of_pieces_manager_a64ee2adc429924ad97dc24579452ce04}{get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em Returns the singleton instance of \doxylink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_list_of_pieces_manager_a55afd325baf1b5f5b114cdfda2c0052a}{List\+Of\+Pieces\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_manager_ae7eb5366c61cf3b0695e2132d524e188}{get\+Current\+List}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current list of pieces based on the current turn. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_manager_a38bc6325f9c9b06e64559664603fea01}{move\+Choose\+Node}} (const int \&sign)
+\begin{DoxyCompactList}\small\item\em Moves the selection pointer within the current list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_manager_a6be8d127ec8c47dca21c1bad548bafd9}{pre\+Game\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handles events during the pre-\/game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_manager_afb5404d7c1183c1b10917da870c85f72}{choice\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handles events during the piece choice state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_manager_aa2ce3e455e59d49ff829a92ec62995a3}{end\+Game\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Handles events during the end-\/game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_manager_a0691ce4a123c0f35e098c6a2e10a90ef}{build\+Chessboard}} ()
+\begin{DoxyCompactList}\small\item\em Builds the initial chessboard with all pieces. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_manager_a6e03ecef7798ddf1c19eba4edf3cfd78}{clear\+Lists}} ()
+\begin{DoxyCompactList}\small\item\em Clears the lists of pieces for both players. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_of_pieces_manager_ab5767ca41766b33b7506736c179e1ab1}{create\+Shadow}} ()
+\begin{DoxyCompactList}\small\item\em Creates shadow effects for the chess pieces. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_movement_manager}{Movement\+Manager}} \& \mbox{\hyperlink{class_list_of_pieces_manager_abcb85eb23f4e4e44fb964437da19eb1e}{m\+\_\+movement\+Manager}}
+\begin{DoxyCompactList}\small\item\em Reference to the movement manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}} \& \mbox{\hyperlink{class_list_of_pieces_manager_ae28c8d3d938e1db8d1d595373376f485}{m\+\_\+status\+Manager}}
+\begin{DoxyCompactList}\small\item\em Reference to the status manager. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_manager_af47d3bb89c0f3deaa7f52cf656188850}{m\+\_\+white\+List}}
+\begin{DoxyCompactList}\small\item\em Pointer to the list of white pieces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_manager_a321662aa427d67aef00ec506942a8ef5}{m\+\_\+black\+List}}
+\begin{DoxyCompactList}\small\item\em Pointer to the list of black pieces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_of_pieces_manager_ae62f754f5e1a75b8ac76d4ce6a72fb7c}{m\+\_\+select\+Pointer}}
+\begin{DoxyCompactList}\small\item\em Pointer to the selection node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_list_of_pieces_manager_a1e7e062711a0237995e2b90a8dcff846}{m\+\_\+iterator\+On\+List}}
+\begin{DoxyCompactList}\small\item\em Index of the currently selected piece. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_list_of_pieces_manager_a4330f3f3e27ab9f17f695b8ca0053e44}{m\+\_\+rotation\+Angle}}
+\begin{DoxyCompactList}\small\item\em Rotation angle for the selection pointer animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}}}
 \begin{DoxyCompactItemize}
@@ -74,7 +114,7 @@ Manages the list of chess pieces for a chess game, including initialization, sel
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_list_of_pieces_manager_a4b4f1d552166871029d7c6db5a9b048b}\index{ListOfPiecesManager@{ListOfPiecesManager}!ListOfPiecesManager@{ListOfPiecesManager}}
 \index{ListOfPiecesManager@{ListOfPiecesManager}!ListOfPiecesManager@{ListOfPiecesManager}}
-\doxysubsubsection{\texorpdfstring{ListOfPiecesManager()}{ListOfPiecesManager()}}
+\doxysubsubsection{\texorpdfstring{ListOfPiecesManager()}{ListOfPiecesManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{class_list_of_pieces_manager_a4b4f1d552166871029d7c6db5a9b048b} 
 List\+Of\+Pieces\+Manager\+::\+List\+Of\+Pieces\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
@@ -82,19 +122,63 @@ List\+Of\+Pieces\+Manager\+::\+List\+Of\+Pieces\+Manager (\begin{DoxyParamCaptio
 
 Deleted copy constructor to enforce singleton pattern. 
 
-\Hypertarget{class_list_of_pieces_manager_a579eccb05d88a565735fe7e1c6e5f721}\index{ListOfPiecesManager@{ListOfPiecesManager}!````~ListOfPiecesManager@{\texorpdfstring{$\sim$}{\string~}ListOfPiecesManager}}
+\Hypertarget{class_list_of_pieces_manager_a8f745bb781971ff59b6b03faae2a802e}\index{ListOfPiecesManager@{ListOfPiecesManager}!````~ListOfPiecesManager@{\texorpdfstring{$\sim$}{\string~}ListOfPiecesManager}}
 \index{````~ListOfPiecesManager@{\texorpdfstring{$\sim$}{\string~}ListOfPiecesManager}!ListOfPiecesManager@{ListOfPiecesManager}}
 \doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ListOfPiecesManager()}{\string~ListOfPiecesManager()}}
-{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a579eccb05d88a565735fe7e1c6e5f721} 
-List\+Of\+Pieces\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+List\+Of\+Pieces\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a8f745bb781971ff59b6b03faae2a802e} 
+List\+Of\+Pieces\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+List\+Of\+Pieces\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
 Destructor for \doxylink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}. 
 
+Cleans up resources by unsubscribing the listener from the status manager and deleting the lists of white and black pieces. \Hypertarget{class_list_of_pieces_manager_a55afd325baf1b5f5b114cdfda2c0052a}\index{ListOfPiecesManager@{ListOfPiecesManager}!ListOfPiecesManager@{ListOfPiecesManager}}
+\index{ListOfPiecesManager@{ListOfPiecesManager}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{ListOfPiecesManager()}{ListOfPiecesManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a55afd325baf1b5f5b114cdfda2c0052a} 
+List\+Of\+Pieces\+Manager\+::\+List\+Of\+Pieces\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Constructs a \doxylink{class_list_of_pieces_manager}{List\+Of\+Pieces\+Manager}. 
+
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_list_of_pieces_manager_a0691ce4a123c0f35e098c6a2e10a90ef}\index{ListOfPiecesManager@{ListOfPiecesManager}!buildChessboard@{buildChessboard}}
+\index{buildChessboard@{buildChessboard}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{buildChessboard()}{buildChessboard()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a0691ce4a123c0f35e098c6a2e10a90ef} 
+void List\+Of\+Pieces\+Manager\+::build\+Chessboard (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Builds the initial chessboard with all pieces. 
+
+\Hypertarget{class_list_of_pieces_manager_afb5404d7c1183c1b10917da870c85f72}\index{ListOfPiecesManager@{ListOfPiecesManager}!choiceHandler@{choiceHandler}}
+\index{choiceHandler@{choiceHandler}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{choiceHandler()}{choiceHandler()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_afb5404d7c1183c1b10917da870c85f72} 
+void List\+Of\+Pieces\+Manager\+::choice\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handles events during the piece choice state. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_a350dd3599b14c0fe0e8f0969d98948f1}{On\+State\+Update\+Listener}}.
+
+\Hypertarget{class_list_of_pieces_manager_a6e03ecef7798ddf1c19eba4edf3cfd78}\index{ListOfPiecesManager@{ListOfPiecesManager}!clearLists@{clearLists}}
+\index{clearLists@{clearLists}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{clearLists()}{clearLists()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a6e03ecef7798ddf1c19eba4edf3cfd78} 
+void List\+Of\+Pieces\+Manager\+::clear\+Lists (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Clears the lists of pieces for both players. 
+
 \Hypertarget{class_list_of_pieces_manager_ada86839c29d065adc3aa7f204e353e67}\index{ListOfPiecesManager@{ListOfPiecesManager}!confirmChoice@{confirmChoice}}
 \index{confirmChoice@{confirmChoice}!ListOfPiecesManager@{ListOfPiecesManager}}
 \doxysubsubsection{\texorpdfstring{confirmChoice()}{confirmChoice()}}
@@ -118,6 +202,16 @@ Confirms the movement of the selected chess piece.
 \begin{DoxyReturn}{Returns}
 True if the move is valid, false otherwise. 
 \end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_manager_ab5767ca41766b33b7506736c179e1ab1}\index{ListOfPiecesManager@{ListOfPiecesManager}!createShadow@{createShadow}}
+\index{createShadow@{createShadow}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{createShadow()}{createShadow()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_ab5767ca41766b33b7506736c179e1ab1} 
+void List\+Of\+Pieces\+Manager\+::create\+Shadow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Creates shadow effects for the chess pieces. 
+
 \Hypertarget{class_list_of_pieces_manager_a9b0edf2883e30010d35f9fe5fb556c55}\index{ListOfPiecesManager@{ListOfPiecesManager}!deleteChoice@{deleteChoice}}
 \index{deleteChoice@{deleteChoice}!ListOfPiecesManager@{ListOfPiecesManager}}
 \doxysubsubsection{\texorpdfstring{deleteChoice()}{deleteChoice()}}
@@ -127,6 +221,20 @@ void List\+Of\+Pieces\+Manager\+::delete\+Choice (\begin{DoxyParamCaption}{}{}\e
 
 
 Deletes the current selection and resets the selection pointer. 
+
+\Hypertarget{class_list_of_pieces_manager_aa2ce3e455e59d49ff829a92ec62995a3}\index{ListOfPiecesManager@{ListOfPiecesManager}!endGameHandler@{endGameHandler}}
+\index{endGameHandler@{endGameHandler}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{endGameHandler()}{endGameHandler()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_aa2ce3e455e59d49ff829a92ec62995a3} 
+void List\+Of\+Pieces\+Manager\+::end\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handles events during the end-\/game state. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_ac23acfdde2e7de9e0be282a6a4cd289c}{On\+State\+Update\+Listener}}.
 
 \Hypertarget{class_list_of_pieces_manager_a7fb2cf963d2be6628c0060f21dac8464}\index{ListOfPiecesManager@{ListOfPiecesManager}!getBlackPieces@{getBlackPieces}}
 \index{getBlackPieces@{getBlackPieces}!ListOfPiecesManager@{ListOfPiecesManager}}
@@ -153,6 +261,19 @@ Retrieves the currently selected chess piece.
 
 \begin{DoxyReturn}{Returns}
 Pointer to the currently selected chess piece. 
+\end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_manager_ae7eb5366c61cf3b0695e2132d524e188}\index{ListOfPiecesManager@{ListOfPiecesManager}!getCurrentList@{getCurrentList}}
+\index{getCurrentList@{getCurrentList}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{getCurrentList()}{getCurrentList()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_ae7eb5366c61cf3b0695e2132d524e188} 
+\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}} \texorpdfstring{$\ast$}{*} List\+Of\+Pieces\+Manager\+::get\+Current\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets the current list of pieces based on the current turn. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the current list of pieces. 
 \end{DoxyReturn}
 \Hypertarget{class_list_of_pieces_manager_a64ee2adc429924ad97dc24579452ce04}\index{ListOfPiecesManager@{ListOfPiecesManager}!getInstance@{getInstance}}
 \index{getInstance@{getInstance}!ListOfPiecesManager@{ListOfPiecesManager}}
@@ -193,6 +314,36 @@ Initializes the chessboard and pointer for piece selection.
 \begin{DoxyReturn}{Returns}
 True if initialization is successful, false otherwise. 
 \end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_manager_a1add9aa78d5241ed85baf9cb6ac0176f}\index{ListOfPiecesManager@{ListOfPiecesManager}!isGameFinished@{isGameFinished}}
+\index{isGameFinished@{isGameFinished}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{isGameFinished()}{isGameFinished()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a1add9aa78d5241ed85baf9cb6ac0176f} 
+bool List\+Of\+Pieces\+Manager\+::is\+Game\+Finished (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if the game is finished. 
+
+This method checks whether the game has ended.
+
+\begin{DoxyReturn}{Returns}
+True if the game is finished, false otherwise, based on turn. 
+\end{DoxyReturn}
+\Hypertarget{class_list_of_pieces_manager_a38bc6325f9c9b06e64559664603fea01}\index{ListOfPiecesManager@{ListOfPiecesManager}!moveChooseNode@{moveChooseNode}}
+\index{moveChooseNode@{moveChooseNode}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{moveChooseNode()}{moveChooseNode()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a38bc6325f9c9b06e64559664603fea01} 
+void List\+Of\+Pieces\+Manager\+::move\+Choose\+Node (\begin{DoxyParamCaption}\item[{const int \&}]{sign}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Moves the selection pointer within the current list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sign} & Determines the direction (-\/1 for left, 1 for right). \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_list_of_pieces_manager_a0acac74128d0c62fc363eb82d3d2485c}\index{ListOfPiecesManager@{ListOfPiecesManager}!moveChooseNodeLeft@{moveChooseNodeLeft}}
 \index{moveChooseNodeLeft@{moveChooseNodeLeft}!ListOfPiecesManager@{ListOfPiecesManager}}
 \doxysubsubsection{\texorpdfstring{moveChooseNodeLeft()}{moveChooseNodeLeft()}}
@@ -223,6 +374,20 @@ Moves the selection pointer to the right in the list of pieces.
 
 Deleted assignment operator to enforce singleton pattern. 
 
+\Hypertarget{class_list_of_pieces_manager_a6be8d127ec8c47dca21c1bad548bafd9}\index{ListOfPiecesManager@{ListOfPiecesManager}!preGameHandler@{preGameHandler}}
+\index{preGameHandler@{preGameHandler}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{preGameHandler()}{preGameHandler()}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a6be8d127ec8c47dca21c1bad548bafd9} 
+void List\+Of\+Pieces\+Manager\+::pre\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Handles events during the pre-\/game state. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220}{On\+State\+Update\+Listener}}.
+
 \Hypertarget{class_list_of_pieces_manager_aee2f02c2a2aecd71b484e170b95c0fda}\index{ListOfPiecesManager@{ListOfPiecesManager}!updateChessboard@{updateChessboard}}
 \index{updateChessboard@{updateChessboard}!ListOfPiecesManager@{ListOfPiecesManager}}
 \doxysubsubsection{\texorpdfstring{updateChessboard()}{updateChessboard()}}
@@ -249,6 +414,79 @@ void List\+Of\+Pieces\+Manager\+::update\+Select\+Pointer (\begin{DoxyParamCapti
 
 
 Updates the selection pointer\textquotesingle{}s transformation matrix. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_list_of_pieces_manager_a321662aa427d67aef00ec506942a8ef5}\index{ListOfPiecesManager@{ListOfPiecesManager}!m\_blackList@{m\_blackList}}
+\index{m\_blackList@{m\_blackList}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{m\_blackList}{m\_blackList}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a321662aa427d67aef00ec506942a8ef5} 
+\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}}\texorpdfstring{$\ast$}{*} List\+Of\+Pieces\+Manager\+::m\+\_\+black\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the list of black pieces. 
+
+\Hypertarget{class_list_of_pieces_manager_a1e7e062711a0237995e2b90a8dcff846}\index{ListOfPiecesManager@{ListOfPiecesManager}!m\_iteratorOnList@{m\_iteratorOnList}}
+\index{m\_iteratorOnList@{m\_iteratorOnList}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{m\_iteratorOnList}{m\_iteratorOnList}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a1e7e062711a0237995e2b90a8dcff846} 
+int List\+Of\+Pieces\+Manager\+::m\+\_\+iterator\+On\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index of the currently selected piece. 
+
+\Hypertarget{class_list_of_pieces_manager_abcb85eb23f4e4e44fb964437da19eb1e}\index{ListOfPiecesManager@{ListOfPiecesManager}!m\_movementManager@{m\_movementManager}}
+\index{m\_movementManager@{m\_movementManager}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{m\_movementManager}{m\_movementManager}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_abcb85eb23f4e4e44fb964437da19eb1e} 
+\mbox{\hyperlink{class_movement_manager}{Movement\+Manager}}\& List\+Of\+Pieces\+Manager\+::m\+\_\+movement\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the movement manager. 
+
+\Hypertarget{class_list_of_pieces_manager_a4330f3f3e27ab9f17f695b8ca0053e44}\index{ListOfPiecesManager@{ListOfPiecesManager}!m\_rotationAngle@{m\_rotationAngle}}
+\index{m\_rotationAngle@{m\_rotationAngle}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{m\_rotationAngle}{m\_rotationAngle}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_a4330f3f3e27ab9f17f695b8ca0053e44} 
+float List\+Of\+Pieces\+Manager\+::m\+\_\+rotation\+Angle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rotation angle for the selection pointer animation. 
+
+\Hypertarget{class_list_of_pieces_manager_ae62f754f5e1a75b8ac76d4ce6a72fb7c}\index{ListOfPiecesManager@{ListOfPiecesManager}!m\_selectPointer@{m\_selectPointer}}
+\index{m\_selectPointer@{m\_selectPointer}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{m\_selectPointer}{m\_selectPointer}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_ae62f754f5e1a75b8ac76d4ce6a72fb7c} 
+\mbox{\hyperlink{class_node}{Node}}\texorpdfstring{$\ast$}{*} List\+Of\+Pieces\+Manager\+::m\+\_\+select\+Pointer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the selection node. 
+
+\Hypertarget{class_list_of_pieces_manager_ae28c8d3d938e1db8d1d595373376f485}\index{ListOfPiecesManager@{ListOfPiecesManager}!m\_statusManager@{m\_statusManager}}
+\index{m\_statusManager@{m\_statusManager}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{m\_statusManager}{m\_statusManager}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_ae28c8d3d938e1db8d1d595373376f485} 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}}\& List\+Of\+Pieces\+Manager\+::m\+\_\+status\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the status manager. 
+
+\Hypertarget{class_list_of_pieces_manager_af47d3bb89c0f3deaa7f52cf656188850}\index{ListOfPiecesManager@{ListOfPiecesManager}!m\_whiteList@{m\_whiteList}}
+\index{m\_whiteList@{m\_whiteList}!ListOfPiecesManager@{ListOfPiecesManager}}
+\doxysubsubsection{\texorpdfstring{m\_whiteList}{m\_whiteList}}
+{\footnotesize\ttfamily \label{class_list_of_pieces_manager_af47d3bb89c0f3deaa7f52cf656188850} 
+\mbox{\hyperlink{class_list_of_pieces}{List\+Of\+Pieces}}\texorpdfstring{$\ast$}{*} List\+Of\+Pieces\+Manager\+::m\+\_\+white\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the list of white pieces. 
 
 
 

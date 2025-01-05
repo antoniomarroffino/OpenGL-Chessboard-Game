@@ -104,6 +104,7 @@ $(function(){initNavTree('class_spot_light.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_spot_light-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SpotLight Class Reference</div></div>
 </div><!--header-->
@@ -130,6 +131,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f0f46c04f49ac526f47c6b584b8459b" id="r_a1f0f46c04f49ac526f47c6b584b8459b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f0f46c04f49ac526f47c6b584b8459b">SpotLight</a> (const std::string &amp;name=&quot;defaultSpotLight&quot;, const glm::vec3 &amp;position=glm::vec3(0.0f), const glm::vec3 &amp;direction=glm::vec3(1.0f), const float &amp;cutoff=45.0f, const float &amp;spotExponent=1.0f)</td></tr>
 <tr class="memdesc:a1f0f46c04f49ac526f47c6b584b8459b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for initializing the spotlight with specific parameters.  <br /></td></tr>
 <tr class="separator:a1f0f46c04f49ac526f47c6b584b8459b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b4bbc1a84476d47546b9554f700362b" id="r_a3b4bbc1a84476d47546b9554f700362b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b4bbc1a84476d47546b9554f700362b">~SpotLight</a> ()=default</td></tr>
+<tr class="memdesc:a3b4bbc1a84476d47546b9554f700362b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor for the <a class="el" href="class_spot_light.html" title="Concrete SpotLight class.">SpotLight</a> class.  <br /></td></tr>
+<tr class="separator:a3b4bbc1a84476d47546b9554f700362b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d244391f83e4265b5ef7ea965a0baea" id="r_a4d244391f83e4265b5ef7ea965a0baea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d244391f83e4265b5ef7ea965a0baea">SpotLight</a> (const <a class="el" href="class_spot_light.html">SpotLight</a> &amp;other)</td></tr>
 <tr class="memdesc:a4d244391f83e4265b5ef7ea965a0baea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor for creating a <a class="el" href="class_spot_light.html" title="Concrete SpotLight class.">SpotLight</a> object from another <a class="el" href="class_spot_light.html" title="Concrete SpotLight class.">SpotLight</a>.  <br /></td></tr>
 <tr class="separator:a4d244391f83e4265b5ef7ea965a0baea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,6 +168,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a91659b95a6ab043ce9941c6c603961d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the spot exponent of the spotlight.  <br /></td></tr>
 <tr class="separator:a91659b95a6ab043ce9941c6c603961d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_light"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_light')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_light.html">Light</a></td></tr>
+<tr class="memitem:ae3e3209d4b97d0bbbd614ded5e1213d9 inherit pub_methods_class_light" id="r_ae3e3209d4b97d0bbbd614ded5e1213d9"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light.html#ae3e3209d4b97d0bbbd614ded5e1213d9">~Light</a> ()=default</td></tr>
+<tr class="memdesc:ae3e3209d4b97d0bbbd614ded5e1213d9 inherit pub_methods_class_light"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="class_light.html" title="Abstract base class for light sources.">Light</a> class.  <br /></td></tr>
+<tr class="separator:ae3e3209d4b97d0bbbd614ded5e1213d9 inherit pub_methods_class_light"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bc31ec3268cea795ce926bf8e885655 inherit pub_methods_class_light" id="r_a5bc31ec3268cea795ce926bf8e885655"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light.html#a5bc31ec3268cea795ce926bf8e885655">setPosition</a> (const glm::vec3 &amp;position)</td></tr>
 <tr class="memdesc:a5bc31ec3268cea795ce926bf8e885655 inherit pub_methods_class_light"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the position of the light in 3D space.  <br /></td></tr>
 <tr class="separator:a5bc31ec3268cea795ce926bf8e885655 inherit pub_methods_class_light"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,6 +257,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2353e70d1cd4e3d478b70611cc53e191 inherit pub_methods_class_object" id="r_a2353e70d1cd4e3d478b70611cc53e191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a2353e70d1cd4e3d478b70611cc53e191">setName</a> (const std::string &amp;name)</td></tr>
 <tr class="memdesc:a2353e70d1cd4e3d478b70611cc53e191 inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name of the object.  <br /></td></tr>
 <tr class="separator:a2353e70d1cd4e3d478b70611cc53e191 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aeb4862a60780731c3582533b38862105" id="r_aeb4862a60780731c3582533b38862105"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb4862a60780731c3582533b38862105">m_direction</a></td></tr>
+<tr class="memdesc:aeb4862a60780731c3582533b38862105"><td class="mdescLeft">&#160;</td><td class="mdescRight">The direction of the spotlight's beam.  <br /></td></tr>
+<tr class="separator:aeb4862a60780731c3582533b38862105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b0ff306977e3bd9da0301894a934320" id="r_a8b0ff306977e3bd9da0301894a934320"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b0ff306977e3bd9da0301894a934320">m_cutoff</a></td></tr>
+<tr class="memdesc:a8b0ff306977e3bd9da0301894a934320"><td class="mdescLeft">&#160;</td><td class="mdescRight">The cutoff angle for the spotlight's beam (in degrees).  <br /></td></tr>
+<tr class="separator:a8b0ff306977e3bd9da0301894a934320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff5e6038a7c044837224ea6852bb84c" id="r_a5ff5e6038a7c044837224ea6852bb84c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ff5e6038a7c044837224ea6852bb84c">m_spotExponent</a></td></tr>
+<tr class="memdesc:a5ff5e6038a7c044837224ea6852bb84c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The spot exponent that controls the intensity falloff of the spotlight.  <br /></td></tr>
+<tr class="separator:a5ff5e6038a7c044837224ea6852bb84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -391,6 +410,34 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a3b4bbc1a84476d47546b9554f700362b" name="a3b4bbc1a84476d47546b9554f700362b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b4bbc1a84476d47546b9554f700362b">&#9670;&#160;</a></span>~SpotLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SpotLight::~SpotLight </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default destructor for the <a class="el" href="class_spot_light.html" title="Concrete SpotLight class.">SpotLight</a> class. </p>
+<p>The destructor cleans up any resources associated with the <a class="el" href="class_spot_light.html" title="Concrete SpotLight class.">SpotLight</a> object. </p>
 
 </div>
 </div>
@@ -695,6 +742,79 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8b0ff306977e3bd9da0301894a934320" name="a8b0ff306977e3bd9da0301894a934320"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b0ff306977e3bd9da0301894a934320">&#9670;&#160;</a></span>m_cutoff</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SpotLight::m_cutoff</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The cutoff angle for the spotlight's beam (in degrees). </p>
+
+</div>
+</div>
+<a id="aeb4862a60780731c3582533b38862105" name="aeb4862a60780731c3582533b38862105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb4862a60780731c3582533b38862105">&#9670;&#160;</a></span>m_direction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 SpotLight::m_direction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The direction of the spotlight's beam. </p>
+
+</div>
+</div>
+<a id="a5ff5e6038a7c044837224ea6852bb84c" name="a5ff5e6038a7c044837224ea6852bb84c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ff5e6038a7c044837224ea6852bb84c">&#9670;&#160;</a></span>m_spotExponent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SpotLight::m_spotExponent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The spot exponent that controls the intensity falloff of the spotlight. </p>
 
 </div>
 </div>

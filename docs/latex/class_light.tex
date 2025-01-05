@@ -20,6 +20,8 @@ Inheritance diagram for Light\+:\begin{figure}[H]
 \item 
 virtual void \mbox{\hyperlink{class_light_aa7c94186ffb48c88058dea96547c8f3c}{render}} (const glm\+::mat4 \&matrix=glm\+::mat4(1.\+0f)) override
 \begin{DoxyCompactList}\small\item\em Render the light with a given transformation matrix. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9}{\texorpdfstring{$\sim$}{\string~}\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
 virtual const unsigned int \mbox{\hyperlink{class_light_a9c2b3894860997c534ad58cf233231aa}{parse}} (const char \texorpdfstring{$\ast$}{*}data, unsigned int \&position) override
 \begin{DoxyCompactList}\small\item\em Parse the light data from a buffer and initialize the light\textquotesingle{}s properties. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_light_ab4e365754a296e56fe3e6fed125f6fbe}{clone}} () const override=0
@@ -173,7 +175,17 @@ Abstract base class for light sources.
 The \doxylink{class_light}{Light} class is an abstract base class that represents a light source in a 3D scene. It manages the position, intensity, and on/off status of the light, and allows for rendering the light as part of a scene. Derived classes can provide specific light types and behavior. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}\index{Light@{Light}!Light@{Light}}
+\Hypertarget{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9}\index{Light@{Light}!````~Light@{\texorpdfstring{$\sim$}{\string~}Light}}
+\index{````~Light@{\texorpdfstring{$\sim$}{\string~}Light}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Light()}{\string~Light()}}
+{\footnotesize\ttfamily \label{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9} 
+virtual Light\+::\texorpdfstring{$\sim$}{\string~}\+Light (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{class_light}{Light} class. 
+
+The destructor is responsible for cleaning up resources associated with the \doxylink{class_light}{Light} object. \Hypertarget{class_light_a3f257cebb940bc7fbdc4e8e59f93156f}\index{Light@{Light}!Light@{Light}}
 \index{Light@{Light}!Light@{Light}}
 \doxysubsubsection{\texorpdfstring{Light()}{Light()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{class_light_a3f257cebb940bc7fbdc4e8e59f93156f} 

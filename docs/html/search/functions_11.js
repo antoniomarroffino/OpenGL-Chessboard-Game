@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['undo_0',['undo',['../class_history_manager.html#ae8c9e3650126909cef61685f44afe9bc',1,'HistoryManager']]],
-  ['unsubscribelistener_1',['unsubscribeListener',['../class_notification_service.html#a9984988a72c6627af65a91529f84f000',1,'NotificationService::unsubscribeListener(ReshapeListener *listener)'],['../class_notification_service.html#a5aae5023a463f57b627bf5075fd52ffc',1,'NotificationService::unsubscribeListener(ChangeMatrixListener *listener)']]],
-  ['updatechessboard_2',['updateChessboard',['../class_list_of_pieces_manager.html#aee2f02c2a2aecd71b484e170b95c0fda',1,'ListOfPiecesManager']]],
-  ['updateselectpointer_3',['updateSelectPointer',['../class_list_of_pieces_manager.html#a72e6593f72e8ef38e8fc1c0a258a7f06',1,'ListOfPiecesManager']]]
+  ['takesnapshot_0',['takeSnapshot',['../class_history_manager.html#a3c57480105b255b11a421b6316991c7d',1,'HistoryManager']]],
+  ['textmanager_1',['TextManager',['../class_text_manager.html#a0284b848f6a8984debf2e35ae8905480',1,'TextManager::TextManager(const TextManager &amp;)=delete'],['../class_text_manager.html#a1714c4be87a3ba4d1c3d8df4e79b8ea9',1,'TextManager::TextManager()']]],
+  ['texture_2',['Texture',['../class_texture.html#ad844373238930d60747526db8df6d20e',1,'Texture']]],
+  ['turnoff_3',['turnOff',['../class_light.html#aa595a808a3684b6733f575488fed53de',1,'Light']]],
+  ['turnon_4',['turnOn',['../class_light.html#ab7a8bd130aef5a30973558d13ca2bdfe',1,'Light']]]
 ];

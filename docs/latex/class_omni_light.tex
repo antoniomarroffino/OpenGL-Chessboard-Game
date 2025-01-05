@@ -20,6 +20,8 @@ Inheritance diagram for Omni\+Light\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_omni_light_a192a3dde3f567aaf1db7626468dfc88c}{Omni\+Light}} (const std\+::string \&name="{}default\+Omni\+Light"{}, const glm\+::vec3 \&position=glm\+::vec3(0.\+0f))
 \begin{DoxyCompactList}\small\item\em Constructor for initializing the omnidirectional light with specific parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_omni_light_ab84887e9e53ca30985efed024b4a27d9}{\texorpdfstring{$\sim$}{\string~}\+Omni\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_omni_light}{Omni\+Light} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_omni_light_a6f0682498e3d76b7d57fea900f415b45}{Omni\+Light}} (const \mbox{\hyperlink{class_omni_light}{Omni\+Light}} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor for creating an \doxylink{class_omni_light}{Omni\+Light} object from another \doxylink{class_omni_light}{Omni\+Light}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_omni_light}{Omni\+Light}} \& \mbox{\hyperlink{class_omni_light_a6e85c78eca01124f5457fc4d86cca911}{operator=}} (const \mbox{\hyperlink{class_omni_light}{Omni\+Light}} \&)=delete
@@ -33,6 +35,8 @@ const float \& \mbox{\hyperlink{class_omni_light_a4a28865a7fa9b1b96816c47bb56051
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
 \begin{DoxyCompactItemize}
 \item 
+virtual \mbox{\hyperlink{class_light_ae3e3209d4b97d0bbbd614ded5e1213d9}{\texorpdfstring{$\sim$}{\string~}\+Light}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
 virtual const unsigned int \mbox{\hyperlink{class_light_a9c2b3894860997c534ad58cf233231aa}{parse}} (const char \texorpdfstring{$\ast$}{*}data, unsigned int \&position) override
 \begin{DoxyCompactList}\small\item\em Parse the light data from a buffer and initialize the light\textquotesingle{}s properties. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_light_a5bc31ec3268cea795ce926bf8e885655}{set\+Position}} (const glm\+::vec3 \&position)
@@ -97,6 +101,11 @@ const std\+::string \& \mbox{\hyperlink{class_object_a623e33bd86ef50533cc0737173
 \begin{DoxyCompactList}\small\item\em Retrieve the name of the object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}} (const std\+::string \&name)
 \begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_omni_light_ac0384981c70b101f23ed7d3484871319}{m\+\_\+cutoff}}
+\begin{DoxyCompactList}\small\item\em The cutoff angle for the omni light (in degrees). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
 \begin{DoxyCompactItemize}
@@ -204,7 +213,17 @@ This constructor creates an \doxylink{class_omni_light}{Omni\+Light} object with
 {\em position} & The position of the omni light in 3D space (default\+: glm\+::vec3(0.\+0f)). \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_omni_light_a6f0682498e3d76b7d57fea900f415b45}\index{OmniLight@{OmniLight}!OmniLight@{OmniLight}}
+\Hypertarget{class_omni_light_ab84887e9e53ca30985efed024b4a27d9}\index{OmniLight@{OmniLight}!````~OmniLight@{\texorpdfstring{$\sim$}{\string~}OmniLight}}
+\index{````~OmniLight@{\texorpdfstring{$\sim$}{\string~}OmniLight}!OmniLight@{OmniLight}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}OmniLight()}{\string~OmniLight()}}
+{\footnotesize\ttfamily \label{class_omni_light_ab84887e9e53ca30985efed024b4a27d9} 
+Omni\+Light\+::\texorpdfstring{$\sim$}{\string~}\+Omni\+Light (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{class_omni_light}{Omni\+Light} class. 
+
+The destructor cleans up any resources associated with the \doxylink{class_omni_light}{Omni\+Light} object. \Hypertarget{class_omni_light_a6f0682498e3d76b7d57fea900f415b45}\index{OmniLight@{OmniLight}!OmniLight@{OmniLight}}
 \index{OmniLight@{OmniLight}!OmniLight@{OmniLight}}
 \doxysubsubsection{\texorpdfstring{OmniLight()}{OmniLight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{class_omni_light_a6f0682498e3d76b7d57fea900f415b45} 
@@ -290,6 +309,19 @@ This method updates the Open\+GL settings for rendering the \doxylink{class_omni
 Reimplemented from \mbox{\hyperlink{class_light_aa7c94186ffb48c88058dea96547c8f3c}{Light}}.
 
 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_omni_light_ac0384981c70b101f23ed7d3484871319}\index{OmniLight@{OmniLight}!m\_cutoff@{m\_cutoff}}
+\index{m\_cutoff@{m\_cutoff}!OmniLight@{OmniLight}}
+\doxysubsubsection{\texorpdfstring{m\_cutoff}{m\_cutoff}}
+{\footnotesize\ttfamily \label{class_omni_light_ac0384981c70b101f23ed7d3484871319} 
+float Omni\+Light\+::m\+\_\+cutoff\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The cutoff angle for the omni light (in degrees). 
+
+Since omni lights emit light in all directions, the cutoff is fixed to 180 degrees. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

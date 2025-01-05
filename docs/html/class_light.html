@@ -136,6 +136,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa7c94186ffb48c88058dea96547c8f3c" id="r_aa7c94186ffb48c88058dea96547c8f3c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7c94186ffb48c88058dea96547c8f3c">render</a> (const glm::mat4 &amp;matrix=glm::mat4(1.0f)) override</td></tr>
 <tr class="memdesc:aa7c94186ffb48c88058dea96547c8f3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the light with a given transformation matrix.  <br /></td></tr>
 <tr class="separator:aa7c94186ffb48c88058dea96547c8f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e3209d4b97d0bbbd614ded5e1213d9" id="r_ae3e3209d4b97d0bbbd614ded5e1213d9"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3e3209d4b97d0bbbd614ded5e1213d9">~Light</a> ()=default</td></tr>
+<tr class="memdesc:ae3e3209d4b97d0bbbd614ded5e1213d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="class_light.html" title="Abstract base class for light sources.">Light</a> class.  <br /></td></tr>
+<tr class="separator:ae3e3209d4b97d0bbbd614ded5e1213d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c2b3894860997c534ad58cf233231aa" id="r_a9c2b3894860997c534ad58cf233231aa"><td class="memItemLeft" align="right" valign="top">virtual const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c2b3894860997c534ad58cf233231aa">parse</a> (const char *data, unsigned int &amp;position) override</td></tr>
 <tr class="memdesc:a9c2b3894860997c534ad58cf233231aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse the light data from a buffer and initialize the light's properties.  <br /></td></tr>
 <tr class="separator:a9c2b3894860997c534ad58cf233231aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,6 +331,34 @@ Static Protected Attributes</h2></td></tr>
 <div class="textblock"><p>Abstract base class for light sources. </p>
 <p>The <a class="el" href="class_light.html" title="Abstract base class for light sources.">Light</a> class is an abstract base class that represents a light source in a 3D scene. It manages the position, intensity, and on/off status of the light, and allows for rendering the light as part of a scene. Derived classes can provide specific light types and behavior. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae3e3209d4b97d0bbbd614ded5e1213d9" name="ae3e3209d4b97d0bbbd614ded5e1213d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3e3209d4b97d0bbbd614ded5e1213d9">&#9670;&#160;</a></span>~Light()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Light::~Light </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor for the <a class="el" href="class_light.html" title="Abstract base class for light sources.">Light</a> class. </p>
+<p>The destructor is responsible for cleaning up resources associated with the <a class="el" href="class_light.html" title="Abstract base class for light sources.">Light</a> object. </p>
+
+</div>
+</div>
 <a id="a3f257cebb940bc7fbdc4e8e59f93156f" name="a3f257cebb940bc7fbdc4e8e59f93156f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f257cebb940bc7fbdc4e8e59f93156f">&#9670;&#160;</a></span>Light() <span class="overload">[1/2]</span></h2>
 

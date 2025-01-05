@@ -17,7 +17,7 @@ var searchData=
   ['player_5fblack_5fcamera_14',['PLAYER_BLACK_CAMERA',['../camera_manager_8h.html#a100197b8b3cc490cf776e1078a403bbe',1,'cameraManager.h']]],
   ['player_5fwhite_5fcamera_15',['PLAYER_WHITE_CAMERA',['../camera_manager_8h.html#a30fdedee8cda6c5356a5fa1897ddfa19',1,'cameraManager.h']]],
   ['pre_5fgame_16',['PRE_GAME',['../game_status_8h.html#a881b49e3802366255ad852f1c8624fd1a628df634490bb8251bc8b99d8b6ff9d4',1,'gameStatus.h']]],
-  ['pregamehandler_17',['preGameHandler',['../class_on_state_update_listener.html#a6a67d89aa4202d1f178e20adcc546220',1,'OnStateUpdateListener']]],
+  ['pregamehandler_17',['preGameHandler',['../class_camera_manager.html#a983fe356f39b4e59aaeb43e66f1a9649',1,'CameraManager::preGameHandler()'],['../class_history_manager.html#aee7e0ec24817e36d3bf17df540e02f70',1,'HistoryManager::preGameHandler()'],['../class_list_of_pieces_manager.html#a6be8d127ec8c47dca21c1bad548bafd9',1,'ListOfPiecesManager::preGameHandler()'],['../class_movement_manager.html#a68237304f84b1004512f42c530f16554',1,'MovementManager::preGameHandler()'],['../class_on_state_update_listener.html#a6a67d89aa4202d1f178e20adcc546220',1,'OnStateUpdateListener::preGameHandler()']]],
   ['pressbutton_18',['pressButton',['../class_light_manager.html#a866b23aaf82c4dcde3e55c7d73974b23',1,'LightManager']]],
   ['previoustime_19',['previousTime',['../engine_8cpp.html#aaa2bba9b04515c5bbf5c04d20f672b12',1,'engine.cpp']]]
 ];

@@ -105,6 +105,8 @@ $(function(){initNavTree('class_list.html',''); initResizable(true); });
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_list-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">List Class Reference</div></div>
 </div><!--header-->
@@ -159,6 +161,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad60053b99dda20a9ce16555c10ac0695 inherit pub_methods_class_change_matrix_listener" id="r_ad60053b99dda20a9ce16555c10ac0695"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_change_matrix_listener.html#ad60053b99dda20a9ce16555c10ac0695">~ChangeMatrixListener</a> ()=default</td></tr>
 <tr class="memdesc:ad60053b99dda20a9ce16555c10ac0695 inherit pub_methods_class_change_matrix_listener"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for the <a class="el" href="class_change_matrix_listener.html" title="Interface for receiving notifications when a matrix changes.">ChangeMatrixListener</a> class.  <br /></td></tr>
 <tr class="separator:ad60053b99dda20a9ce16555c10ac0695 inherit pub_methods_class_change_matrix_listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a4c73e940802e3cd4ccc70d4a6186d8d6" id="r_a4c73e940802e3cd4ccc70d4a6186d8d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c73e940802e3cd4ccc70d4a6186d8d6">addRowToListOfNodeToRender</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memdesc:a4c73e940802e3cd4ccc70d4a6186d8d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a node to the list of nodes to render.  <br /></td></tr>
+<tr class="separator:a4c73e940802e3cd4ccc70d4a6186d8d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb960f1d515013f16f1c7a2b54421728" id="r_aeb960f1d515013f16f1c7a2b54421728"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb960f1d515013f16f1c7a2b54421728">resetListAndFreeMemory</a> ()</td></tr>
+<tr class="memdesc:aeb960f1d515013f16f1c7a2b54421728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the list and frees all memory used for reserved nodes.  <br /></td></tr>
+<tr class="separator:aeb960f1d515013f16f1c7a2b54421728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b474c6e4ae708dfe93fb8a5799b623d" id="r_a0b474c6e4ae708dfe93fb8a5799b623d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b474c6e4ae708dfe93fb8a5799b623d">onMatrixChange</a> (const unsigned int &amp;nodeChangedID) override</td></tr>
+<tr class="memdesc:a0b474c6e4ae708dfe93fb8a5799b623d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for matrix changes. Updates the final transformation matrix of the changed node.  <br /></td></tr>
+<tr class="separator:a0b474c6e4ae708dfe93fb8a5799b623d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9df2add910cbb1b1dcbb6a01e37b0286" id="r_a9df2add910cbb1b1dcbb6a01e37b0286"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list_1_1_reserved.html">Reserved</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9df2add910cbb1b1dcbb6a01e37b0286">getReservedById</a> (const unsigned int &amp;id)</td></tr>
+<tr class="memdesc:a9df2add910cbb1b1dcbb6a01e37b0286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the reserved entry for a node by its ID.  <br /></td></tr>
+<tr class="separator:a9df2add910cbb1b1dcbb6a01e37b0286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac99c668626a5c8af901786e27b4f1d88" id="r_ac99c668626a5c8af901786e27b4f1d88"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="struct_list_1_1_reserved.html">Reserved</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac99c668626a5c8af901786e27b4f1d88">m_reserved</a></td></tr>
+<tr class="memdesc:ac99c668626a5c8af901786e27b4f1d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique pointer to the reserved structure for managing node transformation data.  <br /></td></tr>
+<tr class="separator:ac99c668626a5c8af901786e27b4f1d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f1c8d2d3a0938997abba18d39364e80" id="r_a8f1c8d2d3a0938997abba18d39364e80"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="struct_list_1_1_reserved.html">Reserved</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f1c8d2d3a0938997abba18d39364e80">m_listOfReservedToRender</a></td></tr>
+<tr class="memdesc:a8f1c8d2d3a0938997abba18d39364e80"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_list.html" title="Base List class.">List</a> of reserved nodes to be rendered.  <br /></td></tr>
+<tr class="separator:a8f1c8d2d3a0938997abba18d39364e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a637c14207e86ae0a331acfd02b09956a" id="r_a637c14207e86ae0a331acfd02b09956a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_notification_service.html">NotificationService</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a637c14207e86ae0a331acfd02b09956a">m_notificationService</a></td></tr>
+<tr class="memdesc:a637c14207e86ae0a331acfd02b09956a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notification service for subscribing and listening to matrix changes.  <br /></td></tr>
+<tr class="separator:a637c14207e86ae0a331acfd02b09956a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base <a class="el" href="class_list.html" title="Base List class.">List</a> class. </p>
@@ -230,6 +259,40 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4c73e940802e3cd4ccc70d4a6186d8d6" name="a4c73e940802e3cd4ccc70d4a6186d8d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c73e940802e3cd4ccc70d4a6186d8d6">&#9670;&#160;</a></span>addRowToListOfNodeToRender()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> List::addRowToListOfNodeToRender </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *</td>          <td class="paramname"><span class="paramname"><em>node</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a node to the list of nodes to render. </p>
+<p>This method adds the node to the list, and handles special cases for lights and cameras.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>The node to add to the render list. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a3de5b85b2ecbc2dfe8a54a93ebe08e88" name="a3de5b85b2ecbc2dfe8a54a93ebe08e88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3de5b85b2ecbc2dfe8a54a93ebe08e88">&#9670;&#160;</a></span>clearList()</h2>
 
@@ -266,6 +329,76 @@ Public Member Functions</h2></td></tr>
 
 <p>Gets the number of elements in the list. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements currently in the list. </dd></dl>
+
+</div>
+</div>
+<a id="a9df2add910cbb1b1dcbb6a01e37b0286" name="a9df2add910cbb1b1dcbb6a01e37b0286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9df2add910cbb1b1dcbb6a01e37b0286">&#9670;&#160;</a></span>getReservedById()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> <a class="el" href="struct_list_1_1_reserved.html">List::Reserved</a> * List::getReservedById </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned int &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the reserved entry for a node by its ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the node to find. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the reserved entry for the node, or <code>nullptr</code> if not found. </dd></dl>
+
+</div>
+</div>
+<a id="a0b474c6e4ae708dfe93fb8a5799b623d" name="a0b474c6e4ae708dfe93fb8a5799b623d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b474c6e4ae708dfe93fb8a5799b623d">&#9670;&#160;</a></span>onMatrixChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> List::onMatrixChange </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned int &amp;</td>          <td class="paramname"><span class="paramname"><em>nodeChangedID</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback for matrix changes. Updates the final transformation matrix of the changed node. </p>
+<p>This method is called when a node's matrix has changed. It updates the matrix for the corresponding reserved entry.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeChangedID</td><td>The ID of the node whose matrix has changed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_change_matrix_listener.html#af309992d69f2ea31a8d4dd249bc3731b">ChangeMatrixListener</a>.</p>
 
 </div>
 </div>
@@ -345,6 +478,106 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aeb960f1d515013f16f1c7a2b54421728" name="aeb960f1d515013f16f1c7a2b54421728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb960f1d515013f16f1c7a2b54421728">&#9670;&#160;</a></span>resetListAndFreeMemory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="change_matrix_listener_8h.html#a2ef14742296b6d1fdaf5e70dfdd60996">ENG_API</a> List::resetListAndFreeMemory </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the list and frees all memory used for reserved nodes. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8f1c8d2d3a0938997abba18d39364e80" name="a8f1c8d2d3a0938997abba18d39364e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f1c8d2d3a0938997abba18d39364e80">&#9670;&#160;</a></span>m_listOfReservedToRender</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::list&lt;<a class="el" href="struct_list_1_1_reserved.html">Reserved</a>*&gt; List::m_listOfReservedToRender</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_list.html" title="Base List class.">List</a> of reserved nodes to be rendered. </p>
+
+</div>
+</div>
+<a id="a637c14207e86ae0a331acfd02b09956a" name="a637c14207e86ae0a331acfd02b09956a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a637c14207e86ae0a331acfd02b09956a">&#9670;&#160;</a></span>m_notificationService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_notification_service.html">NotificationService</a>&amp; List::m_notificationService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Notification service for subscribing and listening to matrix changes. </p>
+
+</div>
+</div>
+<a id="ac99c668626a5c8af901786e27b4f1d88" name="ac99c668626a5c8af901786e27b4f1d88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac99c668626a5c8af901786e27b4f1d88">&#9670;&#160;</a></span>m_reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="struct_list_1_1_reserved.html">Reserved</a>&gt; List::m_reserved</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique pointer to the reserved structure for managing node transformation data. </p>
 
 </div>
 </div>

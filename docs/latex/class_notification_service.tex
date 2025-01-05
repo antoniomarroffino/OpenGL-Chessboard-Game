@@ -35,6 +35,18 @@ void \mbox{\hyperlink{class_notification_service_ab5f5507308e90d7f81b45394c2d43e
 \item 
 static \mbox{\hyperlink{class_notification_service}{Notification\+Service}} \& \mbox{\hyperlink{class_notification_service_aa97b4f28bbe826560803072d37ad3d67}{get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em Get the singleton instance of \doxylink{class_notification_service}{Notification\+Service}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_notification_service_ad9d87a5982c0265a51e2cfc2dcf628a6}{Notification\+Service}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor for the singleton instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_notification_service_a20a234b2d77a82a7e3a84f14e41ab1e3}{m\+\_\+reshape\+Listeners}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_list}{List} of subscribers to window reshape events. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_notification_service_ae5e0e14893e836b2acc66591b20106ce}{m\+\_\+change\+Matrix\+Listeners}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_list}{List} of subscribers to matrix change events. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -45,7 +57,7 @@ The \doxylink{class_notification_service}{Notification\+Service} class provides 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_notification_service_a75c5af349d902bca6993714e842696a6}\index{NotificationService@{NotificationService}!NotificationService@{NotificationService}}
 \index{NotificationService@{NotificationService}!NotificationService@{NotificationService}}
-\doxysubsubsection{\texorpdfstring{NotificationService()}{NotificationService()}}
+\doxysubsubsection{\texorpdfstring{NotificationService()}{NotificationService()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{class_notification_service_a75c5af349d902bca6993714e842696a6} 
 Notification\+Service\+::\+Notification\+Service (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_notification_service}{Notification\+Service}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
@@ -63,7 +75,17 @@ Deleted copy constructor to prevent copying of the \doxylink{class_notification_
 
 Destructor for the \doxylink{class_notification_service}{Notification\+Service} class. 
 
-Cleans up the resources and ensures proper cleanup of listener subscriptions. 
+Cleans up the resources and ensures proper cleanup of listener subscriptions. \Hypertarget{class_notification_service_ad9d87a5982c0265a51e2cfc2dcf628a6}\index{NotificationService@{NotificationService}!NotificationService@{NotificationService}}
+\index{NotificationService@{NotificationService}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{NotificationService()}{NotificationService()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_notification_service_ad9d87a5982c0265a51e2cfc2dcf628a6} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Notification\+Service\+::\+Notification\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor for the singleton instance. 
+
+This constructor is private to ensure that the class can only be instantiated once through the get\+Instance method. 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_notification_service_aa97b4f28bbe826560803072d37ad3d67}\index{NotificationService@{NotificationService}!getInstance@{getInstance}}
@@ -188,6 +210,29 @@ Unsubscribe a listener from window reshape events.
 {\em listener} & The \doxylink{class_reshape_listener}{Reshape\+Listener} to unsubscribe. \\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_notification_service_ae5e0e14893e836b2acc66591b20106ce}\index{NotificationService@{NotificationService}!m\_changeMatrixListeners@{m\_changeMatrixListeners}}
+\index{m\_changeMatrixListeners@{m\_changeMatrixListeners}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{m\_changeMatrixListeners}{m\_changeMatrixListeners}}
+{\footnotesize\ttfamily \label{class_notification_service_ae5e0e14893e836b2acc66591b20106ce} 
+std\+::vector$<$\mbox{\hyperlink{class_change_matrix_listener}{Change\+Matrix\+Listener}}\texorpdfstring{$\ast$}{*}$>$ Notification\+Service\+::m\+\_\+change\+Matrix\+Listeners\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_list}{List} of subscribers to matrix change events. 
+
+\Hypertarget{class_notification_service_a20a234b2d77a82a7e3a84f14e41ab1e3}\index{NotificationService@{NotificationService}!m\_reshapeListeners@{m\_reshapeListeners}}
+\index{m\_reshapeListeners@{m\_reshapeListeners}!NotificationService@{NotificationService}}
+\doxysubsubsection{\texorpdfstring{m\_reshapeListeners}{m\_reshapeListeners}}
+{\footnotesize\ttfamily \label{class_notification_service_a20a234b2d77a82a7e3a84f14e41ab1e3} 
+std\+::vector$<$\mbox{\hyperlink{class_reshape_listener}{Reshape\+Listener}}\texorpdfstring{$\ast$}{*}$>$ Notification\+Service\+::m\+\_\+reshape\+Listeners\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{class_list}{List} of subscribers to window reshape events. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

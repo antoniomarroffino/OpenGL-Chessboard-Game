@@ -23,6 +23,13 @@ Factory class to create objects based on chunk ID and data.
 \item 
 static \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_o_v_o_object_factory_a848f1eef3f7ebe5eac8b257a3aadd23b}{create\+Object\+By\+Chunk\+ID}} (const unsigned int \&chunk\+ID, const char \texorpdfstring{$\ast$}{*}data)
 \begin{DoxyCompactList}\small\item\em Creates an object based on a chunk ID and associated data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned char \mbox{\hyperlink{class_o_v_o_object_factory_a65a69f566aed717b3cdef4d2944db0de}{skip\+To\+Subtype}} (const char \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Skips to the subtype section of the data. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_o_v_o_object_factory_a7433846d46618e372bcfa192f057d1c0}{create\+Light}} (const unsigned char \&subtype)
+\begin{DoxyCompactList}\small\item\em Creates a light object based on its subtype. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -54,6 +61,26 @@ Deleted copy constructor to prevent copying of the factory object.
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_o_v_o_object_factory_a7433846d46618e372bcfa192f057d1c0}\index{OVOObjectFactory@{OVOObjectFactory}!createLight@{createLight}}
+\index{createLight@{createLight}!OVOObjectFactory@{OVOObjectFactory}}
+\doxysubsubsection{\texorpdfstring{createLight()}{createLight()}}
+{\footnotesize\ttfamily \label{class_o_v_o_object_factory_a7433846d46618e372bcfa192f057d1c0} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} OVOObject\+Factory\+::create\+Light (\begin{DoxyParamCaption}\item[{const unsigned char \&}]{subtype}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Creates a light object based on its subtype. 
+
+This method creates a specific light object (e.\+g., {\ttfamily \doxylink{class_direct_light}{Direct\+Light}}, {\ttfamily \doxylink{class_omni_light}{Omni\+Light}}, {\ttfamily \doxylink{class_spot_light}{Spot\+Light}}) based on the provided subtype value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtype} & The subtype of the light. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the created light object, or {\ttfamily nullptr} if the subtype is unsupported. 
+\end{DoxyReturn}
 \Hypertarget{class_o_v_o_object_factory_a848f1eef3f7ebe5eac8b257a3aadd23b}\index{OVOObjectFactory@{OVOObjectFactory}!createObjectByChunkID@{createObjectByChunkID}}
 \index{createObjectByChunkID@{createObjectByChunkID}!OVOObjectFactory@{OVOObjectFactory}}
 \doxysubsubsection{\texorpdfstring{createObjectByChunkID()}{createObjectByChunkID()}}
@@ -86,6 +113,26 @@ A pointer to the created object, or {\ttfamily nullptr} if an unsupported type i
 
 Deleted assignment operator to prevent assignment of factory objects. 
 
+\Hypertarget{class_o_v_o_object_factory_a65a69f566aed717b3cdef4d2944db0de}\index{OVOObjectFactory@{OVOObjectFactory}!skipToSubtype@{skipToSubtype}}
+\index{skipToSubtype@{skipToSubtype}!OVOObjectFactory@{OVOObjectFactory}}
+\doxysubsubsection{\texorpdfstring{skipToSubtype()}{skipToSubtype()}}
+{\footnotesize\ttfamily \label{class_o_v_o_object_factory_a65a69f566aed717b3cdef4d2944db0de} 
+const \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} unsigned char OVOObject\+Factory\+::skip\+To\+Subtype (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Skips to the subtype section of the data. 
+
+This helper method processes the data and extracts the subtype information. It is used specifically for objects of type {\ttfamily LIGHT} to determine the kind of light (e.\+g., omni, directional, spot).
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to process. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The subtype of the light object. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -6,16 +6,16 @@
 \DoxyCodeLine{00011\ }
 \DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \ \textcolor{comment}{//\ Specifies\ I/O\ linkage\ for\ Windows\ (VC++\ spec)}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Specifies\ I/O\ linkage\ for\ Windows\ (VC++\ spec)}}
 \DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifdef\ \_WINDOWS}}
-\DoxyCodeLine{00016\ \ \ \ \textcolor{comment}{//\ Defines\ API\ linkage\ depending\ on\ whether\ ENGINE\_EXPORTS\ is\ defined}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Defines\ API\ linkage\ depending\ on\ whether\ ENGINE\_EXPORTS\ is\ defined}}
 \DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifdef\ ENGINE\_EXPORTS}}
 \DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ ENG\_API\ \_\_declspec(dllexport)}}
 \DoxyCodeLine{00019\ \textcolor{preprocessor}{\#else}}
 \DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ ENG\_API\ \_\_declspec(dllimport)}}
 \DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \textcolor{comment}{//\ Disables\ specific\ warnings\ related\ to\ DLL\ export/import}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Disables\ specific\ warnings\ related\ to\ DLL\ export/import}}
 \DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
 \DoxyCodeLine{00025\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ Linux}}
 \DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ENG\_API}}

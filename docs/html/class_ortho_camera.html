@@ -104,6 +104,7 @@ $(function(){initNavTree('class_ortho_camera.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_ortho_camera-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">OrthoCamera Class Reference</div></div>
 </div><!--header-->
@@ -131,6 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad4af100a21fe6cedf21c20d07e6d3e64" id="r_ad4af100a21fe6cedf21c20d07e6d3e64"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4af100a21fe6cedf21c20d07e6d3e64">OrthoCamera</a> (const std::string &amp;name, const float &amp;width, const float &amp;height, const float &amp;near_val, const float &amp;far_val)</td></tr>
 <tr class="memdesc:ad4af100a21fe6cedf21c20d07e6d3e64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for initializing the orthographic camera.  <br /></td></tr>
 <tr class="separator:ad4af100a21fe6cedf21c20d07e6d3e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2824e19e68d30eadba56edb2720eb56" id="r_ae2824e19e68d30eadba56edb2720eb56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2824e19e68d30eadba56edb2720eb56">~OrthoCamera</a> ()=default</td></tr>
+<tr class="memdesc:ae2824e19e68d30eadba56edb2720eb56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="class_ortho_camera.html" title="Concrete OrthoCamera class.">OrthoCamera</a> class.  <br /></td></tr>
+<tr class="separator:ae2824e19e68d30eadba56edb2720eb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a810c888f7aef4ae1f702bb5b117c84" id="r_a9a810c888f7aef4ae1f702bb5b117c84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a810c888f7aef4ae1f702bb5b117c84">OrthoCamera</a> (const <a class="el" href="class_ortho_camera.html">OrthoCamera</a> &amp;other)</td></tr>
 <tr class="memdesc:a9a810c888f7aef4ae1f702bb5b117c84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor for creating a new <a class="el" href="class_ortho_camera.html" title="Concrete OrthoCamera class.">OrthoCamera</a> object from an existing one.  <br /></td></tr>
 <tr class="separator:a9a810c888f7aef4ae1f702bb5b117c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,6 +238,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a59f7da873e620444bfb9de79d4452151 inherit pub_methods_class_reshape_listener" id="r_a59f7da873e620444bfb9de79d4452151"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reshape_listener.html#a59f7da873e620444bfb9de79d4452151">~ReshapeListener</a> ()=default</td></tr>
 <tr class="memdesc:a59f7da873e620444bfb9de79d4452151 inherit pub_methods_class_reshape_listener"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for the <a class="el" href="class_reshape_listener.html" title="Interface for receiving notifications when a window is resized.">ReshapeListener</a> class.  <br /></td></tr>
 <tr class="separator:a59f7da873e620444bfb9de79d4452151 inherit pub_methods_class_reshape_listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a7a8c30f2ee837327ed88672251fea7d6" id="r_a7a8c30f2ee837327ed88672251fea7d6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a8c30f2ee837327ed88672251fea7d6">m_left</a></td></tr>
+<tr class="memdesc:a7a8c30f2ee837327ed88672251fea7d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The left boundary for the orthographic projection.  <br /></td></tr>
+<tr class="separator:a7a8c30f2ee837327ed88672251fea7d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36f74f45f56505e0b0ef24e3c6aa03c0" id="r_a36f74f45f56505e0b0ef24e3c6aa03c0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36f74f45f56505e0b0ef24e3c6aa03c0">m_bottom</a></td></tr>
+<tr class="memdesc:a36f74f45f56505e0b0ef24e3c6aa03c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The bottom boundary for the orthographic projection.  <br /></td></tr>
+<tr class="separator:a36f74f45f56505e0b0ef24e3c6aa03c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -376,6 +389,34 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ae2824e19e68d30eadba56edb2720eb56" name="ae2824e19e68d30eadba56edb2720eb56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2824e19e68d30eadba56edb2720eb56">&#9670;&#160;</a></span>~OrthoCamera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OrthoCamera::~OrthoCamera </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor for the <a class="el" href="class_ortho_camera.html" title="Concrete OrthoCamera class.">OrthoCamera</a> class. </p>
+<p>The destructor releases any resources associated with the <a class="el" href="class_ortho_camera.html" title="Concrete OrthoCamera class.">OrthoCamera</a> object. </p>
+
+</div>
+</div>
 <a id="a9a810c888f7aef4ae1f702bb5b117c84" name="a9a810c888f7aef4ae1f702bb5b117c84"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9a810c888f7aef4ae1f702bb5b117c84">&#9670;&#160;</a></span>OrthoCamera() <span class="overload">[2/2]</span></h2>
 
@@ -488,6 +529,55 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Assignment operator is deleted to prevent assignment of <a class="el" href="class_ortho_camera.html" title="Concrete OrthoCamera class.">OrthoCamera</a> objects. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a36f74f45f56505e0b0ef24e3c6aa03c0" name="a36f74f45f56505e0b0ef24e3c6aa03c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f74f45f56505e0b0ef24e3c6aa03c0">&#9670;&#160;</a></span>m_bottom</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OrthoCamera::m_bottom</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The bottom boundary for the orthographic projection. </p>
+
+</div>
+</div>
+<a id="a7a8c30f2ee837327ed88672251fea7d6" name="a7a8c30f2ee837327ed88672251fea7d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a8c30f2ee837327ed88672251fea7d6">&#9670;&#160;</a></span>m_left</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OrthoCamera::m_left</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The left boundary for the orthographic projection. </p>
 
 </div>
 </div>

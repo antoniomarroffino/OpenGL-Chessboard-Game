@@ -8,5 +8,6 @@ var class_mesh =
     [ "getVertices", "class_mesh.html#a165198f185d83c438ae6df0c786b354d", null ],
     [ "operator=", "class_mesh.html#a7ab09a9d3a98f98fba1c9c545b56a238", null ],
     [ "parse", "class_mesh.html#add68ca4ef348ad8baf88f38488f53599", null ],
-    [ "render", "class_mesh.html#adb9bc66f2daa714ad363690db5ad2bf0", null ]
+    [ "render", "class_mesh.html#adb9bc66f2daa714ad363690db5ad2bf0", null ],
+    [ "m_reserved", "class_mesh.html#a5bcf47d58282b2bf114169b27fc3c1d5", null ]
 ];

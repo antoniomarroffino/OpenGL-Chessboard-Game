@@ -28,6 +28,15 @@ const unsigned int \& \mbox{\hyperlink{class_piece_a16bf4f54c8fcf93b6f3ad65162dd
 \begin{DoxyCompactList}\small\item\em Retrieve the column position of the piece. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_piece_aa5602ce6d9c35fc3171cc9989dd3baf5}{set\+Col}} (const unsigned int \&col)
 \begin{DoxyCompactList}\small\item\em Set the column position of the piece. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_piece_ac9f20cb6ce149a765f5dc4f07ef13c8a}{m\+\_\+node}}
+\begin{DoxyCompactList}\small\item\em Pointer to the \doxylink{class_node}{Node} object representing the visual representation of the piece. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_piece_a9b776775cbe217c5ad2062c4fc4fd12a}{m\+\_\+row}}
+\begin{DoxyCompactList}\small\item\em The row position of the piece on the chessboard. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_piece_ac80cc6b1ca3e9e6cbba551211265f123}{m\+\_\+col}}
+\begin{DoxyCompactList}\small\item\em The column position of the piece on the chessboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -84,7 +93,7 @@ Piece\+::\texorpdfstring{$\sim$}{\string~}\+Piece (\begin{DoxyParamCaption}{}{}\
 
 Destructor for the \doxylink{class_piece}{Piece} class. 
 
-The destructor is defined as default since there are no special cleanup operations needed. 
+
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_piece_a16bf4f54c8fcf93b6f3ad65162dde97a}\index{Piece@{Piece}!getCol@{getCol}}
@@ -166,6 +175,39 @@ This method sets the row position of the piece to the specified value.
 {\em row} & The new row position for the piece. \\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_piece_ac80cc6b1ca3e9e6cbba551211265f123}\index{Piece@{Piece}!m\_col@{m\_col}}
+\index{m\_col@{m\_col}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{m\_col}{m\_col}}
+{\footnotesize\ttfamily \label{class_piece_ac80cc6b1ca3e9e6cbba551211265f123} 
+unsigned int Piece\+::m\+\_\+col\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The column position of the piece on the chessboard. 
+
+\Hypertarget{class_piece_ac9f20cb6ce149a765f5dc4f07ef13c8a}\index{Piece@{Piece}!m\_node@{m\_node}}
+\index{m\_node@{m\_node}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{m\_node}{m\_node}}
+{\footnotesize\ttfamily \label{class_piece_ac9f20cb6ce149a765f5dc4f07ef13c8a} 
+\mbox{\hyperlink{class_node}{Node}}\texorpdfstring{$\ast$}{*} Piece\+::m\+\_\+node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the \doxylink{class_node}{Node} object representing the visual representation of the piece. 
+
+\Hypertarget{class_piece_a9b776775cbe217c5ad2062c4fc4fd12a}\index{Piece@{Piece}!m\_row@{m\_row}}
+\index{m\_row@{m\_row}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{m\_row}{m\_row}}
+{\footnotesize\ttfamily \label{class_piece_a9b776775cbe217c5ad2062c4fc4fd12a} 
+unsigned int Piece\+::m\+\_\+row\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The row position of the piece on the chessboard. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

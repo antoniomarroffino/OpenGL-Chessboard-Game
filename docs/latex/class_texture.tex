@@ -42,6 +42,25 @@ const std\+::string \& \mbox{\hyperlink{class_object_a623e33bd86ef50533cc0737173
 \begin{DoxyCompactList}\small\item\em Retrieve the name of the object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_object_a2353e70d1cd4e3d478b70611cc53e191}{set\+Name}} (const std\+::string \&name)
 \begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_texture_ad7677ef3dd7e759713520e717270f11f}{set\+Anisotropic\+Filter}} ()
+\begin{DoxyCompactList}\small\item\em Configure anisotropic filtering settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_texture_1_1_reserved}{Reserved}} $>$ \mbox{\hyperlink{class_texture_a78674d1cfd5c0f3d69c6e4a16b9094a9}{m\+\_\+reserved}}
+\begin{DoxyCompactList}\small\item\em Unique pointer to manage reserved resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_texture_a86a121e3a310fa041a248638d4a46d9a}{is\+Anisotropic\+Supported}} \{ false \}
+\begin{DoxyCompactList}\small\item\em Indicates if anisotropic filtering is supported. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_texture_a81e5d2144e0837abd386f6da6e76eb1f}{anisotropic\+Level}} \{ 1 \}
+\begin{DoxyCompactList}\small\item\em The maximum anisotropic filtering level supported. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_texture_a82ef0bf604ce91c83c2630fe055d154a}{is\+Anisotropic\+Already\+Set}} \{ false \}
+\begin{DoxyCompactList}\small\item\em Indicates if anisotropic filtering has already been set. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
 \begin{DoxyCompactItemize}
@@ -99,7 +118,7 @@ Constructor that initializes a texture with a specific name.
 
 Destructor that releases texture resources. 
 
-
+This destructor ensures that all resources allocated for the texture, such as the Open\+GL texture ID and any associated data, are properly released to avoid memory leaks or dangling pointers. 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_texture_aa03e5bb53ff3406057d6768679226550}\index{Texture@{Texture}!parse@{parse}}
@@ -148,6 +167,59 @@ This method binds the texture and applies the necessary Open\+GL settings to ren
 
 
 Implements \mbox{\hyperlink{class_object_afff98e03fa9337beab8c42cb4dc4ffb7}{Object}}.
+
+\Hypertarget{class_texture_ad7677ef3dd7e759713520e717270f11f}\index{Texture@{Texture}!setAnisotropicFilter@{setAnisotropicFilter}}
+\index{setAnisotropicFilter@{setAnisotropicFilter}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{setAnisotropicFilter()}{setAnisotropicFilter()}}
+{\footnotesize\ttfamily \label{class_texture_ad7677ef3dd7e759713520e717270f11f} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} void Texture\+::set\+Anisotropic\+Filter (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Configure anisotropic filtering settings. 
+
+This method checks for anisotropic filtering support in the system and sets the maximum available level. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_texture_a81e5d2144e0837abd386f6da6e76eb1f}\index{Texture@{Texture}!anisotropicLevel@{anisotropicLevel}}
+\index{anisotropicLevel@{anisotropicLevel}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{anisotropicLevel}{anisotropicLevel}}
+{\footnotesize\ttfamily \label{class_texture_a81e5d2144e0837abd386f6da6e76eb1f} 
+int Texture\+::anisotropic\+Level \{ 1 \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The maximum anisotropic filtering level supported. 
+
+\Hypertarget{class_texture_a82ef0bf604ce91c83c2630fe055d154a}\index{Texture@{Texture}!isAnisotropicAlreadySet@{isAnisotropicAlreadySet}}
+\index{isAnisotropicAlreadySet@{isAnisotropicAlreadySet}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{isAnisotropicAlreadySet}{isAnisotropicAlreadySet}}
+{\footnotesize\ttfamily \label{class_texture_a82ef0bf604ce91c83c2630fe055d154a} 
+bool Texture\+::is\+Anisotropic\+Already\+Set \{ false \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Indicates if anisotropic filtering has already been set. 
+
+\Hypertarget{class_texture_a86a121e3a310fa041a248638d4a46d9a}\index{Texture@{Texture}!isAnisotropicSupported@{isAnisotropicSupported}}
+\index{isAnisotropicSupported@{isAnisotropicSupported}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{isAnisotropicSupported}{isAnisotropicSupported}}
+{\footnotesize\ttfamily \label{class_texture_a86a121e3a310fa041a248638d4a46d9a} 
+bool Texture\+::is\+Anisotropic\+Supported \{ false \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Indicates if anisotropic filtering is supported. 
+
+\Hypertarget{class_texture_a78674d1cfd5c0f3d69c6e4a16b9094a9}\index{Texture@{Texture}!m\_reserved@{m\_reserved}}
+\index{m\_reserved@{m\_reserved}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{m\_reserved}{m\_reserved}}
+{\footnotesize\ttfamily \label{class_texture_a78674d1cfd5c0f3d69c6e4a16b9094a9} 
+std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{struct_texture_1_1_reserved}{Reserved}}$>$ Texture\+::m\+\_\+reserved\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Unique pointer to manage reserved resources. 
 
 
 

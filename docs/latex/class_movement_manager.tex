@@ -23,7 +23,7 @@ Inheritance diagram for Movement\+Manager\+:\begin{figure}[H]
 \mbox{\hyperlink{class_movement_manager}{Movement\+Manager}} \& \mbox{\hyperlink{class_movement_manager_a54fd218a2d2a3c9331dbea2234394095}{operator=}} (const \mbox{\hyperlink{class_movement_manager}{Movement\+Manager}} \&)=delete
 \begin{DoxyCompactList}\small\item\em Deleted assignment operator to prevent assignment of the \doxylink{class_movement_manager}{Movement\+Manager} instance. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_movement_manager_afdeb52f2e2ddf1e5af35c8b9cb9b88bc}{\texorpdfstring{$\sim$}{\string~}\+Movement\+Manager}} ()
-\begin{DoxyCompactList}\small\item\em Destructor to clean up resources. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Destructor to clean up resources and unsubscribe from the status manager. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_movement_manager_ae96c049c5458f96a5b7da68e0ad9cb5e}{get\+Turn}} () const
 \begin{DoxyCompactList}\small\item\em Get the current player\textquotesingle{}s turn. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_movement_manager_ad916c0b809bb3b58c76e6719212c35ff}{get\+Factory\+By\+Turn}} () const
@@ -56,6 +56,22 @@ virtual void \mbox{\hyperlink{class_on_state_update_listener_ac23acfdde2e7de9e0b
 \item 
 static \mbox{\hyperlink{class_movement_manager}{Movement\+Manager}} \& \mbox{\hyperlink{class_movement_manager_a1f4938de91f5d6a70451790471ebe378}{get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em Static method to get the singleton instance of the \doxylink{class_movement_manager}{Movement\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_movement_manager_a85f97c490d48cbae3b7f4cf6199f7c95}{Movement\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor to initialize the \doxylink{class_movement_manager}{Movement\+Manager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_movement_manager_a68237304f84b1004512f42c530f16554}{pre\+Game\+Handler}} () override
+\begin{DoxyCompactList}\small\item\em Method to handle game status updates before the game starts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_movement_manager_a6dc167a9c923534a05782799d6e4af4e}{m\+\_\+turn}}
+\begin{DoxyCompactList}\small\item\em Flag indicating the current player\textquotesingle{}s turn (TRUE for white, FALSE for black). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}} \& \mbox{\hyperlink{class_movement_manager_a1ce61ddfd6832762f662071de4cf2177}{m\+\_\+status\+Manager}}
+\begin{DoxyCompactList}\small\item\em Reference to the \doxylink{class_status_manager}{Status\+Manager} instance for managing game status. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{class_movement_manager_a3d0a803deb9c56de40b5f7bbb521810f}{MOVEMENT\+\_\+\+SPACE}} = 0.\+545f
+\begin{DoxyCompactList}\small\item\em Constant representing the space the pieces move in one step. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_on_state_update_listener}{On\+State\+Update\+Listener}}}
 \begin{DoxyCompactItemize}
@@ -72,7 +88,7 @@ The \doxylink{class_movement_manager}{Movement\+Manager} class handles the logic
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_movement_manager_a83b2979031ca296d4963ee6716a2a1c4}\index{MovementManager@{MovementManager}!MovementManager@{MovementManager}}
 \index{MovementManager@{MovementManager}!MovementManager@{MovementManager}}
-\doxysubsubsection{\texorpdfstring{MovementManager()}{MovementManager()}}
+\doxysubsubsection{\texorpdfstring{MovementManager()}{MovementManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{class_movement_manager_a83b2979031ca296d4963ee6716a2a1c4} 
 Movement\+Manager\+::\+Movement\+Manager (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_movement_manager}{Movement\+Manager}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
@@ -84,13 +100,23 @@ Deleted copy constructor to prevent copying of the \doxylink{class_movement_mana
 \index{````~MovementManager@{\texorpdfstring{$\sim$}{\string~}MovementManager}!MovementManager@{MovementManager}}
 \doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MovementManager()}{\string~MovementManager()}}
 {\footnotesize\ttfamily \label{class_movement_manager_afdeb52f2e2ddf1e5af35c8b9cb9b88bc} 
-Movement\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Movement\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+Movement\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Movement\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
-Destructor to clean up resources. 
+Destructor to clean up resources and unsubscribe from the status manager. 
+
+This destructor is responsible for unsubscribing the \doxylink{class_movement_manager}{Movement\+Manager} from the status manager\textquotesingle{}s listeners. This ensures that no further updates are received once the object is destroyed, preventing any dangling pointers or memory leaks. \Hypertarget{class_movement_manager_a85f97c490d48cbae3b7f4cf6199f7c95}\index{MovementManager@{MovementManager}!MovementManager@{MovementManager}}
+\index{MovementManager@{MovementManager}!MovementManager@{MovementManager}}
+\doxysubsubsection{\texorpdfstring{MovementManager()}{MovementManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_movement_manager_a85f97c490d48cbae3b7f4cf6199f7c95} 
+Movement\+Manager\+::\+Movement\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
+
+Private constructor to initialize the \doxylink{class_movement_manager}{Movement\+Manager}. 
+
+Initializes the \doxylink{class_movement_manager}{Movement\+Manager} and subscribes to the PRE\+\_\+\+GAME state for handling game setup. 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_movement_manager_a74fe724788ea20b6a39ea1593bae6f2a}\index{MovementManager@{MovementManager}!changeTurn@{changeTurn}}
@@ -219,6 +245,53 @@ This method moves the piece one step upwards, adjusting its row. It also checks 
 
 
 Deleted assignment operator to prevent assignment of the \doxylink{class_movement_manager}{Movement\+Manager} instance. 
+
+\Hypertarget{class_movement_manager_a68237304f84b1004512f42c530f16554}\index{MovementManager@{MovementManager}!preGameHandler@{preGameHandler}}
+\index{preGameHandler@{preGameHandler}!MovementManager@{MovementManager}}
+\doxysubsubsection{\texorpdfstring{preGameHandler()}{preGameHandler()}}
+{\footnotesize\ttfamily \label{class_movement_manager_a68237304f84b1004512f42c530f16554} 
+void Movement\+Manager\+::pre\+Game\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Method to handle game status updates before the game starts. 
+
+Resets the turn to white before the game begins. 
+
+Reimplemented from \mbox{\hyperlink{class_on_state_update_listener_a6a67d89aa4202d1f178e20adcc546220}{On\+State\+Update\+Listener}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_movement_manager_a1ce61ddfd6832762f662071de4cf2177}\index{MovementManager@{MovementManager}!m\_statusManager@{m\_statusManager}}
+\index{m\_statusManager@{m\_statusManager}!MovementManager@{MovementManager}}
+\doxysubsubsection{\texorpdfstring{m\_statusManager}{m\_statusManager}}
+{\footnotesize\ttfamily \label{class_movement_manager_a1ce61ddfd6832762f662071de4cf2177} 
+\mbox{\hyperlink{class_status_manager}{Status\+Manager}}\& Movement\+Manager\+::m\+\_\+status\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the \doxylink{class_status_manager}{Status\+Manager} instance for managing game status. 
+
+\Hypertarget{class_movement_manager_a6dc167a9c923534a05782799d6e4af4e}\index{MovementManager@{MovementManager}!m\_turn@{m\_turn}}
+\index{m\_turn@{m\_turn}!MovementManager@{MovementManager}}
+\doxysubsubsection{\texorpdfstring{m\_turn}{m\_turn}}
+{\footnotesize\ttfamily \label{class_movement_manager_a6dc167a9c923534a05782799d6e4af4e} 
+bool Movement\+Manager\+::m\+\_\+turn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating the current player\textquotesingle{}s turn (TRUE for white, FALSE for black). 
+
+\Hypertarget{class_movement_manager_a3d0a803deb9c56de40b5f7bbb521810f}\index{MovementManager@{MovementManager}!MOVEMENT\_SPACE@{MOVEMENT\_SPACE}}
+\index{MOVEMENT\_SPACE@{MOVEMENT\_SPACE}!MovementManager@{MovementManager}}
+\doxysubsubsection{\texorpdfstring{MOVEMENT\_SPACE}{MOVEMENT\_SPACE}}
+{\footnotesize\ttfamily \label{class_movement_manager_a3d0a803deb9c56de40b5f7bbb521810f} 
+const float Movement\+Manager\+::\+MOVEMENT\+\_\+\+SPACE = 0.\+545f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Constant representing the space the pieces move in one step. 
 
 
 

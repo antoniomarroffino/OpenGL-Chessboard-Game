@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['historymanager_0',['historyManager',['../struct_game_manager_1_1_reserved.html#a9878243be812d134d93a8f27981053b6',1,'GameManager::Reserved']]],
-  ['hull_1',['hull',['../struct_phys_props.html#a480e685ef2ae643e19ef5f19c37cef27',1,'PhysProps']]],
-  ['hulltype_2',['hullType',['../struct_phys_props.html#a5ac4c718599d828465eb7653f5d42f05',1,'PhysProps']]]
+  ['getkeyboardcallback_0',['getKeyboardCallback',['../class_status_manager.html#aa62e761db64fbfeb3d400cad3999ad80',1,'StatusManager']]],
+  ['getspecialkeycallback_1',['getSpecialKeyCallback',['../class_status_manager.html#a63249f1f18d461a79b3c3dc841128ebe',1,'StatusManager']]]
 ];

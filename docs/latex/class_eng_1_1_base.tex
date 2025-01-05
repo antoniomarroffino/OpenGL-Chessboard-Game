@@ -23,7 +23,7 @@ struct \mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}}
 \begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_eng_1_1_base}{Base} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_eng_1_1_base_ac4eb1f66179273abba59260a6b4c5cbd}{operator=}} (\mbox{\hyperlink{class_eng_1_1_base}{Base}} const \&)=delete
 \begin{DoxyCompactList}\small\item\em Deleted copy assignment operator to prevent assignment of the \doxylink{class_eng_1_1_base}{Base} instance. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_eng_1_1_base_a90edbcc7768cba11d81687bdcf7c10f5}{init}} ()
+bool \mbox{\hyperlink{class_eng_1_1_base_afc0dd380b8955e2313d41893e630be12}{init}} (void(\texorpdfstring{$\ast$}{*}close\+Call\+Back)()=nullptr)
 \begin{DoxyCompactList}\small\item\em Initialize the engine. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_eng_1_1_base_af6ed5042d5fb8d46b3bd339ecc916d33}{set\+Keyboard\+Callback}} (void(\texorpdfstring{$\ast$}{*}callback)(unsigned char, int, int))
 \begin{DoxyCompactList}\small\item\em Set the keyboard callback function for user input. \end{DoxyCompactList}\item 
@@ -52,6 +52,23 @@ void \mbox{\hyperlink{class_eng_1_1_base_ae3678d41d28398d92b37258ac9fa5695}{swap
 \item 
 static \mbox{\hyperlink{class_eng_1_1_base}{Base}} \& \mbox{\hyperlink{class_eng_1_1_base_a3c21bcd7bace09d5913ced6de5b15518}{get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em Get the singleton instance of the \doxylink{class_eng_1_1_base}{Base} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d}{handle\+Reshape}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Private method to handle window reshaping. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eng_1_1_base_a46524a1c562ab3afca032e44a00ce7c6}{Base}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor for the singleton instance. Initializes internal resources for the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}} $>$ \mbox{\hyperlink{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693}{reserved}}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_eng_1_1_base_1_1_reserved}{Reserved} structure for internal use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_eng_1_1_base}{Eng\+::\+Base}} \mbox{\hyperlink{class_eng_1_1_base_ad981031db3f340f6674922fcc72dacbb}{instance}}
+\begin{DoxyCompactList}\small\item\em The singleton instance of the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -62,7 +79,7 @@ The {\ttfamily \doxylink{class_eng_1_1_base}{Base}} class is responsible for ini
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69}\index{Eng::Base@{Eng::Base}!Base@{Base}}
 \index{Base@{Base}!Eng::Base@{Eng::Base}}
-\doxysubsubsection{\texorpdfstring{Base()}{Base()}}
+\doxysubsubsection{\texorpdfstring{Base()}{Base()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{class_eng_1_1_base_ac9bc36f2293d517cc6f1b2ab348d4f69} 
 Eng\+::\+Base\+::\+Base (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eng_1_1_base}{Base}} const \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
@@ -82,7 +99,17 @@ Destructor for the \doxylink{class_eng_1_1_base}{Base} class.
 
 Cleans up resources used by the graphics engine.
 
-Destructor. 
+Destructor. \Hypertarget{class_eng_1_1_base_a46524a1c562ab3afca032e44a00ce7c6}\index{Eng::Base@{Eng::Base}!Base@{Base}}
+\index{Base@{Base}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{Base()}{Base()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a46524a1c562ab3afca032e44a00ce7c6} 
+\mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::\+Base (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor for the singleton instance. Initializes internal resources for the engine. 
+
+Constructor. 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_eng_1_1_base_a3178a2cc100b772ea521d3b441c7d718}\index{Eng::Base@{Eng::Base}!begin3D@{begin3D}}
@@ -179,11 +206,28 @@ The singleton instance of \doxylink{class_eng_1_1_base}{Base}.
 Gets a reference to the (unique) singleton instance. \begin{DoxyReturn}{Returns}
 reference to singleton instance 
 \end{DoxyReturn}
-\Hypertarget{class_eng_1_1_base_a90edbcc7768cba11d81687bdcf7c10f5}\index{Eng::Base@{Eng::Base}!init@{init}}
+\Hypertarget{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d}\index{Eng::Base@{Eng::Base}!handleReshape@{handleReshape}}
+\index{handleReshape@{handleReshape}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{handleReshape()}{handleReshape()}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_aa4056f5a3edbc6f4d1764d6cec20e16d} 
+void Eng\+::\+Base\+::handle\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private method to handle window reshaping. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new width of the window. \\
+\hline
+{\em height} & The new height of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eng_1_1_base_afc0dd380b8955e2313d41893e630be12}\index{Eng::Base@{Eng::Base}!init@{init}}
 \index{init@{init}!Eng::Base@{Eng::Base}}
 \doxysubsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily \label{class_eng_1_1_base_a90edbcc7768cba11d81687bdcf7c10f5} 
-bool \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_afc0dd380b8955e2313d41893e630be12} 
+bool \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd60996}{ENG\+\_\+\+API}} Eng\+::\+Base\+::init (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{close\+Call\+Back~}{)() = {\ttfamily nullptr}}\end{DoxyParamCaption})}
 
 
 
@@ -282,6 +326,29 @@ void \mbox{\hyperlink{change_matrix_listener_8h_a2ef14742296b6d1fdaf5e70dfdd6099
 Swap the buffers for rendering. 
 
 Swap buffers. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_eng_1_1_base_ad981031db3f340f6674922fcc72dacbb}\index{Eng::Base@{Eng::Base}!instance@{instance}}
+\index{instance@{instance}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{instance}{instance}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_ad981031db3f340f6674922fcc72dacbb} 
+\mbox{\hyperlink{class_eng_1_1_base}{Eng\+::\+Base}} Eng\+::\+Base\+::instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The singleton instance of the engine. 
+
+\Hypertarget{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693}\index{Eng::Base@{Eng::Base}!reserved@{reserved}}
+\index{reserved@{reserved}!Eng::Base@{Eng::Base}}
+\doxysubsubsection{\texorpdfstring{reserved}{reserved}}
+{\footnotesize\ttfamily \label{class_eng_1_1_base_a17dea5630935db11dec6d91c9fc88693} 
+std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{struct_eng_1_1_base_1_1_reserved}{Reserved}}$>$ Eng\+::\+Base\+::reserved\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{struct_eng_1_1_base_1_1_reserved}{Reserved} structure for internal use. 
+
+Unique pointer to the reserved structure 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

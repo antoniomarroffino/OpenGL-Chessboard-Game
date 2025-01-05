@@ -104,6 +104,7 @@ $(function(){initNavTree('class_persp_camera.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_persp_camera-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">PerspCamera Class Reference</div></div>
 </div><!--header-->
@@ -131,6 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5af437157b95246a4ec426e37ee2ecae" id="r_a5af437157b95246a4ec426e37ee2ecae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5af437157b95246a4ec426e37ee2ecae">PerspCamera</a> (const std::string &amp;name, const float &amp;width, const float &amp;height, const float &amp;near_val, const float &amp;far_val, const float &amp;fovY)</td></tr>
 <tr class="memdesc:a5af437157b95246a4ec426e37ee2ecae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for initializing the perspective camera with specific parameters.  <br /></td></tr>
 <tr class="separator:a5af437157b95246a4ec426e37ee2ecae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0481f9ef5586716ea5d18bff5556fd90" id="r_a0481f9ef5586716ea5d18bff5556fd90"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0481f9ef5586716ea5d18bff5556fd90">~PerspCamera</a> ()=default</td></tr>
+<tr class="memdesc:a0481f9ef5586716ea5d18bff5556fd90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="class_persp_camera.html" title="Concrete PerspCamera class.">PerspCamera</a> class.  <br /></td></tr>
+<tr class="separator:a0481f9ef5586716ea5d18bff5556fd90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8137b8d562592619e125fac33013bafd" id="r_a8137b8d562592619e125fac33013bafd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8137b8d562592619e125fac33013bafd">PerspCamera</a> (const <a class="el" href="class_persp_camera.html">PerspCamera</a> &amp;other)</td></tr>
 <tr class="memdesc:a8137b8d562592619e125fac33013bafd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor for creating a <a class="el" href="class_persp_camera.html" title="Concrete PerspCamera class.">PerspCamera</a> object from another <a class="el" href="class_persp_camera.html" title="Concrete PerspCamera class.">PerspCamera</a>.  <br /></td></tr>
 <tr class="separator:a8137b8d562592619e125fac33013bafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,6 +238,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a59f7da873e620444bfb9de79d4452151 inherit pub_methods_class_reshape_listener" id="r_a59f7da873e620444bfb9de79d4452151"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reshape_listener.html#a59f7da873e620444bfb9de79d4452151">~ReshapeListener</a> ()=default</td></tr>
 <tr class="memdesc:a59f7da873e620444bfb9de79d4452151 inherit pub_methods_class_reshape_listener"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for the <a class="el" href="class_reshape_listener.html" title="Interface for receiving notifications when a window is resized.">ReshapeListener</a> class.  <br /></td></tr>
 <tr class="separator:a59f7da873e620444bfb9de79d4452151 inherit pub_methods_class_reshape_listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aaf93049c91c2c4c0bf89b08a96633bec" id="r_aaf93049c91c2c4c0bf89b08a96633bec"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf93049c91c2c4c0bf89b08a96633bec">m_fovY</a></td></tr>
+<tr class="memdesc:aaf93049c91c2c4c0bf89b08a96633bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The vertical field of view (in degrees).  <br /></td></tr>
+<tr class="separator:aaf93049c91c2c4c0bf89b08a96633bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -382,6 +392,34 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a0481f9ef5586716ea5d18bff5556fd90" name="a0481f9ef5586716ea5d18bff5556fd90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0481f9ef5586716ea5d18bff5556fd90">&#9670;&#160;</a></span>~PerspCamera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PerspCamera::~PerspCamera </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor for the <a class="el" href="class_persp_camera.html" title="Concrete PerspCamera class.">PerspCamera</a> class. </p>
+<p>The destructor releases any resources associated with the <a class="el" href="class_persp_camera.html" title="Concrete PerspCamera class.">PerspCamera</a> object. </p>
+
+</div>
+</div>
 <a id="a8137b8d562592619e125fac33013bafd" name="a8137b8d562592619e125fac33013bafd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8137b8d562592619e125fac33013bafd">&#9670;&#160;</a></span>PerspCamera() <span class="overload">[2/2]</span></h2>
 
@@ -494,6 +532,32 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Assignment operator is deleted to prevent assignment of <a class="el" href="class_persp_camera.html" title="Concrete PerspCamera class.">PerspCamera</a> objects. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aaf93049c91c2c4c0bf89b08a96633bec" name="aaf93049c91c2c4c0bf89b08a96633bec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf93049c91c2c4c0bf89b08a96633bec">&#9670;&#160;</a></span>m_fovY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PerspCamera::m_fovY</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The vertical field of view (in degrees). </p>
+<p>The vertical field of view controls how wide or narrow the camera's view is. A higher value gives a wider view, while a smaller value gives a narrower view. </p>
 
 </div>
 </div>

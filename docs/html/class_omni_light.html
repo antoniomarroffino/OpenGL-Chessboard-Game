@@ -104,6 +104,7 @@ $(function(){initNavTree('class_omni_light.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_omni_light-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">OmniLight Class Reference</div></div>
 </div><!--header-->
@@ -130,6 +131,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a192a3dde3f567aaf1db7626468dfc88c" id="r_a192a3dde3f567aaf1db7626468dfc88c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a192a3dde3f567aaf1db7626468dfc88c">OmniLight</a> (const std::string &amp;name=&quot;defaultOmniLight&quot;, const glm::vec3 &amp;position=glm::vec3(0.0f))</td></tr>
 <tr class="memdesc:a192a3dde3f567aaf1db7626468dfc88c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for initializing the omnidirectional light with specific parameters.  <br /></td></tr>
 <tr class="separator:a192a3dde3f567aaf1db7626468dfc88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab84887e9e53ca30985efed024b4a27d9" id="r_ab84887e9e53ca30985efed024b4a27d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab84887e9e53ca30985efed024b4a27d9">~OmniLight</a> ()=default</td></tr>
+<tr class="memdesc:ab84887e9e53ca30985efed024b4a27d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="class_omni_light.html" title="Concrete OmniLight class.">OmniLight</a> class.  <br /></td></tr>
+<tr class="separator:ab84887e9e53ca30985efed024b4a27d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f0682498e3d76b7d57fea900f415b45" id="r_a6f0682498e3d76b7d57fea900f415b45"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f0682498e3d76b7d57fea900f415b45">OmniLight</a> (const <a class="el" href="class_omni_light.html">OmniLight</a> &amp;other)</td></tr>
 <tr class="memdesc:a6f0682498e3d76b7d57fea900f415b45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor for creating an <a class="el" href="class_omni_light.html" title="Concrete OmniLight class.">OmniLight</a> object from another <a class="el" href="class_omni_light.html" title="Concrete OmniLight class.">OmniLight</a>.  <br /></td></tr>
 <tr class="separator:a6f0682498e3d76b7d57fea900f415b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,6 +150,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4a28865a7fa9b1b96816c47bb5605141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the cutoff angle of the omni light.  <br /></td></tr>
 <tr class="separator:a4a28865a7fa9b1b96816c47bb5605141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_light"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_light')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_light.html">Light</a></td></tr>
+<tr class="memitem:ae3e3209d4b97d0bbbd614ded5e1213d9 inherit pub_methods_class_light" id="r_ae3e3209d4b97d0bbbd614ded5e1213d9"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light.html#ae3e3209d4b97d0bbbd614ded5e1213d9">~Light</a> ()=default</td></tr>
+<tr class="memdesc:ae3e3209d4b97d0bbbd614ded5e1213d9 inherit pub_methods_class_light"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="class_light.html" title="Abstract base class for light sources.">Light</a> class.  <br /></td></tr>
+<tr class="separator:ae3e3209d4b97d0bbbd614ded5e1213d9 inherit pub_methods_class_light"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c2b3894860997c534ad58cf233231aa inherit pub_methods_class_light" id="r_a9c2b3894860997c534ad58cf233231aa"><td class="memItemLeft" align="right" valign="top">virtual const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light.html#a9c2b3894860997c534ad58cf233231aa">parse</a> (const char *data, unsigned int &amp;position) override</td></tr>
 <tr class="memdesc:a9c2b3894860997c534ad58cf233231aa inherit pub_methods_class_light"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse the light data from a buffer and initialize the light's properties.  <br /></td></tr>
 <tr class="separator:a9c2b3894860997c534ad58cf233231aa inherit pub_methods_class_light"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,6 +242,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2353e70d1cd4e3d478b70611cc53e191 inherit pub_methods_class_object" id="r_a2353e70d1cd4e3d478b70611cc53e191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a2353e70d1cd4e3d478b70611cc53e191">setName</a> (const std::string &amp;name)</td></tr>
 <tr class="memdesc:a2353e70d1cd4e3d478b70611cc53e191 inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name of the object.  <br /></td></tr>
 <tr class="separator:a2353e70d1cd4e3d478b70611cc53e191 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac0384981c70b101f23ed7d3484871319" id="r_ac0384981c70b101f23ed7d3484871319"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0384981c70b101f23ed7d3484871319">m_cutoff</a></td></tr>
+<tr class="memdesc:ac0384981c70b101f23ed7d3484871319"><td class="mdescLeft">&#160;</td><td class="mdescRight">The cutoff angle for the omni light (in degrees).  <br /></td></tr>
+<tr class="separator:ac0384981c70b101f23ed7d3484871319"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -358,6 +371,34 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ab84887e9e53ca30985efed024b4a27d9" name="ab84887e9e53ca30985efed024b4a27d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab84887e9e53ca30985efed024b4a27d9">&#9670;&#160;</a></span>~OmniLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OmniLight::~OmniLight </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor for the <a class="el" href="class_omni_light.html" title="Concrete OmniLight class.">OmniLight</a> class. </p>
+<p>The destructor cleans up any resources associated with the <a class="el" href="class_omni_light.html" title="Concrete OmniLight class.">OmniLight</a> object. </p>
 
 </div>
 </div>
@@ -500,6 +541,32 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Reimplemented from <a class="el" href="class_light.html#aa7c94186ffb48c88058dea96547c8f3c">Light</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac0384981c70b101f23ed7d3484871319" name="ac0384981c70b101f23ed7d3484871319"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0384981c70b101f23ed7d3484871319">&#9670;&#160;</a></span>m_cutoff</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OmniLight::m_cutoff</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The cutoff angle for the omni light (in degrees). </p>
+<p>Since omni lights emit light in all directions, the cutoff is fixed to 180 degrees. </p>
 
 </div>
 </div>

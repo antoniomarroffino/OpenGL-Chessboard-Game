@@ -105,6 +105,7 @@ $(function(){initNavTree('class_light_manager.html',''); initResizable(true); })
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_light_manager-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">LightManager Class Reference</div></div>
 </div><!--header-->
@@ -138,13 +139,19 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad39f5310bb8c84e396233c6c3722d84c" id="r_ad39f5310bb8c84e396233c6c3722d84c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_light_manager.html">LightManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad39f5310bb8c84e396233c6c3722d84c">getInstance</a> ()</td></tr>
 <tr class="memdesc:ad39f5310bb8c84e396233c6c3722d84c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the singleton instance of the <a class="el" href="class_light_manager.html" title="Singleton class responsible for managing light objects in the scene.">LightManager</a>.  <br /></td></tr>
 <tr class="separator:ad39f5310bb8c84e396233c6c3722d84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a1eee8eb276ec7f041d961a567389754a" id="r_a1eee8eb276ec7f041d961a567389754a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1eee8eb276ec7f041d961a567389754a">LightManager</a> ()</td></tr>
+<tr class="memdesc:a1eee8eb276ec7f041d961a567389754a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private constructor for <a class="el" href="class_light_manager.html" title="Singleton class responsible for managing light objects in the scene.">LightManager</a>.  <br /></td></tr>
+<tr class="separator:a1eee8eb276ec7f041d961a567389754a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Singleton class responsible for managing light objects in the scene. </p>
 <p>The <a class="el" href="class_light_manager.html" title="Singleton class responsible for managing light objects in the scene.">LightManager</a> class provides functionality to manage and control the lights in the 3D scene, including turning lights on and off, as well as adjusting their intensity. It follows the Singleton pattern to ensure that only one instance of the manager exists throughout the application. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab7f041947e8a1d0635528c0993853494" name="ab7f041947e8a1d0635528c0993853494"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7f041947e8a1d0635528c0993853494">&#9670;&#160;</a></span>LightManager()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7f041947e8a1d0635528c0993853494">&#9670;&#160;</a></span>LightManager() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,6 +175,34 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Deleted copy constructor. </p>
 <p>Prevents copying of the <a class="el" href="class_light_manager.html" title="Singleton class responsible for managing light objects in the scene.">LightManager</a> instance, enforcing the Singleton pattern. </p>
+
+</div>
+</div>
+<a id="a1eee8eb276ec7f041d961a567389754a" name="a1eee8eb276ec7f041d961a567389754a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eee8eb276ec7f041d961a567389754a">&#9670;&#160;</a></span>LightManager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">LightManager::LightManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Private constructor for <a class="el" href="class_light_manager.html" title="Singleton class responsible for managing light objects in the scene.">LightManager</a>. </p>
+<p>The constructor is private to prevent instantiating the class directly. Use <a class="el" href="#ad39f5310bb8c84e396233c6c3722d84c" title="Get the singleton instance of the LightManager.">getInstance()</a> to obtain the singleton instance. </p>
 
 </div>
 </div>

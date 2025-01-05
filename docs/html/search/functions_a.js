@@ -1,17 +1,10 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['material_1',['Material',['../class_material.html#a013564c944720310144f297fa0c3e2d4',1,'Material::Material(const std::string &amp;name=&quot;defaultMaterial&quot;)'],['../class_material.html#a53dfe7bfdb3c34d83c5b93281aad0b97',1,'Material::Material(const Material &amp;other)']]],
-  ['mesh_2',['Mesh',['../class_mesh.html#a91b4a38d5f76048f3b28416c3133d574',1,'Mesh::Mesh(const std::string &amp;name=&quot;defaultMesh&quot;)'],['../class_mesh.html#aabe407c9f2cb31c3c6ce1f635dcd30f6',1,'Mesh::Mesh(const Mesh &amp;other)']]],
-  ['movecameradown_3',['moveCameraDown',['../class_camera_manager.html#a7a6e25590403b9d7efa4d70b29601247',1,'CameraManager']]],
-  ['movecameraleft_4',['moveCameraLeft',['../class_camera_manager.html#aa8880103ac1f7bcca9e58f30e2767a0d',1,'CameraManager']]],
-  ['movecameraright_5',['moveCameraRight',['../class_camera_manager.html#ae1f87332df74c9f4693b417fc94e36e0',1,'CameraManager']]],
-  ['movecameraup_6',['moveCameraUp',['../class_camera_manager.html#a2456c7dd81bc3849213439136e1fa8a7',1,'CameraManager']]],
-  ['movechoosenodeleft_7',['moveChooseNodeLeft',['../class_list_of_pieces_manager.html#a0acac74128d0c62fc363eb82d3d2485c',1,'ListOfPiecesManager']]],
-  ['movechoosenoderight_8',['moveChooseNodeRight',['../class_list_of_pieces_manager.html#a5d346b89d7aaeecf1a76c2a7b3795bc5',1,'ListOfPiecesManager']]],
-  ['movedown_9',['moveDown',['../class_movement_manager.html#a1beb218f097b15726360b7ab2ac103b3',1,'MovementManager']]],
-  ['moveleft_10',['moveLeft',['../class_movement_manager.html#a98beff6c181775acc785a4a6197a8756',1,'MovementManager']]],
-  ['movementmanager_11',['MovementManager',['../class_movement_manager.html#a83b2979031ca296d4963ee6716a2a1c4',1,'MovementManager']]],
-  ['moveright_12',['moveRight',['../class_movement_manager.html#ac8b5806043f01a4b9a713813635366e1',1,'MovementManager']]],
-  ['moveup_13',['moveUp',['../class_movement_manager.html#ade240336d3b192388556fc3d73ed2ec9',1,'MovementManager']]]
+  ['light_0',['Light',['../class_light.html#a3f257cebb940bc7fbdc4e8e59f93156f',1,'Light::Light(const std::string &amp;name, const glm::vec4 &amp;position)'],['../class_light.html#ae0d5d04239fdf3e7a3e80e9cff8e9717',1,'Light::Light(const Light &amp;other)']]],
+  ['lightmanager_1',['LightManager',['../class_light_manager.html#ab7f041947e8a1d0635528c0993853494',1,'LightManager::LightManager(const LightManager &amp;)=delete'],['../class_light_manager.html#a1eee8eb276ec7f041d961a567389754a',1,'LightManager::LightManager()']]],
+  ['list_2',['List',['../class_list.html#a206eadb5753473eb913668b85b819b18',1,'List::List()'],['../class_list.html#a2ebef7c72b962d8c9a3d45ebea0b727c',1,'List::List(const List &amp;)=delete']]],
+  ['listofpieces_3',['ListOfPieces',['../class_list_of_pieces.html#a62d3ceb40c3be83a699e4fde468d5c10',1,'ListOfPieces::ListOfPieces(const std::vector&lt; Piece * &gt; &amp;pieces)'],['../class_list_of_pieces.html#a0c1da5f21c5cb4d8cf94795d31d82429',1,'ListOfPieces::ListOfPieces(const ListOfPieces &amp;other)']]],
+  ['listofpiecesmanager_4',['ListOfPiecesManager',['../class_list_of_pieces_manager.html#a4b4f1d552166871029d7c6db5a9b048b',1,'ListOfPiecesManager::ListOfPiecesManager(const ListOfPiecesManager &amp;)=delete'],['../class_list_of_pieces_manager.html#a55afd325baf1b5f5b114cdfda2c0052a',1,'ListOfPiecesManager::ListOfPiecesManager()']]],
+  ['load_5',['load',['../class_eng_1_1_base.html#a91aaec73e036ebafe769980277777d90',1,'Eng::Base']]],
+  ['loadprojectionmatrix_6',['loadProjectionMatrix',['../class_camera.html#a45d9b25f23a8862c296ab090701afa6d',1,'Camera::loadProjectionMatrix()'],['../class_ortho_camera.html#a5707b069a29c74ec3296a1593fcac528',1,'OrthoCamera::loadProjectionMatrix()'],['../class_persp_camera.html#a1d18cc866c320f34954a89818d354297',1,'PerspCamera::loadProjectionMatrix()']]]
 ];

@@ -4,7 +4,7 @@ var searchData=
   ['tempcol_1',['tempCol',['../list_of_pieces_manager_8cpp.html#a7c21dbb2ffbb153c90849a6f51d96c50',1,'listOfPiecesManager.cpp']]],
   ['tempmatrix_2',['tempMatrix',['../list_of_pieces_manager_8cpp.html#a9a4b636ebc84b7030664d23a85ff4bbc',1,'listOfPiecesManager.cpp']]],
   ['temprow_3',['tempRow',['../list_of_pieces_manager_8cpp.html#ae961cb82e7d163af3251ac7e61e707e8',1,'listOfPiecesManager.cpp']]],
-  ['textmanager_4',['TextManager',['../class_text_manager.html',1,'TextManager'],['../class_text_manager.html#a0284b848f6a8984debf2e35ae8905480',1,'TextManager::TextManager()']]],
+  ['textmanager_4',['TextManager',['../class_text_manager.html',1,'TextManager'],['../class_text_manager.html#a0284b848f6a8984debf2e35ae8905480',1,'TextManager::TextManager(const TextManager &amp;)=delete'],['../class_text_manager.html#a1714c4be87a3ba4d1c3d8df4e79b8ea9',1,'TextManager::TextManager()']]],
   ['textmanager_5',['textManager',['../struct_eng_1_1_base_1_1_reserved.html#ae8c9b4ff6c945eb9d02abb57f93e2407',1,'Eng::Base::Reserved']]],
   ['textmanager_2ecpp_6',['textManager.cpp',['../text_manager_8cpp.html',1,'']]],
   ['textmanager_2eh_7',['textManager.h',['../text_manager_8h.html',1,'']]],

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['physobj_0',['physObj',['../struct_phys_props.html#a4fefdb56a14851dcd7e301422c413a8e',1,'PhysProps']]],
-  ['previoustime_1',['previousTime',['../engine_8cpp.html#aaa2bba9b04515c5bbf5c04d20f672b12',1,'engine.cpp']]]
+  ['notificationservice_0',['notificationService',['../struct_eng_1_1_base_1_1_reserved.html#ad506ec9617b3c814a831c2235b1338cd',1,'Eng::Base::Reserved']]],
+  ['nrofhulls_1',['nrOfHulls',['../struct_phys_props.html#aa5396fa64ea2e43fe71f79483c31cb07',1,'PhysProps']]]
 ];
