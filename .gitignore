@@ -1,7 +1,7 @@
 !dependencies/
 !dependencies/**/lib/
 !demo/
-demo/**/*.Identifier
+demo/Linux/textures/*.Identifier
 client/x*
 engine/x*
 .vs/
