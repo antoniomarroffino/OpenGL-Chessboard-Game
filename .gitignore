@@ -1,6 +1,7 @@
 !dependencies/
 !dependencies/**/lib/
-!demo/**/x64/
+!demo/
+demo/**/*.Identifier
 client/x*
 engine/x*
 .vs/
