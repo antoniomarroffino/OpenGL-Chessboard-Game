@@ -43,11 +43,28 @@
 			<Add library="gmock" />
 			<Add library="gtest" />
 		</Linker>
+		<Unit filename="directLightTest.cpp" />
+		<Unit filename="directLightTest.h" />
+		<Unit filename="fileOVOReaderTest.cpp" />
+		<Unit filename="fileOVOReaderTest.h" />
+		<Unit filename="listTest.cpp" />
+		<Unit filename="listTest.h" />
+		<Unit filename="mockCamera.h" />
+		<Unit filename="mockLight.h" />
 		<Unit filename="mockList.h" />
+		<Unit filename="mockNode.h" />
 		<Unit filename="nodeTest.cpp" />
 		<Unit filename="nodeTest.h" />
+		<Unit filename="notificationServiceTest.cpp" />
+		<Unit filename="notificationServiceTest.h" />
 		<Unit filename="objectTest.cpp" />
 		<Unit filename="objectTest.h" />
+		<Unit filename="omniLightTest.cpp" />
+		<Unit filename="omniLightTest.h" />
+		<Unit filename="orthoCameraTest.cpp" />
+		<Unit filename="orthoCameraTest.h" />
+		<Unit filename="spotLightTest.cpp" />
+		<Unit filename="spotLightTest.h" />
 		<Unit filename="test.cpp" />
 		<Unit filename="test.h" />
 		<Extensions />

@@ -35,9 +35,9 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++20" />
 			<Add option="-fPIC" />
 			<Add option="-m64" />
-			<Add option="-std=c++20" />
 			<Add option="-fexceptions" />
 			<Add directory="../dependencies/glm/include" />
 		</Compiler>
@@ -45,10 +45,13 @@
 			<Add option="-m64" />
 			<Add library="glut" />
 			<Add library="GL" />
+			<Add library="GLU" />
+			<Add library="freeimage" />
 		</Linker>
 		<Unit filename="Doxyfile" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
+		<Unit filename="changeMatrixListener.h" />
 		<Unit filename="directLight.cpp" />
 		<Unit filename="directLight.h" />
 		<Unit filename="engine.cpp" />
@@ -65,6 +68,8 @@
 		<Unit filename="mesh.h" />
 		<Unit filename="node.cpp" />
 		<Unit filename="node.h" />
+		<Unit filename="notificationService.cpp" />
+		<Unit filename="notificationService.h" />
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
 		<Unit filename="omniLight.cpp" />
@@ -75,8 +80,11 @@
 		<Unit filename="ovoObjectFactory.h" />
 		<Unit filename="perspCamera.cpp" />
 		<Unit filename="perspCamera.h" />
+		<Unit filename="reshapeListener.h" />
 		<Unit filename="spotLight.cpp" />
 		<Unit filename="spotLight.h" />
+		<Unit filename="textManager.cpp" />
+		<Unit filename="textManager.h" />
 		<Unit filename="texture.cpp" />
 		<Unit filename="texture.h" />
 		<Extensions />
