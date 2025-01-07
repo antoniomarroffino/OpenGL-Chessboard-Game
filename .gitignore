@@ -28,26 +28,14 @@ engine/test/*
 *.o
 *.obj
 *.exe
-*.dll
-*.lib
-*.so
-*.a
 *.lo
 *.la
-*.lib
-*.dll
 *.dylib
-*.so
-*.a
-*.la
 
 *.glsl
 *.vert
 *.frag
 *.spv
-
-!dependencies/freeglut/lib/*
-!dependencies/freeimage/lib/*
 
 shaders_cache/
 
