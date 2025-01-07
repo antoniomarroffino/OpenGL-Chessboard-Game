@@ -23,6 +23,7 @@ structure:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "main"
 
 
 engine:
@@ -48,6 +49,7 @@ engine:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "main"
 
 client:
   stage: client
@@ -69,6 +71,7 @@ client:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "main"
 
 install-package:
   stage: install_package
@@ -83,6 +86,7 @@ install-package:
 
   rules:
     - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "main"
 
   artifacts:
     paths:
