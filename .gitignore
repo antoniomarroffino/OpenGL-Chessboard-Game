@@ -1,6 +1,6 @@
 !dependencies/
 !dependencies/**/lib/
-!demo/
+!demo/*
 demo/Linux/textures/*.Identifier
 client/x*
 engine/x*
@@ -31,7 +31,6 @@ engine/test/*
 
 *.o
 *.obj
-*.exe
 *.lo
 *.la
 *.dylib
