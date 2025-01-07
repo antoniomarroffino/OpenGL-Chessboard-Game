@@ -1,3 +1,5 @@
+!dependencies/
+!dependencies/**/lib/
 client/x*
 engine/x*
 .vs/
